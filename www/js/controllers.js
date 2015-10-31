@@ -41,16 +41,25 @@ angular.module('BlueCube.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+.controller('PlaylistsCtrl', function($ionicPlatform, $scope, $cordovaDevice) {
+    $ionicPlatform.ready(function() {
+        $scope.$apply(function() {
+            // sometimes binding does not work! :/
+ 
+            // getting device infor from $cordovaDevice
+            var device = $cordovaDevice.getDevice();
+ 
+            $scope.manufacturer = device.manufacturer;
+            $scope.model = device.model;
+            $scope.platform = device.platform;
+            $scope.version = device.version;
+            $scope.uuid = device.uuid;
+ 
+        });
+ 
+    });
 })
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+ 
+.controller('PlaylistCtrl', function() {
 });
+
