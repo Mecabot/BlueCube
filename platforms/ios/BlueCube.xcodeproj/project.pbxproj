@@ -41,6 +41,10 @@
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		947ADAAAA0814F3DB2BBC9CD /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = F85E27A8D33445F19132BEE1 /* CDVDevice.m */; };
 		05B31BFD4CE84FD5A8D16234 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 599802708B034167880CCA68 /* CDVLogger.m */; };
+		F0FE021F59694D428766B5B9 /* MEGBluetoothSerial.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D68413AC54645A1A02921E7 /* MEGBluetoothSerial.m */; };
+		ABE9A22B79C942639DE1CBB4 /* CBPeripheral+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 696D6AB6C8FC47AEA7906682 /* CBPeripheral+Extensions.m */; };
+		C20F1618015243DE820A0CF9 /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = 3209971A242547399002564C /* BLE.m */; };
+		AE50EA20E129441686CE5CDA /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7522F5D725514541984FF0B0 /* CoreBluetooth.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +114,14 @@
 		14DF1B793B0A40DB928ABA34 /* CDVDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVDevice.h"; path = "cordova-plugin-device/CDVDevice.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		599802708B034167880CCA68 /* CDVLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLogger.m"; path = "cordova-plugin-console/CDVLogger.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		E5177AE7D4AC4B2DACF3A068 /* CDVLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLogger.h"; path = "cordova-plugin-console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		6D68413AC54645A1A02921E7 /* MEGBluetoothSerial.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "MEGBluetoothSerial.m"; path = "cordova-plugin-bluetooth-serial/BluetoothSerial/MEGBluetoothSerial.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		696D6AB6C8FC47AEA7906682 /* CBPeripheral+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CBPeripheral+Extensions.m"; path = "cordova-plugin-bluetooth-serial/BluetoothSerial/CBPeripheral+Extensions.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		3209971A242547399002564C /* BLE.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "BLE.m"; path = "cordova-plugin-bluetooth-serial/BluetoothSerial/BLE.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		623F182A77D4443CAACC054C /* MEGBluetoothSerial.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MEGBluetoothSerial.h"; path = "cordova-plugin-bluetooth-serial/BluetoothSerial/MEGBluetoothSerial.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		BBFD91F8E7A0480E943CD929 /* CBPeripheral+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CBPeripheral+Extensions.h"; path = "cordova-plugin-bluetooth-serial/BluetoothSerial/CBPeripheral+Extensions.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		8FF8210995014FDAB397F938 /* BLE.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "BLE.h"; path = "cordova-plugin-bluetooth-serial/BluetoothSerial/BLE.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		2D7AF3645E614677B7BA4A4C /* BLEDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "BLEDefines.h"; path = "cordova-plugin-bluetooth-serial/BluetoothSerial/BLEDefines.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		7522F5D725514541984FF0B0 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "CoreBluetooth.framework"; path = "System/Library/Frameworks/CoreBluetooth.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +133,7 @@
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
+				AE50EA20E129441686CE5CDA /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +206,7 @@
 				5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */,
+				7522F5D725514541984FF0B0 /* CoreBluetooth.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -212,6 +226,13 @@
 				14DF1B793B0A40DB928ABA34 /* CDVDevice.h */,
 				599802708B034167880CCA68 /* CDVLogger.m */,
 				E5177AE7D4AC4B2DACF3A068 /* CDVLogger.h */,
+				6D68413AC54645A1A02921E7 /* MEGBluetoothSerial.m */,
+				696D6AB6C8FC47AEA7906682 /* CBPeripheral+Extensions.m */,
+				3209971A242547399002564C /* BLE.m */,
+				623F182A77D4443CAACC054C /* MEGBluetoothSerial.h */,
+				BBFD91F8E7A0480E943CD929 /* CBPeripheral+Extensions.h */,
+				8FF8210995014FDAB397F938 /* BLE.h */,
+				2D7AF3645E614677B7BA4A4C /* BLEDefines.h */,
 			);
 			name = Plugins;
 			path = "BlueCube/Plugins";
@@ -398,6 +419,9 @@
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				947ADAAAA0814F3DB2BBC9CD /* CDVDevice.m in Sources */,
 				05B31BFD4CE84FD5A8D16234 /* CDVLogger.m in Sources */,
+				F0FE021F59694D428766B5B9 /* MEGBluetoothSerial.m in Sources */,
+				ABE9A22B79C942639DE1CBB4 /* CBPeripheral+Extensions.m in Sources */,
+				C20F1618015243DE820A0CF9 /* BLE.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
