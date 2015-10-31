@@ -27,6 +27,13 @@ module.exports = [
         "clobbers": [
             "window.bluetoothSerial"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+        "id": "cordova-plugin-statusbar.statusbar",
+        "clobbers": [
+            "window.StatusBar"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -35,7 +42,8 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.0.0",
     "cordova-plugin-device": "1.0.1",
     "cordova-plugin-console": "1.0.1",
-    "cordova-plugin-bluetooth-serial": "0.4.4"
+    "cordova-plugin-bluetooth-serial": "0.4.4",
+    "cordova-plugin-statusbar": "1.0.1"
 }
 // BOTTOM OF METADATA
 });
