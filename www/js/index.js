@@ -28,6 +28,15 @@ var app = {
 	  StatusBar.styleDefault();
 	  
 	  log("DeviceReady");
+	  
+	  // Check Bluetooth is Enabled
+	  bluetoothSerial.isEnabled(
+        function() {
+            log("Bluetooth is enabled");
+        }, function() {
+            log("Bluetooth is *not* enabled");
+        });
+
     },
 
 };
