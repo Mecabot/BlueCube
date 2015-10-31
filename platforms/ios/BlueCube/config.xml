@@ -52,4 +52,7 @@
     <feature name="AppInfo">
         <param name="ios-package" value="AppInfo" />
     </feature>
+    <feature name="SpinnerDialog">
+        <param name="ios-package" value="CDVSpinnerDialog" />
+    </feature>
 </widget>

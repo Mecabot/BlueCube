@@ -54,5 +54,13 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "com.filfatstudios.spinnerdialog": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-progress-indicator"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

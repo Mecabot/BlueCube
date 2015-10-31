@@ -48,6 +48,13 @@ module.exports = [
         "merges": [
             "navigator.appInfo"
         ]
+    },
+    {
+        "file": "plugins/com.filfatstudios.spinnerdialog/www/SpinnerDialog.js",
+        "id": "com.filfatstudios.spinnerdialog.SpinnerDialog",
+        "clobbers": [
+            "SpinnerDialog"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -59,7 +66,8 @@ module.exports.metadata =
     "cordova-plugin-bluetooth-serial": "0.4.4",
     "cordova-plugin-statusbar": "1.0.1",
     "cordova-plugin-dialogs": "1.1.1",
-    "cordova-plugin-appinfo": "2.0.2"
+    "cordova-plugin-appinfo": "2.0.2",
+    "com.filfatstudios.spinnerdialog": "1.0.2"
 }
 // BOTTOM OF METADATA
 });
