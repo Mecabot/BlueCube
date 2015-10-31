@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.bluecube926042" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="ninja.secretcode.BlueCube" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>BlueCube</name>
   <description>
-        An Ionic Framework and Cordova project.
+        Control a Freetronics 4x4x4 RGB LED Cube via Bluetooth.
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+  <author email="adam@secretcode.ninja" href="http://secretcode.ninja">
+      Adam Reed
     </author>
   <content src="index.html"/>
   <access origin="*"/>
