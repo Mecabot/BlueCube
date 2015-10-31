@@ -1,3 +1,8 @@
+var log = function(message) {
+        console.log(message);
+        logDiv.innerHTML = logDiv.innerHTML + message + "<br>";
+    };
+    
 var app = {
 
     // Application Constructor
@@ -21,8 +26,8 @@ var app = {
 	  StatusBar.overlaysWebView( false );
 	  StatusBar.backgroundColorByHexString('#ffffff');
 	  StatusBar.styleDefault();
-
-
+	  
+	  log("DeviceReady");
     },
 
 };
