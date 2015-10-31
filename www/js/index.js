@@ -50,6 +50,16 @@ var app = {
             log(reason || "Listing peripherals failed");
         }
 
+		// Connect to the Bluetooth device
+        function successConnect() {
+            log("Connected");
+
+        function failureConnect(reason) {
+            log("Connection failed " + reason);
+        }
+
+        bluetoothSerial.connect(bluetoothDeviceID, successConnect, failureConnect);
+
     },
 
 };
