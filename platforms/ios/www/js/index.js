@@ -1,26 +1,15 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
+var log = function(message) {
+        console.log(message);
+        logDiv.innerHTML = logDiv.innerHTML + message + "<br>";
+    };
+    
 var app = {
+
     // Application Constructor
     initialize: function() {
         this.bindEvents();
     },
+
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
@@ -28,24 +17,88 @@ var app = {
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
+    
     // deviceready Event Handler
     //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
+    // The scope of 'this' is the event.
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+		
+	  StatusBar.overlaysWebView( false );
+	  StatusBar.backgroundColorByHexString('#ffffff');
+	  StatusBar.styleDefault();
+	  
+	  log("DeviceReady");
+	  
+	  // Check Bluetooth is Enabled
+	  bluetoothSerial.isEnabled(
+        function() {
+            log("Bluetooth is enabled");
+        }, function() {
+            log("Bluetooth is *not* enabled");
+        });
+
+	    // List found Bluetooth Devices (that the library knows about)
+        bluetoothSerial.list(successList, failureList);
+        var bluetoothDeviceID;
+        
+        function successList(peripherals) {
+            log(JSON.stringify(peripherals));
+            bluetoothDeviceID = peripherals[0].id;
+        }
+
+        function failureList(reason) {
+            log(reason || "Listing peripherals failed");
+        }
+
+		// Connect to the Bluetooth device
+        function successConnect() {
+            log("Connected");
+
+			// Send a message to turn a LED on;
+			function successWrite() {
+				log("OK - On");
+			}
+
+			function failureWrite(reason) {
+				log("Write failed - On " + reason);
+			}
+			bluetoothSerial.write("!B11", successWrite, failureWrite);
+
+			setTimeout(function(){
+				// Send a message to turn a LED off;
+				function successWriteOff() {
+					log("OK - Off");
+					setTimeout(function(){
+						function successDis() {
+							log("Disconnected");
+						}
+	
+						function failureDis(reason) {
+							log("Disconnect failed " + reason);
+						}
+
+						bluetoothSerial.disconnect(successDis, failureDis);
+					}, 5000);
+				}
+				
+				function failureWriteOff(reason) {
+					log("Write failed - Off " + reason);
+				}
+
+				bluetoothSerial.write("!B10", successWriteOff, failureWriteOff);
+
+			}, 5000); 
+
+        }
+
+        function failureConnect(reason) {
+            log("Connection failed " + reason);
+        }
+
+        bluetoothSerial.connect(bluetoothDeviceID, successConnect, failureConnect);
+
     },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
-    }
 };
 
 app.initialize();

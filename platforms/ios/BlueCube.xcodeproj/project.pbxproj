@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		03CD33073F3E4072952D0914 /* CDVNotification.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 59623D38A38244C29ECD279E /* CDVNotification.bundle */; };
 		05B31BFD4CE84FD5A8D16234 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 599802708B034167880CCA68 /* CDVLogger.m */; };
@@ -340,7 +339,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 710;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = N3W4386864;

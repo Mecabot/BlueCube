@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="ninja.secretcode.BlueCube" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="21" id="ninja.secretcode.BlueCube" ios-CFBundleVersion="21" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="BackupWebStorage" value="cloud" />
     <preference name="DisallowOverscroll" value="false" />
@@ -42,10 +42,10 @@
     <allow-intent href="itms-apps:*" />
     <name>BlueCube</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Control a Freetronics 4x4x4 RGB LED Cube via Bluetooth
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="adam@secretcode.ninja" href="http://secretcode.ninja">
+        Adam Reed
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -55,4 +55,5 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <preference name="DisallowOverscroll" value="true" />
 </widget>
