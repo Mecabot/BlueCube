@@ -54,6 +54,16 @@ var app = {
         function successConnect() {
             log("Connected");
 
+			// Send a message to turn a LED on;
+			function successWrite() {
+				log("OK - On");
+			}
+
+			function failureWrite(reason) {
+				log("Write failed - On " + reason);
+			}
+			bluetoothSerial.write("!B11", successWrite, failureWrite);
+
         function failureConnect(reason) {
             log("Connection failed " + reason);
         }
