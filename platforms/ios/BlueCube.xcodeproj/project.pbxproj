@@ -49,6 +49,7 @@
 		41E8459FB55A4C04A89E5D20 /* CDVNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 552835B12A6248C88205E640 /* CDVNotification.m */; };
 		03CD33073F3E4072952D0914 /* CDVNotification.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 59623D38A38244C29ECD279E /* CDVNotification.bundle */; };
 		E9DE54AD05ED41B49ED08651 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D13B9C41AC043B8913C2DA2 /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E46F1E56960645CC8A1A37B1 /* AppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F6C2C98FDB4831870F9754 /* AppInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +133,8 @@
 		4AC4D68B302A4EC688367FAF /* CDVNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVNotification.h"; path = "cordova-plugin-dialogs/CDVNotification.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		59623D38A38244C29ECD279E /* CDVNotification.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "CDVNotification.bundle"; path = "CDVNotification.bundle"; sourceTree = "<group>"; };
 		0D13B9C41AC043B8913C2DA2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "AudioToolbox.framework"; path = "System/Library/Frameworks/AudioToolbox.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+		52F6C2C98FDB4831870F9754 /* AppInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "AppInfo.m"; path = "cordova-plugin-appinfo/AppInfo.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		C62FD493A945464493977847 /* AppInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "AppInfo.h"; path = "cordova-plugin-appinfo/AppInfo.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +253,8 @@
 				CD87A28F80FD4CBA93CDE0D1 /* CDVStatusBar.h */,
 				552835B12A6248C88205E640 /* CDVNotification.m */,
 				4AC4D68B302A4EC688367FAF /* CDVNotification.h */,
+				52F6C2C98FDB4831870F9754 /* AppInfo.m */,
+				C62FD493A945464493977847 /* AppInfo.h */,
 			);
 			name = Plugins;
 			path = "BlueCube/Plugins";
@@ -442,6 +447,7 @@
 				C20F1618015243DE820A0CF9 /* BLE.m in Sources */,
 				733623BE989E46A1BC98DD90 /* CDVStatusBar.m in Sources */,
 				41E8459FB55A4C04A89E5D20 /* CDVNotification.m in Sources */,
+				E46F1E56960645CC8A1A37B1 /* AppInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

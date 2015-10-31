@@ -41,6 +41,13 @@ module.exports = [
         "merges": [
             "navigator.notification"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-appinfo/www/appinfo.js",
+        "id": "cordova-plugin-appinfo.AppInfo",
+        "merges": [
+            "navigator.appInfo"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -51,7 +58,8 @@ module.exports.metadata =
     "cordova-plugin-console": "1.0.1",
     "cordova-plugin-bluetooth-serial": "0.4.4",
     "cordova-plugin-statusbar": "1.0.1",
-    "cordova-plugin-dialogs": "1.1.1"
+    "cordova-plugin-dialogs": "1.1.1",
+    "cordova-plugin-appinfo": "2.0.2"
 }
 // BOTTOM OF METADATA
 });

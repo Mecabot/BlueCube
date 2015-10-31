@@ -49,4 +49,7 @@
     <feature name="Notification">
         <param name="ios-package" value="CDVNotification" />
     </feature>
+    <feature name="AppInfo">
+        <param name="ios-package" value="AppInfo" />
+    </feature>
 </widget>

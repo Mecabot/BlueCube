@@ -46,5 +46,13 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-plugin-appinfo": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-appinfo"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }
