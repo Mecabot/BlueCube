@@ -64,6 +64,22 @@ var app = {
 			}
 			bluetoothSerial.write("!B11", successWrite, failureWrite);
 
+			setTimeout(function(){
+				// Send a message to turn a LED off;
+				function successWriteOff() {
+					log("OK - Off");
+				}
+				
+				function failureWriteOff(reason) {
+					log("Write failed - Off " + reason);
+				}
+
+				bluetoothSerial.write("!B10", successWriteOff, failureWriteOff);
+
+			}, 5000); 
+
+        }
+
         function failureConnect(reason) {
             log("Connection failed " + reason);
         }
