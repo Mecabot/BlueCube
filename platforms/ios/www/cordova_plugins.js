@@ -34,6 +34,13 @@ module.exports = [
         "clobbers": [
             "window.StatusBar"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+        "id": "cordova-plugin-dialogs.notification",
+        "merges": [
+            "navigator.notification"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -43,7 +50,8 @@ module.exports.metadata =
     "cordova-plugin-device": "1.0.1",
     "cordova-plugin-console": "1.0.1",
     "cordova-plugin-bluetooth-serial": "0.4.4",
-    "cordova-plugin-statusbar": "1.0.1"
+    "cordova-plugin-statusbar": "1.0.1",
+    "cordova-plugin-dialogs": "1.1.1"
 }
 // BOTTOM OF METADATA
 });
