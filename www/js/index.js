@@ -37,6 +37,19 @@ var app = {
             log("Bluetooth is *not* enabled");
         });
 
+	    // List found Bluetooth Devices (that the library knows about)
+        bluetoothSerial.list(successList, failureList);
+        var bluetoothDeviceID;
+        
+        function successList(peripherals) {
+            log(JSON.stringify(peripherals));
+            bluetoothDeviceID = peripherals[0].id;
+        }
+
+        function failureList(reason) {
+            log(reason || "Listing peripherals failed");
+        }
+
     },
 
 };
