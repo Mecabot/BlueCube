@@ -41,7 +41,7 @@ angular.module('BlueCube.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($ionicPlatform, $scope, $cordovaDevice) {
+.controller('DeviceCtrl', function($ionicPlatform, $scope, $cordovaDevice) {
     $ionicPlatform.ready(function() {
         $scope.$apply(function() {
             // sometimes binding does not work! :/

@@ -49,12 +49,12 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova'])
         }
       }
     })
-    .state('app.playlists', {
-      url: '/playlists',
+    .state('app.device', {
+      url: '/device',
       views: {
         'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
+          templateUrl: 'templates/device.html',
+          controller: 'DeviceCtrl'
         }
       }
     })
@@ -69,5 +69,5 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/device');
 });
