@@ -27,54 +27,62 @@ angular.module('BlueCube.controllers', [])
 .controller('ConnectionCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial) {
     $ionicPlatform.ready(function() {
     	
-    	// Check if Bluetooth is enabled
-		$scope.logText = "Starting Bluetooth Test<br>";
-		$cordovaBluetoothSerial.isEnabled().then(
-			function() {
-				// Bluetooth is enabled
-				$scope.logText = $scope.logText + "Bluetooth is enabled<br>";
+    	// Check current connection status
+    	$cordovaBluetoothSerial.isConnected().then(
+    		function() {
+    			$scope.logText = "Bluetooth Connected<br>";
+    		},
+    		function() {
+				// Check if Bluetooth is enabled
+				$scope.logText = "Starting Bluetooth Test<br>";
+				$cordovaBluetoothSerial.isEnabled().then(
+					function() {
+						// Bluetooth is enabled
+						$scope.logText = $scope.logText + "Bluetooth is enabled<br>";
 
-				// Find possible devices to connect to
-				$scope.logText = $scope.logText + "Searching for Bluetooth Devices<br>";
-				var bluetoothDeviceID = null;		// Tracker for the device to connect to
-				$cordovaBluetoothSerial.list().then(
-					function(peripherals) {
-						// Search for devices is complete						
-						if (peripherals.length > 0) {
-							// Items found, so list Bluetooth Devices (that the library knows about)
-							$scope.logText = $scope.logText + JSON.stringify(peripherals) + "<br>";
+						// Find possible devices to connect to
+						$scope.logText = $scope.logText + "Searching for Bluetooth Devices<br>";
+						var bluetoothDeviceID = null;		// Tracker for the device to connect to
+						$cordovaBluetoothSerial.list().then(
+							function(peripherals) {
+								// Search for devices is complete						
+								if (peripherals.length > 0) {
+									// Items found, so list Bluetooth Devices (that the library knows about)
+									$scope.logText = $scope.logText + JSON.stringify(peripherals) + "<br>";
 							
-							// Get the first device that we find's ID.
-							bluetoothDeviceID = peripherals[0].id;
+									// Get the first device that we find's ID.
+									bluetoothDeviceID = peripherals[0].id;
 							
-							// Connect to the device
-							$cordovaBluetoothSerial.connect(bluetoothDeviceID).then(
-								function() {
-									// Connected
-									$scope.logText = $scope.logText + "Connected to device " + bluetoothDeviceID + "<br>";
-								},
-								function() {
-									// Failed to connect
-									$scope.logText = $scope.logText + "Failed to connect<br>";
+									// Connect to the device
+									$cordovaBluetoothSerial.connect(bluetoothDeviceID).then(
+										function() {
+											// Connected
+											$scope.logText = $scope.logText + "Connected to device " + bluetoothDeviceID + "<br>";
+										},
+										function() {
+											// Failed to connect
+											$scope.logText = $scope.logText + "Failed to connect<br>";
+										}
+									);
+								} else {
+									// No devices found
+									$scope.logText = $scope.logText + "No devices found to connect to<br>";
 								}
-							);
-						} else {
-							// No devices found
-							$scope.logText = $scope.logText + "No devices found to connect to<br>";
-						}
-					},
-					function(reason) {
-						// Error finding Bluetooth devices.
-						$scope.logText = $scope.logText + "Listing Bluetooth Devices Failed: " + reason + "<br>";
-					}
-				);		
+							},
+							function(reason) {
+								// Error finding Bluetooth devices.
+								$scope.logText = $scope.logText + "Listing Bluetooth Devices Failed: " + reason + "<br>";
+							}
+						);		
 
-			},
-			function() {
-				// Bluetooth is not enabled
-				$scope.logText = $scope.logText + "Bluetooth is *NOT* enabled<br>";
-			}
-		);		
+					},
+					function() {
+						// Bluetooth is not enabled
+						$scope.logText = $scope.logText + "Bluetooth is *NOT* enabled<br>";
+					}
+				);	    		
+    		}
+    	);    		
     });
 });
 
