@@ -52,9 +52,21 @@ angular.module('BlueCube.controllers', [])
 							
 							// Get the first device that we find's ID.
 							bluetoothDeviceID = peripherals[0].id;
+							
+							// Connect to the device
+							$cordovaBluetoothSerial.connect(bluetoothDeviceID).then(
+								function() {
+									// Connected
+									$scope.logText = $scope.logText + "Connected to device " + bluetoothDeviceID + "<br>";
+								},
+								function() {
+									// Failed to connect
+									$scope.logText = $scope.logText + "Failed to connect<br>";
+								}
+							);
 						} else {
 							// No devices found
-							$scope.logText = $scope.logText + "No bluetooth devices were found...<br>";
+							$scope.logText = $scope.logText + "No devices found to connect to<br>";
 						}
 					},
 					function(reason) {
