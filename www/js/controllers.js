@@ -32,15 +32,30 @@ angular.module('BlueCube.controllers', [])
 
 .controller('TestCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial) {
     $ionicPlatform.ready(function() {
+    	
 		$scope.logText = "Starting Bluetooth Test<br>";
 		$cordovaBluetoothSerial.isEnabled().then(
 			function() {
 				$scope.logText = $scope.logText + "Bluetooth is enabled<br>";
+
+				$scope.logText = $scope.logText + "List Bluetooth Devices<br>";
+				// List found Bluetooth Devices (that the library knows about)
+				var bluetoothDeviceID = null;
+				$cordovaBluetoothSerial.list().then(
+					function(peripherals) {
+						$scope.logText = $scope.logText + JSON.stringify(peripherals) + "<br>";
+						bluetoothDeviceID = peripherals[0].id;
+					},
+					function(reason) {
+						$scope.logText = $scope.logText + "Listing Bluetooth Devices Failed: " + reason + "<br>";
+					}
+				);		
+
 			},
 			function() {
 				$scope.logText = $scope.logText + "Bluetooth is *NOT* enabled<br>";
 			}
-		);
+		);		
     });
 });
 
