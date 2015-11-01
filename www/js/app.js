@@ -43,6 +43,17 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova'])
       }
     })
 
+    .state('app.all', {
+      url: '/all',
+      cache: false,
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/all.html',
+          controller: 'AllCtrl'
+        }
+      }
+    })
+
     .state('app.device', {
       url: '/device',
       cache: true,

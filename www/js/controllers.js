@@ -24,6 +24,37 @@ angular.module('BlueCube.controllers', [])
     });
 })
 
+.controller('AllCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial) {
+    $ionicPlatform.ready(function() {
+		$scope.allOn = false;
+		
+           $scope.allOnChanged = function() {
+                if ($scope.allOn == false) {
+                    $scope.allOn = true;	
+                	$cordovaBluetoothSerial.write("!B11").then(
+                		function () {
+                			console.log("On Sent");
+                		},
+                		function (error) {
+                			console.log("Error On: " + error);
+                		}
+                	);                	
+                } else {
+                    $scope.allOn = false;
+                	$cordovaBluetoothSerial.write("!B10").then(
+                		function () {
+                			console.log("Off Sent");
+                		},
+                		function (error) {
+                			console.log("Error Off: " + error);
+                		}
+                	);
+                }
+            };
+
+    });
+})
+
 .controller('ConnectionCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading) {
     $ionicPlatform.ready(function() {
 		
