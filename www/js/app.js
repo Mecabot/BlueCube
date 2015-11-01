@@ -26,22 +26,22 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova'])
   $stateProvider
 
     .state('app', {
-    url: '/app',
-    abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
-  })
+      url: '/app',
+      abstract: true,
+      templateUrl: 'templates/menu.html',
+      controller: 'AppCtrl'
+    })
 
-  .state('app.search', {
-    url: '/search',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/search.html'
+    .state('app.search', {
+      url: '/search',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/search.html'
+        }
       }
-    }
-  })
+    })
 
-  .state('app.device', {
+    .state('app.device', {
       url: '/device',
       views: {
         'menuContent': {
