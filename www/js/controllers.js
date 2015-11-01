@@ -38,6 +38,19 @@ angular.module('BlueCube.controllers', [])
   		};
 		    	
     	
+		
+		// Function to Disconnect from the BlueCube
+		$scope.disconnect = function() {
+			$cordovaBluetoothSerial.disconnect().then(
+				function() {
+					$scope.logText = $scope.logText + "Disconnected";
+				},
+				function(error) {
+					$scope.logText = $scope.logText + "Failed to disconnect: " + error + "<br>";
+				}
+			);
+		};
+		
     	// Check current connection status
     	$cordovaBluetoothSerial.isConnected().then(
     		function() {
