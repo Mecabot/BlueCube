@@ -13,20 +13,14 @@ angular.module('BlueCube.controllers', [])
 
 .controller('DeviceCtrl', function($ionicPlatform, $scope, $cordovaDevice) {
     $ionicPlatform.ready(function() {
-        $scope.$apply(function() {
-            // sometimes binding does not work! :/
- 
-            // getting device infor from $cordovaDevice
-            var device = $cordovaDevice.getDevice();
- 
-            $scope.manufacturer = device.manufacturer;
-            $scope.model = device.model;
-            $scope.platform = device.platform;
-            $scope.version = device.version;
-            $scope.uuid = device.uuid;
- 
-        });
- 
+		// getting device infor from $cordovaDevice
+		var device = $cordovaDevice.getDevice();
+
+		$scope.manufacturer = device.manufacturer;
+		$scope.model = device.model;
+		$scope.platform = device.platform;
+		$scope.version = device.version;
+		$scope.uuid = device.uuid; 
     });
 })
 
