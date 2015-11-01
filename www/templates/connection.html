@@ -5,10 +5,10 @@
     <div ng-bind-html="logText"></div>
     <p>-----------</p>
 
-	<button ng-click="connect()" class="button button-block button-balanced">
+	<button ng-click="connect()" ng-show="connectButton" class="button button-block button-balanced">
   	  Connect
 	</button>
-	<button ng-click="disconnect()" class="button button-block button-assertive">
+	<button ng-click="disconnect()" ng-show="disconnectButton" class="button button-block button-assertive">
   	  Disconnect
 	</button>
 

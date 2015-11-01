@@ -27,6 +27,9 @@ angular.module('BlueCube.controllers', [])
 .controller('ConnectionCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading) {
     $ionicPlatform.ready(function() {
 		
+		$scope.connectButton = false;
+		$scope.disconnectButton = false;
+		
 		// Functions for showing and hiding the loading overlay
 		$scope.show = function() {
     		$ionicLoading.show({
@@ -65,23 +68,31 @@ angular.module('BlueCube.controllers', [])
 									function() {
 										// Connected
 										$scope.logText = $scope.logText + "Connected to device " + bluetoothDeviceID + "<br>";
+										$scope.connectButton = false;
+										$scope.disconnectButton = true;
 										$scope.hide();
 									},
 									function() {
 										// Failed to connect
 										$scope.logText = $scope.logText + "Failed to connect<br>";
+										$scope.connectButton = true;
+										$scope.disconnectButton = false;
 										$scope.hide();
 									}
 								);
 							} else {
 								// No devices found
 								$scope.logText = $scope.logText + "No devices found to connect to<br>";
+								$scope.connectButton = true;
+								$scope.disconnectButton = false;
 								$scope.hide();
 							}
 						},
 						function(reason) {
 							// Error finding Bluetooth devices.
 							$scope.logText = $scope.logText + "Listing Bluetooth Devices Failed: " + reason + "<br>";
+							$scope.connectButton = true;
+							$scope.disconnectButton = false;
 							$scope.hide();
 						}
 					);		
@@ -90,6 +101,8 @@ angular.module('BlueCube.controllers', [])
 				function() {
 					// Bluetooth is not enabled
 					$scope.logText = $scope.logText + "Bluetooth is *NOT* enabled<br>";
+					$scope.connecyButton = false;
+					$scope.disconnectButton = false;
 					$scope.hide();
 				}
 			);	    			
@@ -100,9 +113,12 @@ angular.module('BlueCube.controllers', [])
 			$cordovaBluetoothSerial.disconnect().then(
 				function() {
 					$scope.logText = $scope.logText + "Disconnected";
+					$scope.connectButton = true;
+					$scope.disconnectButton = false;
 				},
 				function(error) {
 					$scope.logText = $scope.logText + "Failed to disconnect: " + error + "<br>";
+					$scope.disconnectButton = true;
 				}
 			);
 		};
