@@ -28,5 +28,13 @@ angular.module('BlueCube.controllers', [])
         });
  
     });
+})
+
+.controller('TestCtrl', function($ionicPlatform, $scope) {
+    $ionicPlatform.ready(function() {
+        $scope.$apply(function() {
+
+        }); 
+    });
 });
 

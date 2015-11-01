@@ -32,11 +32,12 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova'])
       controller: 'AppCtrl'
     })
 
-    .state('app.search', {
-      url: '/search',
+    .state('app.test', {
+      url: '/test',
       views: {
         'menuContent': {
-          templateUrl: 'templates/search.html'
+          templateUrl: 'templates/test.html',
+          controller: 'TestCtrl'
         }
       }
     })
