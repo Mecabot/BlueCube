@@ -30,7 +30,7 @@ angular.module('BlueCube.controllers', [])
     });
 })
 
-.controller('TestCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial) {
+.controller('ConnectionCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial) {
     $ionicPlatform.ready(function() {
     	
     	// Check if Bluetooth is enabled

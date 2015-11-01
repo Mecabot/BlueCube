@@ -32,12 +32,12 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova'])
       controller: 'AppCtrl'
     })
 
-    .state('app.test', {
-      url: '/test',
+    .state('app.connection', {
+      url: '/connection',
       views: {
         'menuContent': {
-          templateUrl: 'templates/test.html',
-          controller: 'TestCtrl'
+          templateUrl: 'templates/connection.html',
+          controller: 'ConnectionCtrl'
         }
       }
     })
@@ -53,5 +53,5 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova'])
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/device');
+  $urlRouterProvider.otherwise('/app/connection');
 });
