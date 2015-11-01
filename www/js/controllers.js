@@ -24,8 +24,19 @@ angular.module('BlueCube.controllers', [])
     });
 })
 
-.controller('ConnectionCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial) {
+.controller('ConnectionCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading) {
     $ionicPlatform.ready(function() {
+		
+		// Functions for showing and hiding the loading overlay
+		$scope.show = function() {
+    		$ionicLoading.show({
+      			template: '<ion-spinner icon="lines" class="spinner-light"></ion-spinner><br>Connecting to BlueCube'
+    		});
+  		};
+  		$scope.hide = function(){
+    		$ionicLoading.hide();
+  		};
+		    	
     	
     	// Check current connection status
     	$cordovaBluetoothSerial.isConnected().then(
@@ -33,6 +44,7 @@ angular.module('BlueCube.controllers', [])
     			$scope.logText = "Bluetooth Connected<br>";
     		},
     		function() {
+    			$scope.show();
 				// Check if Bluetooth is enabled
 				$scope.logText = "Starting Bluetooth Test<br>";
 				$cordovaBluetoothSerial.isEnabled().then(
@@ -58,20 +70,24 @@ angular.module('BlueCube.controllers', [])
 										function() {
 											// Connected
 											$scope.logText = $scope.logText + "Connected to device " + bluetoothDeviceID + "<br>";
+											$scope.hide();
 										},
 										function() {
 											// Failed to connect
 											$scope.logText = $scope.logText + "Failed to connect<br>";
+											$scope.hide();
 										}
 									);
 								} else {
 									// No devices found
 									$scope.logText = $scope.logText + "No devices found to connect to<br>";
+									$scope.hide();
 								}
 							},
 							function(reason) {
 								// Error finding Bluetooth devices.
 								$scope.logText = $scope.logText + "Listing Bluetooth Devices Failed: " + reason + "<br>";
+								$scope.hide();
 							}
 						);		
 
@@ -79,6 +95,7 @@ angular.module('BlueCube.controllers', [])
 					function() {
 						// Bluetooth is not enabled
 						$scope.logText = $scope.logText + "Bluetooth is *NOT* enabled<br>";
+						$scope.hide();
 					}
 				);	    		
     		}
