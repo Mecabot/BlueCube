@@ -33,26 +33,39 @@ angular.module('BlueCube.controllers', [])
 .controller('TestCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial) {
     $ionicPlatform.ready(function() {
     	
+    	// Check if Bluetooth is enabled
 		$scope.logText = "Starting Bluetooth Test<br>";
 		$cordovaBluetoothSerial.isEnabled().then(
 			function() {
+				// Bluetooth is enabled
 				$scope.logText = $scope.logText + "Bluetooth is enabled<br>";
 
-				$scope.logText = $scope.logText + "List Bluetooth Devices<br>";
-				// List found Bluetooth Devices (that the library knows about)
-				var bluetoothDeviceID = null;
+				// Find possible devices to connect to
+				$scope.logText = $scope.logText + "Searching for Bluetooth Devices<br>";
+				var bluetoothDeviceID = null;		// Tracker for the device to connect to
 				$cordovaBluetoothSerial.list().then(
 					function(peripherals) {
-						$scope.logText = $scope.logText + JSON.stringify(peripherals) + "<br>";
-						bluetoothDeviceID = peripherals[0].id;
+						// Search for devices is complete						
+						if (peripherals.length > 0) {
+							// Items found, so list Bluetooth Devices (that the library knows about)
+							$scope.logText = $scope.logText + JSON.stringify(peripherals) + "<br>";
+							
+							// Get the first device that we find's ID.
+							bluetoothDeviceID = peripherals[0].id;
+						} else {
+							// No devices found
+							$scope.logText = $scope.logText + "No bluetooth devices were found...<br>";
+						}
 					},
 					function(reason) {
+						// Error finding Bluetooth devices.
 						$scope.logText = $scope.logText + "Listing Bluetooth Devices Failed: " + reason + "<br>";
 					}
 				);		
 
 			},
 			function() {
+				// Bluetooth is not enabled
 				$scope.logText = $scope.logText + "Bluetooth is *NOT* enabled<br>";
 			}
 		);		
