@@ -123,15 +123,30 @@ angular.module('BlueCube.controllers', [])
 			);
 		};
 		
-    	// Check current connection status
-    	$cordovaBluetoothSerial.isConnected().then(
-    		function() {
-    			$scope.logText = "Bluetooth Connected<br>";
-    		},
-    		function() {
-				$scope.connect();
-    		}
-    	);    		
+		// Function to setup the state of the view
+		$scope.checkConnected = function() {
+	    	// Check current connection status
+	    	$cordovaBluetoothSerial.isConnected().then(
+	    		function() {
+	    			$scope.logText = "Bluetooth Connected<br>";
+	    			$scope.disconnectButton = true;
+	    			$scope.connectButton = false;
+	    		},
+	    		function() {
+	    			$scope.connectButton = true;
+	    			$scope.disconnectButton = false;
+					//$scope.connect();
+	    		}
+	    	);		
+		};
+		
+    	// Function called every time this view is shown
+    	$scope.$on('$ionicView.beforeEnter', function() {
+			$scope.checkConnected();
+    	});  		
+    	 	
+		// Call the checkConnected function the first time the view is loaded
+		$scope.checkConnected();
     });
 });
 
