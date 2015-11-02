@@ -27,6 +27,112 @@ angular.module('BlueCube.controllers', [])
 .controller('AllCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial) {
     $ionicPlatform.ready(function() {
 		$scope.allOn = false;
+
+		// All Red
+		$scope.allRed = function() {
+			var message = "all RED;";
+			console.log("Starting " + message);
+			$cordovaBluetoothSerial.write(message).then(
+				function () {
+					console.log(message + " sent");
+				},
+				function (error) {
+					console.log("Error with " + message + " " + error);
+				}
+			);                	
+			console.log("Finishing " + message);
+		};
+
+		// All Hex - Green Colour
+		$scope.allHex = function() {
+			var message = "all 3DF400;";
+			console.log("Starting " + message);
+			$cordovaBluetoothSerial.write(message).then(
+				function () {
+					console.log(message + " sent");
+				},
+				function (error) {
+					console.log("Error with " + message + " " + error);
+				}
+			);                	
+			console.log("Finishing " + message);
+		};
+
+		// All Black
+		$scope.allBlack = function() {
+			var message = "all BLACK;";
+			console.log("Starting " + message);
+			$cordovaBluetoothSerial.write(message).then(
+				function () {
+					console.log(message + " sent");
+				},
+				function (error) {
+					console.log("Error with " + message + " " + error);
+				}
+			);                	
+			console.log("Finishing " + message);
+		};
+
+		// SET 000 RED
+		$scope.setRed = function() {
+			var message = "set 000 RED;";
+			console.log("Starting " + message);
+			$cordovaBluetoothSerial.write(message).then(
+				function () {
+					console.log(message + " sent");
+				},
+				function (error) {
+					console.log("Error with " + message + " " + error);
+				}
+			);                	
+			console.log("Finishing " + message);
+		};
+
+		// SET 100 HEX - Green Colour
+		$scope.setHex = function() {
+			var message = "set 100 3DF400;";
+			console.log("Starting " + message);
+			$cordovaBluetoothSerial.write(message).then(
+				function () {
+					console.log(message + " sent");
+				},
+				function (error) {
+					console.log("Error with " + message + " " + error);
+				}
+			);                	
+			console.log("Finishing " + message);
+		};
+
+		// Setplane X 2 BLUE;
+		$scope.setPlaneBlue = function() {
+			var message = "setplane X 2 BLUE;";
+			console.log("Starting " + message);
+			$cordovaBluetoothSerial.write(message).then(
+				function () {
+					console.log(message + " sent");
+				},
+				function (error) {
+					console.log("Error with " + message + " " + error);
+				}
+			);                	
+			console.log("Finishing " + message);
+		};
+
+		// Setplane Y 1 Hex - Green;
+		$scope.setPlaneHex = function() {
+			var message = "setplane Y 1 3DF400;";
+			console.log("Starting " + message);
+			$cordovaBluetoothSerial.write(message).then(
+				function () {
+					console.log(message + " sent");
+				},
+				function (error) {
+					console.log("Error with " + message + " " + error);
+				}
+			);                	
+			console.log("Finishing " + message);
+		};
+
 		
            $scope.allOnChanged = function() {
                 if ($scope.allOn == false) {
