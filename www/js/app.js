@@ -54,6 +54,17 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
       }
     })
 
+    .state('app.colour', {
+      url: '/colour',
+      cache: false,
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/colour.html',
+          controller: 'ColourCtrl'
+        }
+      }
+    })
+
     .state('app.device', {
       url: '/device',
       cache: true,
