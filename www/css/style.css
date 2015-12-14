@@ -2,3 +2,12 @@
   width: 40px; 
   height: 40px; 
 }
+
+.sp-container {
+  background-color: #FFFFFF;
+  border: none;
+}
+
+.sp-picker-container {
+  width: 300px;
+}

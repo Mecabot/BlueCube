@@ -1,0 +1,31 @@
+<ion-view view-title="All">
+  <ion-content class="padding">
+    	
+    <ion-toggle ng-model=allOn ng-change="allOnChanged()" toggle-class="toggle-calm">LED</ion-toggle>
+
+	<button ng-click="allBlack()" class="button button-block button-dark">
+  	  all BLACK;
+	</button>
+	
+	<button ng-click="allRed()" class="button button-block button-assertive">
+  	  all RED;
+	</button>
+	<button ng-click="allHex()" class="button button-block button-balanced">
+  	  all 3DF400; (Green)
+	</button>
+	<button ng-click="setRed()" class="button button-block button-assertive">
+  	  set 000 RED;
+	</button>
+	<button ng-click="setHex()" class="button button-block button-balanced">
+  	  set 100 3DF400; (Green)
+	</button>
+	<button ng-click="setPlaneBlue()" class="button button-block button-positive">
+  	  setplane X 2 BLUE;
+	</button>
+	<button ng-click="setPlaneHex()" class="button button-block button-balanced">
+  	  setplane Y 1 3DF400; (Green)
+	</button>
+
+  
+  </ion-content>
+</ion-view>
