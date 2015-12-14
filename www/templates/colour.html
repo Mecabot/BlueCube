@@ -1,5 +1,14 @@
 <ion-view view-title="Colour">
     <ion-content>
 		<uicolorpicker ng-model="colour.targetColor"></uicolorpicker>
+
+    <br>
+
+    <ion-list>
+        <ion-item ng-repeat="userColour in colours" ui-sref='userColour({colourId: userColour.id})' ng-style="{'background-color': '#{{userColour.hex}}'}">
+          &nbsp;
+        </ion-item>
+    </ion-list>
+
     </ion-content>
 </ion-view>

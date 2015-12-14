@@ -11,3 +11,7 @@
 .sp-picker-container {
   width: 300px;
 }
+
+.item .item-content {
+  background-color: transparent !important;
+}

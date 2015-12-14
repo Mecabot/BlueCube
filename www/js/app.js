@@ -22,6 +22,33 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
   });
 })
 
+.service('ColourService', function($q) {
+  return {
+    colours: [
+      {
+        id: '1',
+        hex: 'FF0000',
+      },
+      {
+        id: '2',
+        hex: '00FF00',
+      }
+    ],
+    getColours: function() {
+      return this.colours
+    },
+    getColour: function(colourId) {
+      var dfd = $q.defer()
+      this.colours.forEach(function(colour) {
+        if (colour.id === colourId) dfd.resolve(colour)
+      })
+
+      return dfd.promise
+    }
+
+  }
+})
+
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
@@ -61,6 +88,11 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
         'menuContent': {
           templateUrl: 'templates/colour.html',
           controller: 'ColourCtrl'
+        }
+      },
+      resolve: {
+        colours: function(ColourService) {
+          return ColourService.getColours()
         }
       }
     })

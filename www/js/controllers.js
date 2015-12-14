@@ -24,10 +24,11 @@ angular.module('BlueCube.controllers', [])
     });
 })
 
-.controller('ColourCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial) {
+.controller('ColourCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, colours) {
     $ionicPlatform.ready(function() {
     	$scope.colour = {targetColor: '#ebebeb'};
-		$scope.$watchCollection('colour.targetColor', function(newValue, oldValue) { 
+    	$scope.colours = colours;
+		$scope.$watchCollection('colour.targetColor', function(newValue, oldValue) {
 			if (newValue != oldValue) {
 				var hexColour = newValue;
 				var message = "all " + hexColour.substring(1) + ";";
