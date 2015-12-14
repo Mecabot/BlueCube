@@ -34,6 +34,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova'])
 
     .state('app.connection', {
       url: '/connection',
+      cache: false,
       views: {
         'menuContent': {
           templateUrl: 'templates/connection.html',

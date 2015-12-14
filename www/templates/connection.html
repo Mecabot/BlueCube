@@ -1,8 +1,16 @@
 <ion-view view-title="Connection">
-  <ion-content>
-    <h1>Connection</h1>
+  <ion-content class="padding">
+    	
     <p>-----------</p>
     <div ng-bind-html="logText"></div>
     <p>-----------</p>
+
+	<button ng-click="connect()" ng-show="connectButton" class="button button-block button-balanced">
+  	  Connect
+	</button>
+	<button ng-click="disconnect()" ng-show="disconnectButton" class="button button-block button-assertive">
+  	  Disconnect
+	</button>
+
   </ion-content>
 </ion-view>
