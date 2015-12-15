@@ -41,7 +41,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
         hex: '0000FF',
       }
     ],
-    getColours: function() {
+    list: function() {
       return this.colours
     },
     getColour: function(colourId) {
@@ -99,7 +99,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
       },
       resolve: {
         colours: function(ColourService) {
-          return ColourService.getColours()
+          return ColourService.list()
         }
       }
     })
