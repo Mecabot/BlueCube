@@ -23,9 +23,8 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 })
 
 .service('ColourService', function($q) {
-  return {
-    uniqueID: 4,
-    colours: [
+  var uniqueID = 4;
+  var colours = [
       {
         id: '1',
         name: 'Red',
@@ -41,9 +40,11 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
         name: 'Blue',
         hex: '0000FF',
       }
-    ],
+    ];
+
+  return {
     list: function() {
-      return this.colours
+      return colours
     },
     get: function(colourId) {
       for (i in colours) {

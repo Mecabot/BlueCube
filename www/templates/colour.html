@@ -4,6 +4,9 @@
 
     <br>
 
+    <div class="buttons">
+      <button class="button" ng-click="addUserColour()">Add</button>
+    </div>
     <ion-list>
         <ion-item ng-repeat="userColour in colours" ui-sref='userColour({colourId: userColour.id})' ng-style="{'background-color': '#{{userColour.hex}}'}">
           {{userColour.name}}
