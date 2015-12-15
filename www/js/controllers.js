@@ -26,6 +26,10 @@ angular.module('BlueCube.controllers', [])
 
 .controller('ColourCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, ColourService) {
     var hexColour = null;
+    $scope.data = {
+      showDelete: false,
+    };
+
     $ionicPlatform.ready(function() {
     	$scope.colour = {targetColor: '#ebebeb'};
     	$scope.colours = ColourService.list();
