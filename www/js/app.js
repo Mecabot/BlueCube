@@ -24,6 +24,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 
 .service('ColourService', function($q) {
   return {
+    uniqueID: 4,
     colours: [
       {
         id: '1',
@@ -44,13 +45,34 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
     list: function() {
       return this.colours
     },
-    }
     get: function(colourId) {
       for (i in colours) {
         if (colours[i].id == colourId) {
           return colours[i];
         }
       }
+    },
+    save: function(userDefinedColour) {
+      if (userDefinedColour.id == null) {
+        // New colour
+        userDefinedColour.id = uniqueID;
+        uniqueID = uniqueID + 1;
+        colours.push(userDefinedColour);
+      } else {
+        for (i in colours) {
+          if (colours[i].id == userDefinedColour.id) {
+            colours[i] = userDefinedColour;
+          }
+        }
+      }
+    },
+    delete: function(colourId) {
+      for (i in colours) {
+        if (colours[i].id == colourId) {
+          colours.splice(i, 1);
+        }
+      }
+    },
 
   }
 })
