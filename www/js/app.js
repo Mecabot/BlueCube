@@ -74,7 +74,10 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
         }
       }
     },
-
+    reorder: function(item, fromIndex, toIndex) {
+      colours.splice(fromIndex, 1);
+      colours.splice(toIndex, 0, item);
+    }
   }
 })
 

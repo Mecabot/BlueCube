@@ -28,6 +28,7 @@ angular.module('BlueCube.controllers', [])
     var hexColour = null;
     $scope.data = {
       showDelete: false,
+      showReordering: false,
     };
 
     $ionicPlatform.ready(function() {
@@ -58,6 +59,10 @@ angular.module('BlueCube.controllers', [])
 
     $scope.deleteUserColour = function (id) {
       ColourService.delete(id);
+    }
+
+    $scope.reorderItem = function(item, fromIndex, toIndex) {
+      ColourService.reorder(item, fromIndex, toIndex);
     }
 })
 
