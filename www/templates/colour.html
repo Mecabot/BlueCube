@@ -6,6 +6,7 @@
 
     <div class="buttons">
       <button class="button" ng-click="addUserColour()">Add</button>
+      <button class="button" ng-click="deleteUserColour(2)">Delete</button>
     </div>
     <ion-list>
         <ion-item ng-repeat="userColour in colours" ui-sref='userColour({colourId: userColour.id})' ng-style="{'background-color': '#{{userColour.hex}}'}">

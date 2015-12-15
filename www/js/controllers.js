@@ -52,6 +52,9 @@ angular.module('BlueCube.controllers', [])
       ColourService.save(newColour);
     };
 
+    $scope.deleteUserColour = function (id) {
+      ColourService.delete(id);
+    }
 })
 
 .controller('AllCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial) {
