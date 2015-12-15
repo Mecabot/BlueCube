@@ -6,7 +6,7 @@
 
     <ion-list>
         <ion-item ng-repeat="userColour in colours" ui-sref='userColour({colourId: userColour.id})' ng-style="{'background-color': '#{{userColour.hex}}'}">
-          &nbsp;
+          {{userColour.name}}
         </ion-item>
     </ion-list>
 
