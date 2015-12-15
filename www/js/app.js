@@ -44,14 +44,13 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
     list: function() {
       return this.colours
     },
-    getColour: function(colourId) {
-      var dfd = $q.defer()
-      this.colours.forEach(function(colour) {
-        if (colour.id === colourId) dfd.resolve(colour)
-      })
-
-      return dfd.promise
     }
+    get: function(colourId) {
+      for (i in colours) {
+        if (colours[i].id == colourId) {
+          return colours[i];
+        }
+      }
 
   }
 })
