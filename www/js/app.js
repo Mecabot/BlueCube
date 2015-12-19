@@ -23,62 +23,107 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 })
 
 .service('ColourService', function($q) {
-  var uniqueID = 4;
-  var colours = [
+  var uniqueID;
+  var colours;
+
+   if (window.localStorage.getItem("userDefinedColours") != undefined) {
+      colours = JSON.parse(window.localStorage.getItem("userDefinedColours"));
+      console.log('Defined');
+      console.log(JSON.stringify(colours));
+    } else {
+    colours = [
       {
-        id: '1',
-        name: 'Red',
-        hex: 'FF0000',
+        id: 1,
+        name: 'Black',
+        hex: '000000',
       },
       {
-        id: '2',
-        name: 'Green',
-        hex: '00FF00',
-      },
-      {
-        id: '3',
+        id: 2,
         name: 'Blue',
         hex: '0000FF',
+      },
+      {
+        id: 3,
+        name: 'Green',
+        hex: '00ff00',
+      },
+      {
+        id: 4,
+        name: 'Orange',
+        hex: 'ff4500',
+      },
+      {
+        id: 5,
+        name: 'Pink',
+        hex: 'ff1444',
+      },
+      {
+        id: 6,
+        name: 'Purple',
+        hex: 'ff00ff',
+      },
+      {
+        id: 7,
+        name: 'Red',
+        hex: 'ff0000',
+      },
+      {
+        id: 8,
+        name: 'White',
+        hex: 'ffffff',
+      },
+      {
+        id: 9,
+        name: 'Yellow',
+        hex: 'ffff00',
       }
     ];
+      window.localStorage['userDefinedColours'] = JSON.stringify(colours);
+      window.localStorage['userDefinedColours_uniqueID'] = 10;
+  }
 
-  return {
-    list: function() {
+    uniqueID = parseInt(window.localStorage.getItem("userDefinedColours_uniqueID"));
+
+    this.list = function() {
       return colours
-    },
-    get: function(colourId) {
+    }
+
+    this.get = function(colourId) {
       for (i in colours) {
         if (colours[i].id == colourId) {
           return colours[i];
         }
       }
-    },
-    save: function(userDefinedColour) {
-      if (userDefinedColour.id == null) {
-        // New colour
-        userDefinedColour.id = uniqueID;
+    }
+
+    this.add = function(userDefinedColour) {
+        var newColour = {
+                                  id: uniqueID,
+                                  name: 'User1',
+                                  hex: userDefinedColour,
+                                };
         uniqueID = uniqueID + 1;
-        colours.push(userDefinedColour);
-      } else {
-        for (i in colours) {
-          if (colours[i].id == userDefinedColour.id) {
-            colours[i] = userDefinedColour;
-          }
-        }
-      }
-    },
-    delete: function(colourId) {
+        colours.push(newColour);
+      window.localStorage['userDefinedColours'] = JSON.stringify(colours);
+      window.localStorage['userDefinedColours_uniqueID'] = uniqueID;
+    }
+
+    this.delete = function(colourId) {
       for (i in colours) {
         if (colours[i].id == colourId) {
           colours.splice(i, 1);
         }
       }
-    },
-    reorder: function(item, fromIndex, toIndex) {
+      window.localStorage['userDefinedColours'] = JSON.stringify(colours);
+      window.localStorage['userDefinedColours_uniqueID'] = uniqueID;
+    }
+
+    this.reorder = function(item, fromIndex, toIndex) {
       colours.splice(fromIndex, 1);
       colours.splice(toIndex, 0, item);
+      window.localStorage['userDefinedColours'] = JSON.stringify(colours);
+      window.localStorage['userDefinedColours_uniqueID'] = uniqueID;
     }
-  }
 })
 
 .config(function($stateProvider, $urlRouterProvider) {

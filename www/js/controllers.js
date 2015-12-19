@@ -53,8 +53,8 @@ angular.module('BlueCube.controllers', [])
     });
 
     $scope.addUserColour = function () {
-      newColour = {name: 'User1', hex: hexColour};
-      ColourService.save(newColour);
+      newColour = hexColour;
+      ColourService.add(newColour);
     };
 
     $scope.deleteUserColour = function (id) {
