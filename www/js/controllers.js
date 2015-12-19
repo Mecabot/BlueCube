@@ -20,7 +20,7 @@ angular.module('BlueCube.controllers', [])
 		$scope.model = device.model;
 		$scope.platform = device.platform;
 		$scope.version = device.version;
-		$scope.uuid = device.uuid; 
+		$scope.uuid = device.uuid;
     });
 })
 
@@ -46,8 +46,8 @@ angular.module('BlueCube.controllers', [])
 					function (error) {
 						console.log("Error with " + message + " " + error);
 					}
-				);                	
-				console.log("Finishing " + message);				
+				);
+				console.log("Finishing " + message);
 			}
 		});
     });
@@ -81,7 +81,7 @@ angular.module('BlueCube.controllers', [])
 				function (error) {
 					console.log("Error with " + message + " " + error);
 				}
-			);                	
+			);
 			console.log("Finishing " + message);
 		};
 
@@ -96,7 +96,7 @@ angular.module('BlueCube.controllers', [])
 				function (error) {
 					console.log("Error with " + message + " " + error);
 				}
-			);                	
+			);
 			console.log("Finishing " + message);
 		};
 
@@ -111,7 +111,7 @@ angular.module('BlueCube.controllers', [])
 				function (error) {
 					console.log("Error with " + message + " " + error);
 				}
-			);                	
+			);
 			console.log("Finishing " + message);
 		};
 
@@ -126,7 +126,7 @@ angular.module('BlueCube.controllers', [])
 				function (error) {
 					console.log("Error with " + message + " " + error);
 				}
-			);                	
+			);
 			console.log("Finishing " + message);
 		};
 
@@ -141,7 +141,7 @@ angular.module('BlueCube.controllers', [])
 				function (error) {
 					console.log("Error with " + message + " " + error);
 				}
-			);                	
+			);
 			console.log("Finishing " + message);
 		};
 
@@ -156,7 +156,7 @@ angular.module('BlueCube.controllers', [])
 				function (error) {
 					console.log("Error with " + message + " " + error);
 				}
-			);                	
+			);
 			console.log("Finishing " + message);
 		};
 
@@ -171,14 +171,14 @@ angular.module('BlueCube.controllers', [])
 				function (error) {
 					console.log("Error with " + message + " " + error);
 				}
-			);                	
+			);
 			console.log("Finishing " + message);
 		};
 
-		
+
            $scope.allOnChanged = function() {
                 if ($scope.allOn == false) {
-                    $scope.allOn = true;	
+                    $scope.allOn = true;
                 	$cordovaBluetoothSerial.write("!B11").then(
                 		function () {
                 			console.log("On Sent");
@@ -186,7 +186,7 @@ angular.module('BlueCube.controllers', [])
                 		function (error) {
                 			console.log("Error On: " + error);
                 		}
-                	);                	
+                	);
                 } else {
                     $scope.allOn = false;
                 	$cordovaBluetoothSerial.write("!B10").then(
@@ -208,10 +208,10 @@ angular.module('BlueCube.controllers', [])
     	$scope.$on('$ionicView.enter', function(e) {
     		console.log("On Enter: " + e);
     	});
-		
+
 		$scope.connectButton = false;
 		$scope.disconnectButton = false;
-		
+
 		// Functions for showing and hiding the loading overlay
 		$scope.show = function() {
     		$ionicLoading.show({
@@ -221,7 +221,7 @@ angular.module('BlueCube.controllers', [])
   		$scope.hide = function(){
     		$ionicLoading.hide();
   		};
-		
+
 		// Function to Connect to the BlueCube
 		$scope.connect = function() {
 			$scope.show();
@@ -237,14 +237,14 @@ angular.module('BlueCube.controllers', [])
 					var bluetoothDeviceID = null;		// Tracker for the device to connect to
 					$cordovaBluetoothSerial.list().then(
 						function(peripherals) {
-							// Search for devices is complete						
+							// Search for devices is complete
 							if (peripherals.length > 0) {
 								// Items found, so list Bluetooth Devices (that the library knows about)
 								$scope.logText = $scope.logText + JSON.stringify(peripherals) + "<br>";
-						
+
 								// Get the first device that we find's ID.
 								bluetoothDeviceID = peripherals[0].id;
-						
+
 								// Connect to the device
 								$cordovaBluetoothSerial.connect(bluetoothDeviceID).then(
 									function() {
@@ -277,7 +277,7 @@ angular.module('BlueCube.controllers', [])
 							$scope.disconnectButton = false;
 							$scope.hide();
 						}
-					);		
+					);
 
 				},
 				function() {
@@ -287,9 +287,9 @@ angular.module('BlueCube.controllers', [])
 					$scope.disconnectButton = false;
 					$scope.hide();
 				}
-			);	    			
+			);
 		};
-		
+
 		// Function to Disconnect from the BlueCube
 		$scope.disconnect = function() {
 			$cordovaBluetoothSerial.disconnect().then(
@@ -304,7 +304,7 @@ angular.module('BlueCube.controllers', [])
 				}
 			);
 		};
-		
+
 		// Function to setup the state of the view
 		$scope.checkConnected = function() {
 	    	// Check current connection status
@@ -319,14 +319,14 @@ angular.module('BlueCube.controllers', [])
 	    			$scope.disconnectButton = false;
 					//$scope.connect();
 	    		}
-	    	);		
+	    	);
 		};
-		
+
     	// Function called every time this view is shown
     	$scope.$on('$ionicView.beforeEnter', function() {
 			$scope.checkConnected();
-    	});  		
-    	 	
+    	});
+
 		// Call the checkConnected function the first time the view is loaded
 		$scope.checkConnected();
     });
