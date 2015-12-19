@@ -38,6 +38,7 @@ angular.module('BlueCube.controllers', [])
 			if (newValue != oldValue) {
 				hexColour = newValue.substring(1);
 				var message = "all " + hexColour + ";";
+				if (ionic.Platform.isWebView()) {
 				console.log("Starting " + message);
 				$cordovaBluetoothSerial.write(message).then(
 					function () {
@@ -48,6 +49,7 @@ angular.module('BlueCube.controllers', [])
 					}
 				);
 				console.log("Finishing " + message);
+			}
 			}
 		});
     });
