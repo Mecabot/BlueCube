@@ -34,48 +34,39 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
     colours = [
       {
         id: 1,
-        name: 'Black',
-        hex: '000000',
+        hex: '000000',  // Black
       },
       {
         id: 2,
-        name: 'Blue',
-        hex: '0000FF',
+        hex: '0000FF',  // Blue
       },
       {
         id: 3,
-        name: 'Green',
-        hex: '00ff00',
+        hex: '00ff00',  // Green
       },
       {
         id: 4,
-        name: 'Orange',
-        hex: 'ff4500',
+        hex: 'ff4500', // Orange
       },
       {
         id: 5,
-        name: 'Pink',
-        hex: 'ff1444',
+        hex: 'ff1444', // Pink
       },
       {
         id: 6,
-        name: 'Purple',
-        hex: 'ff00ff',
+        hex: 'ff00ff', // Purple
       },
       {
         id: 7,
-        name: 'Red',
-        hex: 'ff0000',
+        hex: 'ff0000',  // Red
       },
       {
         id: 8,
-        name: 'White',
-        hex: 'ffffff',
+        hex: 'ffffff',  // White
       },
       {
         id: 9,
-        name: 'Yellow',
-        hex: 'ffff00',
+        hex: 'ffff00',  // Yellow
       }
     ];
       window.localStorage['userDefinedColours'] = JSON.stringify(colours);
@@ -99,7 +90,6 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
     this.add = function(userDefinedColour) {
         var newColour = {
                                   id: uniqueID,
-                                  name: 'User1',
                                   hex: userDefinedColour,
                                 };
         uniqueID = uniqueID + 1;

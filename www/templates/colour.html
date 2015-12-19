@@ -11,7 +11,6 @@
     </div>
     <ion-list show-delete="data.showDelete" show-reorder="data.showReordering">
         <ion-item ng-repeat="userColour in colours track by userColour.id" ui-sref='userColour({colourId: userColour.id})' ng-style="{'background-color': '#{{userColour.hex}}'}">
-          {{userColour.name}}
           <ion-delete-button class="ion-minus-circled" ng-click="deleteUserColour({{userColour.id}})"></ion-delete-button>
           <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(userColour, $fromIndex, $toIndex)"></ion-reorder-button>
         </ion-item>
