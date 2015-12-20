@@ -27,7 +27,7 @@ angular.module('BlueCube.utils', [])
 .factory('$cubeAction', ['$cordovaBluetoothSerial', function($cordovaBluetoothSerial) {
 	return {
 		sendMessage: function(message) {
-			console.log("Starting " + message);
+			console.log("Sending: " + message);
 			$cordovaBluetoothSerial.write(message).then(
 				function () {
 					console.log(message + " sent");
