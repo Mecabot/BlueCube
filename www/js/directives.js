@@ -1,7 +1,6 @@
 angular.module('BlueCube.directives', [])
 
 .directive('uicolorpicker', function() {
-	console.log("Called");
 		return {
 			restrict: 'E',
 			require: 'ngModel',

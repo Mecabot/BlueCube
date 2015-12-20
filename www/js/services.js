@@ -6,8 +6,6 @@ angular.module('BlueCube.services', [])
 
 	if ($localstorage.getObject('userDefinedColours') != undefined) {
 		colours = $localstorage.getObject('userDefinedColours');
-		console.log('Defined');
-		console.log(JSON.stringify(colours));
 	} else {
 		colours = [
 			{

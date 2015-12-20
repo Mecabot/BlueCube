@@ -182,9 +182,6 @@ angular.module('BlueCube.controllers', [])
 
 .controller('ConnectionCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading) {
 	$ionicPlatform.ready(function() {
-		$scope.$on('$ionicView.enter', function(e) {
-			console.log("On Enter: " + e);
-		});
 
 		$scope.connectButton = false;
 		$scope.disconnectButton = false;

@@ -36,7 +36,6 @@ angular.module('BlueCube.utils', [])
 					console.log("Error with " + message + " " + error);
 				}
 			);
-			console.log("Finishing " + message);
 		}
 	}
 }]);
