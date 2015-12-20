@@ -1,11 +1,11 @@
 angular.module('BlueCube.services', [])
 
-.service('ColourService', function($q) {
+.service('ColourService', function($localstorage) {
 	var uniqueID;
 	var colours;
 
-	if (window.localStorage.getItem("userDefinedColours") != undefined) {
-		colours = JSON.parse(window.localStorage.getItem("userDefinedColours"));
+	if ($localstorage.getObject('userDefinedColours') != undefined) {
+		colours = $localstorage.getObject('userDefinedColours');
 		console.log('Defined');
 		console.log(JSON.stringify(colours));
 	} else {
@@ -48,11 +48,11 @@ angular.module('BlueCube.services', [])
 			}
 		];
 
-		window.localStorage['userDefinedColours'] = JSON.stringify(colours);
-		window.localStorage['userDefinedColours_uniqueID'] = 10;
+		$localstorage.setObject('userDefinedColours', colours);
+		$localstorage.set('userDefinedColours_uniqueID', 10);
 	}
 
-	uniqueID = parseInt(window.localStorage.getItem("userDefinedColours_uniqueID"));
+	uniqueID = parseInt($localstorage.get('userDefinedColours_uniqueID'));
 
 	this.list = function() {
 		return colours
@@ -74,8 +74,8 @@ angular.module('BlueCube.services', [])
 
 		uniqueID = uniqueID + 1;
 		colours.push(newColour);
-		window.localStorage['userDefinedColours'] = JSON.stringify(colours);
-		window.localStorage['userDefinedColours_uniqueID'] = uniqueID;
+		$localstorage.setObject('userDefinedColours', colours);
+		$localstorage.set('userDefinedColours_uniqueID', uniqueID);
 	}
 
 	this.delete = function(colourId) {
@@ -85,14 +85,12 @@ angular.module('BlueCube.services', [])
 			}
 		}
 
-		window.localStorage['userDefinedColours'] = JSON.stringify(colours);
-		window.localStorage['userDefinedColours_uniqueID'] = uniqueID;
+		$localstorage.setObject('userDefinedColours', colours);
 	}
 
 	this.reorder = function(item, fromIndex, toIndex) {
 		colours.splice(fromIndex, 1);
 		colours.splice(toIndex, 0, item);
-		window.localStorage['userDefinedColours'] = JSON.stringify(colours);
-		window.localStorage['userDefinedColours_uniqueID'] = uniqueID;
+		$localstorage.setObject('userDefinedColours', colours);
 	}
 });

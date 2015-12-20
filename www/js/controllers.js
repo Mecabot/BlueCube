@@ -71,7 +71,7 @@ angular.module('BlueCube.controllers', [])
 	}
 })
 
-.controller('ColourPickerCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, ColourService) {
+.controller('ColourPickerCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, ColourService, $localstorage) {
 	var hexColour = null;
 
 	$scope.data = {
@@ -86,7 +86,7 @@ angular.module('BlueCube.controllers', [])
 		$scope.$watchCollection('colour.targetColor', function(newValue, oldValue) {
 			if (newValue != oldValue) {
 				hexColour = newValue.substring(1);
-				window.localStorage['selectedColour'] = hexColour;
+				$localstorage.set('selectedColour', hexColour);
 			}
 		});
 	});
@@ -105,10 +105,10 @@ angular.module('BlueCube.controllers', [])
 	}
 })
 
-.controller('AllCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicModal) {
+.controller('AllCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicModal, $localstorage) {
 	$ionicPlatform.ready(function() {
 		$scope.allOn = false;
-		$scope.selectedColour = window.localStorage['selectedColour'];
+		$scope.selectedColour = $localstorage.get('selectedColour');
 
 		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
 			scope: $scope,
@@ -122,13 +122,13 @@ angular.module('BlueCube.controllers', [])
 		};
 
 		$scope.chooseFavouriteColour = function(selectedColour) {
-			window.localStorage['selectedColour'] = selectedColour;
+			$localstorage.set('selectedColour', selectedColour);
 			$scope.closeModal();
 		};
 
 		$scope.closeModal = function() {
 			$scope.modal.hide();
-			$scope.selectedColour = window.localStorage['selectedColour'];
+			$scope.selectedColour = $localstorage.get('selectedColour');
 		};
 
 		$scope.$on('$destroy', function() {

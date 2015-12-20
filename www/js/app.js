@@ -1,4 +1,4 @@
-angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueCube.directives', 'BlueCube.services'])
+angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueCube.directives', 'BlueCube.services', 'BlueCube.utils'])
 
 .run(function($ionicPlatform) {
 	$ionicPlatform.ready(function() {
