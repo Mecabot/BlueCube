@@ -1,6 +1,6 @@
-var app = angular.module('BlueCube.directives', []);
+angular.module('BlueCube.directives', [])
 
-app.directive('uicolorpicker', function() {
+.directive('uicolorpicker', function() {
 	console.log("Called");
 		return {
 			restrict: 'E',
