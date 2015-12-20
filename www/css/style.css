@@ -1,17 +1,17 @@
 .spinner svg {
-  width: 40px; 
-  height: 40px; 
+	width: 40px;
+	height: 40px;
 }
 
 .sp-container {
-  background-color: #FFFFFF;
-  border: none;
+	background-color: #FFFFFF;
+	border: none;
 }
 
 .sp-picker-container {
-  width: 300px;
+	width: 300px;
 }
 
 .item .item-content {
-  background-color: transparent !important;
+	background-color: transparent !important;
 }
