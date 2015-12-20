@@ -68,9 +68,67 @@ angular.module('BlueCube.controllers', [])
     }
 })
 
-.controller('AllCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial) {
+.controller('ColourPickerCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, ColourService) {
+    var hexColour = null;
+    $scope.data = {
+      showDelete: false,
+      showReordering: false,
+    };
+
+    $ionicPlatform.ready(function() {
+    	$scope.colour = {targetColor: '#ebebeb'};
+    	$scope.colours = ColourService.list();
+		$scope.$watchCollection('colour.targetColor', function(newValue, oldValue) {
+			if (newValue != oldValue) {
+				hexColour = newValue.substring(1);
+				window.localStorage['selectedColour'] = hexColour;
+			}
+		});
+    });
+
+    $scope.addUserColour = function () {
+      newColour = hexColour;
+      ColourService.add(newColour);
+    };
+
+    $scope.deleteUserColour = function (id) {
+      ColourService.delete(id);
+    }
+
+    $scope.reorderItem = function(item, fromIndex, toIndex) {
+      ColourService.reorder(item, fromIndex, toIndex);
+    }
+})
+
+.controller('AllCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicModal) {
     $ionicPlatform.ready(function() {
 		$scope.allOn = false;
+		$scope.selectedColour = window.localStorage['selectedColour'];
+
+		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal = modal
+    });
+
+    $scope.openModal = function() {
+      $scope.modal.show()
+    };
+
+    $scope.chooseFavouriteColour = function(selectedColour) {
+      window.localStorage['selectedColour'] = selectedColour;
+      $scope.closeModal();
+    };
+
+    $scope.closeModal = function() {
+      $scope.modal.hide();
+      $scope.selectedColour = window.localStorage['selectedColour'];
+    };
+
+    $scope.$on('$destroy', function() {
+      $scope.modal.remove();
+    });
 
 		// All Red
 		$scope.allRed = function() {

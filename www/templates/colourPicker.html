@@ -1,0 +1,27 @@
+<ion-view view-title="ColourPicker">
+  <div class="modal">
+    <ion-header-bar>
+      <h1 class="title">Select Colour</h1>
+    </ion-header-bar>
+    <ion-content ng-controller="ColourPickerCtrl">
+		<uicolorpicker ng-model="colour.targetColor"></uicolorpicker>
+
+    <div class="buttons padding">
+      <button class="button button-outline ion-plus-round button-balanced" ng-click="addUserColour()"> Add</button>
+      <button class="button button-outline ion-close-round button-assertive" ng-click="data.showDelete = !data.showDelete"> Delete</button>
+      <button class="button button-outline ion-navicon button-calm" ng-click="data.showReordering = !data.showReordering"> Reorder</button>
+    </div>
+
+    <ion-list type="list-inset" show-delete="data.showDelete" show-reorder="data.showReordering">
+        <ion-item ng-repeat="userColour in colours track by userColour.id" ng-style="{'background-color': '#{{userColour.hex}}'}" ng-click="chooseFavouriteColour('{{userColour.hex}}')">
+          #{{userColour.hex}}
+          <ion-delete-button class="ion-close-round" ng-click="deleteUserColour({{userColour.id}})"></ion-delete-button>
+          <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(userColour, $fromIndex, $toIndex)"></ion-reorder-button>
+        </ion-item>
+    </ion-list>
+
+      <button class="button button-full button-energized" ng-click="closeModal()">Done</button>
+    </ion-content>
+  </div>
+
+</ion-view>
