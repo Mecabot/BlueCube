@@ -95,7 +95,7 @@ angular.module('BlueCube.controllers', [])
 	}
 })
 
-.controller('AllCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicModal, $localstorage) {
+.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
 	$ionicPlatform.ready(function() {
 		$scope.allOn = false;
 		$scope.selectedColour = $localstorage.get('selectedColour');
@@ -128,129 +128,52 @@ angular.module('BlueCube.controllers', [])
 		// All Red
 		$scope.allRed = function() {
 			var message = "all RED;";
-			console.log("Starting " + message);
-			$cordovaBluetoothSerial.write(message).then(
-				function () {
-					console.log(message + " sent");
-				},
-				function (error) {
-					console.log("Error with " + message + " " + error);
-				}
-			);
-			console.log("Finishing " + message);
+			$cubeAction.sendMessage(message);
 		};
 
 		// All Hex - Green Colour
 		$scope.allHex = function() {
 			var message = "all 3DF400;";
-			console.log("Starting " + message);
-			$cordovaBluetoothSerial.write(message).then(
-				function () {
-					console.log(message + " sent");
-				},
-				function (error) {
-					console.log("Error with " + message + " " + error);
-				}
-			);
-			console.log("Finishing " + message);
+			$cubeAction.sendMessage(message);
 		};
 
 		// All Black
 		$scope.allBlack = function() {
 			var message = "all BLACK;";
-			console.log("Starting " + message);
-			$cordovaBluetoothSerial.write(message).then(
-				function () {
-					console.log(message + " sent");
-				},
-				function (error) {
-					console.log("Error with " + message + " " + error);
-				}
-			);
-			console.log("Finishing " + message);
+			$cubeAction.sendMessage(message);
 		};
 
 		// SET 000 RED
 		$scope.setRed = function() {
 			var message = "set 000 RED;";
-			console.log("Starting " + message);
-			$cordovaBluetoothSerial.write(message).then(
-				function () {
-					console.log(message + " sent");
-				},
-				function (error) {
-					console.log("Error with " + message + " " + error);
-				}
-			);
-			console.log("Finishing " + message);
+			$cubeAction.sendMessage(message);
 		};
 
 		// SET 100 HEX - Green Colour
 		$scope.setHex = function() {
 			var message = "set 100 3DF400;";
-			console.log("Starting " + message);
-			$cordovaBluetoothSerial.write(message).then(
-				function () {
-					console.log(message + " sent");
-				},
-				function (error) {
-					console.log("Error with " + message + " " + error);
-				}
-			);
-			console.log("Finishing " + message);
+			$cubeAction.sendMessage(message);
 		};
 
 		// Setplane X 2 BLUE;
 		$scope.setPlaneBlue = function() {
 			var message = "setplane X 2 BLUE;";
-			console.log("Starting " + message);
-			$cordovaBluetoothSerial.write(message).then(
-				function () {
-					console.log(message + " sent");
-				},
-				function (error) {
-					console.log("Error with " + message + " " + error);
-				}
-			);
-			console.log("Finishing " + message);
+			$cubeAction.sendMessage(message);
 		};
 
 		// Setplane Y 1 Hex - Green;
 		$scope.setPlaneHex = function() {
 			var message = "setplane Y 1 3DF400;";
-			console.log("Starting " + message);
-			$cordovaBluetoothSerial.write(message).then(
-				function () {
-					console.log(message + " sent");
-				},
-				function (error) {
-					console.log("Error with " + message + " " + error);
-				}
-			);
-			console.log("Finishing " + message);
+			$cubeAction.sendMessage(message);
 		};
 
 		$scope.allOnChanged = function() {
 			if ($scope.allOn == false) {
 				$scope.allOn = true;
-				$cordovaBluetoothSerial.write("!B11").then(
-					function () {
-						console.log("On Sent");
-					},
-					function (error) {
-						console.log("Error On: " + error);
-					}
-				);
+				$cubeAction.sendMessage("!B11");
 			} else {
 				$scope.allOn = false;
-				$cordovaBluetoothSerial.write("!B10").then(
-					function () {
-						console.log("Off Sent");
-					},
-					function (error) {
-						console.log("Error Off: " + error);
-					}
-				);
+				$cubeAction.sendMessage("!B10");
 			}
 		};
 
