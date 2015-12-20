@@ -59,7 +59,7 @@ angular.module('BlueCube.controllers', [])
 	}
 })
 
-.controller('ColourPickerCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, ColourService, $localstorage) {
+.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourService, $localstorage) {
 	var hexColour = null;
 
 	$scope.data = {
