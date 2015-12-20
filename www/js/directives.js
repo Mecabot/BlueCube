@@ -15,6 +15,7 @@ angular.module('BlueCube.directives', [])
 								flat: true,
 								showInput: false,
 								showButtons: false,
+								showInitial: true,
 								move: function(color) {
 												scope.$apply(function() {
 													ngModel.$setViewValue(color.toHexString());
