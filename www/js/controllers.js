@@ -24,7 +24,7 @@ angular.module('BlueCube.controllers', [])
 	});
 })
 
-.controller('ColourCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, ColourService) {
+.controller('ColourCtrl', function($ionicPlatform, $scope, $cubeAction, ColourService) {
 	var hexColour = null;
 
 	$scope.data = {
@@ -40,19 +40,7 @@ angular.module('BlueCube.controllers', [])
 			if (newValue != oldValue) {
 				hexColour = newValue.substring(1);
 				var message = "all " + hexColour + ";";
-
-				if (ionic.Platform.isWebView()) {
-					console.log("Starting " + message);
-					$cordovaBluetoothSerial.write(message).then(
-						function () {
-							console.log(message + " sent");
-						},
-						function (error) {
-							console.log("Error with " + message + " " + error);
-						}
-					);
-					console.log("Finishing " + message);
-				}
+				$cubeAction.sendMessage(message);
 			}
 		});
 	});

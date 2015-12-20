@@ -22,4 +22,21 @@ angular.module('BlueCube.utils', [])
 			$window.localStorage.clear();
 		}
 	}
+}])
+
+.factory('$cubeAction', ['$cordovaBluetoothSerial', function($cordovaBluetoothSerial) {
+	return {
+		sendMessage: function(message) {
+			console.log("Starting " + message);
+			$cordovaBluetoothSerial.write(message).then(
+				function () {
+					console.log(message + " sent");
+				},
+				function (error) {
+					console.log("Error with " + message + " " + error);
+				}
+			);
+			console.log("Finishing " + message);
+		}
+	}
 }]);
