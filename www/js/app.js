@@ -65,6 +65,17 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		.state('app.single', {
+			url: '/single',
+			cache: false,
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/single.html',
+					controller: 'SingleCtrl'
+				}
+			}
+		})
+
 		.state('app.device', {
 			url: '/device',
 			cache: true,
