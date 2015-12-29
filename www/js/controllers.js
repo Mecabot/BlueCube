@@ -263,7 +263,7 @@ angular.module('BlueCube.controllers', [])
 	});
 })
 
-.controller('ColourCtrl', function($ionicPlatform, $scope, $cubeAction, ColourService) {
+.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourService) {
 	var hexColour = null;
 
 	$scope.data = {
