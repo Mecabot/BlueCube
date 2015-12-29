@@ -24,11 +24,12 @@ angular.module('BlueCube.controllers', [])
 	});
 })
 
-.controller('SingleCtrl', function($ionicPlatform, $scope, $cubeAction, $localstorage) {
+.controller('SingleCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
 	$scope.cube = [];
-  $scope.selectedColour = $localstorage.get('selectedColour');
 
 	$ionicPlatform.ready(function() {
+    $scope.selectedColour = $localstorage.get('selectedColour');
+
     $scope.setLED = function (id) {
       var colourToUse = "BLACK";
       if ($scope.cube[id] == true) {
@@ -233,6 +234,32 @@ angular.module('BlueCube.controllers', [])
       console.log(id + " " + message);
 			$cubeAction.sendMessage(message);
     }
+
+		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
+			scope: $scope,
+			animation: 'slide-in-up'
+		}).then(function(modal) {
+			$scope.modal = modal
+		});
+
+		$scope.openModal = function() {
+			$scope.modal.show()
+		};
+
+		$scope.chooseFavouriteColour = function(selectedColour) {
+			$localstorage.set('selectedColour', selectedColour);
+			$scope.closeModal();
+		};
+
+		$scope.closeModal = function() {
+			$scope.modal.hide();
+			$scope.selectedColour = $localstorage.get('selectedColour');
+		};
+
+		$scope.$on('$destroy', function() {
+			$scope.modal.remove();
+		});
+
 	});
 })
 
