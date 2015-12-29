@@ -38,13 +38,13 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
-		.state('app.all', {
-			url: '/all',
+		.state('app.presets', {
+			url: '/presets',
 			cache: false,
 			views: {
 				'menuContent': {
-					templateUrl: 'templates/all.html',
-					controller: 'AllCtrl'
+					templateUrl: 'templates/presets.html',
+					controller: 'PresetsCtrl'
 				}
 			}
 		})

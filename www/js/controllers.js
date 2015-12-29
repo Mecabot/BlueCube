@@ -334,7 +334,7 @@ angular.module('BlueCube.controllers', [])
 	}
 })
 
-.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
+.controller('PresetsCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
 	$ionicPlatform.ready(function() {
 		$scope.allOn = false;
 		$scope.selectedColour = $localstorage.get('selectedColour');
