@@ -263,7 +263,7 @@ angular.module('BlueCube.controllers', [])
 	});
 })
 
-.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourService) {
+.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourService, $localstorage) {
 	var hexColour = null;
 
 	$scope.data = {
@@ -283,6 +283,12 @@ angular.module('BlueCube.controllers', [])
 			}
 		});
 	});
+
+  $scope.chooseFavouriteColour = function(selectedColour) {
+    $localstorage.set('selectedColour', selectedColour);
+    var message = "all " + selectedColour + ";";
+    $cubeAction.sendMessage(message);
+  };
 
 	$scope.addUserColour = function () {
 		newColour = hexColour;

@@ -10,7 +10,7 @@
 		</div>
 
 		<ion-list type="list-inset" show-delete="data.showDelete" show-reorder="data.showReordering">
-			<ion-item ng-repeat="userColour in colours track by userColour.id" ng-style="{'background-color': '#{{userColour.hex}}'}">
+			<ion-item ng-repeat="userColour in colours track by userColour.id" ng-style="{'background-color': '#{{userColour.hex}}'}" ng-click="chooseFavouriteColour('{{userColour.hex}}')">
 				#{{userColour.hex}}
 				<ion-delete-button class="ion-close-round" ng-click="deleteUserColour({{userColour.id}})"></ion-delete-button>
 				<ion-reorder-button class="ion-navicon" on-reorder="reorderItem(userColour, $fromIndex, $toIndex)"></ion-reorder-button>
