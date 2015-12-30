@@ -264,7 +264,9 @@ angular.module('BlueCube.controllers', [])
 })
 
 .controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourService, $localstorage) {
-	var hexColour = null;
+
+  $scope.live = true;
+  $scope.useSelectedColourButton = false;
 
 	$scope.data = {
 		showDelete: false,
@@ -272,26 +274,43 @@ angular.module('BlueCube.controllers', [])
 	};
 
 	$ionicPlatform.ready(function() {
+	  $scope.hexColour = null;
 		$scope.colour = {targetColor: '#ebebeb'};
 		$scope.colours = ColourService.list();
 
 		$scope.$watchCollection('colour.targetColor', function(newValue, oldValue) {
 			if (newValue != oldValue) {
-				hexColour = newValue.substring(1);
-				var message = "all " + hexColour + ";";
-				$cubeAction.sendMessage(message);
+				$scope.hexColour = newValue.substring(1);
+				$localstorage.set('selectedColour', $scope.hexColour);
+				if ($scope.live == true) {
+				  var message = "all " + $scope.hexColour + ";";
+				  $cubeAction.sendMessage(message);
+				}
 			}
 		});
 	});
 
-  $scope.chooseFavouriteColour = function(selectedColour) {
+  $scope.liveChanged = function() {
+    if ($scope.live == false) {
+      $scope.live = true;
+      $scope.useSelectedColourButton = false;
+    } else {
+      $scope.live = false;
+      $scope.useSelectedColourButton = true;
+    }
+  };
+
+  $scope.sendSelectedColour = function(selectedColour) {
+    if (selectedColour == null) {
+      selectedColour = $scope.hexColour;
+    }
     $localstorage.set('selectedColour', selectedColour);
     var message = "all " + selectedColour + ";";
     $cubeAction.sendMessage(message);
   };
 
 	$scope.addUserColour = function () {
-		newColour = hexColour;
+		newColour = $scope.hexColour;
 		ColourService.add(newColour);
 	};
 

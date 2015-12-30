@@ -1,7 +1,18 @@
 <ion-view view-title="All">
 	<ion-content>
+		<ion-toggle ng-model=live ng-change="liveChanged()" toggle-class="toggle-balanced">
+			Automatically Change
+		</ion-toggle>
+
+		<br>
 
 		<uicolorpicker ng-model="colour.targetColor"></uicolorpicker>
+
+    <div class="padding-horizontal">
+      <button ng-click="sendSelectedColour()" ng-show="useSelectedColourButton" class="button button-block" back-colour="{{hexColour}}">
+  			Update Cube
+	  	</button>
+    </div>
 
 		<div class="buttons padding">
 			<button class="button button-outline ion-plus-round button-balanced" ng-click="addUserColour()"> Add</button>
@@ -10,7 +21,7 @@
 		</div>
 
 		<ion-list type="list-inset" show-delete="data.showDelete" show-reorder="data.showReordering">
-			<ion-item ng-repeat="userColour in colours track by userColour.id" ng-style="{'background-color': '#{{userColour.hex}}'}" ng-click="chooseFavouriteColour('{{userColour.hex}}')">
+			<ion-item ng-repeat="userColour in colours track by userColour.id" ng-style="{'background-color': '#{{userColour.hex}}'}" ng-click="sendSelectedColour('{{userColour.hex}}')">
 				#{{userColour.hex}}
 				<ion-delete-button class="ion-close-round" ng-click="deleteUserColour({{userColour.id}})"></ion-delete-button>
 				<ion-reorder-button class="ion-navicon" on-reorder="reorderItem(userColour, $fromIndex, $toIndex)"></ion-reorder-button>
