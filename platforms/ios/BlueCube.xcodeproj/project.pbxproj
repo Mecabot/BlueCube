@@ -7,7 +7,6 @@
 	objects = {
 /* Begin PBXBuildFile section */
 		03CD33073F3E4072952D0914 /* CDVNotification.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 59623D38A38244C29ECD279E /* CDVNotification.bundle */; };
-		05B31BFD4CE84FD5A8D16234 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 599802708B034167880CCA68 /* CDVLogger.m */; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
@@ -31,6 +30,7 @@
 		30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FC414816E50CA1004E6F35 /* icon-72@2x.png */; };
 		41E8459FB55A4C04A89E5D20 /* CDVNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 552835B12A6248C88205E640 /* CDVNotification.m */; };
 		5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
+		6691C2A61C33A9E000D10D38 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D4FC4A5095476FBC150CB3 /* CDVLogger.m */; };
 		733623BE989E46A1BC98DD90 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B1034D39BCB8409C8C23FBCF /* CDVStatusBar.m */; };
 		7E7966DE1810823500FA85AD /* icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D41810823500FA85AD /* icon-40.png */; };
 		7E7966DF1810823500FA85AD /* icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D51810823500FA85AD /* icon-40@2x.png */; };
@@ -77,6 +77,7 @@
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* BlueCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlueCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		214FEE76891748ABBBC82F44 /* CDVLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVLogger.h; path = "cordova-plugin-console/CDVLogger.h"; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2D7AF3645E614677B7BA4A4C /* BLEDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLEDefines.h; path = "cordova-plugin-bluetooth-serial/BluetoothSerial/BLEDefines.h"; sourceTree = "<group>"; };
@@ -102,11 +103,11 @@
 		30FC414816E50CA1004E6F35 /* icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72@2x.png"; sourceTree = "<group>"; };
 		3209971A242547399002564C /* BLE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLE.m; path = "cordova-plugin-bluetooth-serial/BluetoothSerial/BLE.m"; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* BlueCube-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BlueCube-Prefix.pch"; sourceTree = "<group>"; };
+		45D4FC4A5095476FBC150CB3 /* CDVLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVLogger.m; path = "cordova-plugin-console/CDVLogger.m"; sourceTree = "<group>"; };
 		4AC4D68B302A4EC688367FAF /* CDVNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVNotification.h; path = "cordova-plugin-dialogs/CDVNotification.h"; sourceTree = "<group>"; };
 		52F6C2C98FDB4831870F9754 /* AppInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppInfo.m; path = "cordova-plugin-appinfo/AppInfo.m"; sourceTree = "<group>"; };
 		552835B12A6248C88205E640 /* CDVNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVNotification.m; path = "cordova-plugin-dialogs/CDVNotification.m"; sourceTree = "<group>"; };
 		59623D38A38244C29ECD279E /* CDVNotification.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CDVNotification.bundle; sourceTree = "<group>"; };
-		599802708B034167880CCA68 /* CDVLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVLogger.m; path = "cordova-plugin-console/CDVLogger.m"; sourceTree = "<group>"; };
 		5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		623F182A77D4443CAACC054C /* MEGBluetoothSerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MEGBluetoothSerial.h; path = "cordova-plugin-bluetooth-serial/BluetoothSerial/MEGBluetoothSerial.h"; sourceTree = "<group>"; };
 		696D6AB6C8FC47AEA7906682 /* CBPeripheral+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CBPeripheral+Extensions.m"; path = "cordova-plugin-bluetooth-serial/BluetoothSerial/CBPeripheral+Extensions.m"; sourceTree = "<group>"; };
@@ -130,7 +131,6 @@
 		CD87A28F80FD4CBA93CDE0D1 /* CDVStatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVStatusBar.h; path = "cordova-plugin-statusbar/CDVStatusBar.h"; sourceTree = "<group>"; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		DF7CCD8CED644A19A288B033 /* CDVSpinnerDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVSpinnerDialog.m; path = com.filfatstudios.spinnerdialog/CDVSpinnerDialog.m; sourceTree = "<group>"; };
-		E5177AE7D4AC4B2DACF3A068 /* CDVLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVLogger.h; path = "cordova-plugin-console/CDVLogger.h"; sourceTree = "<group>"; };
 		EB87FDF21871DA7A0020F90C /* merges */ = {isa = PBXFileReference; lastKnownFileType = folder; name = merges; path = ../../merges; sourceTree = "<group>"; };
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
@@ -241,8 +241,6 @@
 			children = (
 				F85E27A8D33445F19132BEE1 /* CDVDevice.m */,
 				14DF1B793B0A40DB928ABA34 /* CDVDevice.h */,
-				599802708B034167880CCA68 /* CDVLogger.m */,
-				E5177AE7D4AC4B2DACF3A068 /* CDVLogger.h */,
 				6D68413AC54645A1A02921E7 /* MEGBluetoothSerial.m */,
 				696D6AB6C8FC47AEA7906682 /* CBPeripheral+Extensions.m */,
 				3209971A242547399002564C /* BLE.m */,
@@ -258,6 +256,8 @@
 				C62FD493A945464493977847 /* AppInfo.h */,
 				DF7CCD8CED644A19A288B033 /* CDVSpinnerDialog.m */,
 				00D3F8CE3C01459693411F7A /* CDVSpinnerDialog.h */,
+				45D4FC4A5095476FBC150CB3 /* CDVLogger.m */,
+				214FEE76891748ABBBC82F44 /* CDVLogger.h */,
 			);
 			name = Plugins;
 			path = BlueCube/Plugins;
@@ -449,10 +449,10 @@
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				947ADAAAA0814F3DB2BBC9CD /* CDVDevice.m in Sources */,
-				05B31BFD4CE84FD5A8D16234 /* CDVLogger.m in Sources */,
 				F0FE021F59694D428766B5B9 /* MEGBluetoothSerial.m in Sources */,
 				ABE9A22B79C942639DE1CBB4 /* CBPeripheral+Extensions.m in Sources */,
 				C20F1618015243DE820A0CF9 /* BLE.m in Sources */,
+				6691C2A61C33A9E000D10D38 /* CDVLogger.m in Sources */,
 				733623BE989E46A1BC98DD90 /* CDVStatusBar.m in Sources */,
 				41E8459FB55A4C04A89E5D20 /* CDVNotification.m in Sources */,
 				E46F1E56960645CC8A1A37B1 /* AppInfo.m in Sources */,
