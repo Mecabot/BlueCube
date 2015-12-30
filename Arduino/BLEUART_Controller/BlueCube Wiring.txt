@@ -1,0 +1,11 @@
+Wiring
+
+Bluetooth Module
+MOD -> Brown -> D5
+CTS -> GND
+TXO -> GREEN -> RXD (XBee End)
+RXI -> YELLOW -> TXD (XBee End)
+VIN -> RED -> +5V
+RTS
+GND -> BLACK -> GND
+DFU
