@@ -9,12 +9,21 @@
 		</ion-header-bar>
 
 		<ion-content ng-controller="ColourPickerCtrl">
-			<uicolorpicker ng-model="colour.targetColor"></uicolorpicker>
-
-			<div class="buttons padding">
-				<button class="button button-outline ion-plus-round button-balanced" ng-click="addUserColour()"> Add</button>
-				<button class="button button-outline ion-close-round button-assertive" ng-click="data.showDelete = !data.showDelete"> Delete</button>
-				<button class="button button-outline ion-navicon button-calm" ng-click="data.showReordering = !data.showReordering"> Reorder</button>
+			<div class="padding-top row" back-colour="{{hexColour}}" align="center">
+				<div class="col col-center">
+					<uicolorpicker ng-model="colour.targetColor"></uicolorpicker>
+				</div>
+			</div>
+			<div></div>
+			<div class="row padding-horizontal padding-top">
+				<div class="col col-center">
+					<h4>Favourites</h4>
+				</div>
+				<div align="right">
+					<button class="button button-outline ion-plus-round button-balanced" ng-click="addUserColour()"></button>
+					<button class="button button-outline ion-close-round button-assertive" ng-click="data.showDelete = !data.showDelete"></button>
+					<button class="button button-outline ion-navicon button-calm" ng-click="data.showReordering = !data.showReordering"></button>
+				</div>
 			</div>
 
 			<ion-list type="list-inset" show-delete="data.showDelete" show-reorder="data.showReordering">
@@ -24,6 +33,9 @@
 					<ion-reorder-button class="ion-navicon" on-reorder="reorderItem(userColour, $fromIndex, $toIndex)"></ion-reorder-button>
 				</ion-item>
 			</ion-list>
+
+			<br>
+
     </ion-content>
 
   </div>

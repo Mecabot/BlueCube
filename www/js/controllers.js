@@ -326,7 +326,6 @@ angular.module('BlueCube.controllers', [])
 })
 
 .controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourService, $localstorage) {
-	var hexColour = null;
 
 	$scope.data = {
 		showDelete: false,
@@ -335,20 +334,21 @@ angular.module('BlueCube.controllers', [])
 
 	$ionicPlatform.ready(function() {
 		var initialColour = $localstorage.get('selectedColour');
+		$scope.hexColour = initialColour;
 		initialColour = '#' + initialColour;
 		$scope.colour = {targetColor: initialColour};
 		$scope.colours = ColourService.list();
 
 		$scope.$watchCollection('colour.targetColor', function(newValue, oldValue) {
 			if (newValue != oldValue) {
-				hexColour = newValue.substring(1);
-				$localstorage.set('selectedColour', hexColour);
+				$scope.hexColour = newValue.substring(1);
+				$localstorage.set('selectedColour', $scope.hexColour);
 			}
 		});
 	});
 
 	$scope.addUserColour = function () {
-		newColour = hexColour;
+		newColour = $scope.hexColour;
 		ColourService.add(newColour);
 	};
 
