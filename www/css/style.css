@@ -15,3 +15,7 @@
 .item .item-content {
 	background-color: transparent !important;
 }
+
+.list-inset {
+  margin-top: 0px; !important;
+}
