@@ -4,12 +4,12 @@
 			Automatically Change
 		</ion-toggle>
 
-		<br>
-
-		<uicolorpicker ng-model="colour.targetColor"></uicolorpicker>
+    <div class="padding-vertical" back-colour="{{hexColour}}" align="center">
+		  <uicolorpicker ng-model="colour.targetColor"></uicolorpicker>
+    </div>
 
     <div class="padding-horizontal">
-      <button ng-click="sendSelectedColour()" ng-show="useSelectedColourButton" class="button button-block" back-colour="{{hexColour}}">
+      <button ng-click="sendSelectedColour()" ng-show="useSelectedColourButton" class="button button-block">
   			Update Cube
 	  	</button>
     </div>
