@@ -274,8 +274,10 @@ angular.module('BlueCube.controllers', [])
 	};
 
 	$ionicPlatform.ready(function() {
-	  $scope.hexColour = null;
-		$scope.colour = {targetColor: '#ebebeb'};
+		var initialColour = $localstorage.get('selectedColour');
+		$scope.hexColour = initialColour;
+		initialColour = '#' + initialColour;
+		$scope.colour = {targetColor: initialColour};
 		$scope.colours = ColourService.list();
 
 		$scope.$watchCollection('colour.targetColor', function(newValue, oldValue) {
