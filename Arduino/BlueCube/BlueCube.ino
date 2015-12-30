@@ -79,8 +79,8 @@ void setup(void)
   cube.begin(0, 115200); // Start on serial port 0 (USB) at 115200 baud
   
   pinMode(BLUEFRUIT_UART_MODE_PIN, OUTPUT);
-  while (!Serial);  // required for Flora & Micro
-  delay(500);
+//  while (!Serial);  // required for Flora & Micro
+//  delay(500);
 
   Serial.begin(115200);
   Serial.println(F("Adafruit Bluefruit App Controller Example"));
