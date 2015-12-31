@@ -27,17 +27,6 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			controller: 'AppCtrl'
 		})
 
-		.state('app.connection', {
-			url: '/connection',
-			cache: false,
-			views: {
-				'menuContent': {
-					templateUrl: 'templates/connection.html',
-					controller: 'ConnectionCtrl'
-				}
-			}
-		})
-
 		.state('app.presets', {
 			url: '/presets',
 			cache: false,
@@ -85,8 +74,40 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 					controller: 'DeviceCtrl'
 				}
 			}
-		});
+		})
 
+    .state('app.about', {
+     url: '/about',
+     cache: false,
+     views: {
+         'menuContent': {
+             templateUrl: 'templates/about.html',
+             controller : 'AboutCtrl'
+         }
+     }
+    })
+
+		.state('app.connection', {
+			url: '/connection',
+			cache: false,
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/connection.html',
+					controller: 'ConnectionCtrl'
+				}
+			}
+		})
+
+    .state('app.settings', {
+     url: '/settings',
+     cache: false,
+     views: {
+         'menuContent': {
+             templateUrl: 'templates/settings.html',
+             controller : 'SettingsCtrl'
+         }
+     }
+    });
 	// if none of the above states are matched, use this as the fallback
 	$urlRouterProvider.otherwise('/app/connection');
 });

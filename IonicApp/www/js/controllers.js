@@ -446,6 +446,14 @@ angular.module('BlueCube.controllers', [])
 	});
 })
 
+.controller('SettingsCtrl', [ '$scope', '$state', function($scope, $state) {
+
+}])
+
+.controller('AboutCtrl', [ '$scope', '$state', function($scope, $state) {
+
+}])
+
 .controller('ConnectionCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading) {
 	$scope.connectButton = true;
 	$scope.disconnectButton = false;
