@@ -454,19 +454,53 @@ angular.module('BlueCube.controllers', [])
 
 }])
 
-.controller('ConnectionCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading) {
+.controller('ConnectionCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading, $localstorage) {
 	$scope.connectButton = true;
 	$scope.disconnectButton = false;
+    if ($localstorage.get('autoConnect') == "true") {
+      $scope.autoConnect = true;
+    } else {
+      $scope.autoConnect = false;
+    }
 
 		// Function called every time this view is shown
 		$scope.$on('$ionicView.beforeEnter', function() {
 			$scope.checkConnected();
 		});
 
+		$scope.$on('$ionicView.afterEnter', function() {
+			if ($scope.autoConnect == true) {
+        $cordovaBluetoothSerial.isConnected().then(
+          function() {
+            // Yep - do nothing
+          },
+          function() {
+            $scope.connect();
+          }
+        );
+			}
+		});
+
 	$ionicPlatform.ready(function() {
-		// Call the checkConnected function the first time the view is loaded
-		// $scope.checkConnected();
 	});
+
+     $scope.autoConnectChanged = function() {
+       if ($scope.autoConnect == false) {
+         $scope.autoConnect = true;
+         $localstorage.set('autoConnect', 'true');
+         $cordovaBluetoothSerial.isConnected().then(
+           function() {
+             // Yep - do nothing
+           },
+           function() {
+             $scope.connect();
+           }
+         );
+       } else {
+         $scope.autoConnect = false;
+         $localstorage.set('autoConnect', 'false');
+       }
+     };
 
 		// Functions for showing and hiding the loading overlay
 		$scope.show = function() {

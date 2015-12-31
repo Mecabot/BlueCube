@@ -4,10 +4,9 @@
     </ion-nav-buttons>
 
 	<ion-content class="padding">
-
-		<p>-----------</p>
-		<div ng-bind-html="logText"></div>
-		<p>-----------</p>
+		<ion-toggle ng-model="autoConnect" ng-change="autoConnectChanged()" toggle-class="toggle-balanced">
+			Automatically Connect
+		</ion-toggle>
 
 		<button ng-click="connect()" ng-show="connectButton" class="button button-block button-balanced">
 			Connect
@@ -16,6 +15,10 @@
 		<button ng-click="disconnect()" ng-show="disconnectButton" class="button button-block button-assertive">
 			Disconnect
 		</button>
+
+		<hr>
+		<div ng-bind-html="logText"></div>
+		<hr>
 
 	</ion-content>
 
