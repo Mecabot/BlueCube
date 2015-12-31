@@ -457,6 +457,7 @@ angular.module('BlueCube.controllers', [])
 .controller('ConnectionCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading, $localstorage, $ionicSideMenuDelegate) {
 	$scope.connectButton = true;
 	$scope.disconnectButton = false;
+
     if ($localstorage.get('autoConnect') == "true") {
       $scope.autoConnect = true;
     } else {
@@ -518,11 +519,11 @@ angular.module('BlueCube.controllers', [])
 			$scope.show();
 
 			// Check if Bluetooth is enabled
-			$scope.logText = "Starting Bluetooth Test<br>";
+			$scope.logText = "Starting Connection Procedures<br>";
 			$cordovaBluetoothSerial.isEnabled().then(
 				function() {
 					// Bluetooth is enabled
-					$scope.logText = $scope.logText + "Bluetooth is enabled<br>";
+					$scope.logText = $scope.logText + "Bluetooth is enabled...<br>";
 
 					// Find possible devices to connect to
 					$scope.logText = $scope.logText + "Searching for Bluetooth Devices<br>";
@@ -542,7 +543,8 @@ angular.module('BlueCube.controllers', [])
 								$cordovaBluetoothSerial.connect(bluetoothDeviceID).then(
 									function() {
 										// Connected
-										$scope.logText = $scope.logText + "Connected to device " + bluetoothDeviceID + "<br>";
+										$localstorage.set('bluetoothUUID', bluetoothDeviceID);
+										$scope.logText = "BlueCube (" + bluetoothDeviceID + ") is Connected<br>";
 										$scope.connectButton = false;
 										$scope.disconnectButton = true;
 										$scope.hide();
@@ -550,7 +552,7 @@ angular.module('BlueCube.controllers', [])
 									},
 									function() {
 										// Failed to connect
-										$scope.logText = $scope.logText + "Failed to connect<br>";
+										$scope.logText = "ERROR: Failed to connect to BlueCube (" + bluetoothDeviceID + ")<br>";
 										$scope.connectButton = true;
 										$scope.disconnectButton = false;
 										$scope.hide();
@@ -558,7 +560,7 @@ angular.module('BlueCube.controllers', [])
 								);
 							} else {
 								// No devices found
-								$scope.logText = $scope.logText + "No devices found to connect to<br>";
+								$scope.logText = "Error: No BlueCube found to connect to<br>";
 								$scope.connectButton = true;
 								$scope.disconnectButton = false;
 								$scope.hide();
@@ -566,7 +568,7 @@ angular.module('BlueCube.controllers', [])
 						},
 						function(reason) {
 							// Error finding Bluetooth devices.
-							$scope.logText = $scope.logText + "Listing Bluetooth Devices Failed: " + reason + "<br>";
+							$scope.logText = "ERROR: Listing Bluetooth Devices Failed: " + reason + "<br>";
 							$scope.connectButton = true;
 							$scope.disconnectButton = false;
 							$scope.hide();
@@ -576,7 +578,7 @@ angular.module('BlueCube.controllers', [])
 				},
 				function() {
 					// Bluetooth is not enabled
-					$scope.logText = $scope.logText + "Bluetooth is *NOT* enabled<br>";
+					$scope.logText = "ERROR: Bluetooth is *NOT* enabled. Please enable it and try again.<br>";
 					$scope.connecyButton = false;
 					$scope.disconnectButton = false;
 					$scope.hide();
@@ -588,12 +590,12 @@ angular.module('BlueCube.controllers', [])
 		$scope.disconnect = function() {
 			$cordovaBluetoothSerial.disconnect().then(
 				function() {
-					$scope.logText = $scope.logText + "Disconnected";
+					$scope.logText = "Disconnected from BlueCube (" + $localstorage.get('bluetoothUUID') + ")<br>";
 					$scope.connectButton = true;
 					$scope.disconnectButton = false;
 				},
 				function(error) {
-					$scope.logText = $scope.logText + "Failed to disconnect: " + error + "<br>";
+					$scope.logText = "ERROR: Failed to disconnect: " + error + "<br>";
 					$scope.disconnectButton = true;
 				}
 			);
@@ -604,11 +606,12 @@ angular.module('BlueCube.controllers', [])
 			// Check current connection status
 			$cordovaBluetoothSerial.isConnected().then(
 				function() {
-					$scope.logText = "Bluetooth Connected<br>";
+					$scope.logText = "BlueCube (" + $localstorage.get('bluetoothUUID') + ") is Connected<br>";
 					$scope.disconnectButton = true;
 					$scope.connectButton = false;
 				},
 				function() {
+					$scope.logText = "Not connected to a BlueCube<br>";
 					$scope.connectButton = true;
 					$scope.disconnectButton = false;
 					//$scope.connect();
