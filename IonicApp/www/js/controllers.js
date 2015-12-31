@@ -454,7 +454,7 @@ angular.module('BlueCube.controllers', [])
 
 }])
 
-.controller('ConnectionCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading, $localstorage) {
+.controller('ConnectionCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading, $localstorage, $ionicSideMenuDelegate) {
 	$scope.connectButton = true;
 	$scope.disconnectButton = false;
     if ($localstorage.get('autoConnect') == "true") {
@@ -546,6 +546,7 @@ angular.module('BlueCube.controllers', [])
 										$scope.connectButton = false;
 										$scope.disconnectButton = true;
 										$scope.hide();
+										$ionicSideMenuDelegate.toggleLeft();
 									},
 									function() {
 										// Failed to connect
