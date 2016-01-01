@@ -37,7 +37,7 @@ angular.module('BlueCube.services', [])
     }
 
 		uniqueID = uniqueID + 1;
-		commands.unshift(command);
+		commands.unshift(historyItem);
 		$localstorage.setObject('history', commands);
     $localstorage.set('commands_uniqueID', uniqueID);
 	}
