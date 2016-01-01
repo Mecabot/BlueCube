@@ -2,35 +2,57 @@ angular.module('BlueCube.services', [])
 
 .service('HistoryService', function($localstorage) {
   var commands;
+  var uniqueID;
 
   if ($localstorage.getObject('history') != undefined) {
 		commands = $localstorage.getObject('history');
 	} else {
 		commands = [];
+		$localstorage.set('commands_uniqueID', 0);
 	}
+
+	uniqueID = parseInt($localstorage.get('commands_uniqueID'));
 
 	this.list = function() {
 		return commands;
 	}
 
-	this.get = function(position) {
-		return commands[position];
+
+	this.get = function(historyID) {
+		for (i in commands) {
+			if (commands[i].id == historyID) {
+				return historyID[i].cmd;
+			}
+		}
 	}
 
 	this.add = function(command) {
+	  var historyItem = {
+	                      id: uniqueID,
+	                      cmd: command,
+	                    };
+
     if (commands.length >= 10) {
       commands.pop();
     }
+
+		uniqueID = uniqueID + 1;
 		commands.unshift(command);
 		$localstorage.setObject('history', commands);
+    $localstorage.set('commands_uniqueID', uniqueID);
 	}
 
-	this.delete = function(position) {
-		commands.splice(position, 1);
+	this.delete = function(historyID) {
+		for (i in commands) {
+			if (commands[i].id == historyID) {
+				commands.splice(i, 1);
+			}
+		}
+
 		$localstorage.setObject('history', commands);
 	}
 
-	this.reorder = function(item, fromIndex, toIndex) {
+  this.reorder = function(item, fromIndex, toIndex) {
 		commands.splice(fromIndex, 1);
 		commands.splice(toIndex, 0, item);
 		$localstorage.setObject('history', commands);
