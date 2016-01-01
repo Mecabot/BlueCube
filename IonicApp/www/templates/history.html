@@ -1,0 +1,25 @@
+<ion-view view-title="History">
+	<ion-content>
+		<div class="row padding-horizontal">
+		  <div class="col col-center">
+		    <h4>Manage</h4>
+		  </div>
+		  <div align="right">
+  			<!--<button class="button button-outline ion-plus-round button-balanced" ng-click="addUserColour()"></button>-->
+  			<button class="button button-outline ion-close-round button-assertive" ng-click="data.showDelete = !data.showDelete"></button>
+  			<button class="button button-outline ion-navicon button-calm" ng-click="data.showReordering = !data.showReordering"></button>
+      </div>
+		</div>
+
+		<ion-list type="list-inset" show-delete="data.showDelete" show-reorder="data.showReordering">
+			<ion-item ng-repeat="command in commands track by command.id" ng-click="replayHistoryItem('{{command.cmd}}')">
+				{{command.cmd}}
+				<ion-delete-button class="ion-close-round" ng-click="deleteHistoryItem({{command.id}})"></ion-delete-button>
+				<ion-reorder-button class="ion-navicon" on-reorder="reorderHistoryItem(command, $fromIndex, $toIndex)"></ion-reorder-button>
+			</ion-item>
+		</ion-list>
+
+    <br>
+
+    </ion-content>
+</ion-view>

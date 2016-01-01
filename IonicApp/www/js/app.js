@@ -76,6 +76,17 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		.state('app.history', {
+			url: '/history',
+			cache: true,
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/history.html',
+					controller: 'HistoryCtrl'
+				}
+			}
+		})
+
     .state('app.about', {
      url: '/about',
      cache: false,
