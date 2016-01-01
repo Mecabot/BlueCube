@@ -232,7 +232,7 @@ angular.module('BlueCube.controllers', [])
           break;
       }
       console.log(id + " " + message);
-			$cubeAction.sendMessage(message);
+			$cubeAction.sendMessage(message, true);
     }
 
 		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
@@ -286,7 +286,7 @@ angular.module('BlueCube.controllers', [])
 				$localstorage.set('selectedColour', $scope.hexColour);
 				if ($scope.live == true) {
 				  var message = "all " + $scope.hexColour + ";";
-				  $cubeAction.sendMessage(message);
+				  $cubeAction.sendMessage(message, true);
 				}
 			}
 		});
@@ -308,7 +308,7 @@ angular.module('BlueCube.controllers', [])
     }
     $localstorage.set('selectedColour', selectedColour);
     var message = "all " + selectedColour + ";";
-    $cubeAction.sendMessage(message);
+    $cubeAction.sendMessage(message, true);
   };
 
 	$scope.addUserColour = function () {
@@ -394,52 +394,52 @@ angular.module('BlueCube.controllers', [])
 		// All Red
 		$scope.allRed = function() {
 			var message = "all RED;";
-			$cubeAction.sendMessage(message);
+			$cubeAction.sendMessage(message, true);
 		};
 
 		// All Hex - Green Colour
 		$scope.allHex = function() {
 			var message = "all 3DF400;";
-			$cubeAction.sendMessage(message);
+			$cubeAction.sendMessage(message, true);
 		};
 
 		// All Black
 		$scope.allBlack = function() {
 			var message = "all BLACK;";
-			$cubeAction.sendMessage(message);
+			$cubeAction.sendMessage(message, true);
 		};
 
 		// SET 000 RED
 		$scope.setRed = function() {
 			var message = "set 000 RED;";
-			$cubeAction.sendMessage(message);
+			$cubeAction.sendMessage(message, true);
 		};
 
 		// SET 100 HEX - Green Colour
 		$scope.setHex = function() {
 			var message = "set 100 3DF400;";
-			$cubeAction.sendMessage(message);
+			$cubeAction.sendMessage(message, true);
 		};
 
 		// Setplane X 2 BLUE;
 		$scope.setPlaneBlue = function() {
 			var message = "setplane X 2 BLUE;";
-			$cubeAction.sendMessage(message);
+			$cubeAction.sendMessage(message, true);
 		};
 
 		// Setplane Y 1 Hex - Green;
 		$scope.setPlaneHex = function() {
 			var message = "setplane Y 1 3DF400;";
-			$cubeAction.sendMessage(message);
+			$cubeAction.sendMessage(message, true);
 		};
 
 		$scope.allOnChanged = function() {
 			if ($scope.allOn == false) {
 				$scope.allOn = true;
-				$cubeAction.sendMessage("!B11");
+				$cubeAction.sendMessage("!B11", true);
 			} else {
 				$scope.allOn = false;
-				$cubeAction.sendMessage("!B10");
+				$cubeAction.sendMessage("!B10", true);
 			}
 		};
 
@@ -457,7 +457,7 @@ angular.module('BlueCube.controllers', [])
 	});
 
   $scope.replayHistoryItem = function(command) {
-    $cubeAction.sendMessage(command);
+    $cubeAction.sendMessage(command, false);
   };
 
 //	$scope.addUserColour = function () {

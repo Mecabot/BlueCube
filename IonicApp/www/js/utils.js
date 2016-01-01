@@ -26,9 +26,11 @@ angular.module('BlueCube.utils', [])
 
 .factory('$cubeAction', ['$cordovaBluetoothSerial', 'HistoryService', function($cordovaBluetoothSerial, HistoryService) {
 	return {
-		sendMessage: function(message) {
+		sendMessage: function(message, addToHistory) {
 			console.log("Sending: " + message);
-			HistoryService.add(message);
+			if (addToHistory == true) {
+  			HistoryService.add(message);
+      }
 			$cordovaBluetoothSerial.write(message).then(
 				function () {
 					console.log(message + " sent");
