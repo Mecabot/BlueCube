@@ -8,10 +8,10 @@ angular.module('BlueCube.services', [])
 		commands = $localstorage.getObject('history');
 	} else {
 		commands = [];
-		$localstorage.set('commands_uniqueID', 0);
+		$localstorage.set('history_uniqueID', 0);
 	}
 
-	uniqueID = parseInt($localstorage.get('commands_uniqueID'));
+	uniqueID = parseInt($localstorage.get('history_uniqueID'));
 
 	this.list = function() {
 		return commands;
@@ -39,7 +39,7 @@ angular.module('BlueCube.services', [])
 		uniqueID = uniqueID + 1;
 		commands.unshift(historyItem);
 		$localstorage.setObject('history', commands);
-    $localstorage.set('commands_uniqueID', uniqueID);
+    $localstorage.set('history_uniqueID', uniqueID);
 	}
 
 	this.delete = function(historyID) {
