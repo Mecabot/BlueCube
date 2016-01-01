@@ -1,5 +1,42 @@
 angular.module('BlueCube.services', [])
 
+.service('HistoryService', function($localstorage) {
+  var commands;
+
+  if ($localstorage.getObject('history') != undefined) {
+		commands = $localstorage.getObject('history');
+	} else {
+		commands = [];
+	}
+
+	this.list = function() {
+		return commands;
+	}
+
+	this.get = function(position) {
+		return commands[position];
+	}
+
+	this.add = function(command) {
+    if (commands.length >= 10) {
+      commands.pop();
+    }
+		commands.unshift(command);
+		$localstorage.setObject('history', commands);
+	}
+
+	this.delete = function(position) {
+		commands.splice(position, 1);
+		$localstorage.setObject('history', commands);
+	}
+
+	this.reorder = function(item, fromIndex, toIndex) {
+		commands.splice(fromIndex, 1);
+		commands.splice(toIndex, 0, item);
+		$localstorage.setObject('history', commands);
+	}
+})
+
 .service('ColourService', function($localstorage) {
 	var uniqueID;
 	var colours;
