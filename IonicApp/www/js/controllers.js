@@ -619,7 +619,7 @@ angular.module('BlueCube.controllers', [])
 
 }])
 
-.controller('AboutCtrl', function($ionicPlatform, $scope, $cordovaDevice) {
+.controller('AboutCtrl', function($ionicPlatform, $scope, $cordovaDevice, $cordovaAppVersion) {
 	$ionicPlatform.ready(function() {
 		// getting device infor from $cordovaDevice
 		var device = $cordovaDevice.getDevice();
@@ -629,7 +629,14 @@ angular.module('BlueCube.controllers', [])
 		$scope.platform = device.platform;
 		$scope.version = device.version;
 		$scope.uuid = device.uuid;
-	});
+
+		$cordovaAppVersion.getVersionNumber().then(function (version) {
+			$scope.appVersion = version;
+		}, false);
+		$cordovaAppVersion.getVersionCode().then(function (build) {
+			$scope.appBuild = build;
+		}, false);
+  });
 })
 
 .controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourService, $localstorage) {

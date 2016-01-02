@@ -39,6 +39,10 @@
                         {
                             "xml": "<feature name=\"SpinnerDialog\"><param name=\"ios-package\" value=\"CDVSpinnerDialog\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"AppVersion\"><param name=\"ios-package\" value=\"AppVersion\" /></feature>",
+                            "count": 1
                         }
                     ],
                     "/widget": [
@@ -90,6 +94,9 @@
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         },
         "com.filfatstudios.spinnerdialog": {
+            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
+        },
+        "cordova-plugin-app-version": {
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         }
     },
