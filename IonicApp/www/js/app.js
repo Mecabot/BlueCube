@@ -184,7 +184,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
              controller : 'SettingsCtrl'
          }
      }
-    });
+    })
 
     .state('app.about', {
      url: '/about',
@@ -195,7 +195,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
              controller : 'AboutCtrl'
          }
      }
-    })
+    });
 
 	// if none of the above states are matched, use this as the fallback
 	$urlRouterProvider.otherwise('/app/connect');
