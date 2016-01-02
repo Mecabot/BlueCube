@@ -98,6 +98,39 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		.state('app.line', {
+			url: '/line',
+			cache: false,
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/line.html',
+					controller: 'LineCtrl'
+				}
+			}
+		})
+
+		.state('app.box', {
+			url: '/box',
+			cache: false,
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/box.html',
+					controller: 'BoxCtrl'
+				}
+			}
+		})
+
+		.state('app.sphere', {
+			url: '/sphere',
+			cache: false,
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/sphere.html',
+					controller: 'SphereCtrl'
+				}
+			}
+		})
+
 		.state('app.presets', {
 			url: '/presets',
 			cache: false,

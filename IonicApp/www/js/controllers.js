@@ -324,6 +324,15 @@ angular.module('BlueCube.controllers', [])
 .controller('MovePlaneCtrl', function($ionicPlatform, $scope, $cubeAction) {
 }
 
+.controller('LineCtrl', function($ionicPlatform, $scope, $cubeAction) {
+}
+
+.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction) {
+}
+
+.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction) {
+}
+
 .controller('DeviceCtrl', function($ionicPlatform, $scope, $cordovaDevice) {
 	$ionicPlatform.ready(function() {
 		// getting device infor from $cordovaDevice
