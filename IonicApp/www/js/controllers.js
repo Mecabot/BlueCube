@@ -76,20 +76,7 @@ angular.module('BlueCube.controllers', [])
 .controller('ShiftCtrl', function($ionicPlatform, $scope, $cubeAction) {
 }
 
-.controller('DeviceCtrl', function($ionicPlatform, $scope, $cordovaDevice) {
-	$ionicPlatform.ready(function() {
-		// getting device infor from $cordovaDevice
-		var device = $cordovaDevice.getDevice();
-
-		$scope.manufacturer = device.manufacturer;
-		$scope.model = device.model;
-		$scope.platform = device.platform;
-		$scope.version = device.version;
-		$scope.uuid = device.uuid;
-	});
-})
-
-.controller('SingleCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
+.controller('SetCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
 	$scope.cube = [];
 
 	$ionicPlatform.ready(function() {
@@ -328,6 +315,18 @@ angular.module('BlueCube.controllers', [])
 	});
 })
 
+.controller('DeviceCtrl', function($ionicPlatform, $scope, $cordovaDevice) {
+	$ionicPlatform.ready(function() {
+		// getting device infor from $cordovaDevice
+		var device = $cordovaDevice.getDevice();
+
+		$scope.manufacturer = device.manufacturer;
+		$scope.model = device.model;
+		$scope.platform = device.platform;
+		$scope.version = device.version;
+		$scope.uuid = device.uuid;
+	});
+})
 
 .controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourService, $localstorage) {
 

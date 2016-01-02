@@ -54,6 +54,17 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		.state('app.set', {
+			url: '/set',
+			cache: false,
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/set.html',
+					controller: 'SetCtrl'
+				}
+			}
+		})
+
 		.state('app.presets', {
 			url: '/presets',
 			cache: false,
@@ -66,16 +77,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 		})
 
 
-		.state('app.single', {
-			url: '/single',
-			cache: false,
-			views: {
-				'menuContent': {
-					templateUrl: 'templates/single.html',
-					controller: 'SingleCtrl'
-				}
-			}
-		})
+
 
 		.state('app.device', {
 			url: '/device',
