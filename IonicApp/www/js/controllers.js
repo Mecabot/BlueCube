@@ -74,7 +74,7 @@ angular.module('BlueCube.controllers', [])
 })
 
 .controller('ShiftCtrl', function($ionicPlatform, $scope, $cubeAction) {
-}
+})
 
 .controller('SetCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
 	$scope.cube = [];
@@ -316,22 +316,22 @@ angular.module('BlueCube.controllers', [])
 })
 
 .controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction) {
-}
+})
 
 .controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction) {
-}
+})
 
 .controller('MovePlaneCtrl', function($ionicPlatform, $scope, $cubeAction) {
-}
+})
 
 .controller('LineCtrl', function($ionicPlatform, $scope, $cubeAction) {
-}
+})
 
 .controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction) {
-}
+})
 
 .controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction) {
-}
+})
 
 .controller('DeviceCtrl', function($ionicPlatform, $scope, $cordovaDevice) {
 	$ionicPlatform.ready(function() {
