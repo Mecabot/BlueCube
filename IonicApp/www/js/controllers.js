@@ -315,6 +315,15 @@ angular.module('BlueCube.controllers', [])
 	});
 })
 
+.controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction) {
+}
+
+.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction) {
+}
+
+.controller('MovePlaneCtrl', function($ionicPlatform, $scope, $cubeAction) {
+}
+
 .controller('DeviceCtrl', function($ionicPlatform, $scope, $cordovaDevice) {
 	$ionicPlatform.ready(function() {
 		// getting device infor from $cordovaDevice

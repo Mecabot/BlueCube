@@ -65,6 +65,39 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		.state('app.setplane', {
+			url: '/setplane',
+			cache: false,
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/setplane.html',
+					controller: 'SetPlaneCtrl'
+				}
+			}
+		})
+
+		.state('app.copyplane', {
+			url: '/copyplane',
+			cache: false,
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/copyplane.html',
+					controller: 'CopyPlaneCtrl'
+				}
+			}
+		})
+
+		.state('app.moveplane', {
+			url: '/moveplane',
+			cache: false,
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/moveplane.html',
+					controller: 'MovePlaneCtrl'
+				}
+			}
+		})
+
 		.state('app.presets', {
 			url: '/presets',
 			cache: false,
