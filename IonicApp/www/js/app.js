@@ -142,27 +142,24 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
-		.state('app.presets', {
-			url: '/presets',
+		.state('app.userdefined', {
+			url: '/userdefined',
 			cache: false,
 			views: {
 				'menuContent': {
-					templateUrl: 'templates/presets.html',
-					controller: 'PresetsCtrl'
+					templateUrl: 'templates/userdefined.html',
+					controller: 'UserDefinedCtrl'
 				}
 			}
 		})
 
-
-
-
-		.state('app.device', {
-			url: '/device',
-			cache: true,
+		.state('app.static', {
+			url: '/static',
+			cache: false,
 			views: {
 				'menuContent': {
-					templateUrl: 'templates/device.html',
-					controller: 'DeviceCtrl'
+					templateUrl: 'templates/static.html',
+					controller: 'StaticCtrl'
 				}
 			}
 		})
@@ -178,17 +175,6 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
-    .state('app.about', {
-     url: '/about',
-     cache: false,
-     views: {
-         'menuContent': {
-             templateUrl: 'templates/about.html',
-             controller : 'AboutCtrl'
-         }
-     }
-    })
-
     .state('app.settings', {
      url: '/settings',
      cache: false,
@@ -199,6 +185,18 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
          }
      }
     });
+
+    .state('app.about', {
+     url: '/about',
+     cache: true,
+     views: {
+         'menuContent': {
+             templateUrl: 'templates/about.html',
+             controller : 'AboutCtrl'
+         }
+     }
+    })
+
 	// if none of the above states are matched, use this as the fallback
 	$urlRouterProvider.otherwise('/app/connect');
 });

@@ -1,25 +1,35 @@
-<ion-view view-title="About" hide-back-button="true" nav-transition="none">
-    <ion-nav-buttons side="left">
-      <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-    </ion-nav-buttons>
+<ion-view view-title="About">
+	<ion-content>
+		<div class="card">
 
-	<ion-content class="padding">
-		<h2>About</h2>
+			<div class="item item-divider">
+				Your device information!
+			</div>
+
+			<div class="item item-text-wrap">
+				<ul class="list">
+					<li class="item">
+						Manufacturer : {{manufacturer}}
+					</li>
+					<li class="item">
+						Model : {{model}}
+					</li>
+					<li class="item">
+						Platform : {{platform}}
+					</li>
+					<li class="item">
+						Platform Version : {{version}}
+					</li>
+					<li class="item">
+						UUID : {{uuid}}
+					</li>
+				</ul>
+			</div>
+
+			<div class="item item-divider text-right">
+				from <code>ngCordova</code>
+			</div>
+
+		</div>
 	</ion-content>
-
-	<div class="tabs tabs-icon-top">
-		<a nav-clear class="tab-item active" title="About" icon-on="ion-ios-information-outline" icon-off="ion-ios-information-outline-outline" href="#/app/about">
-			<i class="icon ion-ios-information"></i>
-			About
-		</a>
-		<a nav-clear class="tab-item disable-user-behavior" title="Connect" icon-on="ion-ios-lightbulb" icon-off="ion-ios-lightbulb-outline" href="#/app/connection">
-			<i class="icon ion-ios-lightbulb-outline"></i>
-			Connect
-		</a>
-		<a nav-clear class="tab-item disable-user-behavior" title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline" href="#/app/settings">
-			<i class="icon ion-ios-gear-outline"></i>
-			Settings
-		</a>
-	</div>
-
 </ion-view>

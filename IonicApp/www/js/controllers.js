@@ -499,56 +499,10 @@ angular.module('BlueCube.controllers', [])
 		};
 })
 
-.controller('DeviceCtrl', function($ionicPlatform, $scope, $cordovaDevice) {
-	$ionicPlatform.ready(function() {
-		// getting device infor from $cordovaDevice
-		var device = $cordovaDevice.getDevice();
-
-		$scope.manufacturer = device.manufacturer;
-		$scope.model = device.model;
-		$scope.platform = device.platform;
-		$scope.version = device.version;
-		$scope.uuid = device.uuid;
-	});
+.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction) {
 })
 
-.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourService, $localstorage) {
-
-	$scope.data = {
-		showDelete: false,
-		showReordering: false,
-	};
-
-	$ionicPlatform.ready(function() {
-		var initialColour = $localstorage.get('selectedColour');
-		$scope.hexColour = initialColour;
-		initialColour = '#' + initialColour;
-		$scope.colour = {targetColor: initialColour};
-		$scope.colours = ColourService.list();
-
-		$scope.$watchCollection('colour.targetColor', function(newValue, oldValue) {
-			if (newValue != oldValue) {
-				$scope.hexColour = newValue.substring(1);
-				$localstorage.set('selectedColour', $scope.hexColour);
-			}
-		});
-	});
-
-	$scope.addUserColour = function () {
-		newColour = $scope.hexColour;
-		ColourService.add(newColour);
-	};
-
-	$scope.deleteUserColour = function (id) {
-		ColourService.delete(id);
-	}
-
-	$scope.reorderItem = function(item, fromIndex, toIndex) {
-		ColourService.reorder(item, fromIndex, toIndex);
-	}
-})
-
-.controller('PresetsCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
+.controller('StaticCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
 	$ionicPlatform.ready(function() {
 		$scope.allOn = false;
 		$scope.selectedColour = $localstorage.get('selectedColour');
@@ -665,6 +619,51 @@ angular.module('BlueCube.controllers', [])
 
 }])
 
-.controller('AboutCtrl', [ '$scope', '$state', function($scope, $state) {
+.controller('AboutCtrl', function($ionicPlatform, $scope, $cordovaDevice) {
+	$ionicPlatform.ready(function() {
+		// getting device infor from $cordovaDevice
+		var device = $cordovaDevice.getDevice();
 
-}]);
+		$scope.manufacturer = device.manufacturer;
+		$scope.model = device.model;
+		$scope.platform = device.platform;
+		$scope.version = device.version;
+		$scope.uuid = device.uuid;
+	});
+})
+
+.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourService, $localstorage) {
+
+	$scope.data = {
+		showDelete: false,
+		showReordering: false,
+	};
+
+	$ionicPlatform.ready(function() {
+		var initialColour = $localstorage.get('selectedColour');
+		$scope.hexColour = initialColour;
+		initialColour = '#' + initialColour;
+		$scope.colour = {targetColor: initialColour};
+		$scope.colours = ColourService.list();
+
+		$scope.$watchCollection('colour.targetColor', function(newValue, oldValue) {
+			if (newValue != oldValue) {
+				$scope.hexColour = newValue.substring(1);
+				$localstorage.set('selectedColour', $scope.hexColour);
+			}
+		});
+	});
+
+	$scope.addUserColour = function () {
+		newColour = $scope.hexColour;
+		ColourService.add(newColour);
+	};
+
+	$scope.deleteUserColour = function (id) {
+		ColourService.delete(id);
+	}
+
+	$scope.reorderItem = function(item, fromIndex, toIndex) {
+		ColourService.reorder(item, fromIndex, toIndex);
+	}
+});
