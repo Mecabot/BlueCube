@@ -379,6 +379,18 @@ angular.module('BlueCube.controllers', [])
 })
 
 .controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
+	$ionicPlatform.ready(function() {
+    $scope.values = {
+      axis: 'X',
+      fromOffset: '0',
+      toOffset: '1',
+    };
+  });
+
+  $scope.copyPlane = function() {
+    var message = "copyplane " + $scope.values.axis + " " + $scope.values.fromOffset + " " + $scope.values.toOffset + ";";
+    $cubeAction.sendMessage(message, true);
+  };
 })
 
 .controller('MovePlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {

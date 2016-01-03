@@ -4,7 +4,46 @@
 			<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
 		</ion-nav-buttons>
 	</ion-nav-bar>
-  <ion-content>
-		<h2>Copy Plane</h2>
+  <ion-content class="padding">
+  	<div class="card">
+  		<div class="item item-divider">
+				Axis
+			</div>
+			<ion-list>
+  			<ion-radio name="axis" ng-model="values.axis" value="X">X (Left to Right)</ion-radio>
+  			<ion-radio name="axis" ng-model="values.axis" value="Y">Y (Front to Back)</ion-radio>
+  			<ion-radio name="axis" ng-model="values.axis" value="Z">Z (Bottom to Top)</ion-radio>
+			</ion-list>
+		</div>
+
+  	<div class="card">
+  		<div class="item item-divider">
+				From Offset
+			</div>
+			<ion-list>
+	  		<ion-radio name="fromOffset" ng-model="values.fromOffset" value="0">0</ion-radio>
+	  		<ion-radio name="fromOffset" ng-model="values.fromOffset" value="1">1</ion-radio>
+	  		<ion-radio name="fromOffset" ng-model="values.fromOffset" value="2">2</ion-radio>
+	  		<ion-radio name="fromOffset" ng-model="values.fromOffset" value="3">3</ion-radio>
+			</ion-list>
+		</div>
+
+  	<div class="card">
+  		<div class="item item-divider">
+				To Offset
+			</div>
+			<ion-list>
+	  		<ion-radio name="toOffset" ng-model="values.toOffset" value="0">0</ion-radio>
+	  		<ion-radio name="toOffset" ng-model="values.toOffset" value="1">1</ion-radio>
+	  		<ion-radio name="toOffset" ng-model="values.toOffset" value="2">2</ion-radio>
+	  		<ion-radio name="toOffset" ng-model="values.toOffset" value="3">3</ion-radio>
+			</ion-list>
+		</div>
+
+		<button ng-click="copyPlane()" class="button button-block button-positive">
+			Copy Plane
+		</button>
+
+		<br>
 	</ion-content>
 </ion-view>
