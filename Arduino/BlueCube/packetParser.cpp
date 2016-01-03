@@ -22,10 +22,12 @@ void readPacket(Adafruit_BLE *ble, int timeout)
     if (replyidx >= 32) break;
     while (ble->available()) {
       char c =  ble->read();
+      serial->print(c);
       packetbuffer[replyidx] = c;
       replyidx++;
       timeout = origtimeout;
       if (c == ';') {
+        serial->println();
         timeout = 0;
         break;
       }
