@@ -435,13 +435,68 @@ angular.module('BlueCube.controllers', [])
 
 })
 
-.controller('LineCtrl', function($ionicPlatform, $scope, $cubeAction) {
+.controller('LineCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs) {
+	$scope.cube = [];
+
+	$ionicPlatform.ready(function() {
+    $scope.selectedColour = $localstorage.get('selectedColour');
+
+		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
+			scope: $scope,
+			animation: 'slide-in-up'
+		}).then(function(modal) {
+			$scope.modal = modal
+		});
+
+		$scope.openModal = function() {
+			$scope.modal.show()
+		};
+
+		$scope.chooseFavouriteColour = function(selectedColour) {
+			$localstorage.set('selectedColour', selectedColour);
+			$scope.closeModal();
+		};
+
+		$scope.closeModal = function() {
+			$scope.modal.hide();
+			$scope.selectedColour = $localstorage.get('selectedColour');
+		};
+
+		$scope.$on('$destroy', function() {
+			$scope.modal.remove();
+		});
+	});
+
+	$scope.drawLine = function() {
+	  var message = "line ";
+	  var selected = 0;
+	  for (i = 0; i <= 64; i++) {
+	    if ($scope.cube[i] == true) {
+	      selected = selected + 1;
+	      message = message + $cubeAction.lookupCoords(i) + " ";
+	    }
+	  }
+
+	  if (selected == 2) {
+      // Clear the selected points
+   	  for (i = 0; i <= 64; i++) {
+        $scope.cube[i] = null;
+   	  }
+
+	    // Draw the line
+	    message = message + $localstorage.get('selectedColour') + ";";
+	    $cubeAction.sendMessage(message, true);
+	  } else {
+	    // Tell them to pick again
+	    $cordovaDialogs.alert('Please select only 2 points', 'Line', 'OK');
+	  }
+	};
 })
 
-.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction) {
+.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
 })
 
-.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction) {
+.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
 })
 
 .controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading, $localstorage, $ionicSideMenuDelegate) {

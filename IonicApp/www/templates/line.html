@@ -4,7 +4,169 @@
 			<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
 		</ion-nav-buttons>
 	</ion-nav-bar>
-  <ion-content>
-		<h2>Line</h2>
+	<ion-content class="padding">
+		<div>
+			<button ng-click="openModal()" class="button button-block button" back-colour="{{selectedColour}}"></button>
+		</div>
+		<div class="card">
+			<div class="row">
+				<div class="col"></div>
+				<div class="col"></div>
+				<div class="col"></div>
+				<div class="col"><ion-checkbox ng-model="cube[52]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[56]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[60]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[64]"></ion-checkbox></div>
+			</div>
+			<div class="row">
+				<div class="col"></div>
+				<div class="col"></div>
+				<div class="col"><ion-checkbox ng-model="cube[51]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[55]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[59]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[63]"></ion-checkbox></div>
+				<div class="col"></div>
+			</div>
+			<div class="row">
+				<div class="col"></div>
+				<div class="col"><ion-checkbox ng-model="cube[50]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[54]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[58]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[62]"></ion-checkbox></div>
+				<div class="col"></div>
+				<div class="col"></div>
+			</div>
+			<div class="row">
+				<div class="col"><ion-checkbox ng-model="cube[49]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[53]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[57]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[61]"></ion-checkbox></div>
+				<div class="col"></div>
+				<div class="col"></div>
+				<div class="col"></div>
+			</div>
+
+			<hr>
+
+			<div class="row">
+				<div class="col"></div>
+				<div class="col"></div>
+				<div class="col"></div>
+				<div class="col"><ion-checkbox ng-model="cube[36]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[40]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[44]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[48]"></ion-checkbox></div>
+			</div>
+			<div class="row">
+				<div class="col"></div>
+				<div class="col"></div>
+				<div class="col"><ion-checkbox ng-model="cube[35]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[39]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[43]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[47]"></ion-checkbox></div>
+				<div class="col"></div>
+			</div>
+			<div class="row">
+				<div class="col"></div>
+				<div class="col"><ion-checkbox ng-model="cube[34]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[38]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[42]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[46]"></ion-checkbox></div>
+				<div class="col"></div>
+				<div class="col"></div>
+			</div>
+			<div class="row">
+				<div class="col"><ion-checkbox ng-model="cube[33]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[37]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[41]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[45]"></ion-checkbox></div>
+				<div class="col"></div>
+				<div class="col"></div>
+				<div class="col"></div>
+			</div>
+
+			<hr>
+
+			<div class="row">
+				<div class="col"></div>
+				<div class="col"></div>
+				<div class="col"></div>
+				<div class="col"><ion-checkbox ng-model="cube[20]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[24]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[28]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[32]"></ion-checkbox></div>
+			</div>
+			<div class="row">
+				<div class="col"></div>
+				<div class="col"></div>
+				<div class="col"><ion-checkbox ng-model="cube[19]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[23]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[27]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[31]"></ion-checkbox></div>
+				<div class="col"></div>
+			</div>
+			<div class="row">
+				<div class="col"></div>
+				<div class="col"><ion-checkbox ng-model="cube[18]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[22]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[26]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[30]"></ion-checkbox></div>
+				<div class="col"></div>
+				<div class="col"></div>
+			</div>
+			<div class="row">
+				<div class="col"><ion-checkbox ng-model="cube[17]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[21]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[25]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[29]"></ion-checkbox></div>
+				<div class="col"></div>
+				<div class="col"></div>
+				<div class="col"></div>
+			</div>
+
+			<hr>
+
+			<div class="row">
+				<div class="col"></div>
+				<div class="col"></div>
+				<div class="col"></div>
+				<div class="col"><ion-checkbox ng-model="cube[4]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[8]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[12]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[16]"></ion-checkbox></div>
+			</div>
+			<div class="row">
+				<div class="col"></div>
+				<div class="col"></div>
+				<div class="col"><ion-checkbox ng-model="cube[3]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[7]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[11]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[15]"></ion-checkbox></div>
+				<div class="col"></div>
+			</div>
+			<div class="row">
+				<div class="col"></div>
+				<div class="col"><ion-checkbox ng-model="cube[2]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[6]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[10]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[14]"></ion-checkbox></div>
+				<div class="col"></div>
+				<div class="col"></div>
+			</div>
+			<div class="row">
+				<div class="col"><ion-checkbox ng-model="cube[1]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[5]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[9]"></ion-checkbox></div>
+				<div class="col"><ion-checkbox ng-model="cube[13]"></ion-checkbox></div>
+				<div class="col"></div>
+				<div class="col"></div>
+				<div class="col"></div>
+			</div>
+		</div>
+
+		<button ng-click="drawLine()" class="button button-block button-positive">
+			Draw Line
+		</button>
+    <br>
 	</ion-content>
 </ion-view>
