@@ -237,6 +237,7 @@ angular.module('BlueCube.utils', [])
 
       // As such, split the message into 20 char chunks, which the cube will put back together into
       // a single message as long as it's received within the timeout period.
+      console.log("Sending: " + message);
 
       if (message.length <= 20) {
         this.write(message);
@@ -247,7 +248,6 @@ angular.module('BlueCube.utils', [])
     },
 
     write: function(message) {
-      console.log("Sending: " + message);
 			$cordovaBluetoothSerial.write(message).then(
 				function () {
 					console.log(message + " sent");
