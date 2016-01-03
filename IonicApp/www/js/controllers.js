@@ -393,6 +393,94 @@ angular.module('BlueCube.controllers', [])
 })
 
 .controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs) {
+	$scope.cube = [];
+	var secondaryColourSelector = false;
+	var cachedColour = "";
+
+	$ionicPlatform.ready(function() {
+    $scope.style = {
+      sphereStyle: '0',
+      sphereSize: '3',
+    };
+    $scope.selectedColour = $localstorage.get('selectedColour');
+    $scope.otherColour = $localstorage.get('otherColour');
+
+		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
+			scope: $scope,
+			animation: 'slide-in-up'
+		}).then(function(modal) {
+			$scope.modal = modal
+		});
+
+		$scope.openModalPrimary = function() {
+		  secondaryColourSelector = false;
+			$scope.modal.show()
+		};
+
+		$scope.openModalSecondary = function() {
+		  secondaryColourSelector = true;
+		  cachedColour = $localstorage.get('selectedColour');
+		  var otherColour = $localstorage.get('otherColour');
+		  $localstorage.set('selectedColour', otherColour);
+			$scope.modal.show()
+		};
+
+		$scope.chooseFavouriteColour = function(selectedColour) {
+		  if (secondaryColourSelector) {
+  			$localstorage.set('otherColour', selectedColour);
+  			$scope.otherColour = selectedColour;
+		  } else {
+  			$localstorage.set('selectedColour', selectedColour);
+  			$scope.selectedColour = selectedColour;
+      }
+			$scope.closeModal();
+		};
+
+		$scope.closeModal = function() {
+			$scope.modal.hide();
+			if (secondaryColourSelector) {
+        $scope.otherColour = $localstorage.get('selectedColour');
+        $localstorage.set('selectedColour', cachedColour);
+        $localstorage.set('otherColour', $scope.otherColour);
+      } else {
+  			$scope.selectedColour = $localstorage.get('selectedColour');
+      }
+		};
+
+		$scope.$on('$destroy', function() {
+			$scope.modal.remove();
+		});
+	});
+
+	$scope.drawSphere = function() {
+	  var message = "sphere ";
+	  var selected = 0;
+	  for (i = 0; i <= 64; i++) {
+	    if ($scope.cube[i] == true) {
+	      selected = selected + 1;
+	      message = message + $cubeAction.lookupCoords(i) + " ";
+	    }
+	  }
+
+	  if (selected == 1) {
+      // Clear the selected points
+   	  for (i = 0; i <= 64; i++) {
+//        $scope.cube[i] = null;
+   	  }
+
+	    message = message + " " + $scope.style.sphereSize + " " + $localstorage.get('selectedColour');
+      if (parseInt($scope.style.sphereStyle) == 0) {
+        message = message + ";";
+  	    $cubeAction.sendMessage(message, true);
+  	  } else {
+        message = message + " " + $localstorage.get('otherColour') + ";";
+  	    $cubeAction.sendMessage(message, true);
+  	  }
+	  } else {
+	    // Tell them to pick again
+	    $cordovaDialogs.alert('Please select only 1 point', 'Sphere', 'OK');
+	  }
+	};
 })
 
 .controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading, $localstorage, $ionicSideMenuDelegate) {
