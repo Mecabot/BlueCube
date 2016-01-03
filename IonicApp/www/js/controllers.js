@@ -128,6 +128,7 @@ angular.module('BlueCube.controllers', [])
 
 		$scope.chooseFavouriteColour = function(selectedColour) {
 			$localstorage.set('selectedColour', selectedColour);
+			$scope.selectedColour = selectedColour;
 			$scope.closeModal();
 		};
 
@@ -164,6 +165,7 @@ angular.module('BlueCube.controllers', [])
 
 		$scope.chooseFavouriteColour = function(selectedColour) {
 			$localstorage.set('selectedColour', selectedColour);
+			$scope.selectedColour = selectedColour;
 			$scope.closeModal();
 		};
 
@@ -220,6 +222,7 @@ angular.module('BlueCube.controllers', [])
 
 		$scope.chooseFavouriteColour = function(selectedColour) {
 			$localstorage.set('selectedColour', selectedColour);
+			$scope.selectedColour = selectedColour;
 			$scope.closeModal();
 		};
 
@@ -259,6 +262,7 @@ angular.module('BlueCube.controllers', [])
 
 		$scope.chooseFavouriteColour = function(selectedColour) {
 			$localstorage.set('selectedColour', selectedColour);
+			$scope.selectedColour = selectedColour;
 			$scope.closeModal();
 		};
 
@@ -578,6 +582,7 @@ angular.module('BlueCube.controllers', [])
 
 		$scope.chooseFavouriteColour = function(selectedColour) {
 			$localstorage.set('selectedColour', selectedColour);
+			$scope.selectedColour = selectedColour;
 			$scope.closeModal();
 		};
 
