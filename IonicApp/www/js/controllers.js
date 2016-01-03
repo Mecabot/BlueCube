@@ -338,13 +338,50 @@ angular.module('BlueCube.controllers', [])
 	});
 })
 
-.controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction) {
+.controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
+	$ionicPlatform.ready(function() {
+    $scope.values = {
+      axis: 'X',
+      offset: '0',
+    };
+    $scope.selectedColour = $localstorage.get('selectedColour');
+
+		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
+			scope: $scope,
+			animation: 'slide-in-up'
+		}).then(function(modal) {
+			$scope.modal = modal
+		});
+
+		$scope.openModal = function() {
+			$scope.modal.show()
+		};
+
+		$scope.chooseFavouriteColour = function(selectedColour) {
+			$localstorage.set('selectedColour', selectedColour);
+			$scope.closeModal();
+		};
+
+		$scope.closeModal = function() {
+			$scope.modal.hide();
+			$scope.selectedColour = $localstorage.get('selectedColour');
+		};
+
+		$scope.$on('$destroy', function() {
+			$scope.modal.remove();
+		});
+  });
+
+  $scope.setPlane = function() {
+    var message = "setplane " + $scope.values.axis + " " + $scope.values.offset + " " + $scope.selectedColour + ";";
+    $cubeAction.sendMessage(message, true);
+  };
 })
 
-.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction) {
+.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
 })
 
-.controller('MovePlaneCtrl', function($ionicPlatform, $scope, $cubeAction) {
+.controller('MovePlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
 })
 
 .controller('LineCtrl', function($ionicPlatform, $scope, $cubeAction) {
