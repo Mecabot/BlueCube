@@ -74,6 +74,29 @@ angular.module('BlueCube.controllers', [])
 })
 
 .controller('ShiftCtrl', function($ionicPlatform, $scope, $cubeAction) {
+	$scope.up = function () {
+		$cubeAction.sendMessage('shift Z +;', true);
+	}
+
+	$scope.down = function () {
+		$cubeAction.sendMessage('shift Z -;', true);
+	}
+
+	$scope.left = function () {
+		$cubeAction.sendMessage('shift X -;', true);
+	}
+
+	$scope.right = function () {
+		$cubeAction.sendMessage('shift X +;', true);
+	}
+
+	$scope.back = function () {
+		$cubeAction.sendMessage('shift Y +;', true);
+	}
+
+	$scope.forward = function () {
+		$cubeAction.sendMessage('shift Y -;', true);
+	}
 })
 
 .controller('SetCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
