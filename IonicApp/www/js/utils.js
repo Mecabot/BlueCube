@@ -247,6 +247,7 @@ angular.module('BlueCube.utils', [])
     },
 
     write: function(message) {
+      console.log("Sending: " + message);
 			$cordovaBluetoothSerial.write(message).then(
 				function () {
 					console.log(message + " sent");
