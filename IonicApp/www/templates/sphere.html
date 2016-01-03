@@ -179,16 +179,18 @@
 				Style
 			</div>
 			<ion-list>
-	  		<ion-radio name="style" ng-model="style.sphereStyle" value="0">Walls Only</ion-radio>
-	  		<ion-radio name="style" ng-model="style.sphereStyle" value="1">Solid</ion-radio>
+	  		<ion-radio name="style" ng-change="styleSelection()" ng-model="style.sphereStyle" value="0">Walls Only</ion-radio>
+	  		<ion-radio name="style" ng-change="styleSelection()" ng-model="style.sphereStyle" value="1">Solid</ion-radio>
 			</ion-list>
 		</div>
 
-		<div class="card">
+		<div class="card" ng-show="showSecontaryColour">
   		<div class="item item-divider">
 				Secondary Colour
 			</div>
-			<button ng-click="openModalSecondary()" class="button button-block button-light" back-colour="{{otherColour}}"></button>
+			<div class="padding-horizontal">
+  			<button ng-click="openModalSecondary()" class="button button-block button-light" back-colour="{{otherColour}}"></button>
+      </div>
 		</div>
 
 		<button ng-click="drawSphere()" class="button button-block button-positive">

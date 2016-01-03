@@ -169,19 +169,21 @@
 				Style
 			</div>
 			<ion-list>
-	  		<ion-radio name="style" ng-model="style.boxStyle" value="0">Solid</ion-radio>
-	  		<ion-radio name="style" ng-model="style.boxStyle" value="1">Walls Only</ion-radio>
-	  		<ion-radio name="style" ng-model="style.boxStyle" value="2">Edges Only</ion-radio>
-	  		<ion-radio name="style" ng-model="style.boxStyle" value="3">Walls Filled</ion-radio>
-	  		<ion-radio name="style" ng-model="style.boxStyle" value="4">Edges Filled</ion-radio>
+	  		<ion-radio name="style" ng-change="styleSelection()" ng-model="style.boxStyle" value="0">Solid</ion-radio>
+	  		<ion-radio name="style" ng-change="styleSelection()" ng-model="style.boxStyle" value="1">Walls Only</ion-radio>
+	  		<ion-radio name="style" ng-change="styleSelection()" ng-model="style.boxStyle" value="2">Edges Only</ion-radio>
+	  		<ion-radio name="style" ng-change="styleSelection()" ng-model="style.boxStyle" value="3">Walls Filled</ion-radio>
+	  		<ion-radio name="style" ng-change="styleSelection()" ng-model="style.boxStyle" value="4">Edges Filled</ion-radio>
 			</ion-list>
 		</div>
 
-		<div class="card">
+		<div class="card" ng-show="showSecontaryColour">
   		<div class="item item-divider">
 				Secondary Colour
 			</div>
-			<button ng-click="openModalSecondary()" class="button button-block button-light" back-colour="{{otherColour}}"></button>
+			<div class="padding-horizontal">
+  			<button ng-click="openModalSecondary()" class="button button-block button-light" back-colour="{{otherColour}}"></button>
+      </div>
 		</div>
 
 		<button ng-click="drawBox()" class="button button-block button-positive">

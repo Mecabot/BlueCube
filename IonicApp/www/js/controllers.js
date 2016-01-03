@@ -313,6 +313,7 @@ angular.module('BlueCube.controllers', [])
     };
     $scope.selectedColour = $localstorage.get('selectedColour');
     $scope.otherColour = $localstorage.get('otherColour');
+    $scope.showSecontaryColour = false;
 
 		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
 			scope: $scope,
@@ -361,6 +362,14 @@ angular.module('BlueCube.controllers', [])
 		});
 	});
 
+  $scope.styleSelection = function() {
+    if (parseInt($scope.style.boxStyle) <= 2) {
+      $scope.showSecontaryColour = false;
+    } else {
+      $scope.showSecontaryColour = true;
+    }
+  }
+
 	$scope.drawBox = function() {
 	  var message = "box ";
 	  var selected = 0;
@@ -379,7 +388,6 @@ angular.module('BlueCube.controllers', [])
 
 	    message = message + $localstorage.get('selectedColour') + " " + $scope.style.boxStyle;
       if (parseInt($scope.style.boxStyle) <= 2) {
-	    console.log("<=2 " + message);
         message = message + ";";
   	    $cubeAction.sendMessage(message, true);
   	  } else {
@@ -404,6 +412,7 @@ angular.module('BlueCube.controllers', [])
     };
     $scope.selectedColour = $localstorage.get('selectedColour');
     $scope.otherColour = $localstorage.get('otherColour');
+    $scope.showSecontaryColour = false;
 
 		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
 			scope: $scope,
@@ -451,6 +460,14 @@ angular.module('BlueCube.controllers', [])
 			$scope.modal.remove();
 		});
 	});
+
+  $scope.styleSelection = function() {
+    if (parseInt($scope.style.sphereStyle) == 0) {
+      $scope.showSecontaryColour = false;
+    } else {
+      $scope.showSecontaryColour = true;
+    }
+  }
 
 	$scope.drawSphere = function() {
 	  var message = "sphere ";
