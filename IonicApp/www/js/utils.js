@@ -27,10 +27,25 @@ angular.module('BlueCube.utils', [])
 .factory('$cubeAction', ['$cordovaBluetoothSerial', 'HistoryService', function($cordovaBluetoothSerial, HistoryService) {
 	return {
 		sendMessage: function(message, addToHistory) {
-			console.log("Sending: " + message);
 			if (addToHistory == true) {
   			HistoryService.add(message);
       }
+
+      // It appears that the iOS bluetooth stack can only handle 20 chars at a time, anything more
+      // and it doesn't actually send the message, and then disconnects.
+
+      // As such, split the message into 20 char chunks, which the cube will put back together into
+      // a single message as long as it's received within the timeout period.
+
+      if (message.length <= 20) {
+        this.write(message);
+      } else {
+        this.write(message.substr(0,20));
+        this.write(message.substr(20));
+      }
+    },
+
+    write: function(message) {
 			$cordovaBluetoothSerial.write(message).then(
 				function () {
 					console.log(message + " sent");
