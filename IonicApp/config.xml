@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="ninja.secretcode.BlueCube" version="0.0.1" ios-CFBundleVersion="177" android-versionCode="177" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="ninja.secretcode.BlueCube" version="0.0.1" ios-CFBundleVersion="192" android-versionCode="192" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>BlueCube</name>
   <description>
         Control a Freetronics 4x4x4 RGB LED Cube via Bluetooth.
