@@ -24,7 +24,7 @@ angular.module('BlueCube.utils', [])
 	}
 }])
 
-.factory('$cubeAction', ['$cordovaBluetoothSerial', 'HistoryService', function($cordovaBluetoothSerial, HistoryService) {
+.factory('$cubeAction', ['$cordovaBluetoothSerial', 'HistoryService', '$ionicContentBanner', function($cordovaBluetoothSerial, HistoryService, $ionicContentBanner) {
 	return {
 		lookupCoords: function(id) {
 		  var coords = "000";
@@ -248,12 +248,39 @@ angular.module('BlueCube.utils', [])
     },
 
     write: function(message) {
-			$cordovaBluetoothSerial.write(message).then(
-				function () {
-					console.log(message + " sent");
+      var contentBannerInstance;
+
+      $cordovaBluetoothSerial.isConnected().then(
+				function() {
+					$cordovaBluetoothSerial.write(message).then(
+						function () {
+							console.log(message + " sent");
+							//CLOSE content banner!!!
+							if (contentBannerInstance) {
+								contentBannerInstance();
+								contentBannerInstance = null;
+							}
+						},
+						function (error) {
+							contentBannerInstance = $ionicContentBanner.show({
+								text: ['Error communicating with cube'],
+								interval: 3000,
+								autoClose: 3000,
+								type: 'error',
+								transition: 'vertical'
+							});
+							console.log("Error with " + message + " " + error);
+						}
+					);
 				},
-				function (error) {
-					console.log("Error with " + message + " " + error);
+				function() {
+					contentBannerInstance = $ionicContentBanner.show({
+						text: ['Cube not connected'],
+						interval: 3000,
+						autoClose: 3000,
+						type: 'error',
+						transition: 'vertical'
+					});
 				}
 			);
 		}
