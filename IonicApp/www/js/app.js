@@ -2,7 +2,7 @@ document.addEventListener('deviceready', function() {
     angular.bootstrap(document, ['BlueCube']);
 }, false);
 
-angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueCube.directives', 'BlueCube.services', 'BlueCube.utils', 'pascalprecht.translate'])
+angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueCube.directives', 'BlueCube.services', 'BlueCube.utils', 'pascalprecht.translate', 'jett.ionic.content.banner'])
 
 .run(function($ionicPlatform) {
 	$ionicPlatform.ready(function() {
