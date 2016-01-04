@@ -1,0 +1,87 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "res/xml/config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"SpinnerDialog\"><param name=\"android-package\" value=\"com.filfatstudios.spinnerdialog.SpinnerDialog\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"AppVersion\"><param name=\"android-package\" value=\"uk.co.whiteoctober.cordova.AppVersion\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"AppInfo\"><param name=\"android-package\" value=\"org.scriptotek.appinfo.AppInfo\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        }
+                    ],
+                    "/widget": [
+                        {
+                            "xml": "<feature name=\"BluetoothSerial\"><param name=\"android-package\" value=\"com.megster.cordova.BluetoothSerial\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "AndroidManifest.xml": {
+                "parents": {
+                    "/manifest": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.BLUETOOTH\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.BLUETOOTH_ADMIN\" />",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "com.filfatstudios.spinnerdialog": {
+            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
+        },
+        "cordova-plugin-app-version": {
+            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
+        },
+        "cordova-plugin-appinfo": {
+            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
+        },
+        "cordova-plugin-bluetooth-serial": {
+            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
+        }
+    },
+    "dependent_plugins": {}
+}
