@@ -47,6 +47,10 @@
                         {
                             "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Globalization\"><param name=\"ios-package\" value=\"CDVGlobalization\" /></feature>",
+                            "count": 1
                         }
                     ],
                     "/widget": [
@@ -110,6 +114,9 @@
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         },
         "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
+        },
+        "cordova-plugin-globalization": {
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         }
     },
