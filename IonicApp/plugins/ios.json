@@ -43,6 +43,10 @@
                         {
                             "xml": "<feature name=\"AppVersion\"><param name=\"ios-package\" value=\"AppVersion\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ],
                     "/widget": [
@@ -64,6 +68,12 @@
                     "AudioToolbox.framework": [
                         {
                             "xml": true,
+                            "count": 1
+                        }
+                    ],
+                    "CoreGraphics.framework": [
+                        {
+                            "xml": false,
                             "count": 1
                         }
                     ]
@@ -97,6 +107,9 @@
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         },
         "cordova-plugin-app-version": {
+            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
+        },
+        "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         }
     },
