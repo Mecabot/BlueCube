@@ -1,3 +1,7 @@
+document.addEventListener('deviceready', function() {
+    angular.bootstrap(document, ['BlueCube']);
+}, false);
+
 angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueCube.directives', 'BlueCube.services', 'BlueCube.utils', 'pascalprecht.translate'])
 
 .run(function($ionicPlatform) {
