@@ -19,3 +19,9 @@
 .list-inset {
   margin-top: 0px; !important;
 }
+
+.content-banner.error {
+  opacity: 0.9 !important;
+  background-color: red !important;
+  font-weight: bold !important;
+}
