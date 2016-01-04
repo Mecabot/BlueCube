@@ -677,8 +677,41 @@ angular.module('BlueCube.controllers', [])
 .controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction) {
 })
 
-.controller('StaticCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
+.controller('StaticCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs) {
 	$ionicPlatform.ready(function() {
+	  $scope.favourite = {
+	                  name: '',
+	                  cmds: []
+	                };
+
+		$ionicModal.fromTemplateUrl('templates/staticCreator.html', {
+			scope: $scope,
+			animation: 'slide-in-up'
+		}).then(function(modal) {
+			$scope.modal = modal
+		});
+
+		$scope.openModal = function() {
+			$scope.modal.show()
+		};
+
+		$scope.closeModal = function() {
+			$scope.modal.hide();
+		};
+
+		$scope.$on('$destroy', function() {
+			$scope.modal.remove();
+		});
+
+    $scope.saveFavourite = function() {
+      if ($scope.favourite.name == "") {
+        $cordovaDialogs.alert('Please provide a name', 'Error', 'OK');
+      } else {
+  		  console.log(JSON.stringify($scope.favourite));
+  		  $scope.modal.hide();
+      }
+    }
+/*
 		$scope.allOn = false;
 		$scope.selectedColour = $localstorage.get('selectedColour');
 
@@ -759,7 +792,7 @@ angular.module('BlueCube.controllers', [])
 				$cubeAction.sendMessage("!B10", true);
 			}
 		};
-
+*/
 	});
 })
 
@@ -856,4 +889,54 @@ angular.module('BlueCube.controllers', [])
 	$scope.reorderItem = function(item, fromIndex, toIndex) {
 		ColourService.reorder(item, fromIndex, toIndex);
 	}
+})
+
+.controller('StaticCreatorCtrl', function($ionicPlatform, $scope, HistoryService, $localstorage) {
+  var uniqueID = 1;
+  $scope.saveButton = false;
+
+	$scope.data = {
+		showReordering: false,
+	};
+
+	$ionicPlatform.ready(function() {
+		$scope.commands = HistoryService.list();
+		$scope.staticCommands = [];
+	});
+
+	$scope.showSaveButton = function () {
+    if ($scope.staticCommands.length >= 1) {
+      $scope.saveButton = true;
+    } else {
+      $scope.saveButton = false;
+    }
+  }
+
+	$scope.addStaticCommand = function (command) {
+	  var item = {
+	                id: uniqueID,
+	                cmd: command,
+	              };
+
+		uniqueID = uniqueID + 1;
+		$scope.staticCommands.push(item);
+		$scope.favourite.cmds = $scope.staticCommands;
+		$scope.showSaveButton();
+	};
+
+	$scope.deleteStaticCommand = function (id) {
+		for (i in $scope.staticCommands) {
+			if ($scope.staticCommands[i].id == id) {
+				$scope.staticCommands.splice(i, 1);
+			}
+		}
+		$scope.favourite.cmds = $scope.staticCommands;
+		$scope.showSaveButton();
+	};
+
+	$scope.reorderStaticCommands = function(item, fromIndex, toIndex) {
+		$scope.staticCommands.splice(fromIndex, 1);
+		$scope.staticCommands.splice(toIndex, 0, item);
+		$scope.favourite.cmds = $scope.staticCommands;
+	};
 });

@@ -3,9 +3,13 @@
 		<ion-nav-buttons side="left">
 			<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
 		</ion-nav-buttons>
+		<ion-nav-buttons side="right">
+			<button class="button button-icon button-clear ion-ios-plus-empty" ng-click="openModal()"></button>
+		</ion-nav-buttons>
 	</ion-nav-bar>
 	<ion-content class="padding">
 
+<!--
 		<ion-toggle ng-model=allOn ng-change="allOnChanged()" toggle-class="toggle-calm">
 			LED
 		</ion-toggle>
@@ -41,6 +45,6 @@
 		<button ng-click="setPlaneHex()" class="button button-block button-balanced">
 			setplane Y 1 3DF400; (Green)
 		</button>
-
+-->
 	</ion-content>
 </ion-view>

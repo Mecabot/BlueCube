@@ -1,0 +1,63 @@
+<ion-view view-title="StaticCreator">
+	<div class="modal">
+
+		<ion-header-bar class="bar bar-header bar-positive">
+			<h1 class="title">
+				Select Commands
+			</h1>
+			<button class="button button-clear button-primary" ng-click="closeModal()">Cancel</button>
+		</ion-header-bar>
+
+		<ion-content ng-controller="StaticCreatorCtrl">
+
+    <div class="card">
+  		<div class="item item-divider">
+				Name
+			</div>
+      <label class="item item-input">
+        <input type="text" placeholder="Name" ng-model="favourite.name">
+      </label>
+    </div>
+
+    <div class="card">
+  		<div class="item item-divider">
+				Selected Actions
+			</div>
+		  <div class="padding" align="right">
+  			<button class="button button-outline ion-close-round button-assertive" ng-click="data.showDelete = !data.showDelete"></button>
+  			<button class="button button-outline ion-navicon button-calm" ng-click="data.showReordering = !data.showReordering"></button>
+      </div>
+
+    		<ion-list type="list-inset" show-delete="data.showDelete" show-reorder="data.showReordering">
+    			<ion-item ng-repeat="static in staticCommands track by static.id">
+		    		{{static.cmd}}
+				    <ion-delete-button class="ion-close-round" ng-click="deleteStaticCommand({{static.id}})"></ion-delete-button>
+				    <ion-reorder-button class="ion-navicon" on-reorder="reorderStaticCommands(static, $fromIndex, $toIndex)"></ion-reorder-button>
+			    </ion-item>
+		    </ion-list>
+
+    <div class="padding-horizontal">
+      <button ng-click="saveFavourite()" ng-show="saveButton" class="button button-block">
+  			Save Favourite
+	  	</button>
+    </div>
+    </div>
+
+        <div class="card">
+  		<div class="item item-divider">
+				Possible Actions
+			</div>
+			<div class="row">
+		    <div class="col">
+		<ion-list type="list-inset">
+			<ion-item ng-repeat="command in commands track by command.id" ng-click="addStaticCommand('{{command.cmd}}')">
+				{{command.cmd}}
+			</ion-item>
+		</ion-list>
+    </div>
+    </div>
+    </div>
+    <br>
+    </ion-content>
+  </div>
+</ion-view>
