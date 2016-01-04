@@ -500,7 +500,7 @@ angular.module('BlueCube.controllers', [])
 	};
 })
 
-.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading, $localstorage, $ionicSideMenuDelegate) {
+.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading, $localstorage, $ionicSideMenuDelegate, $translate) {
 	$scope.connectButton = true;
 	$scope.disconnectButton = false;
 
@@ -529,7 +529,15 @@ angular.module('BlueCube.controllers', [])
 		});
 
 	$ionicPlatform.ready(function() {
-	});
+
+    if(typeof navigator.globalization !== "undefined") {
+        navigator.globalization.getPreferredLanguage(function(language) {
+           $translate.use(language.value).then(function(data) {
+           }, function(error) {
+           });
+        }, null);
+    }
+  });
 
      $scope.autoConnectChanged = function() {
        if ($scope.autoConnect == false) {
@@ -804,6 +812,13 @@ angular.module('BlueCube.controllers', [])
 		$cordovaAppVersion.getVersionCode().then(function (build) {
 			$scope.appBuild = build;
 		}, false);
+
+    if(typeof navigator.globalization !== "undefined") {
+      navigator.globalization.getPreferredLanguage(function(language) {
+        $scope.language = language.value;
+      }, null);
+    }
+
   });
 })
 

@@ -1,4 +1,4 @@
-angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueCube.directives', 'BlueCube.services', 'BlueCube.utils'])
+angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueCube.directives', 'BlueCube.services', 'BlueCube.utils', 'pascalprecht.translate'])
 
 .run(function($ionicPlatform) {
 	$ionicPlatform.ready(function() {
@@ -17,9 +17,18 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 	});
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
-	$stateProvider
+.config(function($stateProvider, $urlRouterProvider, $translateProvider) {
+  $translateProvider.translations('en-AU', {
+      colourSpelling: "Colour"
+  });
+  $translateProvider.translations('en-US', {
+      colourSpelling: "Color"
+  });
 
+  $translateProvider.preferredLanguage("en-AU");
+  $translateProvider.fallbackLanguage("en-AU");
+
+	$stateProvider
 		.state('app', {
 			url: '/app',
 			abstract: true,
