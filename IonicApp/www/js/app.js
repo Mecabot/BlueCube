@@ -23,10 +23,12 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 
 .config(function($stateProvider, $urlRouterProvider, $translateProvider) {
   $translateProvider.translations('en-AU', {
-      colourSpelling: "Colour"
+      colourSpelling: "Colour",
+      favouriteSpelling: "Favourite"
   });
   $translateProvider.translations('en-US', {
-      colourSpelling: "Color"
+      colourSpelling: "Color",
+      favouriteSpelling: "Favorite"
   });
 
   $translateProvider.preferredLanguage("en-AU");

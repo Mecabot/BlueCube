@@ -877,7 +877,7 @@ angular.module('BlueCube.controllers', [])
   }
 
   $scope.resetColours = function () {
-    $cordovaDialogs.confirm('Are you sure you want to reset the default colours?', 'Reset Colours', ['Cancel','OK'])
+    $cordovaDialogs.confirm('Are you sure you want to reset to the default values?', 'Reset', ['Cancel','OK'])
     .then(function(buttonIndex) {
       if (buttonIndex == 2) {
         $defaults.resetColours();
@@ -886,7 +886,7 @@ angular.module('BlueCube.controllers', [])
   }
 
   $scope.resetStatic = function () {
-    $cordovaDialogs.confirm('Are you sure you want to reset the default static favourites?', 'Reset Static Favourites', ['Cancel','OK'])
+    $cordovaDialogs.confirm('Are you sure you want to reset to the default values?', 'Reset', ['Cancel','OK'])
     .then(function(buttonIndex) {
       if (buttonIndex == 2) {
         $defaults.resetStatic();
@@ -895,7 +895,7 @@ angular.module('BlueCube.controllers', [])
   }
 
   $scope.resetHistory = function () {
-    $cordovaDialogs.confirm('Are you sure you want to clear the history?', 'Reset History', ['Cancel','OK'])
+    $cordovaDialogs.confirm('Are you sure you want to clear the history?', 'Reset', ['Cancel','OK'])
     .then(function(buttonIndex) {
       if (buttonIndex == 2) {
         $defaults.resetHistory();
@@ -904,7 +904,7 @@ angular.module('BlueCube.controllers', [])
   }
 
   $scope.resetOthers = function() {
-    $cordovaDialogs.confirm('Are you sure you want to reset background settings?', 'Reset Other', ['Cancel','OK'])
+    $cordovaDialogs.confirm('Are you sure you want to reset background settings?', 'Reset', ['Cancel','OK'])
     .then(function(buttonIndex) {
       if (buttonIndex == 2) {
         $defaults.resetOthers();
