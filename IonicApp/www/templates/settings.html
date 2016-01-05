@@ -5,33 +5,49 @@
 		</ion-nav-buttons>
 	</ion-nav-bar>
 	<ion-content has-header="true" padding="true">
-		<button class="button button-block button-positive" ng-click="resetColours()">
-      Reset Favourite Colours
-		</button>
 
-		<button class="button button-block button-positive" ng-click="resetStatic()">
-      Reset Static Favourites
-		</button>
-
-		<button class="button button-block button-positive" ng-click="resetOthers()">
-      Reset Other Data
-		</button>
-
-		<button class="button button-block button-positive" ng-click="resetHistory()">
-      Reset History
-		</button>
-
-    <div class="list">
-      <div class="item range range-positive">
-        <i class="icon ion-ios-list-outline"></i>
-        <input type="range" name="maxHistoryItems" min="10" max="200" ng-model="data.maxHistoryItems" ng-change="setMaxHistoryItems(data.maxHistoryItems)">
-        <i class="icon ion-ios-list"></i>
+  	<div class="card">
+  		<div class="item item-divider">
+				History
+			</div>
+			<div class="padding-horizontal">
+        <button class="button button-block button-energized" ng-click="resetHistory()">
+          Reset History
+        </button>
       </div>
-      <p>History Items: {{data.maxHistoryItems}}</p>
-    </div>
+      <div class="list">
+        <div class="item range range-positive">
+          <i class="icon ion-ios-list-outline"></i>
+          <input type="range" name="maxHistoryItems" min="10" max="200" ng-model="data.maxHistoryItems" ng-change="setMaxHistoryItems(data.maxHistoryItems)">
+          <i class="icon ion-ios-list"></i>
+          {{data.maxHistoryItems}}
+        </div>
+      </div>
+		</div>
 
-		<button class="button button-block button-positive" ng-click="resetAll()">
-      Reset All
-		</button>
+  	<div class="card">
+  		<div class="item item-divider">
+				Default Settings
+			</div>
+			<div class="padding-horizontal">
+        <button class="button button-block button-energized" ng-click="resetColours()">
+          Reset Favourite Colours
+        </button>
+
+        <button class="button button-block button-energized" ng-click="resetStatic()">
+          Reset Static Favourites
+        </button>
+
+        <button class="button button-block button-energized" ng-click="resetOthers()">
+          Reset Other Data
+        </button>
+
+
+        <button class="button button-block button-assertive" ng-click="resetAll()">
+          Reset All
+        </button>
+  		</div>
+		</div>
+
 	</ion-content>
 </ion-view>
