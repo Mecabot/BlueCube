@@ -22,7 +22,7 @@ angular.module('BlueCube.controllers', [])
 	};
 
 	$ionicPlatform.ready(function() {
-		var initialColour = $localstorage.get('selectedColour');
+		var initialColour = $localstorage.get('selectedColour', '00d1ff');
 		$scope.hexColour = initialColour;
 		initialColour = '#' + initialColour;
 		$scope.colour = {targetColor: initialColour};
@@ -103,12 +103,12 @@ angular.module('BlueCube.controllers', [])
 	$scope.cube = [];
 
 	$ionicPlatform.ready(function() {
-    $scope.selectedColour = $localstorage.get('selectedColour');
+    $scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 
     $scope.setLED = function (id) {
       var colourToUse = "BLACK";
       if ($scope.cube[id] == true) {
-        colourToUse = $localstorage.get('selectedColour');
+        colourToUse = $localstorage.get('selectedColour', '00d1ff');
       }
 
       var message = "set " + $cubeAction.lookupCoords(id) + " " + colourToUse + ";";
@@ -134,7 +134,7 @@ angular.module('BlueCube.controllers', [])
 
 		$scope.closeModal = function() {
 			$scope.modal.hide();
-			$scope.selectedColour = $localstorage.get('selectedColour');
+			$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 		};
 
 		$scope.$on('$destroy', function() {
@@ -150,7 +150,7 @@ angular.module('BlueCube.controllers', [])
       axis: 'X',
       offset: '0',
     };
-    $scope.selectedColour = $localstorage.get('selectedColour');
+    $scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 
 		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
 			scope: $scope,
@@ -171,7 +171,7 @@ angular.module('BlueCube.controllers', [])
 
 		$scope.closeModal = function() {
 			$scope.modal.hide();
-			$scope.selectedColour = $localstorage.get('selectedColour');
+			$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 		};
 
 		$scope.$on('$destroy', function() {
@@ -207,7 +207,7 @@ angular.module('BlueCube.controllers', [])
       fromOffset: '0',
       toOffset: '1',
     };
-    $scope.selectedColour = $localstorage.get('selectedColour');
+    $scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 
 		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
 			scope: $scope,
@@ -228,7 +228,7 @@ angular.module('BlueCube.controllers', [])
 
 		$scope.closeModal = function() {
 			$scope.modal.hide();
-			$scope.selectedColour = $localstorage.get('selectedColour');
+			$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 		};
 
 		$scope.$on('$destroy', function() {
@@ -247,7 +247,7 @@ angular.module('BlueCube.controllers', [])
 	$scope.cube = [];
 
 	$ionicPlatform.ready(function() {
-    $scope.selectedColour = $localstorage.get('selectedColour');
+    $scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 
 		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
 			scope: $scope,
@@ -268,7 +268,7 @@ angular.module('BlueCube.controllers', [])
 
 		$scope.closeModal = function() {
 			$scope.modal.hide();
-			$scope.selectedColour = $localstorage.get('selectedColour');
+			$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 		};
 
 		$scope.$on('$destroy', function() {
@@ -293,7 +293,7 @@ angular.module('BlueCube.controllers', [])
    	  }
 
 	    // Draw the line
-	    message = message + $localstorage.get('selectedColour') + ";";
+	    message = message + $localstorage.get('selectedColour', '00d1ff') + ";";
 	    $cubeAction.sendMessage(message, true);
 	  } else {
 	    // Tell them to pick again
@@ -311,8 +311,8 @@ angular.module('BlueCube.controllers', [])
     $scope.style = {
       boxStyle: '0',
     };
-    $scope.selectedColour = $localstorage.get('selectedColour');
-    $scope.otherColour = $localstorage.get('otherColour');
+    $scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+    $scope.otherColour = $localstorage.get('otherColour', 'f80ed1');
     $scope.showSecontaryColour = false;
 
 		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
@@ -329,8 +329,8 @@ angular.module('BlueCube.controllers', [])
 
 		$scope.openModalSecondary = function() {
 		  secondaryColourSelector = true;
-		  cachedColour = $localstorage.get('selectedColour');
-		  var otherColour = $localstorage.get('otherColour');
+		  cachedColour = $localstorage.get('selectedColour', '00d1ff');
+		  var otherColour = $localstorage.get('otherColour', 'f80ed1');
 		  $localstorage.set('selectedColour', otherColour);
 			$scope.modal.show()
 		};
@@ -349,11 +349,11 @@ angular.module('BlueCube.controllers', [])
 		$scope.closeModal = function() {
 			$scope.modal.hide();
 			if (secondaryColourSelector) {
-        $scope.otherColour = $localstorage.get('selectedColour');
+        $scope.otherColour = $localstorage.get('selectedColour', '00d1ff');
         $localstorage.set('selectedColour', cachedColour);
         $localstorage.set('otherColour', $scope.otherColour);
       } else {
-  			$scope.selectedColour = $localstorage.get('selectedColour');
+  			$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
       }
 		};
 
@@ -386,12 +386,12 @@ angular.module('BlueCube.controllers', [])
 //        $scope.cube[i] = null;
    	  }
 
-	    message = message + $localstorage.get('selectedColour') + " " + $scope.style.boxStyle;
+	    message = message + $localstorage.get('selectedColour', '00d1ff') + " " + $scope.style.boxStyle;
       if (parseInt($scope.style.boxStyle) <= 2) {
         message = message + ";";
   	    $cubeAction.sendMessage(message, true);
   	  } else {
-        message = message + " " + $localstorage.get('otherColour') + ";";
+        message = message + " " + $localstorage.get('otherColour', 'f80ed1') + ";";
   	    $cubeAction.sendMessage(message, true);  	  }
 	  } else {
 	    // Tell them to pick again
@@ -410,8 +410,8 @@ angular.module('BlueCube.controllers', [])
       sphereStyle: '0',
       sphereSize: '3',
     };
-    $scope.selectedColour = $localstorage.get('selectedColour');
-    $scope.otherColour = $localstorage.get('otherColour');
+    $scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+    $scope.otherColour = $localstorage.get('otherColour', 'f80ed1');
     $scope.showSecontaryColour = false;
 
 		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
@@ -428,8 +428,8 @@ angular.module('BlueCube.controllers', [])
 
 		$scope.openModalSecondary = function() {
 		  secondaryColourSelector = true;
-		  cachedColour = $localstorage.get('selectedColour');
-		  var otherColour = $localstorage.get('otherColour');
+		  cachedColour = $localstorage.get('selectedColour', '00d1ff');
+		  var otherColour = $localstorage.get('otherColour', 'f80ed1');
 		  $localstorage.set('selectedColour', otherColour);
 			$scope.modal.show()
 		};
@@ -448,11 +448,11 @@ angular.module('BlueCube.controllers', [])
 		$scope.closeModal = function() {
 			$scope.modal.hide();
 			if (secondaryColourSelector) {
-        $scope.otherColour = $localstorage.get('selectedColour');
+        $scope.otherColour = $localstorage.get('selectedColour', '00d1ff');
         $localstorage.set('selectedColour', cachedColour);
         $localstorage.set('otherColour', $scope.otherColour);
       } else {
-  			$scope.selectedColour = $localstorage.get('selectedColour');
+  			$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
       }
 		};
 
@@ -485,12 +485,12 @@ angular.module('BlueCube.controllers', [])
 //        $scope.cube[i] = null;
    	  }
 
-	    message = message + " " + $scope.style.sphereSize + " " + $localstorage.get('selectedColour');
+	    message = message + " " + $scope.style.sphereSize + " " + $localstorage.get('selectedColour', '00d1ff');
       if (parseInt($scope.style.sphereStyle) == 0) {
         message = message + ";";
   	    $cubeAction.sendMessage(message, true);
   	  } else {
-        message = message + " " + $localstorage.get('otherColour') + ";";
+        message = message + " " + $localstorage.get('otherColour', 'f80ed1') + ";";
   	    $cubeAction.sendMessage(message, true);
   	  }
 	  } else {
@@ -748,7 +748,7 @@ angular.module('BlueCube.controllers', [])
 	  }
 /*
 		$scope.allOn = false;
-		$scope.selectedColour = $localstorage.get('selectedColour');
+		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 
 		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
 			scope: $scope,
@@ -769,7 +769,7 @@ angular.module('BlueCube.controllers', [])
 
 		$scope.closeModal = function() {
 			$scope.modal.hide();
-			$scope.selectedColour = $localstorage.get('selectedColour');
+			$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 		};
 
 		$scope.$on('$destroy', function() {
@@ -924,7 +924,7 @@ angular.module('BlueCube.controllers', [])
 	};
 
 	$ionicPlatform.ready(function() {
-		var initialColour = $localstorage.get('selectedColour');
+		var initialColour = $localstorage.get('selectedColour', '00d1ff');
 		$scope.hexColour = initialColour;
 		initialColour = '#' + initialColour;
 		$scope.colour = {targetColor: initialColour};
