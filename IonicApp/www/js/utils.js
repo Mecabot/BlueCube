@@ -28,6 +28,73 @@ angular.module('BlueCube.utils', [])
 	}
 }])
 
+.factory('$defaults', ['$localstorage', function($localstorage) {
+	return {
+		resetColours: function() {
+			var colours = [
+				{
+					id: 1,
+					hex: '000000',  // Black
+				},
+				{
+					id: 2,
+					hex: '0000FF',  // Blue
+				},
+				{
+					id: 3,
+					hex: '00ff00',  // Green
+				},
+				{
+					id: 4,
+					hex: 'ff4500', // Orange
+				},
+				{
+					id: 5,
+					hex: 'ff1444', // Pink
+				},
+				{
+					id: 6,
+					hex: 'ff00ff', // Purple
+				},
+				{
+					id: 7,
+					hex: 'ff0000',  // Red
+				},
+				{
+					id: 8,
+					hex: 'ffffff',  // White
+				},
+				{
+					id: 9,
+					hex: 'ffff00',  // Yellow
+				}
+			];
+
+			$localstorage.setObject('userDefinedColours', colours);
+			$localstorage.set('userDefinedColours_uniqueID', 10);
+			$localstorage.set('selectedColour', '00d1ff');
+			$localstorage.set('otherColour', 'f80ed1');
+		},
+
+		resetHistory: function() {
+			$localstorage.delete('history');
+			$localstorage.set('history_uniqueID', 0);
+			$localstorage.set('history_items', 100);
+		},
+
+		resetStatic: function() {
+			$localstorage.delete('staticFavourites');
+			$localstorage.delete('staticFavourite');
+			$localstorage.set('staticFavourites_uniqueID', 0);
+		},
+
+		resetOthers: function() {
+			$localstorage.delete('autoConnect');
+			$localstorage.delete('bluetoothUUID');
+		}
+	}
+}])
+
 .factory('$cubeAction', ['$cordovaBluetoothSerial', 'HistoryService', '$ionicContentBanner', function($cordovaBluetoothSerial, HistoryService, $ionicContentBanner) {
 	return {
 		lookupCoords: function(id) {

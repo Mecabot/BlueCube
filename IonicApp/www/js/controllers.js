@@ -849,9 +849,38 @@ angular.module('BlueCube.controllers', [])
 	}
 })
 
-.controller('SettingsCtrl', [ '$scope', '$state', function($scope, $state) {
+.controller('SettingsCtrl', function($scope, $defaults) {
 
-}])
+  $scope.data = {'maxHistoryItems': 100};
+
+  $scope.setMaxHistoryItems = function(number) {
+    console.log(number);
+  }
+
+  $scope.resetColours = function () {
+    $defaults.resetColours();
+  }
+
+  $scope.resetStatic = function () {
+    $defaults.resetStatic();
+  }
+
+  $scope.resetHistory = function () {
+    $defaults.resetHistory();
+  }
+
+  $scope.resetOthers = function() {
+    $defaults.resetOthers();
+  }
+
+  $scope.resetAll = function () {
+    $scope.resetColours();
+    $scope.resetStatic();
+    $scope.resetHistory();
+    $scope.resetOthers();
+  }
+
+})
 
 .controller('AboutCtrl', function($ionicPlatform, $scope, $cordovaDevice, $cordovaAppVersion) {
 	$ionicPlatform.ready(function() {

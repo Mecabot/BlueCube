@@ -59,57 +59,20 @@ angular.module('BlueCube.services', [])
 	}
 })
 
-.service('ColourService', function($localstorage) {
+.service('ColourService', function($localstorage, $defaults) {
 	var uniqueID;
 	var colours;
 
-	if ($localstorage.getObject('userDefinedColours') != undefined) {
-		colours = $localstorage.getObject('userDefinedColours');
-	} else {
-		colours = [
-			{
-				id: 1,
-				hex: '000000',  // Black
-			},
-			{
-				id: 2,
-				hex: '0000FF',  // Blue
-			},
-			{
-				id: 3,
-				hex: '00ff00',  // Green
-			},
-			{
-				id: 4,
-				hex: 'ff4500', // Orange
-			},
-			{
-				id: 5,
-				hex: 'ff1444', // Pink
-			},
-			{
-				id: 6,
-				hex: 'ff00ff', // Purple
-			},
-			{
-				id: 7,
-				hex: 'ff0000',  // Red
-			},
-			{
-				id: 8,
-				hex: 'ffffff',  // White
-			},
-			{
-				id: 9,
-				hex: 'ffff00',  // Yellow
-			}
-		];
+  loadColours();
 
-		$localstorage.setObject('userDefinedColours', colours);
-		$localstorage.set('userDefinedColours_uniqueID', 10);
-	}
+  this.loadColours = function() {
+  	if ($localstorage.getObject('userDefinedColours') == undefined) {
+  		$defaults.resetColours();
+  	}
 
-	uniqueID = parseInt($localstorage.get('userDefinedColours_uniqueID'));
+  	colours = $localstorage.getObject('userDefinedColours');
+  	uniqueID = parseInt($localstorage.get('userDefinedColours_uniqueID'));
+  }
 
 	this.list = function() {
 		return colours
