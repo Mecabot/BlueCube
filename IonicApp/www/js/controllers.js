@@ -834,7 +834,6 @@ angular.module('BlueCube.controllers', [])
 .controller('HistoryCtrl', function($ionicPlatform, $scope, $cubeAction, HistoryService, $localstorage) {
 	$scope.data = {
 		showDelete: false,
-		showReordering: false,
 	};
 
 	$ionicPlatform.ready(function() {
@@ -845,17 +844,8 @@ angular.module('BlueCube.controllers', [])
     $cubeAction.sendMessage(command, false);
   };
 
-//	$scope.addUserColour = function () {
-//		newColour = $scope.hexColour;
-//		ColourService.add(newColour);
-//	};
-
 	$scope.deleteHistoryItem = function (id) {
 		HistoryService.delete(id);
-	}
-
-	$scope.reorderHistoryItem = function(item, fromIndex, toIndex) {
-		HistoryService.reorder(item, fromIndex, toIndex);
 	}
 })
 
