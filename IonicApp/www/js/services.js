@@ -73,16 +73,12 @@ angular.module('BlueCube.services', [])
 	var uniqueID;
 	var colours;
 
-  loadColours();
-
-  this.loadColours = function() {
-  	if ($localstorage.getObject('userDefinedColours') == undefined) {
-  		$defaults.resetColours();
-  	}
-
-  	colours = $localstorage.getObject('userDefinedColours');
-  	uniqueID = parseInt($localstorage.get('userDefinedColours_uniqueID'));
+  if ($localstorage.getObject('userDefinedColours') == undefined) {
+  	$defaults.resetColours();
   }
+
+  colours = $localstorage.getObject('userDefinedColours');
+  uniqueID = parseInt($localstorage.get('userDefinedColours_uniqueID'));
 
 	this.list = function() {
 		return colours
