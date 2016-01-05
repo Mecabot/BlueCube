@@ -739,6 +739,13 @@ angular.module('BlueCube.controllers', [])
 	  $scope.reorderFavourites = function(item, fromIndex, toIndex) {
 		  StaticFavouritesService.reorder(item, fromIndex, toIndex);
 	  }
+
+	  $scope.sendFavourite = function (id) {
+	    $cmds = StaticFavouritesService.get(id);
+	    for (i = 0; i < $cmds.length; i++) {
+  	    $cubeAction.sendMessage($cmds[i].cmd, true);
+	    }
+	  }
 /*
 		$scope.allOn = false;
 		$scope.selectedColour = $localstorage.get('selectedColour');
