@@ -21,6 +21,10 @@ angular.module('BlueCube.controllers', [])
 		showReordering: false,
 	};
 
+	$scope.$on('$ionicView.beforeEnter', function() {
+		$scope.colours = ColourService.list();
+	});
+
 	$ionicPlatform.ready(function() {
 		var initialColour = $localstorage.get('selectedColour', '00d1ff');
 		$scope.hexColour = initialColour;
@@ -685,6 +689,10 @@ angular.module('BlueCube.controllers', [])
 
   $scope.staticCommands = [];
 
+	$scope.$on('$ionicView.beforeEnter', function() {
+		$scope.favourites = StaticFavouritesService.list();
+	});
+
 	$ionicPlatform.ready(function() {
     $scope.favourites = StaticFavouritesService.list();
     $scope.staticCommandsData = {};
@@ -835,6 +843,10 @@ angular.module('BlueCube.controllers', [])
 	$scope.data = {
 		showDelete: false,
 	};
+
+	$scope.$on('$ionicView.beforeEnter', function() {
+		$scope.commands = HistoryService.list();
+	});
 
 	$ionicPlatform.ready(function() {
 		$scope.commands = HistoryService.list();

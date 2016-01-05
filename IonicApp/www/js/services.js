@@ -14,7 +14,13 @@ angular.module('BlueCube.services', [])
 	uniqueID = parseInt($localstorage.get('history_uniqueID'));
 
 	this.list = function() {
-		return commands;
+    if ($localstorage.getObject('history') != undefined) {
+		  commands = $localstorage.getObject('history');
+	  } else {
+		  commands = [];
+  	}
+
+  	return commands;
 	}
 
 
@@ -81,7 +87,12 @@ angular.module('BlueCube.services', [])
   uniqueID = parseInt($localstorage.get('userDefinedColours_uniqueID'));
 
 	this.list = function() {
-		return colours
+    if ($localstorage.getObject('userDefinedColours') == undefined) {
+    	$defaults.resetColours();
+    }
+    colours = $localstorage.getObject('userDefinedColours');
+
+    return colours;
 	}
 
 	this.get = function(colourId) {
@@ -135,7 +146,12 @@ angular.module('BlueCube.services', [])
 	uniqueID = parseInt($localstorage.get('staticFavourites_uniqueID'));
 
 	this.list = function() {
-		return staticFavourites;
+     if ($localstorage.getObject('staticFavourites') != undefined) {
+       staticFavourites = $localstorage.getObject('staticFavourites');
+     } else {
+       staticFavourites = [];
+     }
+    return staticFavourites;
 	}
 
 
