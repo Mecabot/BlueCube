@@ -27,13 +27,23 @@ angular.module('BlueCube.services', [])
 	}
 
 	this.add = function(command) {
+	  var maxHistoryItems;
+
+	  if ($localstorage.get('history_items') != undefined) {
+	    maxHistoryItems = parseInt($localstorage.get('history_items'));
+    } else {
+      maxHistoryItems = 100;
+    }
+
 	  var historyItem = {
 	                      id: uniqueID,
 	                      cmd: command,
 	                    };
 
-    if (commands.length >= 10) {
-      commands.pop();
+    if (commands.length >= maxHistoryItems) {
+      for(i = maxHistoryItems - 1; i <= commands.length; i++) {
+        commands.pop();
+      }
     }
 
 		uniqueID = uniqueID + 1;

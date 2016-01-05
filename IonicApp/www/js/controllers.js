@@ -849,12 +849,19 @@ angular.module('BlueCube.controllers', [])
 	}
 })
 
-.controller('SettingsCtrl', function($scope, $defaults) {
+.controller('SettingsCtrl', function($scope, $defaults, $localstorage) {
+	  var maxHistoryItems;
 
-  $scope.data = {'maxHistoryItems': 100};
+	  if ($localstorage.get('history_items') != undefined) {
+	    maxHistoryItems = parseInt($localstorage.get('history_items'));
+    } else {
+      maxHistoryItems = 100;
+    }
+
+  $scope.data = {'maxHistoryItems': maxHistoryItems};
 
   $scope.setMaxHistoryItems = function(number) {
-    console.log(number);
+    $localstorage.set('history_items', number);
   }
 
   $scope.resetColours = function () {
