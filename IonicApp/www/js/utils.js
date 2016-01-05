@@ -18,6 +18,10 @@ angular.module('BlueCube.utils', [])
 			return JSON.parse($window.localStorage[key] || null);
 		},
 
+		delete: function(key) {
+			$window.localStorage.removeItem(key);
+		},
+
 		clear: function() {
 			$window.localStorage.clear();
 		}
