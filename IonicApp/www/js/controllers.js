@@ -849,7 +849,7 @@ angular.module('BlueCube.controllers', [])
 	}
 })
 
-.controller('SettingsCtrl', function($scope, $defaults, $localstorage) {
+.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordovaDialogs) {
 	  var maxHistoryItems;
 
 	  if ($localstorage.get('history_items') != undefined) {
@@ -865,26 +865,51 @@ angular.module('BlueCube.controllers', [])
   }
 
   $scope.resetColours = function () {
-    $defaults.resetColours();
+    $cordovaDialogs.confirm('Are you sure you want to reset the default colours?', 'Reset Colours', ['Cancel','OK'])
+    .then(function(buttonIndex) {
+      if (buttonIndex == 2) {
+        $defaults.resetColours();
+      }
+    });
   }
 
   $scope.resetStatic = function () {
-    $defaults.resetStatic();
+    $cordovaDialogs.confirm('Are you sure you want to reset the default static favourites?', 'Reset Static Favourites', ['Cancel','OK'])
+    .then(function(buttonIndex) {
+      if (buttonIndex == 2) {
+        $defaults.resetStatic();
+      }
+    });
   }
 
   $scope.resetHistory = function () {
-    $defaults.resetHistory();
+    $cordovaDialogs.confirm('Are you sure you want to clear the history?', 'Reset History', ['Cancel','OK'])
+    .then(function(buttonIndex) {
+      if (buttonIndex == 2) {
+        $defaults.resetHistory();
+      }
+    });
   }
 
   $scope.resetOthers = function() {
-    $defaults.resetOthers();
+    $cordovaDialogs.confirm('Are you sure you want to reset background settings?', 'Reset Other', ['Cancel','OK'])
+    .then(function(buttonIndex) {
+      if (buttonIndex == 2) {
+        $defaults.resetOthers();
+      }
+    });
   }
 
   $scope.resetAll = function () {
-    $scope.resetColours();
-    $scope.resetStatic();
-    $scope.resetHistory();
-    $scope.resetOthers();
+    $cordovaDialogs.confirm('Are you sure you want to reset all settings?', 'Reset All', ['Cancel','OK'])
+    .then(function(buttonIndex) {
+      if (buttonIndex == 2) {
+        $scope.resetColours();
+        $scope.resetStatic();
+        $scope.resetHistory();
+        $scope.resetOthers();
+      }
+    });
   }
 
 })
