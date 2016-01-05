@@ -150,4 +150,59 @@ angular.module('BlueCube.services', [])
 		colours.splice(toIndex, 0, item);
 		$localstorage.setObject('userDefinedColours', colours);
 	}
+})
+
+.service('StaticFavouritesService', function($localstorage) {
+  var staticFavourites;
+  var uniqueID;
+
+  if ($localstorage.getObject('staticFavourites') != undefined) {
+		staticFavourites = $localstorage.getObject('staticFavourites');
+	} else {
+		staticFavourites = [];
+		$localstorage.set('staticFavourites_uniqueID', 0);
+	}
+
+	uniqueID = parseInt($localstorage.get('staticFavourites_uniqueID'));
+
+	this.list = function() {
+		return staticFavourites;
+	}
+
+
+	this.get = function(id) {
+		for (i in staticFavourites) {
+			if (staticFavourites[i].id == id) {
+				return staticFavourites[i].cmds;
+			}
+		}
+	}
+
+	this.add = function(name, cmds) {
+	  var favouriteItem = {
+	                      id: uniqueID,
+	                      name: name,
+	                      cmds: cmds,
+	                    };
+		uniqueID = uniqueID + 1;
+		staticFavourites.push(favouriteItem);
+		$localstorage.setObject('staticFavourites', staticFavourites);
+    $localstorage.set('staticFavourites_uniqueID', uniqueID);
+	}
+
+	this.delete = function(id) {
+		for (i in staticFavourites) {
+			if (staticFavourites[i].id == id) {
+				staticFavourites.splice(i, 1);
+			}
+		}
+
+		$localstorage.setObject('staticFavourites', staticFavourites);
+	}
+
+  this.reorder = function(item, fromIndex, toIndex) {
+		staticFavourites.splice(fromIndex, 1);
+		staticFavourites.splice(toIndex, 0, item);
+		$localstorage.setObject('staticFavourites', staticFavourites);
+	}
 });

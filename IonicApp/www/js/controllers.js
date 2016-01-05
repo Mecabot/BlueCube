@@ -677,12 +677,20 @@ angular.module('BlueCube.controllers', [])
 .controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction) {
 })
 
-.controller('StaticCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs) {
+.controller('StaticCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs, StaticFavouritesService) {
+	$scope.data = {
+		showDelete: false,
+		showReordering: false,
+	};
+
+  $scope.staticCommands = [];
+
 	$ionicPlatform.ready(function() {
-	  $scope.favourite = {
-	                  name: '',
-	                  cmds: []
-	                };
+    $scope.favourites = StaticFavouritesService.list();
+    $scope.staticCommandsData = {};
+    $scope.staticCommandsData.name = '';
+    $scope.staticCommandsData.cmds = [];
+    $scope.saveButton = false;
 
 		$ionicModal.fromTemplateUrl('templates/staticCreator.html', {
 			scope: $scope,
@@ -699,18 +707,38 @@ angular.module('BlueCube.controllers', [])
 			$scope.modal.hide();
 		};
 
+    // Execute action on hide modal
+    $scope.$on('modal.hidden', function() {
+      $scope.staticCommands = [];
+ 	    $scope.staticCommandsData.name = '';
+ 	    $scope.staticCommandsData.cmds = [];
+ 	    $scope.saveButton = false;
+    });
+
 		$scope.$on('$destroy', function() {
 			$scope.modal.remove();
 		});
 
     $scope.saveFavourite = function() {
-      if ($scope.favourite.name == "") {
+      if ($scope.staticCommandsData.name == "") {
         $cordovaDialogs.alert('Please provide a name', 'Error', 'OK');
       } else {
-  		  console.log(JSON.stringify($scope.favourite));
-  		  $scope.modal.hide();
+        if ($scope.staticCommandsData.cmds.length == 0) {
+          $cordovaDialogs.alert('Please select at least 1 item', 'Error', 'OK');
+        } else {
+    		  StaticFavouritesService.add($scope.staticCommandsData.name, $scope.staticCommandsData.cmds);
+    	    $scope.modal.hide();
+    	  }
       }
     }
+
+	  $scope.deleteFavourite = function (id) {
+		  StaticFavouritesService.delete(id);
+	  }
+
+	  $scope.reorderFavourites = function(item, fromIndex, toIndex) {
+		  StaticFavouritesService.reorder(item, fromIndex, toIndex);
+	  }
 /*
 		$scope.allOn = false;
 		$scope.selectedColour = $localstorage.get('selectedColour');
@@ -893,16 +921,16 @@ angular.module('BlueCube.controllers', [])
 
 .controller('StaticCreatorCtrl', function($ionicPlatform, $scope, HistoryService, $localstorage) {
   var uniqueID = 1;
-  $scope.saveButton = false;
 
-	$scope.data = {
+
+	$scope.dataModal = {
+  	showDelete: false,
 		showReordering: false,
 	};
 
 	$ionicPlatform.ready(function() {
 		$scope.commands = HistoryService.list();
-		$scope.staticCommands = [];
-	});
+  });
 
 	$scope.showSaveButton = function () {
     if ($scope.staticCommands.length >= 1) {
@@ -920,7 +948,7 @@ angular.module('BlueCube.controllers', [])
 
 		uniqueID = uniqueID + 1;
 		$scope.staticCommands.push(item);
-		$scope.favourite.cmds = $scope.staticCommands;
+		$scope.staticCommandsData.cmds = $scope.staticCommands;
 		$scope.showSaveButton();
 	};
 
@@ -930,13 +958,13 @@ angular.module('BlueCube.controllers', [])
 				$scope.staticCommands.splice(i, 1);
 			}
 		}
-		$scope.favourite.cmds = $scope.staticCommands;
+		$scope.staticCommandsData.cmds = $scope.staticCommands;
 		$scope.showSaveButton();
 	};
 
 	$scope.reorderStaticCommands = function(item, fromIndex, toIndex) {
 		$scope.staticCommands.splice(fromIndex, 1);
 		$scope.staticCommands.splice(toIndex, 0, item);
-		$scope.favourite.cmds = $scope.staticCommands;
+		$scope.staticCommandsData.cmds = $scope.staticCommands;
 	};
 });

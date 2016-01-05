@@ -9,6 +9,26 @@
 	</ion-nav-bar>
 	<ion-content class="padding">
 
+		<div class="row padding-horizontal">
+		  <div class="col col-center">
+		    <h4>Favourites</h4>
+		  </div>
+		  <div align="right">
+  			<button class="button button-outline ion-close-round button-assertive" ng-click="data.showDelete = !data.showDelete"></button>
+  			<button class="button button-outline ion-navicon button-calm" ng-click="data.showReordering = !data.showReordering"></button>
+      </div>
+		</div>
+
+		<ion-list type="list-inset" show-delete="data.showDelete" show-reorder="data.showReordering">
+			<ion-item ng-repeat="item in favourites track by item.id">
+				{{item.name}}
+				<ion-delete-button class="ion-close-round" ng-click="deleteFavourite({{item.id}})"></ion-delete-button>
+				<ion-reorder-button class="ion-navicon" on-reorder="reorderFavourites(item, $fromIndex, $toIndex)"></ion-reorder-button>
+			</ion-item>
+		</ion-list>
+
+    <br>
+
 <!--
 		<ion-toggle ng-model=allOn ng-change="allOnChanged()" toggle-class="toggle-calm">
 			LED

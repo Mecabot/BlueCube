@@ -15,7 +15,7 @@
 				Name
 			</div>
       <label class="item item-input">
-        <input type="text" placeholder="Name" ng-model="favourite.name">
+        <input type="text" placeholder="Name" ng-model="staticCommandsData.name">
       </label>
     </div>
 
@@ -24,11 +24,11 @@
 				Selected Actions
 			</div>
 		  <div class="padding" align="right">
-  			<button class="button button-outline ion-close-round button-assertive" ng-click="data.showDelete = !data.showDelete"></button>
-  			<button class="button button-outline ion-navicon button-calm" ng-click="data.showReordering = !data.showReordering"></button>
+  			<button class="button button-outline ion-close-round button-assertive" ng-click="dataModal.showDelete = !dataModal.showDelete"></button>
+  			<button class="button button-outline ion-navicon button-calm" ng-click="dataModal.showReordering = !dataModal.showReordering"></button>
       </div>
 
-    		<ion-list type="list-inset" show-delete="data.showDelete" show-reorder="data.showReordering">
+    		<ion-list type="list-inset" show-delete="dataModal.showDelete" show-reorder="dataModal.showReordering">
     			<ion-item ng-repeat="static in staticCommands track by static.id">
 		    		{{static.cmd}}
 				    <ion-delete-button class="ion-close-round" ng-click="deleteStaticCommand({{static.id}})"></ion-delete-button>
