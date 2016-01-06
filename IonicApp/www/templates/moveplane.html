@@ -4,7 +4,7 @@
 			<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
 		</ion-nav-buttons>
 	</ion-nav-bar>
-  <ion-content class="padding">
+  <ion-content>
   	<div class="card">
   		<div class="item item-divider">
 				Axis
@@ -44,13 +44,17 @@
   		<div class="item item-divider">
 				{{"colourSpelling" | translate}}
 			</div>
+
+			<div class="padding-horizontal">
 			<button ng-click="openModal()" class="button button-block button-light" back-colour="{{selectedColour}}"></button>
+      </div>
 		</div>
 
+    <div class="padding-horizontal">
 		<button ng-click="movePlane()" class="button button-block button-positive">
 			Move Plane
 		</button>
-
+    </div>
 		<br>
 	</ion-content>
 </ion-view>
