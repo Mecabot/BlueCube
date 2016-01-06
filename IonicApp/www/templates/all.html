@@ -38,11 +38,7 @@
     			<button class="button button-clear ion-navicon button-calm" ng-click="data.showReordering = !data.showReordering"></button>
   			</div>
       </div>
-		<div class="row padding-horizontal">
-		  <div class="col" align="right">
-      </div>
-		</div>
-
+		<div class="padding-top">
 		<ion-list type="list-inset" show-delete="data.showDelete" show-reorder="data.showReordering">
 			<ion-item ng-repeat="userColour in colours track by userColour.id" ng-style="{'background-color': '#{{userColour.hex}}'}" ng-click="sendSelectedColour('{{userColour.hex}}')">
 				#{{userColour.hex}}
@@ -50,7 +46,6 @@
 				<ion-reorder-button class="ion-navicon" on-reorder="reorderItem(userColour, $fromIndex, $toIndex)"></ion-reorder-button>
 			</ion-item>
 		</ion-list>
-    <br>
     </div>
     <br>
     </ion-content>
