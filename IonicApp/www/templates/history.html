@@ -5,21 +5,23 @@
 		</ion-nav-buttons>
 	</ion-nav-bar>
 	<ion-content>
-		<div class="row padding-horizontal">
-		  <div class="col col-center">
-		    <h4>Manage</h4>
-		  </div>
-		  <div align="right">
-  			<button class="button button-outline ion-close-round button-assertive" ng-click="data.showDelete = !data.showDelete"></button>
+  	<div class="card">
+  		<div class="item item-divider row">
+  		  <div class="col col-center">
+				History
+				</div>
+				<div class="col" align="right">
+  			  <button class="button button-clear ion-close-round button-assertive" ng-click="data.showDelete = !data.showDelete"></button>
+  			</div>
       </div>
-		</div>
-
+    <div class="padding-top">
 		<ion-list type="list-inset" show-delete="data.showDelete">
 			<ion-item ng-repeat="command in commands track by command.id" ng-click="replayHistoryItem('{{command.cmd}}')">
 				{{command.cmd}}
 				<ion-delete-button class="ion-close-round" ng-click="deleteHistoryItem({{command.id}})"></ion-delete-button>
 			</ion-item>
 		</ion-list>
+    </div>
     <br>
     </ion-content>
 </ion-view>
