@@ -3,22 +3,21 @@
 		<ion-nav-buttons side="left">
 			<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
 		</ion-nav-buttons>
-		<ion-nav-buttons side="right">
-			<button class="button button-icon button-clear ion-ios-plus-empty" ng-click="openModal()"></button>
-		</ion-nav-buttons>
 	</ion-nav-bar>
-	<ion-content class="padding">
+	<ion-content>
 
-		<div class="row padding-horizontal">
-		  <div class="col col-center">
-		    <h4>{{"favouriteSpelling" | translate}}s</h4>
-		  </div>
-		  <div align="right">
-  			<button class="button button-outline ion-close-round button-assertive" ng-click="data.showDelete = !data.showDelete"></button>
-  			<button class="button button-outline ion-navicon button-calm" ng-click="data.showReordering = !data.showReordering"></button>
+  	<div class="card">
+  		<div class="item item-divider row">
+  		  <div class="col col-center">
+				{{"favouriteSpelling" | translate}}s
+				</div>
+				<div class="col" align="right">
+    			<button class="button button-clear ion-plus-round button-balanced" ng-click="openModal()"></button>
+  			  <button class="button button-clear ion-close-round button-assertive" ng-click="data.showDelete = !data.showDelete"></button>
+  			  <button class="button button-clear ion-navicon button-calm" ng-click="data.showReordering = !data.showReordering"></button>
+  			</div>
       </div>
-		</div>
-
+    <div class="padding-top">
 		<ion-list type="list-inset" show-delete="data.showDelete" show-reorder="data.showReordering">
 			<ion-item ng-repeat="item in favourites track by item.id" ng-click="sendFavourite({{item.id}})">
 				{{item.name}}
@@ -26,7 +25,8 @@
 				<ion-reorder-button class="ion-navicon" on-reorder="reorderFavourites(item, $fromIndex, $toIndex)"></ion-reorder-button>
 			</ion-item>
 		</ion-list>
-
+    </div>
+    </div>
     <br>
 
 <!--
