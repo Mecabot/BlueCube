@@ -4,11 +4,19 @@
 			<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
 		</ion-nav-buttons>
 	</ion-nav-bar>
-	<ion-content class="padding">
-		<div>
-			<button ng-click="openModalPrimary()" class="button button-block button" back-colour="{{selectedColour}}"></button>
-		</div>
-		<div class="card">
+	<ion-content>
+  	<div class="card">
+  		<div class="item item-divider">
+				{{"colourSpelling" | translate}}
+			</div>
+  		<div class="padding-horizontal">
+  			<button ng-click="openModal()" class="button button-block button" back-colour="{{selectedColour}}"></button>
+  		</div>
+    </div>
+   <div class="card">
+  		<div class="item item-divider">
+				Cube
+			</div>
 			<div class="row">
 				<div class="col"></div>
 				<div class="col"></div>
@@ -46,7 +54,7 @@
 				<div class="col"></div>
 			</div>
 
-			<hr>
+			<hr class="grey">
 
 			<div class="row">
 				<div class="col"></div>
@@ -85,7 +93,7 @@
 				<div class="col"></div>
 			</div>
 
-			<hr>
+			<hr class="grey">
 
 			<div class="row">
 				<div class="col"></div>
@@ -124,7 +132,7 @@
 				<div class="col"></div>
 			</div>
 
-			<hr>
+			<hr class="grey">
 
 			<div class="row">
 				<div class="col"></div>
@@ -186,9 +194,11 @@
       </div>
 		</div>
 
+		<div class="padding-horizontal">
 		<button ng-click="drawBox()" class="button button-block button-positive">
 			Draw Box
 		</button>
+    </div>
     <br>
 	</ion-content>
 </ion-view>
