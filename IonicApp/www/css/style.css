@@ -20,6 +20,10 @@
   margin-top: 0px; !important;
 }
 
+.item .item-divider {
+  font-size: 20px !important;
+}
+
 hr.grey {
     border: 0;
     height: 1px;
