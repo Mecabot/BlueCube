@@ -507,6 +507,7 @@ angular.module('BlueCube.controllers', [])
 .controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading, $localstorage, $ionicSideMenuDelegate, $translate) {
 	$scope.connectButton = true;
 	$scope.disconnectButton = false;
+  $scope.hideLogText = true;
 
     if ($localstorage.get('autoConnect') == "true") {
       $scope.autoConnect = true;
@@ -577,6 +578,7 @@ angular.module('BlueCube.controllers', [])
 			$scope.show();
 
 			// Check if Bluetooth is enabled
+			$scope.hideLogText = false;
 			$scope.logText = "Starting Connection Procedures<br>";
 			$cordovaBluetoothSerial.isEnabled().then(
 				function() {

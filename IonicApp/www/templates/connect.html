@@ -4,7 +4,12 @@
 			<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
 		</ion-nav-buttons>
 	</ion-nav-bar>
-	<ion-content class="padding">
+	<ion-content>
+  	<div class="card">
+  		<div class="item item-divider">
+				Connect
+			</div>
+  		<div class="padding-horizontal padding-top">
 		<ion-toggle ng-model="autoConnect" ng-change="autoConnectChanged()" toggle-class="toggle-balanced">
 			Automatically Connect
 		</ion-toggle>
@@ -16,10 +21,14 @@
 		<button ng-click="disconnect()" ng-show="disconnectButton" class="button button-block button-assertive">
 			Disconnect
 		</button>
+  		</div>
+    </div>
 
-		<hr>
-		<div ng-bind-html="logText"></div>
-		<hr>
-
+  	<div class="card" ng-hide="hideLogText">
+  		<div class="item item-divider">
+				Connect Information
+			</div>
+		<div class="padding-horizontal" ng-bind-html="logText"></div>
+    </div>
 	</ion-content>
 </ion-view>
