@@ -338,7 +338,7 @@ angular.module('BlueCube.utils', [])
 								interval: 3000,
 								autoClose: 3000,
 								type: 'error',
-								transition: 'vertical'
+								transition: 'fade'
 							});
 							console.log("Error with " + message + " " + error);
 						}
@@ -350,7 +350,7 @@ angular.module('BlueCube.utils', [])
 						interval: 3000,
 						autoClose: 3000,
 						type: 'error',
-						transition: 'vertical'
+						transition: 'fade'
 					});
 				}
 			);

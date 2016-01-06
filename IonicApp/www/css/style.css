@@ -30,6 +30,21 @@ hr.grey {
     background: #dddddd;
 }
 
+.content-banner {
+  width: 100%;
+  color: white;
+  height: 30px;
+  line-height: 30px;
+  opacity: 0.7;
+
+ margin:0 auto;
+ position:fixed;
+ bottom:0;
+ margin-top:-15px;
+ top: auto;
+
+}
+
 .content-banner.error {
   opacity: 0.9 !important;
   background-color: red !important;
