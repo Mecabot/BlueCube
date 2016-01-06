@@ -5,10 +5,18 @@
 		</ion-nav-buttons>
 	</ion-nav-bar>
 	<ion-content>
-		<div class="padding-horizontal">
-			<button ng-click="openModal()" class="button button-block button" back-colour="{{selectedColour}}"></button>
-		</div>
-		<div class="card">
+  	<div class="card">
+  		<div class="item item-divider">
+				{{"colourSpelling" | translate}}
+			</div>
+  		<div class="padding-horizontal">
+  			<button ng-click="openModal()" class="button button-block button" back-colour="{{selectedColour}}"></button>
+  		</div>
+    </div>
+   <div class="card">
+  		<div class="item item-divider">
+				Cube LEDs
+			</div>
 			<div class="row">
 				<div class="col"></div>
 				<div class="col"></div>
@@ -46,7 +54,7 @@
 				<div class="col"></div>
 			</div>
 
-			<hr>
+			<hr class="grey">
 
 			<div class="row">
 				<div class="col"></div>
@@ -85,7 +93,7 @@
 				<div class="col"></div>
 			</div>
 
-			<hr>
+			<hr class="grey">
 
 			<div class="row">
 				<div class="col"></div>
@@ -124,7 +132,7 @@
 				<div class="col"></div>
 			</div>
 
-			<hr>
+			<hr class="grey">
 
 			<div class="row">
 				<div class="col"></div>
@@ -163,5 +171,7 @@
 				<div class="col"></div>
 			</div>
 		</div>
+
+		<br>
 	</ion-content>
 </ion-view>

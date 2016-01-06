@@ -20,6 +20,12 @@
   margin-top: 0px; !important;
 }
 
+hr.grey {
+    border: 0;
+    height: 1px;
+    background: #dddddd;
+}
+
 .content-banner.error {
   opacity: 0.9 !important;
   background-color: red !important;
