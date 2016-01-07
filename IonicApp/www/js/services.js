@@ -132,25 +132,24 @@ angular.module('BlueCube.services', [])
 	}
 })
 
-.service('StaticFavouritesService', function($localstorage) {
+.service('StaticFavouritesService', function($localstorage, $defaults) {
   var staticFavourites;
   var uniqueID;
 
-  if ($localstorage.getObject('staticFavourites') != undefined) {
-		staticFavourites = $localstorage.getObject('staticFavourites');
-	} else {
-		staticFavourites = [];
-		$localstorage.set('staticFavourites_uniqueID', 0);
+  if ($localstorage.getObject('staticFavourites') == undefined) {
+  	$defaults.resetStatic();
 	}
 
+	staticFavourites = $localstorage.getObject('staticFavourites');
 	uniqueID = parseInt($localstorage.get('staticFavourites_uniqueID'));
 
 	this.list = function() {
-     if ($localstorage.getObject('staticFavourites') != undefined) {
-       staticFavourites = $localstorage.getObject('staticFavourites');
-     } else {
-       staticFavourites = [];
-     }
+    if ($localstorage.getObject('staticFavourites') == undefined) {
+    	$defaults.resetStatic();
+  	}
+
+  	staticFavourites = $localstorage.getObject('staticFavourites');
+
     return staticFavourites;
 	}
 
