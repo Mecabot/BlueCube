@@ -2,7 +2,7 @@ document.addEventListener('deviceready', function() {
     angular.bootstrap(document, ['BlueCube']);
 }, false);
 
-angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueCube.directives', 'BlueCube.services', 'BlueCube.utils', 'pascalprecht.translate', 'jett.ionic.content.banner'])
+angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueCube.directives', 'BlueCube.services', 'BlueCube.utils', 'pascalprecht.translate', 'ngSanitize', 'jett.ionic.content.banner'])
 
 .run(function($ionicPlatform) {
 	$ionicPlatform.ready(function() {
@@ -33,6 +33,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 
   $translateProvider.preferredLanguage("en-AU");
   $translateProvider.fallbackLanguage("en-AU");
+  $translateProvider.useSanitizeValueStrategy('sanitize');
 
 	$stateProvider
 		.state('app', {
