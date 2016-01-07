@@ -91,6 +91,7 @@ angular.module('BlueCube.utils', [])
 		resetOthers: function() {
 			$localstorage.delete('autoConnect');
 			$localstorage.delete('bluetoothUUID');
+			$localstorage.delete('liveAllColourChanges');
 		}
 	}
 }])

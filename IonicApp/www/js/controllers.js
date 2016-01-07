@@ -13,7 +13,12 @@ angular.module('BlueCube.controllers', [])
 
 .controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourService, $localstorage) {
 
-  $scope.live = true;
+  if ($localstorage.get('liveAllColourChanges', 'true') == "true") {
+    $scope.live = true;
+  } else {
+    $scope.live = false;
+  }
+
   $scope.useSelectedColourButton = false;
 
 	$scope.data = {
@@ -47,9 +52,11 @@ angular.module('BlueCube.controllers', [])
   $scope.liveChanged = function() {
     if ($scope.live == false) {
       $scope.live = true;
+      $localstorage.set('liveAllColourChanges', 'true');
       $scope.useSelectedColourButton = false;
     } else {
       $scope.live = false;
+      $localstorage.set('liveAllColourChanges', 'false');
       $scope.useSelectedColourButton = true;
     }
   };
