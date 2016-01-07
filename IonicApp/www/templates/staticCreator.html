@@ -41,6 +41,10 @@
       <button ng-click="saveFavourite()" ng-show="saveButton" class="button button-block button-positive">
   			Save {{"favouriteSpelling" | translate}}
 	  	</button>
+    <div ng-show="!staticCommands.length" class="padding-horizontal" align="center">
+      <p>Please select actions from below.</p>
+    </div>
+
     </div>
     </div>
   </div>
