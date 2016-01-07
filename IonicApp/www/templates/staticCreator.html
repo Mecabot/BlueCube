@@ -19,15 +19,17 @@
       </label>
     </div>
 
-    <div class="card">
-  		<div class="item item-divider">
+  	<div class="card">
+  		<div class="item item-divider row">
+  		  <div class="col col-center">
 				Selected Actions
-			</div>
-		  <div class="padding" align="right">
-  			<button class="button button-outline ion-close-round button-assertive" ng-click="dataModal.showDelete = !dataModal.showDelete"></button>
-  			<button class="button button-outline ion-navicon button-calm" ng-click="dataModal.showReordering = !dataModal.showReordering"></button>
+				</div>
+				<div class="col" align="right">
+    			<button class="button button-clear ion-close-round button-assertive" ng-click="dataModal.showDelete = !dataModal.showDelete"></button>
+    			<button class="button button-clear ion-navicon button-calm" ng-click="dataModal.showReordering = !dataModal.showReordering"></button>
+  			</div>
       </div>
-
+		<div class="padding-top">
     		<ion-list type="list-inset" show-delete="dataModal.showDelete" show-reorder="dataModal.showReordering">
     			<ion-item ng-repeat="static in staticCommands track by static.id">
 		    		{{static.cmd}}
@@ -35,26 +37,24 @@
 				    <ion-reorder-button class="ion-navicon" on-reorder="reorderStaticCommands(static, $fromIndex, $toIndex)"></ion-reorder-button>
 			    </ion-item>
 		    </ion-list>
-
     <div class="padding-horizontal">
-      <button ng-click="saveFavourite()" ng-show="saveButton" class="button button-block">
+      <button ng-click="saveFavourite()" ng-show="saveButton" class="button button-block button-positive">
   			Save {{"favouriteSpelling" | translate}}
 	  	</button>
     </div>
     </div>
+  </div>
 
         <div class="card">
   		<div class="item item-divider">
 				Possible Actions
 			</div>
-			<div class="row">
-		    <div class="col">
+			<div class="padding-top">
 		<ion-list type="list-inset">
 			<ion-item ng-repeat="command in commands track by command.id" ng-click="addStaticCommand('{{command.cmd}}')">
 				{{command.cmd}}
 			</ion-item>
 		</ion-list>
-    </div>
     </div>
     </div>
     <br>
