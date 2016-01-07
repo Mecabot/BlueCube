@@ -46,6 +46,10 @@
 				<ion-reorder-button class="ion-navicon" on-reorder="reorderItem(userColour, $fromIndex, $toIndex)"></ion-reorder-button>
 			</ion-item>
 		</ion-list>
+    <div ng-show="!colours.length" class="padding-horizontal" align="center">
+      <p>No {{"favouriteSpelling" | translate | lowercase}} {{"colourSpelling" | translate | lowercase}}s have been saved.</p>
+    </div>
+    </div>
     </div>
     <br>
     </ion-content>
