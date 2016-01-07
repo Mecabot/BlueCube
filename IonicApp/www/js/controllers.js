@@ -690,7 +690,7 @@ angular.module('BlueCube.controllers', [])
 .controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction) {
 })
 
-.controller('StaticCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs, StaticFavouritesService) {
+.controller('StaticCtrl', function($ionicPlatform, $scope, $timeout, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs, StaticFavouritesService) {
 	$scope.data = {
 		showDelete: false,
 		showReordering: false,
@@ -759,8 +759,16 @@ angular.module('BlueCube.controllers', [])
 
 	  $scope.sendFavourite = function (id) {
 	    $cmds = StaticFavouritesService.get(id);
+
 	    for (i = 0; i < $cmds.length; i++) {
-  	    $cubeAction.sendMessage($cmds[i].cmd, true);
+	      cmdToSend = $cmds[i].cmd;
+
+  	    // To work in the loop, I needed to wrap the timeout call in a closure function,
+  	    // and pass the values into it. If I didin't do this, it would only use the last
+  	    // value for all calls.
+	      (function(cmdToSend, i) {
+          $timeout(function() { $cubeAction.sendMessage(cmdToSend, true); }, i);
+        })(cmdToSend, i);
 	    }
 	  }
 /*
