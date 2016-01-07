@@ -9,23 +9,32 @@
 		</ion-header-bar>
 
 		<ion-content ng-controller="ColourPickerCtrl">
-			<div class="padding-top row" back-colour="{{hexColour}}" align="center">
-				<div class="col col-center">
-					<uicolorpicker ng-model="colour.targetColor"></uicolorpicker>
-				</div>
-			</div>
-			<div></div>
-			<div class="row padding-horizontal padding-top">
-				<div class="col col-center">
-					<h4>{{"favouriteSpelling" | translate}}s</h4>
-				</div>
-				<div align="right">
-					<button class="button button-outline ion-plus-round button-balanced" ng-click="addUserColour()"></button>
-					<button class="button button-outline ion-close-round button-assertive" ng-click="data.showDelete = !data.showDelete"></button>
-					<button class="button button-outline ion-navicon button-calm" ng-click="data.showReordering = !data.showReordering"></button>
-				</div>
+  	<div class="card">
+  		<div class="item item-divider">
+				{{"colourSpelling" | translate}}
 			</div>
 
+      <div class="padding">
+      <div class="row" back-colour="{{hexColour}}" align="center">
+        <div class="col col-center">
+          <uicolorpicker ng-model="colour.targetColor"></uicolorpicker>
+        </div>
+      </div>
+      </div>
+    </div>
+
+  	<div class="card">
+  		<div class="item item-divider row">
+  		  <div class="col col-center">
+				{{"favouriteSpelling" | translate}}s
+				</div>
+				<div class="col" align="right">
+    			<button class="button button-clear ion-plus-round button-balanced" ng-click="addUserColour()"></button>
+    			<button class="button button-clear ion-close-round button-assertive" ng-click="data.showDelete = !data.showDelete"></button>
+    			<button class="button button-clear ion-navicon button-calm" ng-click="data.showReordering = !data.showReordering"></button>
+  			</div>
+      </div>
+		<div class="padding-top">
 			<ion-list type="list-inset" show-delete="data.showDelete" show-reorder="data.showReordering">
 				<ion-item ng-repeat="userColour in colours track by userColour.id" ng-style="{'background-color': '#{{userColour.hex}}'}" ng-click="chooseFavouriteColour('{{userColour.hex}}')">
 					#{{userColour.hex}}
@@ -33,7 +42,7 @@
 					<ion-reorder-button class="ion-navicon" on-reorder="reorderItem(userColour, $fromIndex, $toIndex)"></ion-reorder-button>
 				</ion-item>
 			</ion-list>
-
+      </div>
 			<br>
 
     </ion-content>
