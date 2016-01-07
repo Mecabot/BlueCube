@@ -21,6 +21,10 @@
 				<ion-delete-button class="ion-close-round" ng-click="deleteHistoryItem({{command.id}})"></ion-delete-button>
 			</ion-item>
 		</ion-list>
+    <div ng-show="!commands.length" class="padding-horizontal" align="center">
+      <p>No history items are present.</p>
+    </div>
+    </div>
     </div>
     <br>
     </ion-content>
