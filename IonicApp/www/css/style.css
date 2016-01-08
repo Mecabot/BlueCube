@@ -50,3 +50,11 @@ hr.grey {
   background-color: red !important;
   font-weight: bold !important;
 }
+
+.row.ledGrid {
+  padding-top: 1px !important;
+}
+
+.col.ledGrid {
+  padding: 0px !important;
+}
