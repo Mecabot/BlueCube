@@ -81,6 +81,17 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		.state('app.next', {
+			url: '/next',
+			cache: false,
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/next.html',
+					controller: 'NextCtrl'
+				}
+			}
+		})
+
 		.state('app.setplane', {
 			url: '/setplane',
 			cache: false,

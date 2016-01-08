@@ -155,6 +155,47 @@ angular.module('BlueCube.controllers', [])
 	});
 })
 
+.controller('NextCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
+	$scope.cube = [];
+
+	$ionicPlatform.ready(function() {
+    $scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+
+    $scope.next = function () {
+      var colourToUse = $localstorage.get('selectedColour', '00d1ff');
+      var message = "next " + colourToUse + ";";
+			$cubeAction.sendMessage(message, true);
+    }
+
+		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
+			scope: $scope,
+			animation: 'slide-in-up'
+		}).then(function(modal) {
+			$scope.modal = modal
+		});
+
+		$scope.openModal = function() {
+			$scope.modal.show()
+		};
+
+		$scope.chooseFavouriteColour = function(selectedColour) {
+			$localstorage.set('selectedColour', selectedColour);
+			$scope.selectedColour = selectedColour;
+			$scope.closeModal();
+		};
+
+		$scope.closeModal = function() {
+			$scope.modal.hide();
+			$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+		};
+
+		$scope.$on('$destroy', function() {
+			$scope.modal.remove();
+		});
+
+	});
+})
+
 .controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
 	$ionicPlatform.ready(function() {
     $scope.values = {
