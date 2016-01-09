@@ -189,4 +189,65 @@ angular.module('BlueCube.services', [])
 		staticFavourites.splice(toIndex, 0, item);
 		$localstorage.setObject('staticFavourites', staticFavourites);
 	}
+})
+
+.service('UserDefinedService', function($localstorage, $defaults) {
+  var userDefinedFunctions;
+  var uniqueID;
+
+  if ($localstorage.getObject('userDefinedFunctions') == undefined) {
+  	$defaults.resetUserDefinedFunctions();
+	}
+
+	userDefinedFunctions = $localstorage.getObject('userDefinedFunctions');
+	uniqueID = parseInt($localstorage.get('userDefinedFunctions_uniqueID'));
+
+	this.list = function() {
+    if ($localstorage.getObject('userDefinedFunctions') == undefined) {
+    	$defaults.resetUserDefinedFunctions();
+  	}
+
+  	userDefinedFunctions = $localstorage.getObject('userDefinedFunctions');
+
+    return userDefinedFunctions;
+	}
+
+
+	this.get = function(id) {
+		for (i in userDefinedFunctions) {
+			if (userDefinedFunctions[i].id == id) {
+				return userDefinedFunctions[i];
+			}
+		}
+	}
+
+	this.add = function(udf) {
+	  var userDefinedItem = {
+	                      id: uniqueID,
+	                      name: udf.name,
+	                      number: udf.number,
+	                      colourRequired: udf.colourRequired,
+	                      colour: udf.colour,
+	                    };
+		uniqueID = uniqueID + 1;
+		userDefinedFunctions.push(userDefinedItem);
+		$localstorage.setObject('userDefinedFunctions', userDefinedFunctions);
+    $localstorage.set('userDefinedFunctions_uniqueID', uniqueID);
+	}
+
+	this.delete = function(id) {
+		for (i in userDefinedFunctions) {
+			if (userDefinedFunctions[i].id == id) {
+				userDefinedFunctions.splice(i, 1);
+			}
+		}
+
+		$localstorage.setObject('userDefinedFunctions', userDefinedFunctions);
+	}
+
+  this.reorder = function(item, fromIndex, toIndex) {
+		userDefinedFunctions.splice(fromIndex, 1);
+		userDefinedFunctions.splice(toIndex, 0, item);
+		$localstorage.setObject('userDefinedFunctions', userDefinedFunctions);
+	}
 });

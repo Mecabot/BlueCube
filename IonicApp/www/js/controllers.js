@@ -728,7 +728,86 @@ angular.module('BlueCube.controllers', [])
 		};
 })
 
-.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction) {
+.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs, UserDefinedService) {
+	$scope.data = {
+		showDelete: false,
+		showReordering: false,
+	};
+
+	$scope.$on('$ionicView.beforeEnter', function() {
+		$scope.userDefinedFunctions = UserDefinedService.list();
+		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+	});
+
+	$ionicPlatform.ready(function() {
+    $scope.userDefinedFunctions = UserDefinedService.list();
+    $scope.userDefinedFuntionData = {};
+    $scope.userDefinedFuntionData.name = '';
+    $scope.userDefinedFuntionData.number = '';
+    $scope.userDefinedFuntionData.colourRequired = false;
+    $scope.userDefinedFuntionData.colour = '';
+
+		$ionicModal.fromTemplateUrl('templates/userDefinedModal.html', {
+			scope: $scope,
+			animation: 'slide-in-up'
+		}).then(function(modal) {
+			$scope.modal = modal
+		});
+
+		$scope.openModal = function() {
+			$scope.modal.show()
+		};
+
+		$scope.closeModal = function() {
+			$scope.modal.hide();
+		};
+
+    // Execute action on hide modal
+    $scope.$on('modal.hidden', function() {
+      $scope.userDefinedFuntionData.name = '';
+      $scope.userDefinedFuntionData.number = '';
+      $scope.userDefinedFuntionData.colourRequired = false;
+      $scope.userDefinedFuntionData.colour = '';
+    });
+
+		$scope.$on('$destroy', function() {
+			$scope.modal.remove();
+		});
+
+    $scope.saveUserDefinedFunction = function() {
+      if ($scope.userDefinedFuntionData.name == "") {
+        $cordovaDialogs.alert('Please provide a name', 'Error', 'OK');
+        return false;
+      }
+      if (isNaN(parseInt($scope.userDefinedFuntionData.number))) {
+        $cordovaDialogs.alert('Please provide a number that matches the user defined function in the Arduino sketch', 'Error', 'OK');
+        return false;
+      }
+
+      // Add the item
+      $scope.userDefinedFuntionData.colour = $localstorage.get('selectedColour', '00d1ff');
+    	UserDefinedService.add($scope.userDefinedFuntionData);
+    	$scope.modal.hide();
+    }
+
+	  $scope.deleteFavourite = function (id) {
+		  UserDefinedService.delete(id);
+	  }
+
+	  $scope.reorderFavourites = function(item, fromIndex, toIndex) {
+		  UserDefinedService.reorder(item, fromIndex, toIndex);
+	  }
+
+	  $scope.sendUDF = function (id) {
+	    $udf = UserDefinedService.get(id);
+	    var message = "user " + $udf.number;
+	    if ($udf.colourRequired == true) {
+	      message = message + " " + $udf.colour;
+	    }
+	    message = message + ";";
+      $cubeAction.sendMessage(message, true);
+	  }
+	});
 })
 
 .controller('StaticCtrl', function($ionicPlatform, $scope, $timeout, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs, StaticFavouritesService) {
@@ -861,6 +940,15 @@ angular.module('BlueCube.controllers', [])
     });
   }
 
+  $scope.resetUserDefinedFunctions = function () {
+    $cordovaDialogs.confirm('Are you sure you want to reset to the default values?', 'Reset', ['Cancel','OK'])
+    .then(function(buttonIndex) {
+      if (buttonIndex ==1) {
+        $defaults.resetUserDefinedFunctions();
+      }
+    });
+  }
+
   $scope.resetStatic = function () {
     $cordovaDialogs.confirm('Are you sure you want to reset to the default values?', 'Reset', ['Cancel','OK'])
     .then(function(buttonIndex) {
@@ -893,6 +981,7 @@ angular.module('BlueCube.controllers', [])
     .then(function(buttonIndex) {
       if (buttonIndex == 2) {
         $scope.resetColours();
+        $scope.resetUserDefinedFunctions();
         $scope.resetStatic();
         $scope.resetHistory();
         $scope.resetOthers();
@@ -963,6 +1052,43 @@ angular.module('BlueCube.controllers', [])
 	$scope.reorderItem = function(item, fromIndex, toIndex) {
 		ColourService.reorder(item, fromIndex, toIndex);
 	}
+})
+
+.controller('UserDefinedModalCtrl', function($ionicPlatform, $scope, $ionicModal, $localstorage) {
+	$scope.dataModal = {
+  	showDelete: false,
+		showReordering: false,
+	};
+
+	$ionicPlatform.ready(function() {
+	  $scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+
+		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
+			scope: $scope,
+			animation: 'slide-in-up'
+		}).then(function(modal) {
+			$scope.modal = modal
+		});
+
+		$scope.openModal = function() {
+			$scope.modal.show()
+		};
+
+		$scope.chooseFavouriteColour = function(selectedColour) {
+			$localstorage.set('selectedColour', selectedColour);
+			$scope.selectedColour = selectedColour;
+			$scope.closeModal();
+		};
+
+		$scope.closeModal = function() {
+			$scope.modal.hide();
+			$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+		};
+
+		$scope.$on('$destroy', function() {
+			$scope.modal.remove();
+		});
+  });
 })
 
 .controller('StaticCreatorCtrl', function($ionicPlatform, $scope, HistoryService, $localstorage) {

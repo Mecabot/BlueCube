@@ -110,6 +110,20 @@ angular.module('BlueCube.utils', [])
 			$localstorage.set('staticFavourites_uniqueID', 4);
 		},
 
+		resetUserDefinedFunctions: function() {
+			var udfDefaults = [
+													{
+														id: 0,
+														name: "ZigZag",
+														number: 1,
+														colourRequired: true,
+														colour: "0000ff",
+													}
+												];
+			$localstorage.setObject('userDefinedFunctions', udfDefaults);
+			$localstorage.set('userDefinedFunctions_uniqueID', 1);
+		},
+
 		resetOthers: function() {
 			$localstorage.delete('autoConnect');
 			$localstorage.delete('bluetoothUUID');

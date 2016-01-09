@@ -1,10 +1,34 @@
-<ion-view view-title="User Defined Presets">
+<ion-view view-title="User Defined Functions">
 	<ion-nav-bar class="bar-positive">
 		<ion-nav-buttons side="left">
 			<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
 		</ion-nav-buttons>
 	</ion-nav-bar>
   <ion-content>
-		<h2>User Defined Presets</h2>
-	</ion-content>
+  	<div class="card">
+  		<div class="item item-divider row">
+  		  <div class="col col-center">
+				User Defined Functions
+				</div>
+				<div class="col" align="right">
+    			<button class="button button-clear ion-plus-round button-balanced" ng-click="openModal()"></button>
+  			  <button class="button button-clear ion-close-round button-assertive" ng-click="data.showDelete = !data.showDelete"></button>
+  			  <button class="button button-clear ion-navicon button-calm" ng-click="data.showReordering = !data.showReordering"></button>
+  			</div>
+      </div>
+    <div class="padding-top">
+		<ion-list type="list-inset" show-delete="data.showDelete" show-reorder="data.showReordering">
+			<ion-item ng-repeat="item in userDefinedFunctions track by item.id" ng-click="sendUDF({{item.id}})">
+				{{item.name}}
+				<ion-delete-button class="ion-close-round" ng-click="deleteFavourite({{item.id}})"></ion-delete-button>
+				<ion-reorder-button class="ion-navicon" on-reorder="reorderFavourites(item, $fromIndex, $toIndex)"></ion-reorder-button>
+			</ion-item>
+		</ion-list>
+    <div ng-show="!userDefinedFunctions.length" class="padding-horizontal" align="center">
+      <p>No user defined functions have been saved.</p>
+    </div>
+    </div>
+    </div>
+    <br>
+  </ion-content>
 </ion-view>
