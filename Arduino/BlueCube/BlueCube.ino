@@ -15,11 +15,14 @@
 #include <SPI.h>
 #include <SoftwareSerial.h>
 #include "Cube.h"
+#include "ZigZag.h"
 
 Cube cube;
 
+ZigZag zigzag(300, cube);
+
 byte action = 0; // Track which user defined function to run
-rgb_t theColour; // Track the colour to use with user defined function
+rgb_t theColour = BLUE; // Track the colour to use with user defined function
 
 #include "Adafruit_BLE.h"
 #include "Adafruit_BluefruitLE_UART.h"
@@ -159,7 +162,12 @@ void setup(void)
 /**************************************************************************/
 void loop(void)
 {
-  readPacket(&ble, BLE_READPACKET_TIMEOUT);
+//  readPacket(&ble, BLE_READPACKET_TIMEOUT);
+  zigzag.Update(theColour);
+}
+
+void other(void)
+{
   if (cube.inUserMode()) 
   {
       // The last processed serial command was for a user
@@ -168,7 +176,7 @@ void loop(void)
       switch (action)
       {
         case 1:
-          zigzag();
+          zigzag1();
           break;
         case 2:
           randomPastels();
@@ -184,54 +192,6 @@ void loop(void)
           break;
       }
   }      
-}
-
-void zigzag()
-{
-  // Zig Zag style pattern
-  // The Zig
-  cube.all(BLACK);
-  cube.set(0,0,0, theColour);
-  cube.set(2,0,0, theColour);
-  cube.set(1,1,0, theColour);
-  cube.set(3,1,0, theColour);
-  cube.set(0,2,0, theColour);
-  cube.set(2,2,0, theColour);
-  cube.set(1,3,0, theColour);
-  cube.set(3,3,0, theColour);
-  cube.copyplane(Z, 0, 2);    
-  cube.set(1,0,1, theColour);
-  cube.set(3,0,1, theColour);
-  cube.set(0,1,1, theColour);
-  cube.set(2,1,1, theColour);
-  cube.set(1,2,1, theColour);
-  cube.set(3,2,1, theColour);
-  cube.set(0,3,1, theColour);
-  cube.set(2,3,1, theColour);
-  cube.copyplane(Z, 1, 3);  
-  delay(300);
-
-  // The Zag
-  cube.all(BLACK);
-  cube.set(1,0,0, theColour);
-  cube.set(3,0,0, theColour);
-  cube.set(0,1,0, theColour);
-  cube.set(2,1,0, theColour);
-  cube.set(1,2,0, theColour);
-  cube.set(3,2,0, theColour);
-  cube.set(0,3,0, theColour);
-  cube.set(2,3,0, theColour);
-  cube.copyplane(Z, 0, 2);    
-  cube.set(0,0,1, theColour);
-  cube.set(2,0,1, theColour);
-  cube.set(1,1,1, theColour);
-  cube.set(3,1,1, theColour);
-  cube.set(0,2,1, theColour);
-  cube.set(2,2,1, theColour);
-  cube.set(1,3,1, theColour);
-  cube.set(3,3,1, theColour);
-  cube.copyplane(Z, 1, 3);   
-  delay(300);
 }
 
 void randomPastels()
