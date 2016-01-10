@@ -183,7 +183,9 @@ void readPacket(Adafruit_BLE *ble, int timeout)
 
   /* Buffer to hold incoming characters */
   char packetbuffer[READ_BUFSIZE+1];
-  memset(packetbuffer, 0, READ_BUFSIZE);
+
+  /* Fill buffer with zeros */
+  memset(packetbuffer, 0, READ_BUFSIZE+1);
 
   while (timeout--) {
     if (bufferIndex >= 32) break;
