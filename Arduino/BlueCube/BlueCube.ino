@@ -178,8 +178,8 @@ void loop(void)
 
 void readPacket(Adafruit_BLE *ble, int timeout) 
 {
-  // Copy the Timeout period
-  int origtimeout = timeout, bufferIndex = 0;
+  int origtimeout = timeout;                    // Copy the Timeout period
+  int bufferIndex = 0;                          // Current pos within the received char buffer
 
   /* Buffer to hold incoming characters */
   char packetbuffer[READ_BUFSIZE+1];
