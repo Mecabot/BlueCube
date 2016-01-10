@@ -16,10 +16,12 @@
 #include <SoftwareSerial.h>
 #include "Cube.h"
 #include "ZigZag.h"
+#include "RandomColours.h"
 
 Cube cube;
 
 ZigZag zigzag(300, cube);
+RandomColours randomColours(2, cube);
 
 byte action = 0; // Track which user defined function to run
 rgb_t theColour = BLUE; // Track the colour to use with user defined function
@@ -163,7 +165,11 @@ void setup(void)
 void loop(void)
 {
 //  readPacket(&ble, BLE_READPACKET_TIMEOUT);
-  zigzag.Update(theColour);
+//  zigzag.Update(theColour);
+
+//    randomColours.pastels();
+//    randomColours.allColours();
+    randomColours.primary();
 }
 
 void other(void)
@@ -176,71 +182,22 @@ void other(void)
       switch (action)
       {
         case 1:
-          zigzag1();
+//          zigzag1();
           break;
         case 2:
-          randomPastels();
+//          randomPastels();
           break;
         case 3:
-          randomColours();
+//          randomColours();
           break;
         case 4:
-          randomPrimaries();
+//          randomPrimaries();
           break;
         case 5:
           faceSweep();
           break;
       }
   }      
-}
-
-void randomPastels()
-{
-  // Function by Jonathan Oxer (jon@freetronics.com), from 
-  // the RandomPastels example sketch
-  cube.set(random(4), random(4), random(4), RGB(random(255), random(255), random(255)));
-  delay(2);
-}
-
-void randomColours()
-{
-  // Function by Jonathan Oxer (jon@freetronics.com), from 
-  // the RandomColours example sketch
-  byte xPos;
-  byte yPos;
-  byte zPos;
-  byte rr;
-  byte gg;
-  byte bb;
-
-  xPos = random(4);
-  yPos = random(4);
-  zPos = random(4);
-  rr = random(0, 2) * 255;
-  gg = random(0, 2) * 255;
-  bb = random(0, 2) * 255;
-
-
-  cube.set(xPos, yPos, zPos, RGB(rr, gg, bb));
-  delay(2);
-}
-
-void randomPrimaries()
-{
-  // Function by Jonathan Oxer (jon@freetronics.com), from 
-  // the RandomPrimaries example sketch
-  rgb_t colours[3] = {RED, GREEN, BLUE};
-  byte xPos;
-  byte yPos;
-  byte zPos;
-
-  xPos = random(0, 4);
-  yPos = random(0, 4);
-  zPos = random(0, 4);
-  byte i = random(0, 3);
-
-  cube.set(xPos, yPos, zPos, colours[i]);
-  delay(2);
 }
 
 void faceSweep() 
