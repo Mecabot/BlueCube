@@ -8,6 +8,7 @@
     APPLICATION SETTINGS (USER EDITABLE)
 
     - General
+    SCRIPT_VERSION            The version of this code
     VERBOSE_MODE              Set to 'true' enables debug output to
 
     BLUEFRUIT_HWSERIAL_NAME   Name of the HW serial port the Bluefruit BLE
@@ -25,6 +26,7 @@
     RANDOM_COLOURS_DELAY      Delay before randomly setting the next colour
     FACESWEEP_DELAY           Delay between the movements in the animation
 ============================================================================ */
+#define SCRIPT_VERSION              "0.8"
 #define VERBOSE_MODE                true
 #define BLUEFRUIT_UART_MODE_PIN     5
 #define BLUEFRUIT_HWSERIAL_NAME     Serial1
@@ -69,11 +71,28 @@ Bluetooth bluetooth(&ble, BLE_READPACKET_TIMEOUT);
 
 void setup(void)
 {
+  Serial.begin(115200);
+  
   // Serial port options for control of the Cube using serial commands are:
   // 0: Control via the USB connector (most common).
   // 1: Control via the RXD and TXD pins on the main board.
   // -1: Don't attach any serial port to interact with the Cube.
   cube.begin(0, 115200); // Start on serial port 0 (USB) at 115200 baud
+
+  // Wait for the serial interface, to be established, or for a maximum of
+  // 3 seconds.
+  byte waitCounter = 0;
+  while (waitCounter < 30 && !Serial) {
+    delay(100);
+    waitCounter++;
+  }
+
+  // Print Debug Info if a serial interface is present
+  if (Serial)
+  {
+    Serial.print("BlueCube v");
+    Serial.println(SCRIPT_VERSION);
+  }
   
   // Tell the cube library that the function 'userFunctionHandler' should be
   // called if the user uses the 'user ### colour;' serial command line
@@ -82,7 +101,6 @@ void setup(void)
 
   pinMode(BLUEFRUIT_UART_MODE_PIN, OUTPUT);
 
-  Serial.begin(115200);
   Serial.println(F("Adafruit Bluefruit App Controller Example"));
   Serial.println(F("-----------------------------------------"));
 
