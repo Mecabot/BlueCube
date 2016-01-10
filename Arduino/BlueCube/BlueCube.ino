@@ -166,14 +166,51 @@ void setup(void)
 /**************************************************************************/
 void loop(void)
 {
-//  readPacket(&ble, BLE_READPACKET_TIMEOUT);
+  readPacket(&ble, BLE_READPACKET_TIMEOUT);
 //  zigzag.Update(theColour);
 
 //    randomColours.pastels();
 //    randomColours.allColours();
 //    randomColours.primary();
 
-    facesweep.update();
+//    facesweep.update();
+}
+
+void readPacket(Adafruit_BLE *ble, int timeout) 
+{
+  // Copy the Timeout period
+  int origtimeout = timeout, replyidx = 0;
+
+  /* Buffer to hold incoming characters */
+  char packetbuffer[READ_BUFSIZE+1];
+  memset(packetbuffer, 0, READ_BUFSIZE);
+
+  while (timeout--) {
+    if (replyidx >= 32) break;
+    while (ble->available()) {
+      char c =  ble->read();
+      serial->print(c);
+      packetbuffer[replyidx] = c;
+      replyidx++;
+      timeout = origtimeout;
+      if (c == ';') {
+        serial->println();
+        timeout = 0;
+        break;
+      }
+    }
+    
+    if (timeout == 0) break;
+    delay(1);
+  }
+
+  packetbuffer[replyidx] = 0;  // null term
+
+  if (!replyidx)  // no data or timeout 
+    return;    
+
+  bytecode_t bytecode = {};
+  byte errorCode = parser(packetbuffer, sizeof(packetbuffer), & bytecode);
 }
 
 void other(void)
