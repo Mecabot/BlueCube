@@ -18,6 +18,7 @@
 #include "ZigZag.h"
 #include "RandomColours.h"
 #include "FaceSweep.h"
+#include "Bluetooth.h"
 
 Cube cube;
 
@@ -71,6 +72,8 @@ rgb_t theColour; // Track the colour to use with user defined function
 // Create the bluefruit object, either software serial...uncomment these lines
 /* ...or hardware serial, which does not need the RTS/CTS pins. Uncomment this line */
 Adafruit_BluefruitLE_UART ble(BLUEFRUIT_HWSERIAL_NAME, BLUEFRUIT_UART_MODE_PIN);
+Bluetooth bluetooth(&ble, BLE_READPACKET_TIMEOUT);
+
 void readPacket(Adafruit_BLE *ble, int timeout);
 
 /**************************************************************************/
@@ -166,112 +169,32 @@ void setup(void)
 /**************************************************************************/
 void loop(void)
 {
-  readPacket(&ble, BLE_READPACKET_TIMEOUT);
-//  zigzag.Update(theColour);
+  bluetooth.checkForCommand();
 
-//    randomColours.pastels();
-//    randomColours.allColours();
-//    randomColours.primary();
-
-//    facesweep.update();
-}
-
-void readPacket(Adafruit_BLE *ble, int timeout) 
-{
-  int origtimeout = timeout;                    // Copy the Timeout period
-  int bufferIndex = 0;                          // Current pos within the received char buffer
-
-  /* Buffer to hold incoming characters */
-  char packetbuffer[READ_BUFSIZE+1];
-
-  /* Fill buffer with zeros */
-  memset(packetbuffer, 0, READ_BUFSIZE+1);
-
-  while (timeout--) {
-    // Loop whilever we haven't reached the timeout
-    
-    if (bufferIndex >= READ_BUFSIZE) {
-      // Exit the loop if the buffer we have allocated is full
-      break;
-    }
-
-    while (ble->available()) {
-      // Loop while there are characters available to read from the bluetooth connection
-
-      // Get the next available character
-      char c =  ble->read();
-      
-      // Add it to our buffer, and increment the index
-      packetbuffer[bufferIndex] = c;
-      bufferIndex++;
-
-      // Print the character we have received to the USB serial output
-      serial->print(c);
-
-      // Reset the timeout counter to our original timeout value
-      timeout = origtimeout;
-      
-      // Look for the character we use to indicate the end of a message
-      if (c == ';') {
-        // We have reached the end of the message, so print a new line
-        serial->println();
-
-        // Set the timeout to zero as we don't need to wait any longer for characters
-        timeout = 0;
-
-        // Break out of the inner characters available loop
-        break;
-      }
-    }
-
-    // Check what the current timeout value is
-    if (timeout == 0) {
-      // Timeout has been reached, break out of loop
-      break;
-    }
-
-    // Delay for 1ms and try again, as no (more) data was available to read
-    // and we haven't hit the timeout.
-    delay(1);
-  }
-
-  packetbuffer[bufferIndex] = 0;  // null term
-
-  if (!bufferIndex) { 
-    return;               // no data or we hit the timeout, so exit the function
-  }
-
-  // We have data, so pass it to the cube's parser to read the message and act upon it
-  bytecode_t bytecode = {};
-  byte errorCode = parser(packetbuffer, sizeof(packetbuffer), & bytecode);
-}
-
-void other(void)
-{
-  if (cube.inUserMode()) 
+  if (cube.inUserMode())
   {
-      // The last processed serial command was for a user
-      // defined function, so run the action based on the
-      // users input
-      switch (action)
-      {
-        case 1:
-//          zigzag1();
-          break;
-        case 2:
-//          randomPastels();
-          break;
-        case 3:
-//          randomColours();
-          break;
-        case 4:
-//          randomPrimaries();
-          break;
-        case 5:
-//          faceSweep();
-          break;
-      }
-  }      
+    // The last processed serial command was for a user
+    // defined function, so run the action based on the
+    // users input
+    switch (action)
+    {
+      case 1:
+        zigzag.update(theColour);
+        break;
+      case 2:
+        randomColours.pastels();
+        break;
+      case 3:
+        randomColours.allColours();
+        break;
+      case 4:
+        randomColours.primary();
+        break;
+      case 5:
+        facesweep.update();
+        break;
+    }
+  }
 }
 
 void userFunctionHandler(int itemID, rgb_t selectedColour)
