@@ -196,27 +196,52 @@ void readPacket(Adafruit_BLE *ble, int timeout)
     }
 
     while (ble->available()) {
+      // Loop while there are characters available to read from the bluetooth connection
+
+      // Get the next available character
       char c =  ble->read();
-      serial->print(c);
+      
+      // Add it to our buffer, and increment the index
       packetbuffer[bufferIndex] = c;
       bufferIndex++;
+
+      // Print the character we have received to the USB serial output
+      serial->print(c);
+
+      // Reset the timeout counter to our original timeout value
       timeout = origtimeout;
+      
+      // Look for the character we use to indicate the end of a message
       if (c == ';') {
+        // We have reached the end of the message, so print a new line
         serial->println();
+
+        // Set the timeout to zero as we don't need to wait any longer for characters
         timeout = 0;
+
+        // Break out of the inner characters available loop
         break;
       }
     }
-    
-    if (timeout == 0) break;
+
+    // Check what the current timeout value is
+    if (timeout == 0) {
+      // Timeout has been reached, break out of loop
+      break;
+    }
+
+    // Delay for 1ms and try again, as no (more) data was available to read
+    // and we haven't hit the timeout.
     delay(1);
   }
 
   packetbuffer[bufferIndex] = 0;  // null term
 
-  if (!bufferIndex)  // no data or timeout 
-    return;    
+  if (!bufferIndex) { 
+    return;               // no data or we hit the timeout, so exit the function
+  }
 
+  // We have data, so pass it to the cube's parser to read the message and act upon it
   bytecode_t bytecode = {};
   byte errorCode = parser(packetbuffer, sizeof(packetbuffer), & bytecode);
 }
