@@ -8,7 +8,13 @@
 #include "Cube.h"
 #include "Adafruit_BLE.h"
 #include "Adafruit_BluefruitLE_UART.h"
-#include "BluefruitConfig.h"
+
+// COMMON SETTINGS
+// ----------------------------------------------------------------------------------------------
+// These settings are used in both SW UART, HW UART and SPI mode
+// ----------------------------------------------------------------------------------------------
+#define BLE_READPACKET_TIMEOUT         500    // Timeout in ms waiting to read a response
+#define READ_BUFSIZE                   32     // Size of the read buffer for incoming packets
 
 class Bluetooth {
   public:

@@ -6,7 +6,6 @@
 #include "Cube.h"
 #include "Adafruit_BLE.h"
 #include "Adafruit_BluefruitLE_UART.h"
-#include "BluefruitConfig.h"
 #include "Bluetooth.h"
 
 Bluetooth::Bluetooth(Adafruit_BLE *ble, int timeout)

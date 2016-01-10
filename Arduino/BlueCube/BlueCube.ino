@@ -31,7 +31,24 @@ rgb_t theColour; // Track the colour to use with user defined function
 
 #include "Adafruit_BLE.h"
 #include "Adafruit_BluefruitLE_UART.h"
-#include "BluefruitConfig.h"
+
+// COMMON SETTINGS
+// ----------------------------------------------------------------------------------------------
+// These settings are used in both SW UART, HW UART and SPI mode
+// ----------------------------------------------------------------------------------------------
+#define VERBOSE_MODE                   true   // If set to 'true' enables debug output
+
+// HARDWARE UART SETTINGS
+// ----------------------------------------------------------------------------------------------
+// The following macros declare the HW serial port you are using.
+// ----------------------------------------------------------------------------------------------
+#define BLUEFRUIT_HWSERIAL_NAME        Serial1
+
+// SHARED UART SETTINGS
+// ----------------------------------------------------------------------------------------------
+// The following sets the mode pin
+// ----------------------------------------------------------------------------------------------
+#define BLUEFRUIT_UART_MODE_PIN         5
 
 /*=========================================================================
     APPLICATION SETTINGS
