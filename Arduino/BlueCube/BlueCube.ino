@@ -179,19 +179,19 @@ void loop(void)
 void readPacket(Adafruit_BLE *ble, int timeout) 
 {
   // Copy the Timeout period
-  int origtimeout = timeout, replyidx = 0;
+  int origtimeout = timeout, bufferIndex = 0;
 
   /* Buffer to hold incoming characters */
   char packetbuffer[READ_BUFSIZE+1];
   memset(packetbuffer, 0, READ_BUFSIZE);
 
   while (timeout--) {
-    if (replyidx >= 32) break;
+    if (bufferIndex >= 32) break;
     while (ble->available()) {
       char c =  ble->read();
       serial->print(c);
-      packetbuffer[replyidx] = c;
-      replyidx++;
+      packetbuffer[bufferIndex] = c;
+      bufferIndex++;
       timeout = origtimeout;
       if (c == ';') {
         serial->println();
@@ -204,9 +204,9 @@ void readPacket(Adafruit_BLE *ble, int timeout)
     delay(1);
   }
 
-  packetbuffer[replyidx] = 0;  // null term
+  packetbuffer[bufferIndex] = 0;  // null term
 
-  if (!replyidx)  // no data or timeout 
+  if (!bufferIndex)  // no data or timeout 
     return;    
 
   bytecode_t bytecode = {};
