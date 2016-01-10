@@ -188,7 +188,13 @@ void readPacket(Adafruit_BLE *ble, int timeout)
   memset(packetbuffer, 0, READ_BUFSIZE+1);
 
   while (timeout--) {
-    if (bufferIndex >= 32) break;
+    // Loop whilever we haven't reached the timeout
+    
+    if (bufferIndex >= READ_BUFSIZE) {
+      // Exit the loop if the buffer we have allocated is full
+      break;
+    }
+
     while (ble->available()) {
       char c =  ble->read();
       serial->print(c);
