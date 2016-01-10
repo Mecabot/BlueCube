@@ -1,44 +1,19 @@
-/*********************************************************************
- This is an example for our nRF51822 based Bluefruit LE modules
+/*
+ *  File:     BlueCube.ino 
+ *  Version:  0.8
+ *  Author:   Adam Reed (adam@secretcode.ninja)
+ *  Licence:  BSD 3-Clause Licence
+ *
+============================================================================
+    APPLICATION SETTINGS (USER EDITABLE)
 
- Pick one up today in the adafruit shop!
-
- Adafruit invests time and resources providing this open source code,
- please support Adafruit and open-source hardware by purchasing
- products from Adafruit!
-
- MIT license, check LICENSE for more information
- All text above, and the splash screen below must be included in
- any redistribution
-*********************************************************************/
-
-#include <SPI.h>
-#include <SoftwareSerial.h>
-#include "Cube.h"
-#include "ZigZag.h"
-#include "RandomColours.h"
-#include "FaceSweep.h"
-#include "Bluetooth.h"
-
-Cube cube;
-
-ZigZag zigzag(300, cube);
-RandomColours randomColours(2, cube);
-FaceSweep facesweep(100, cube);
-
-byte action = 0; // Track which user defined function to run
-rgb_t theColour; // Track the colour to use with user defined function
-
-#include "Adafruit_BLE.h"
-#include "Adafruit_BluefruitLE_UART.h"
-
-/*============================================================================
-    APPLICATION SETTINGS
+    - General
     VERBOSE_MODE              Set to 'true' enables debug output to
 
-    - BLUETOOTH
     BLUEFRUIT_HWSERIAL_NAME   Name of the HW serial port the Bluefruit BLE
                               device is connected to
+    
+    - Bluetooth
     BLUEFRUIT_UART_MODE_PIN   The pin that has been connected to 'MOD'           
     MINIMUM_FIRMWARE_VERSION  Minimum firmware version to have some features
     MODE_LED_BEHAVIOUR        LED activity, valid options are
@@ -60,13 +35,38 @@ rgb_t theColour; // Track the colour to use with user defined function
 #define FACESWEEP_DELAY             100
 /*========================================================================== */
 
-// Create the bluefruit object
+// Include for Cube Library
+#include "Cube.h"
+
+// Includes for Cube Patterns
+#include "ZigZag.h"
+#include "RandomColours.h"
+#include "FaceSweep.h"
+
+// Inclueds required for the Bluetooth Connectivity
+#include <SPI.h>
+#include <SoftwareSerial.h>
+#include "Adafruit_BLE.h"
+#include "Adafruit_BluefruitLE_UART.h"
+#include "Bluetooth.h"
+
+// Define global variables for tracking user defined function items
+byte action = 0; // Track which user defined function to run
+rgb_t theColour; // Track the colour to use with the user defined function
+
+// Instantiate the classes
+// Cube
+Cube cube;
+
 // Patterns
 ZigZag zigzag(cube, ZIGZAG_DELAY);
 RandomColours randomColours(cube, RANDOM_COLOURS_DELAY);
 FaceSweep facesweep(cube, FACESWEEP_DELAY);
+
+// Bluetooth
 Adafruit_BluefruitLE_UART ble(BLUEFRUIT_HWSERIAL_NAME, BLUEFRUIT_UART_MODE_PIN);
 Bluetooth bluetooth(&ble, BLE_READPACKET_TIMEOUT);
+
 void setup(void)
 {
   // Serial port options for control of the Cube using serial commands are:
