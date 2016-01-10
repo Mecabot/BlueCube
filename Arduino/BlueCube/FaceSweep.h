@@ -9,7 +9,7 @@
 
 class FaceSweep {
   public:
-    FaceSweep(int theDelay, Cube cube, rgb_t theColour = BLUE);
+    FaceSweep(Cube cube,int theDelay, rgb_t theColour = BLUE);
     void update(); 
 
   private:

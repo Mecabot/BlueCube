@@ -44,15 +44,27 @@ rgb_t theColour; // Track the colour to use with user defined function
     MODE_LED_BEHAVIOUR        LED activity, valid options are
                               "DISABLE" or "MODE" or "BLEUART" or
                               "HWUART"  or "SPI"  or "MANUAL"
-============================================================================== */
+
+    - Patterns (All delays in milliseconds)
+    ZIGZAG_DELAY              Delay between ZigZag movemements
+    RANDOM_COLOURS_DELAY      Delay before randomly setting the next colour
+    FACESWEEP_DELAY           Delay between the movements in the animation
+============================================================================ */
 #define VERBOSE_MODE                true
 #define BLUEFRUIT_UART_MODE_PIN     5
 #define BLUEFRUIT_HWSERIAL_NAME     Serial1
 #define MINIMUM_FIRMWARE_VERSION    "0.6.6"
 #define MODE_LED_BEHAVIOUR          "MODE"
-/*=========================================================================*/
+#define ZIGZAG_DELAY                300
+#define RANDOM_COLOURS_DELAY        2
+#define FACESWEEP_DELAY             100
+/*========================================================================== */
 
 // Create the bluefruit object
+// Patterns
+ZigZag zigzag(cube, ZIGZAG_DELAY);
+RandomColours randomColours(cube, RANDOM_COLOURS_DELAY);
+FaceSweep facesweep(cube, FACESWEEP_DELAY);
 Adafruit_BluefruitLE_UART ble(BLUEFRUIT_HWSERIAL_NAME, BLUEFRUIT_UART_MODE_PIN);
 Bluetooth bluetooth(&ble, BLE_READPACKET_TIMEOUT);
 void setup(void)

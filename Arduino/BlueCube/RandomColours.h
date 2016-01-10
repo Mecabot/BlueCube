@@ -9,7 +9,7 @@
 
 class RandomColours {
   public:
-    RandomColours(int theDelay, Cube cube);
+    RandomColours(Cube cube, int theDelay);
     void pastels();
     void allColours();
     void primary(); 

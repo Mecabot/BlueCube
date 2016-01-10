@@ -6,7 +6,7 @@
 #include "Cube.h"
 #include "ZigZag.h"
 
-ZigZag::ZigZag(int theDelay, Cube cube)
+ZigZag::ZigZag(Cube cube,int theDelay)
 {
   _theDelay = theDelay;
   _cube = cube;

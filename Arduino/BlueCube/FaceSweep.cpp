@@ -6,7 +6,7 @@
 #include "Cube.h"
 #include "FaceSweep.h"
 
-FaceSweep::FaceSweep(int theDelay, Cube cube, rgb_t theColour)
+FaceSweep::FaceSweep(Cube cube, int theDelay, rgb_t theColour)
 {
   _theDelay = theDelay;
   _cube = cube;

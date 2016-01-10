@@ -6,7 +6,7 @@
 #include "Cube.h"
 #include "RandomColours.h"
 
-RandomColours::RandomColours(int theDelay, Cube cube)
+RandomColours::RandomColours(Cube cube, int theDelay)
 {
   _theDelay = theDelay;
   _cube = cube;
