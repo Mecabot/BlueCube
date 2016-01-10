@@ -26,7 +26,7 @@ RandomColours randomColours(2, cube);
 FaceSweep facesweep(100, cube);
 
 byte action = 0; // Track which user defined function to run
-rgb_t theColour = BLUE; // Track the colour to use with user defined function
+rgb_t theColour; // Track the colour to use with user defined function
 
 #include "Adafruit_BLE.h"
 #include "Adafruit_BluefruitLE_UART.h"

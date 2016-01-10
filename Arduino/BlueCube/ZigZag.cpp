@@ -15,7 +15,7 @@ ZigZag::ZigZag(int theDelay, Cube cube)
   _previousMillis = 0;
 }
 
-void ZigZag::Update(rgb_t theColour)
+void ZigZag::update(rgb_t theColour)
 {
   // check to see if it's time to change the state of the LED
   unsigned long currentMillis = millis();

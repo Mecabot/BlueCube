@@ -10,7 +10,7 @@
 class ZigZag {
   public:
     ZigZag(int theDelay, Cube cube);
-    void Update(rgb_t theColour); 
+    void update(rgb_t theColour = YELLOW); 
 
   private:
     int _theDelay;
