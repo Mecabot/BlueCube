@@ -17,11 +17,13 @@
 #include "Cube.h"
 #include "ZigZag.h"
 #include "RandomColours.h"
+#include "FaceSweep.h"
 
 Cube cube;
 
 ZigZag zigzag(300, cube);
 RandomColours randomColours(2, cube);
+FaceSweep facesweep(100, cube);
 
 byte action = 0; // Track which user defined function to run
 rgb_t theColour = BLUE; // Track the colour to use with user defined function
@@ -169,7 +171,9 @@ void loop(void)
 
 //    randomColours.pastels();
 //    randomColours.allColours();
-    randomColours.primary();
+//    randomColours.primary();
+
+    facesweep.update();
 }
 
 void other(void)
@@ -194,133 +198,10 @@ void other(void)
 //          randomPrimaries();
           break;
         case 5:
-          faceSweep();
+//          faceSweep();
           break;
       }
   }      
-}
-
-void faceSweep() 
-{
-  cube.all(BLACK);
-  // Move 1
-  cube.setplane(Y, 0, BLUE);
-  delay(100);
-
-  // Move 2
-  cube.set(0,0,0, BLACK);
-  cube.set(1,0,0, BLACK);
-  cube.set(2,0,0, BLACK);
-  cube.set(3,0,0, BLACK);
-  cube.set(0,1,0, BLUE);
-  cube.set(1,1,0, BLUE);
-  cube.set(2,1,0, BLUE);
-  cube.set(3,1,0, BLUE);
-  delay(100);
-
-  // Move 3
-  cube.set(0,1,0, BLACK);
-  cube.set(1,1,0, BLACK);
-  cube.set(2,1,0, BLACK);
-  cube.set(3,1,0, BLACK);
-  cube.set(0,0,1, BLACK);
-  cube.set(1,0,1, BLACK);
-  cube.set(2,0,1, BLACK);
-  cube.set(3,0,1, BLACK);
-  cube.set(0,2,0, BLUE);
-  cube.set(1,2,0, BLUE);
-  cube.set(2,2,0, BLUE);
-  cube.set(3,2,0, BLUE);
-  cube.set(0,1,1, BLUE);
-  cube.set(1,1,1, BLUE);
-  cube.set(2,1,1, BLUE);
-  cube.set(3,1,1, BLUE);
-  delay(100);
-
-  // Move 4
-  cube.set(0,2,0, BLACK);
-  cube.set(1,2,0, BLACK);
-  cube.set(2,2,0, BLACK);
-  cube.set(3,2,0, BLACK);
-  cube.set(0,1,1, BLACK);
-  cube.set(1,1,1, BLACK);
-  cube.set(2,1,1, BLACK);
-  cube.set(3,1,1, BLACK);
-  cube.set(0,0,2, BLACK);
-  cube.set(1,0,2, BLACK);
-  cube.set(2,0,2, BLACK);
-  cube.set(3,0,2, BLACK);
-  cube.set(0,3,0, BLUE);
-  cube.set(1,3,0, BLUE);
-  cube.set(2,3,0, BLUE);
-  cube.set(3,3,0, BLUE);
-  cube.set(0,2,1, BLUE);
-  cube.set(1,2,1, BLUE);
-  cube.set(2,2,1, BLUE);
-  cube.set(3,2,1, BLUE);
-  cube.set(0,1,2, BLUE);
-  cube.set(1,1,2, BLUE);
-  cube.set(2,1,2, BLUE);
-  cube.set(3,1,2, BLUE);
-  delay(100);
-
-  // Move 5
-  cube.set(0,3,0, BLACK);
-  cube.set(1,3,0, BLACK);
-  cube.set(2,3,0, BLACK);
-  cube.set(3,3,0, BLACK);
-  cube.set(0,2,1, BLACK);
-  cube.set(1,2,1, BLACK);
-  cube.set(2,2,1, BLACK);
-  cube.set(3,2,1, BLACK);
-  cube.set(0,1,2, BLACK);
-  cube.set(1,1,2, BLACK);
-  cube.set(2,1,2, BLACK);
-  cube.set(3,1,2, BLACK);
-  cube.set(0,1,3, BLUE); 
-  cube.set(1,1,3, BLUE); 
-  cube.set(2,1,3, BLUE); 
-  cube.set(3,1,3, BLUE); 
-  cube.set(0,2,2, BLUE);
-  cube.set(1,2,2, BLUE);
-  cube.set(2,2,2, BLUE);
-  cube.set(3,2,2, BLUE);
-  cube.set(0,3,1, BLUE);
-  cube.set(1,3,1, BLUE);
-  cube.set(2,3,1, BLUE);
-  cube.set(3,3,1, BLUE);
-  delay(100);
-
-  // Move 6 
-  cube.set(0,2,2, BLACK);
-  cube.set(1,2,2, BLACK);
-  cube.set(2,2,2, BLACK);
-  cube.set(3,2,2, BLACK);
-  cube.set(0,3,1, BLACK);
-  cube.set(1,3,1, BLACK);
-  cube.set(2,3,1, BLACK);
-  cube.set(3,3,1, BLACK);
-  cube.set(0,2,3, BLUE);
-  cube.set(1,2,3, BLUE);
-  cube.set(2,2,3, BLUE);
-  cube.set(3,2,3, BLUE);
-  cube.set(0,3,2, BLUE);
-  cube.set(1,3,2, BLUE);
-  cube.set(2,3,2, BLUE);
-  cube.set(3,3,2, BLUE);
-  delay(100);
-
-  // Move 7
-  cube.set(0,3,2, BLACK);
-  cube.set(1,3,2, BLACK);
-  cube.set(2,3,2, BLACK);
-  cube.set(3,3,2, BLACK);
-  cube.set(0,3,3, BLUE);
-  cube.set(1,3,3, BLUE);
-  cube.set(2,3,3, BLUE);
-  cube.set(3,3,3, BLUE);
- 
-  delay(500);
 }
 
 void userFunctionHandler(int itemID, rgb_t selectedColour)
