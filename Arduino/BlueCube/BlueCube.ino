@@ -32,76 +32,31 @@ rgb_t theColour; // Track the colour to use with user defined function
 #include "Adafruit_BLE.h"
 #include "Adafruit_BluefruitLE_UART.h"
 
-// COMMON SETTINGS
-// ----------------------------------------------------------------------------------------------
-// These settings are used in both SW UART, HW UART and SPI mode
-// ----------------------------------------------------------------------------------------------
-#define VERBOSE_MODE                   true   // If set to 'true' enables debug output
-
-// HARDWARE UART SETTINGS
-// ----------------------------------------------------------------------------------------------
-// The following macros declare the HW serial port you are using.
-// ----------------------------------------------------------------------------------------------
-#define BLUEFRUIT_HWSERIAL_NAME        Serial1
-
-// SHARED UART SETTINGS
-// ----------------------------------------------------------------------------------------------
-// The following sets the mode pin
-// ----------------------------------------------------------------------------------------------
-#define BLUEFRUIT_UART_MODE_PIN         5
-
-/*=========================================================================
+/*============================================================================
     APPLICATION SETTINGS
+    VERBOSE_MODE              Set to 'true' enables debug output to
 
-    FACTORYRESET_ENABLE       Perform a factory reset when running this sketch
-   
-                              Enabling this will put your Bluefruit LE module
-                              in a 'known good' state and clear any config
-                              data set in previous sketches or projects, so
-                              running this at least once is a good idea.
-   
-                              When deploying your project, however, you will
-                              want to disable factory reset by setting this
-                              value to 0.  If you are making changes to your
-                              Bluefruit LE device via AT commands, and those
-                              changes aren't persisting across resets, this
-                              is the reason why.  Factory reset will erase
-                              the non-volatile memory where config data is
-                              stored, setting it back to factory default
-                              values.
-       
-                              Some sketches that require you to bond to a
-                              central device (HID mouse, keyboard, etc.)
-                              won't work at all with this feature enabled
-                              since the factory reset will clear all of the
-                              bonding data stored on the chip, meaning the
-                              central device won't be able to reconnect.
-    MINIMUM_FIRMWARE_VERSION  Minimum firmware version to have some new features
+    - BLUETOOTH
+    BLUEFRUIT_HWSERIAL_NAME   Name of the HW serial port the Bluefruit BLE
+                              device is connected to
+    BLUEFRUIT_UART_MODE_PIN   The pin that has been connected to 'MOD'           
+    MINIMUM_FIRMWARE_VERSION  Minimum firmware version to have some features
     MODE_LED_BEHAVIOUR        LED activity, valid options are
                               "DISABLE" or "MODE" or "BLEUART" or
                               "HWUART"  or "SPI"  or "MANUAL"
-    -----------------------------------------------------------------------*/
-    #define FACTORYRESET_ENABLE         0
-    #define MINIMUM_FIRMWARE_VERSION    "0.6.6"
-    #define MODE_LED_BEHAVIOUR          "MODE"
+============================================================================== */
+#define VERBOSE_MODE                true
+#define BLUEFRUIT_UART_MODE_PIN     5
+#define BLUEFRUIT_HWSERIAL_NAME     Serial1
+#define MINIMUM_FIRMWARE_VERSION    "0.6.6"
+#define MODE_LED_BEHAVIOUR          "MODE"
 /*=========================================================================*/
 
-// Create the bluefruit object, either software serial...uncomment these lines
-/* ...or hardware serial, which does not need the RTS/CTS pins. Uncomment this line */
+// Create the bluefruit object
 Adafruit_BluefruitLE_UART ble(BLUEFRUIT_HWSERIAL_NAME, BLUEFRUIT_UART_MODE_PIN);
 Bluetooth bluetooth(&ble, BLE_READPACKET_TIMEOUT);
-
-void readPacket(Adafruit_BLE *ble, int timeout);
-
-/**************************************************************************/
-/*!
-    @brief  Sets up the HW an the BLE module (this function is called
-            automatically on startup)
-*/
-/**************************************************************************/
 void setup(void)
 {
-
   // Serial port options for control of the Cube using serial commands are:
   // 0: Control via the USB connector (most common).
   // 1: Control via the RXD and TXD pins on the main board.
@@ -114,8 +69,6 @@ void setup(void)
   setDelegate(userFunctionHandler);
 
   pinMode(BLUEFRUIT_UART_MODE_PIN, OUTPUT);
-//  while (!Serial);  // required for Flora & Micro
-//  delay(500);
 
   Serial.begin(115200);
   Serial.println(F("Adafruit Bluefruit App Controller Example"));
@@ -129,15 +82,6 @@ void setup(void)
     Serial.println(F("Couldn't find Bluefruit, make sure it's in CoMmanD mode & check wiring?"));
   }
   Serial.println( F("OK!") );
-
-  if ( FACTORYRESET_ENABLE )
-  {
-    /* Perform a factory reset to make sure everything is in a known state */
-    Serial.println(F("Performing a factory reset: "));
-    if ( ! ble.factoryReset() ){
-      Serial.println(F("Couldn't factory reset"));
-    }
-  }
 
   /* Disable command echo from Bluefruit */
   ble.echo(false);
@@ -179,11 +123,6 @@ void setup(void)
 
 }
 
-/**************************************************************************/
-/*!
-    @brief  Constantly poll for new command or response data
-*/
-/**************************************************************************/
 void loop(void)
 {
   bluetooth.checkForCommand();
