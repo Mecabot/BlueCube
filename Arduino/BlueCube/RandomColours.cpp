@@ -39,10 +39,10 @@ void RandomColours::pastels() {
    * this animation doesn't have "states" we don't use a state machine.
    */
 
-   // Get the current time
+  // Get the current time
   unsigned long currentMillis = millis();
 
-  if (currentMillis - _previousMillis >= _theDelay) 
+  if (currentMillis - _previousMillis >= _theDelay)
   {
     // Pick a random x, y, z, location on the cube, and set it's colour to
     // the mixture of random values of red, green and blue (each between 0 and 255)
@@ -62,10 +62,10 @@ void RandomColours::allColours() {
    * this animation doesn't have "states" we don't use a state machine.
    */
 
-   // Get the current time
+  // Get the current time
   unsigned long currentMillis = millis();
 
-  if (currentMillis - _previousMillis >= _theDelay) 
+  if (currentMillis - _previousMillis >= _theDelay)
   {
     // For three random numbers that are either 0 or 255 which
     // represents either fully on or fully off for each of the colour
@@ -97,10 +97,10 @@ void RandomColours::primary()
    * this animation doesn't have "states" we don't use a state machine.
    */
 
-   // Get the current time
+  // Get the current time
   unsigned long currentMillis = millis();
 
-  if (currentMillis - _previousMillis >= _theDelay) 
+  if (currentMillis - _previousMillis >= _theDelay)
   {
     // Define the three primary colours
     rgb_t colours[3] = {RED, GREEN, BLUE};
