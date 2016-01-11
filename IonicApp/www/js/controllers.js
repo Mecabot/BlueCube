@@ -66,7 +66,6 @@ app.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourSe
 		if (selectedColour == null) {
 			selectedColour = $scope.hexColour;
 		}
-		$localstorage.set('selectedColour', selectedColour);
 		var message = "all " + selectedColour + ";";
 		$cubeAction.sendMessage(message, true);
 	};
