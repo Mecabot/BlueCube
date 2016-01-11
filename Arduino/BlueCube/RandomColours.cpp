@@ -60,6 +60,11 @@ void RandomColours::allColours() {
    * "delay()", it uses the time and the difference between this run
    * and the last run to determine if it needs to update the cube. As
    * this animation doesn't have "states" we don't use a state machine.
+   *
+   *  Notes:    This code was based on the RandomPastels, RandomColour, 
+   *            and RandomPrimary examples by Jonathan Oxer 
+   *            (jon@freetronics.com) that ship as part of the Cube
+   *            Library code.
    */
 
   // Get the current time
