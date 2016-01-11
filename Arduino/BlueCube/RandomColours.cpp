@@ -45,8 +45,8 @@ void RandomColours::pastels() {
   if (currentMillis - _previousMillis >= _theDelay) 
   {
     // Pick a random x, y, z, location on the cube, and set it's colour to
-    // the mixture of random values of red, green and blue (each between 0 and 254)
-    _cube.set(random(4), random(4), random(4), RGB(random(255), random(255), random(255)));
+    // the mixture of random values of red, green and blue (each between 0 and 255)
+    _cube.set(random(0, 4), random(0, 4), random(0, 4), RGB(random(0, 256), random(0, 256), random(0, 256)));
 
     // Remember the time for future reference
     _previousMillis = currentMillis;
@@ -76,7 +76,7 @@ void RandomColours::allColours() {
   
     // Pick a random x, y, z, location on the cube, and set it's colour to
     // the mixture of red, green and blue random values from above
-    _cube.set(random(4), random(4), random(4), RGB(rr, gg, bb));
+    _cube.set(random(0, 4), random(0, 4), random(0, 4), RGB(rr, gg, bb));
 
     // Remember the time for future reference
     _previousMillis = currentMillis;
@@ -106,7 +106,7 @@ void RandomColours::primary()
 
     // Pick a random x, y, z, location on the cube and set it's colour
     // to the colour at the randomly picked index
-    _cube.set(random(4), random(4), random(4), colours[i]);
+    _cube.set(random(0, 4), random(0, 4), random(0, 4), colours[i]);
 
     // Remember the time for future reference
     _previousMillis = currentMillis;
