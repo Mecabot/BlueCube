@@ -37,7 +37,7 @@ void FaceSweep::update()
   // Handles drawing the FaceSweep animation.
 
   /* This code is designed to be non blocking, so instead of using
-   * "delay()", it uses a state machine tp track where it is upto in the
+   * "delay()", it uses a state machine to track where it is upto in the
    * animation. It then uses the time and the difference between this run
    * and the last run to determine if it needs to change to a different
    * state
