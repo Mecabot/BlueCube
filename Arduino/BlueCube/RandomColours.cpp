@@ -73,10 +73,14 @@ void RandomColours::allColours() {
     byte rr = random(0, 2) * 255;
     byte gg = random(0, 2) * 255;
     byte bb = random(0, 2) * 255;
-  
-    // Pick a random x, y, z, location on the cube, and set it's colour to
-    // the mixture of red, green and blue random values from above
-    _cube.set(random(0, 4), random(0, 4), random(0, 4), RGB(rr, gg, bb));
+
+    if (!(rr == 0 && gg == 0 && bb == 0))
+    {
+      // Pick a random x, y, z, location on the cube, and set it's colour to
+      // the mixture of red, green and blue random values from above as long
+      // as it wouldn't be black.
+      _cube.set(random(0, 4), random(0, 4), random(0, 4), RGB(rr, gg, bb));
+    }
 
     // Remember the time for future reference
     _previousMillis = currentMillis;
