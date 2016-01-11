@@ -1,34 +1,39 @@
 <ion-view view-title="Connect">
+
 	<ion-nav-bar class="bar-positive">
 		<ion-nav-buttons side="left">
 			<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
 		</ion-nav-buttons>
 	</ion-nav-bar>
+
 	<ion-content>
-  	<div class="card">
-  		<div class="item item-divider">
+		<div class="card">
+			<div class="item item-divider">
 				Connect
 			</div>
-  		<div class="padding-horizontal padding-top">
-		<ion-toggle ng-model="autoConnect" ng-change="autoConnectChanged()" toggle-class="toggle-balanced">
-			Automatically Connect
-		</ion-toggle>
 
-		<button ng-click="connect()" ng-show="connectButton" class="button button-block button-balanced">
-			Connect
-		</button>
+			<div class="padding-horizontal padding-top">
+				<ion-toggle ng-model="autoConnect" ng-change="autoConnectChanged()" toggle-class="toggle-balanced">
+					Automatically Connect
+				</ion-toggle>
 
-		<button ng-click="disconnect()" ng-show="disconnectButton" class="button button-block button-assertive">
-			Disconnect
-		</button>
-  		</div>
-    </div>
+				<button ng-click="connect()" ng-show="connectButton" class="button button-block button-balanced">
+					Connect
+				</button>
 
-  	<div class="card" ng-hide="hideLogText">
-  		<div class="item item-divider">
+				<button ng-click="disconnect()" ng-show="disconnectButton" class="button button-block button-assertive">
+					Disconnect
+				</button>
+			</div>
+		</div>
+
+		<div class="card" ng-hide="hideLogText">
+			<div class="item item-divider">
 				Connect Information
 			</div>
-		<div class="padding-horizontal" ng-bind-html="logText"></div>
-    </div>
+			<div class="padding-horizontal" ng-bind-html="logText">
+			</div>
+		</div>
 	</ion-content>
+
 </ion-view>

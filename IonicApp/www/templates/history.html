@@ -1,31 +1,37 @@
 <ion-view view-title="History">
+
 	<ion-nav-bar class="bar-positive">
 		<ion-nav-buttons side="left">
 			<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
 		</ion-nav-buttons>
 	</ion-nav-bar>
+
 	<ion-content>
-  	<div class="card">
-  		<div class="item item-divider row">
-  		  <div class="col col-center">
-				History
+		<div class="card">
+			<div class="item item-divider row">
+				<div class="col col-center">
+					History
 				</div>
 				<div class="col" align="right">
-  			  <button class="button button-clear ion-close-round button-assertive" ng-click="data.showDelete = !data.showDelete"></button>
-  			</div>
-      </div>
-    <div class="padding-top">
-		<ion-list type="list-inset" show-delete="data.showDelete">
-			<ion-item ng-repeat="command in commands track by command.id" ng-click="replayHistoryItem('{{command.cmd}}')">
-				{{command.cmd}}
-				<ion-delete-button class="ion-close-round" ng-click="deleteHistoryItem({{command.id}})"></ion-delete-button>
-			</ion-item>
-		</ion-list>
-    <div ng-show="!commands.length" class="padding-horizontal" align="center">
-      <p>No history items are present.</p>
-    </div>
-    </div>
-    </div>
-    <br>
-    </ion-content>
+					<button class="button button-clear ion-close-round button-assertive" ng-click="data.showDelete = !data.showDelete"></button>
+				</div>
+			</div>
+
+			<div class="padding-top">
+				<ion-list type="list-inset" show-delete="data.showDelete">
+					<ion-item ng-repeat="command in commands track by command.id" ng-click="replayHistoryItem('{{command.cmd}}')">
+						{{command.cmd}}
+						<ion-delete-button class="ion-close-round" ng-click="deleteHistoryItem({{command.id}})"></ion-delete-button>
+					</ion-item>
+				</ion-list>
+				<div ng-show="!commands.length" class="padding-horizontal" align="center">
+					<p>
+						No history items are present.
+					</p>
+				</div>
+			</div>
+		</div>
+		<br>
+	</ion-content>
+
 </ion-view>
