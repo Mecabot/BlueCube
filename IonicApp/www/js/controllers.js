@@ -1,15 +1,15 @@
-angular.module('BlueCube.controllers', [])
+var app = angular.module('BlueCube.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 	// With the new view caching in Ionic, Controllers are only called
 	// when they are recreated or on app start, instead of every page change.
 	// To listen for when this page is active (for example, to refresh data),
 	// listen for the $ionicView.enter event:
 	//$scope.$on('$ionicView.enter', function(e) {
 	//});
-})
+});
 
-.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourService, $localstorage) {
+app.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourService, $localstorage) {
 	if ($localstorage.get('liveAllColourChanges', 'true') == "true") {
 		$scope.live = true;
 	} else {
@@ -79,9 +79,9 @@ angular.module('BlueCube.controllers', [])
 	$scope.reorderItem = function(item, fromIndex, toIndex) {
 		ColourService.reorder(item, fromIndex, toIndex);
 	}
-})
+});
 
-.controller('ShiftCtrl', function($ionicPlatform, $scope, $cubeAction) {
+app.controller('ShiftCtrl', function($ionicPlatform, $scope, $cubeAction) {
 	$scope.up = function () {
 		$cubeAction.sendMessage('shift Z +;', true);
 	}
@@ -105,9 +105,9 @@ angular.module('BlueCube.controllers', [])
 	$scope.forward = function () {
 		$cubeAction.sendMessage('shift Y -;', true);
 	}
-})
+});
 
-.controller('SetCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
+app.controller('SetCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
 	$scope.cube = [];
 
 	$ionicPlatform.ready(function() {
@@ -149,9 +149,9 @@ angular.module('BlueCube.controllers', [])
 			$scope.modal.remove();
 		});
 	});
-})
+});
 
-.controller('NextCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
+app.controller('NextCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
 	$scope.cube = [];
 
 	$ionicPlatform.ready(function() {
@@ -189,9 +189,9 @@ angular.module('BlueCube.controllers', [])
 			$scope.modal.remove();
 		});
 	});
-})
+});
 
-.controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
+app.controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
 	$ionicPlatform.ready(function() {
 		$scope.values = {
 			axis: 'X',
@@ -230,9 +230,9 @@ angular.module('BlueCube.controllers', [])
 		var message = "setplane " + $scope.values.axis + " " + $scope.values.offset + " " + $scope.selectedColour + ";";
 		$cubeAction.sendMessage(message, true);
 	};
-})
+});
 
-.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
+app.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
 	$ionicPlatform.ready(function() {
 		$scope.values = {
 			axis: 'X',
@@ -287,10 +287,9 @@ angular.module('BlueCube.controllers', [])
 		var message = "moveplane " + $scope.values.axis + " " + $scope.values.fromOffset + " " + $scope.values.toOffset + " " + $scope.selectedColour + ";";
 		$cubeAction.sendMessage(message, true);
 	};
+});
 
-})
-
-.controller('LineCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs) {
+app.controller('LineCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs) {
 	$scope.cube = [];
 
 	$ionicPlatform.ready(function() {
@@ -347,9 +346,9 @@ angular.module('BlueCube.controllers', [])
 			$cordovaDialogs.alert('Please select only 2 points', 'Line', 'OK');
 		}
 	};
-})
+});
 
-.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs) {
+app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs) {
 	$scope.cube = [];
 	var secondaryColourSelector = false;
 	var cachedColour = "";
@@ -446,9 +445,9 @@ angular.module('BlueCube.controllers', [])
 			$cordovaDialogs.alert('Please select only 2 points', 'Box', 'OK');
 		}
 	};
-})
+});
 
-.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs) {
+app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs) {
 	$scope.cube = [];
 	var secondaryColourSelector = false;
 	var cachedColour = "";
@@ -546,9 +545,9 @@ angular.module('BlueCube.controllers', [])
 			$cordovaDialogs.alert('Please select only 1 point', 'Sphere', 'OK');
 		}
 	};
-})
+});
 
-.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading, $localstorage, $ionicSideMenuDelegate, $translate) {
+app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading, $localstorage, $ionicSideMenuDelegate, $translate) {
 	$scope.connectButton = true;
 	$scope.disconnectButton = false;
 	$scope.hideLogText = true;
@@ -721,9 +720,9 @@ angular.module('BlueCube.controllers', [])
 			}
 		);
 	};
-})
+});
 
-.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs, UserDefinedService) {
+app.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs, UserDefinedService) {
 	$scope.data = {
 		showDelete: false,
 		showReordering: false,
@@ -803,9 +802,9 @@ angular.module('BlueCube.controllers', [])
 			$cubeAction.sendMessage(message, true);
 		}
 	});
-})
+});
 
-.controller('StaticCtrl', function($ionicPlatform, $scope, $timeout, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs, StaticFavouritesService) {
+app.controller('StaticCtrl', function($ionicPlatform, $scope, $timeout, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs, StaticFavouritesService) {
 	$scope.data = {
 		showDelete: false,
 		showReordering: false,
@@ -889,9 +888,9 @@ angular.module('BlueCube.controllers', [])
 			}
 		}
 	});
-})
+});
 
-.controller('HistoryCtrl', function($ionicPlatform, $scope, $cubeAction, HistoryService, $localstorage) {
+app.controller('HistoryCtrl', function($ionicPlatform, $scope, $cubeAction, HistoryService, $localstorage) {
 	$scope.data = {
 		showDelete: false,
 	};
@@ -911,9 +910,9 @@ angular.module('BlueCube.controllers', [])
 	$scope.deleteHistoryItem = function (id) {
 		HistoryService.delete(id);
 	}
-})
+});
 
-.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordovaDialogs) {
+app.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordovaDialogs) {
 	var maxHistoryItems;
 
 	if ($localstorage.get('history_items') != undefined) {
@@ -979,9 +978,9 @@ angular.module('BlueCube.controllers', [])
 			}
 		});
 	}
-})
+});
 
-.controller('AboutCtrl', function($ionicPlatform, $scope, $cordovaDevice, $cordovaAppVersion) {
+app.controller('AboutCtrl', function($ionicPlatform, $scope, $cordovaDevice, $cordovaAppVersion) {
 	$ionicPlatform.ready(function() {
 		// getting device info from $cordovaDevice
 		var device = $cordovaDevice.getDevice();
@@ -1005,9 +1004,9 @@ angular.module('BlueCube.controllers', [])
 			}, null);
 		}
 	});
-})
+});
 
-.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourService, $localstorage) {
+app.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourService, $localstorage) {
 	$scope.data = {
 		showDelete: false,
 		showReordering: false,
@@ -1040,9 +1039,9 @@ angular.module('BlueCube.controllers', [])
 	$scope.reorderItem = function(item, fromIndex, toIndex) {
 		ColourService.reorder(item, fromIndex, toIndex);
 	}
-})
+});
 
-.controller('UserDefinedModalCtrl', function($ionicPlatform, $scope, $ionicModal, $localstorage) {
+app.controller('UserDefinedModalCtrl', function($ionicPlatform, $scope, $ionicModal, $localstorage) {
 	$scope.dataModal = {
 		showDelete: false,
 		showReordering: false,
@@ -1077,9 +1076,9 @@ angular.module('BlueCube.controllers', [])
 			$scope.modal.remove();
 		});
 	});
-})
+});
 
-.controller('StaticCreatorCtrl', function($ionicPlatform, $scope, HistoryService, $localstorage) {
+app.controller('StaticCreatorCtrl', function($ionicPlatform, $scope, HistoryService, $localstorage) {
 	var uniqueID = 1;
 
 

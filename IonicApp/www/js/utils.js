@@ -1,6 +1,6 @@
-angular.module('BlueCube.utils', [])
+var app = angular.module('BlueCube.utils', [])
 
-.factory('$localstorage', ['$window', function($window) {
+app.factory('$localstorage', ['$window', function($window) {
 	return {
 		set: function(key, value) {
 			$window.localStorage[key] = value;
@@ -26,9 +26,9 @@ angular.module('BlueCube.utils', [])
 			$window.localStorage.clear();
 		}
 	}
-}])
+}]);
 
-.factory('$defaults', ['$localstorage', function($localstorage) {
+app.factory('$defaults', ['$localstorage', function($localstorage) {
 	return {
 		resetColours: function() {
 			var colours = [
@@ -238,9 +238,9 @@ angular.module('BlueCube.utils', [])
 			$localstorage.delete('liveAllColourChanges');
 		}
 	}
-}])
+}]);
 
-.factory('$cubeAction', ['$cordovaBluetoothSerial', 'HistoryService', '$ionicContentBanner', function($cordovaBluetoothSerial, HistoryService, $ionicContentBanner) {
+app.factory('$cubeAction', ['$cordovaBluetoothSerial', 'HistoryService', '$ionicContentBanner', function($cordovaBluetoothSerial, HistoryService, $ionicContentBanner) {
 	return {
 		lookupCoords: function(id) {
 			var coords = "000";

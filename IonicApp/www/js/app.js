@@ -2,9 +2,9 @@ document.addEventListener('deviceready', function() {
     angular.bootstrap(document, ['BlueCube']);
 }, false);
 
-angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueCube.directives', 'BlueCube.services', 'BlueCube.utils', 'pascalprecht.translate', 'ngSanitize', 'jett.ionic.content.banner'])
+var app = angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueCube.directives', 'BlueCube.services', 'BlueCube.utils', 'pascalprecht.translate', 'ngSanitize', 'jett.ionic.content.banner']);
 
-.run(function($ionicPlatform) {
+app.run(function($ionicPlatform) {
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
@@ -18,9 +18,9 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			StatusBar.styleDefault();
 		}
 	});
-})
+});
 
-.config(function($stateProvider, $urlRouterProvider, $translateProvider) {
+app.config(function($stateProvider, $urlRouterProvider, $translateProvider) {
 	// Handle the difference between Australian English and American English
 	// by preparing translations for Colour and Favourite
 	$translateProvider.translations('en-AU', {

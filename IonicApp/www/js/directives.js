@@ -1,6 +1,6 @@
-angular.module('BlueCube.directives', [])
+var app = angular.module('BlueCube.directives', [])
 
-.directive('uicolorpicker', function() {
+app.directive('uicolorpicker', function() {
 	return {
 		restrict: 'E',
 		require: 'ngModel',
@@ -29,9 +29,9 @@ angular.module('BlueCube.directives', [])
 			input.spectrum(options);
 		}
 	};
-})
+});
 
-.directive('backColour', function(){
+app.directive('backColour', function(){
 	return function(scope, element, attrs) {
 		attrs.$observe('backColour', function(value) {
 			element.css({

@@ -1,6 +1,6 @@
-angular.module('BlueCube.services', [])
+var app = angular.module('BlueCube.services', [])
 
-.service('HistoryService', function($localstorage) {
+app.service('HistoryService', function($localstorage) {
 	var commands;
 	var uniqueID;
 
@@ -72,9 +72,9 @@ angular.module('BlueCube.services', [])
 		commands.splice(toIndex, 0, item);
 		$localstorage.setObject('history', commands);
 	}
-})
+});
 
-.service('ColourService', function($localstorage, $defaults) {
+app.service('ColourService', function($localstorage, $defaults) {
 	var uniqueID;
 	var colours;
 
@@ -129,9 +129,9 @@ angular.module('BlueCube.services', [])
 		colours.splice(toIndex, 0, item);
 		$localstorage.setObject('userDefinedColours', colours);
 	}
-})
+});
 
-.service('StaticFavouritesService', function($localstorage, $defaults) {
+app.service('StaticFavouritesService', function($localstorage, $defaults) {
 	var staticFavourites;
 	var uniqueID;
 
@@ -151,7 +151,6 @@ angular.module('BlueCube.services', [])
 
 		return staticFavourites;
 	}
-
 
 	this.get = function(id) {
 		for (i in staticFavourites) {
@@ -188,9 +187,9 @@ angular.module('BlueCube.services', [])
 		staticFavourites.splice(toIndex, 0, item);
 		$localstorage.setObject('staticFavourites', staticFavourites);
 	}
-})
+});
 
-.service('UserDefinedService', function($localstorage, $defaults) {
+app.service('UserDefinedService', function($localstorage, $defaults) {
 	var userDefinedFunctions;
 	var uniqueID;
 
@@ -210,7 +209,6 @@ angular.module('BlueCube.services', [])
 
 		return userDefinedFunctions;
 	}
-
 
 	this.get = function(id) {
 		for (i in userDefinedFunctions) {
