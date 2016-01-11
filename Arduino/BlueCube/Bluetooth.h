@@ -31,7 +31,7 @@
 #include "Adafruit_BLE.h"
 #include "Adafruit_BluefruitLE_UART.h"
 
-// Declare out class, with public and private variables
+// Declare out class, with public and private variables and functions
 class Bluetooth {
   public:
     // Constructor method, requiring a pointer to the bluetooth object, and
