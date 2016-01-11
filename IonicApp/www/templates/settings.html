@@ -1,57 +1,61 @@
 <ion-view view-title="Settings">
+
 	<ion-nav-bar class="bar-positive">
 		<ion-nav-buttons side="left">
 			<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
 		</ion-nav-buttons>
 	</ion-nav-bar>
-	<ion-content>
 
-  	<div class="card">
-  		<div class="item item-divider">
+	<ion-content>
+		<div class="card">
+			<div class="item item-divider">
 				History
 			</div>
+
 			<div class="padding-horizontal">
-        <button class="button button-block button-energized" ng-click="resetHistory()">
-          Reset History
-        </button>
-      </div>
-      <div class="list">
-        <div class="item range range-positive">
-          <i class="icon ion-ios-list-outline"></i>
-          <input type="range" name="maxHistoryItems" min="10" max="200" ng-model="data.maxHistoryItems" ng-change="setMaxHistoryItems(data.maxHistoryItems)">
-          <i class="icon ion-ios-list"></i>
-          {{data.maxHistoryItems}}
-        </div>
-      </div>
+				<button class="button button-block button-energized" ng-click="resetHistory()">
+					Reset History
+				</button>
+			</div>
+			<div class="list">
+				<div class="item range range-positive">
+					<i class="icon ion-ios-list-outline"></i>
+					<input type="range" name="maxHistoryItems" min="10" max="200" ng-model="data.maxHistoryItems" ng-change="setMaxHistoryItems(data.maxHistoryItems)">
+					<i class="icon ion-ios-list"></i>
+					{{data.maxHistoryItems}}
+				</div>
+			</div>
 		</div>
 
-  	<div class="card">
-  		<div class="item item-divider">
+		<div class="card">
+			<div class="item item-divider">
 				Default Settings
 			</div>
+
 			<div class="padding-horizontal">
-        <button class="button button-block button-energized" ng-click="resetColours()">
-          Reset {{"favouriteSpelling" | translate}} {{"colourSpelling" | translate}}
-        </button>
+				<button class="button button-block button-energized" ng-click="resetColours()">
+					Reset {{"favouriteSpelling" | translate}} {{"colourSpelling" | translate}}
+				</button>
 
-        <button class="button button-block button-energized" ng-click="resetUserDefinedFunctions()">
-          Reset User Defined Functions
-        </button>
+				<button class="button button-block button-energized" ng-click="resetUserDefinedFunctions()">
+					Reset User Defined Functions
+				</button>
 
-        <button class="button button-block button-energized" ng-click="resetStatic()">
-          Reset Static {{"favouriteSpelling" | translate}}
-        </button>
+				<button class="button button-block button-energized" ng-click="resetStatic()">
+					Reset Static {{"favouriteSpelling" | translate}}
+				</button>
 
-        <button class="button button-block button-energized" ng-click="resetOthers()">
-          Reset Other Data
-        </button>
+				<button class="button button-block button-energized" ng-click="resetOthers()">
+					Reset Other Data
+				</button>
 
 
-        <button class="button button-block button-assertive" ng-click="resetAll()">
-          Reset All
-        </button>
-  		</div>
+				<button class="button button-block button-assertive" ng-click="resetAll()">
+					Reset All
+				</button>
+			</div>
 		</div>
 
 	</ion-content>
+
 </ion-view>

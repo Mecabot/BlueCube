@@ -1,37 +1,40 @@
 <ion-view view-title="Static {{'favouriteSpelling' | translate}}s">
+
 	<ion-nav-bar class="bar-positive">
 		<ion-nav-buttons side="left">
 			<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
 		</ion-nav-buttons>
 	</ion-nav-bar>
-	<ion-content>
 
-  	<div class="card">
-  		<div class="item item-divider row">
-  		  <div class="col col-center">
-				{{"favouriteSpelling" | translate}}s
+	<ion-content>
+		<div class="card">
+			<div class="item item-divider row">
+				<div class="col col-center">
+					{{"favouriteSpelling" | translate}}s
 				</div>
 				<div class="col" align="right">
-    			<button class="button button-clear ion-plus-round button-balanced" ng-click="openModal()"></button>
-  			  <button class="button button-clear ion-close-round button-assertive" ng-click="data.showDelete = !data.showDelete"></button>
-  			  <button class="button button-clear ion-navicon button-calm" ng-click="data.showReordering = !data.showReordering"></button>
-  			</div>
-      </div>
-    <div class="padding-top">
-		<ion-list type="list-inset" show-delete="data.showDelete" show-reorder="data.showReordering">
-			<ion-item ng-repeat="item in favourites track by item.id" ng-click="sendFavourite({{item.id}})">
-				{{item.name}}
-				<ion-delete-button class="ion-close-round" ng-click="deleteFavourite({{item.id}})"></ion-delete-button>
-				<ion-reorder-button class="ion-navicon" on-reorder="reorderFavourites(item, $fromIndex, $toIndex)"></ion-reorder-button>
-			</ion-item>
-		</ion-list>
-    <div ng-show="!favourites.length" class="padding-horizontal" align="center">
-      <p>No static {{"favouriteSpelling" | translate | lowercase}}s have been saved.</p>
-    </div>
-    </div>
-    </div>
-    <br>
+					<button class="button button-clear ion-plus-round button-balanced" ng-click="openModal()"></button>
+					<button class="button button-clear ion-close-round button-assertive" ng-click="data.showDelete = !data.showDelete"></button>
+					<button class="button button-clear ion-navicon button-calm" ng-click="data.showReordering = !data.showReordering"></button>
+				</div>
+			</div>
 
+			<div class="padding-top">
+				<ion-list type="list-inset" show-delete="data.showDelete" show-reorder="data.showReordering">
+					<ion-item ng-repeat="item in favourites track by item.id" ng-click="sendFavourite({{item.id}})">
+						{{item.name}}
+						<ion-delete-button class="ion-close-round" ng-click="deleteFavourite({{item.id}})"></ion-delete-button>
+						<ion-reorder-button class="ion-navicon" on-reorder="reorderFavourites(item, $fromIndex, $toIndex)"></ion-reorder-button>
+					</ion-item>
+				</ion-list>
+				<div ng-show="!favourites.length" class="padding-horizontal" align="center">
+					<p>
+						No static {{"favouriteSpelling" | translate | lowercase}}s have been saved.
+					</p>
+				</div>
+			</div>
+		</div>
+		<br>
 <!--
 		<ion-toggle ng-model=allOn ng-change="allOnChanged()" toggle-class="toggle-calm">
 			LED
@@ -68,6 +71,6 @@
 		<button ng-click="setPlaneHex()" class="button button-block button-balanced">
 			setplane Y 1 3DF400; (Green)
 		</button>
--->
 	</ion-content>
+
 </ion-view>

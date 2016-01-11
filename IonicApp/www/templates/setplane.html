@@ -1,47 +1,53 @@
 <ion-view view-title="Set Plane">
+
 	<ion-nav-bar class="bar-positive">
 		<ion-nav-buttons side="left">
 			<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
 		</ion-nav-buttons>
 	</ion-nav-bar>
-  <ion-content>
-  	<div class="card">
-  		<div class="item item-divider">
+
+	<ion-content>
+		<div class="card">
+			<div class="item item-divider">
 				Axis
 			</div>
-			<ion-list>
-  			<ion-radio name="axis" ng-model="values.axis" value="X">X (Left to Right)</ion-radio>
-  			<ion-radio name="axis" ng-model="values.axis" value="Y">Y (Front to Back)</ion-radio>
-  			<ion-radio name="axis" ng-model="values.axis" value="Z">Z (Bottom to Top)</ion-radio>
-			</ion-list>
-		</div>
 
-  	<div class="card">
-  		<div class="item item-divider">
-				Offset
-			</div>
 			<ion-list>
-	  		<ion-radio name="offset" ng-model="values.offset" value="0">0</ion-radio>
-	  		<ion-radio name="offset" ng-model="values.offset" value="1">1</ion-radio>
-	  		<ion-radio name="offset" ng-model="values.offset" value="2">2</ion-radio>
-	  		<ion-radio name="offset" ng-model="values.offset" value="3">3</ion-radio>
+				<ion-radio name="axis" ng-model="values.axis" value="X">X (Left to Right)</ion-radio>
+				<ion-radio name="axis" ng-model="values.axis" value="Y">Y (Front to Back)</ion-radio>
+				<ion-radio name="axis" ng-model="values.axis" value="Z">Z (Bottom to Top)</ion-radio>
 			</ion-list>
 		</div>
 
 		<div class="card">
-  		<div class="item item-divider">
-				{{"colourSpelling" | translate}}
+			<div class="item item-divider">
+				Offset
 			</div>
-    <div class="padding-horizontal">
-			<button ng-click="openModal()" class="button button-block button-light" back-colour="{{selectedColour}}"></button>
-      </div>
+
+			<ion-list>
+				<ion-radio name="offset" ng-model="values.offset" value="0">0</ion-radio>
+				<ion-radio name="offset" ng-model="values.offset" value="1">1</ion-radio>
+				<ion-radio name="offset" ng-model="values.offset" value="2">2</ion-radio>
+				<ion-radio name="offset" ng-model="values.offset" value="3">3</ion-radio>
+			</ion-list>
 		</div>
 
-    <div class="padding-horizontal">
-		<button ng-click="setPlane()" class="button button-block button-positive">
-			Set Plane
-		</button>
-    </div>
+		<div class="card">
+			<div class="item item-divider">
+				{{"colourSpelling" | translate}}
+			</div>
+
+			<div class="padding-horizontal">
+				<button ng-click="openModal()" class="button button-block button-light" back-colour="{{selectedColour}}"></button>
+			</div>
+		</div>
+
+		<div class="padding-horizontal">
+			<button ng-click="setPlane()" class="button button-block button-positive">
+				Set Plane
+			</button>
+		</div>
 		<br>
 	</ion-content>
+
 </ion-view>

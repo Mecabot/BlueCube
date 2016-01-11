@@ -1,6 +1,6 @@
 <ion-view view-title="ColourPicker">
-	<div class="modal">
 
+	<div class="modal">
 		<ion-header-bar class="bar bar-header bar-positive">
 			<h1 class="title">
 				Select {{"colourSpelling" | translate}}
@@ -9,47 +9,50 @@
 		</ion-header-bar>
 
 		<ion-content ng-controller="ColourPickerCtrl">
-  	<div class="card">
-  		<div class="item item-divider">
-				{{"colourSpelling" | translate}}
+			<div class="card">
+				<div class="item item-divider">
+					{{"colourSpelling" | translate}}
+				</div>
+
+				<div class="padding">
+					<div class="row" back-colour="{{hexColour}}" align="center">
+						<div class="col col-center">
+							<uicolorpicker ng-model="colour.targetColor"></uicolorpicker>
+						</div>
+					</div>
+				</div>
 			</div>
 
-      <div class="padding">
-      <div class="row" back-colour="{{hexColour}}" align="center">
-        <div class="col col-center">
-          <uicolorpicker ng-model="colour.targetColor"></uicolorpicker>
-        </div>
-      </div>
-      </div>
-    </div>
-
-  	<div class="card">
-  		<div class="item item-divider row">
-  		  <div class="col col-center">
-				{{"favouriteSpelling" | translate}}s
+			<div class="card">
+				<div class="item item-divider row">
+					<div class="col col-center">
+					{{"favouriteSpelling" | translate}}s
+					</div>
+					<div class="col" align="right">
+						<button class="button button-clear ion-plus-round button-balanced" ng-click="addUserColour()"></button>
+						<button class="button button-clear ion-close-round button-assertive" ng-click="data.showDelete = !data.showDelete"></button>
+						<button class="button button-clear ion-navicon button-calm" ng-click="data.showReordering = !data.showReordering"></button>
+					</div>
 				</div>
-				<div class="col" align="right">
-    			<button class="button button-clear ion-plus-round button-balanced" ng-click="addUserColour()"></button>
-    			<button class="button button-clear ion-close-round button-assertive" ng-click="data.showDelete = !data.showDelete"></button>
-    			<button class="button button-clear ion-navicon button-calm" ng-click="data.showReordering = !data.showReordering"></button>
-  			</div>
-      </div>
-		<div class="padding-top">
-			<ion-list type="list-inset" show-delete="data.showDelete" show-reorder="data.showReordering">
-				<ion-item ng-repeat="userColour in colours track by userColour.id" ng-style="{'background-color': '#{{userColour.hex}}'}" ng-click="chooseFavouriteColour('{{userColour.hex}}')">
-					#{{userColour.hex}}
-					<ion-delete-button class="ion-close-round" ng-click="deleteUserColour({{userColour.id}})"></ion-delete-button>
-					<ion-reorder-button class="ion-navicon" on-reorder="reorderItem(userColour, $fromIndex, $toIndex)"></ion-reorder-button>
-				</ion-item>
-			</ion-list>
-       <div ng-show="!colours.length" class="padding-horizontal" align="center">
-         <p>No {{"favouriteSpelling" | translate | lowercase}} {{"colourSpelling" | translate | lowercase}}s have been saved.</p>
-       </div>
-      </div>
-      </div>
+
+				<div class="padding-top">
+					<ion-list type="list-inset" show-delete="data.showDelete" show-reorder="data.showReordering">
+						<ion-item ng-repeat="userColour in colours track by userColour.id" ng-style="{'background-color': '#{{userColour.hex}}'}" ng-click="chooseFavouriteColour('{{userColour.hex}}')">
+							#{{userColour.hex}}
+							<ion-delete-button class="ion-close-round" ng-click="deleteUserColour({{userColour.id}})"></ion-delete-button>
+							<ion-reorder-button class="ion-navicon" on-reorder="reorderItem(userColour, $fromIndex, $toIndex)"></ion-reorder-button>
+						</ion-item>
+					</ion-list>
+					<div ng-show="!colours.length" class="padding-horizontal" align="center">
+						<p>
+							No {{"favouriteSpelling" | translate | lowercase}} {{"colourSpelling" | translate | lowercase}}s have been saved.
+						</p>
+					</div>
+				</div>
+			</div>
 			<br>
+		</ion-content>
 
-    </ion-content>
+	</div>
 
-  </div>
 </ion-view>

@@ -1,6 +1,6 @@
 <ion-view view-title="User Defined Function">
-	<div class="modal">
 
+	<div class="modal">
 		<ion-header-bar class="bar bar-header bar-positive">
 			<h1 class="title">
 				Define Function
@@ -9,39 +9,42 @@
 		</ion-header-bar>
 
 		<ion-content ng-controller="UserDefinedModalCtrl">
+			<div class="card">
+				<div class="item item-divider">
+					Function
+				</div>
 
-    <div class="card">
-  		<div class="item item-divider">
-				Function
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Name</span>
+					<input type="text" placeholder="Name" ng-model="userDefinedFuntionData.name">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Number</span>
+					<input type="text" placeholder="1" ng-model="userDefinedFuntionData.number">
+				</label>
 			</div>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Name</span>
-        <input type="text" placeholder="Name" ng-model="userDefinedFuntionData.name">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Number</span>
-        <input type="text" placeholder="1" ng-model="userDefinedFuntionData.number">
-      </label>
-    </div>
 
-    <div class="card">
-  		<div class="item item-divider">
-				{{"colourSpelling" | translate}}
+			<div class="card">
+				<div class="item item-divider">
+					{{"colourSpelling" | translate}}
+				</div>
+
+				<ion-toggle ng-model=userDefinedFuntionData.colourRequired ng-change="colourRequiredChanged()" toggle-class="toggle-balanced">
+					{{"colourSpelling" | translate}} Required
+				</ion-toggle>
+				<div class="padding-horizontal">
+					<button ng-click="openModal()" class="button button-block button" back-colour="{{selectedColour}}"></button>
+				</div>
 			</div>
-  		<ion-toggle ng-model=userDefinedFuntionData.colourRequired ng-change="colourRequiredChanged()" toggle-class="toggle-balanced">
-	  		{{"colourSpelling" | translate}} Required
-		  </ion-toggle>
-  		<div class="padding-horizontal">
-  			<button ng-click="openModal()" class="button button-block button" back-colour="{{selectedColour}}"></button>
-  		</div>
-    </div>
 
-    <div class="padding-horizontal">
-      <button ng-click="saveUserDefinedFunction()" class="button button-block button-positive">
-  			Save User Defined Function
-	  	</button>
-    </div>
-    <br>
-    </ion-content>
-  </div>
+			<div class="padding-horizontal">
+				<button ng-click="saveUserDefinedFunction()" class="button button-block button-positive">
+					Save User Defined Function
+				</button>
+			</div>
+			<br>
+		</ion-content>
+
+	</div>
+
 </ion-view>
