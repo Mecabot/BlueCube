@@ -141,37 +141,37 @@ app.controller('ShiftCtrl', function($ionicPlatform, $scope, $cubeAction) {
 		// Up button clicked, so submit the appropriate message to the cube,
 		// and add it to the history
 		$cubeAction.sendMessage('shift Z +;', true);
-	}
+	};
 
 	$scope.down = function () {
 		// Down button clicked, so submit the appropriate message to the cube,
 		// and add it to the history
 		$cubeAction.sendMessage('shift Z -;', true);
-	}
+	};
 
 	$scope.left = function () {
 		// Left button clicked, so submit the appropriate message to the cube,
 		// and add it to the history
 		$cubeAction.sendMessage('shift X -;', true);
-	}
+	};
 
 	$scope.right = function () {
 		// Right button clicked, so submit the appropriate message to the cube,
 		// and add it to the history
 		$cubeAction.sendMessage('shift X +;', true);
-	}
+	};
 
 	$scope.back = function () {
 		// Back button clicked, so submit the appropriate message to the cube,
 		// and add it to the history
 		$cubeAction.sendMessage('shift Y +;', true);
-	}
+	};
 
 	$scope.forward = function () {
 		// Forward button clicked, so submit the appropriate message to the cube,
 		// and add it to the history
 		$cubeAction.sendMessage('shift Y -;', true);
-	}
+	};
 });
 
 app.controller('SetCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
@@ -188,7 +188,7 @@ app.controller('SetCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicMo
 
 			var message = "set " + $cubeAction.lookupCoords(id) + " " + colourToUse + ";";
 			$cubeAction.sendMessage(message, true);
-		}
+		};
 
 		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
 			scope: $scope,
@@ -228,7 +228,7 @@ app.controller('NextCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicM
 			var colourToUse = $localstorage.get('selectedColour', '00d1ff');
 			var message = "next " + colourToUse + ";";
 			$cubeAction.sendMessage(message, true);
-		}
+		};
 
 		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
 			scope: $scope,
@@ -481,7 +481,7 @@ app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicMo
 		} else {
 			$scope.showSecontaryColour = true;
 		}
-	}
+	};
 
 	$scope.drawBox = function() {
 		var message = "box ";
@@ -578,10 +578,10 @@ app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, $ioni
 	$scope.styleSelection = function() {
 		if (parseInt($scope.style.sphereStyle) == 0) {
 			$scope.showSecontaryColour = false;
-			} else {
+		} else {
 				$scope.showSecontaryColour = true;
-			}
 		}
+	};
 
 	$scope.drawSphere = function() {
 		var message = "sphere ";
@@ -849,15 +849,15 @@ app.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction, 
 			$scope.userDefinedFuntionData.colour = $localstorage.get('selectedColour', '00d1ff');
 			UserDefinedService.add($scope.userDefinedFuntionData);
 			$scope.modal.hide();
-		}
+		};
 
 		$scope.deleteFavourite = function (id) {
 			UserDefinedService.delete(id);
-		}
+		};
 
 		$scope.reorderFavourites = function(item, fromIndex, toIndex) {
 			UserDefinedService.reorder(item, fromIndex, toIndex);
-		}
+		};
 
 		$scope.sendUDF = function (id) {
 			$udf = UserDefinedService.get(id);
@@ -867,7 +867,7 @@ app.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction, 
 			}
 			message = message + ";";
 			$cubeAction.sendMessage(message, true);
-		}
+		};
 	});
 });
 
@@ -928,15 +928,15 @@ app.controller('StaticCtrl', function($ionicPlatform, $scope, $timeout, $cubeAct
 					$scope.modal.hide();
 				}
 			}
-		}
+		};
 
 		$scope.deleteFavourite = function (id) {
 			StaticFavouritesService.delete(id);
-		}
+		};
 
 		$scope.reorderFavourites = function(item, fromIndex, toIndex) {
 			StaticFavouritesService.reorder(item, fromIndex, toIndex);
-		}
+		};
 
 		$scope.sendFavourite = function (id) {
 			$cmds = StaticFavouritesService.get(id);
@@ -953,7 +953,7 @@ app.controller('StaticCtrl', function($ionicPlatform, $scope, $timeout, $cubeAct
 					}, i);
 				})(cmdToSend, i);
 			}
-		}
+		};
 	});
 });
 
@@ -976,7 +976,7 @@ app.controller('HistoryCtrl', function($ionicPlatform, $scope, $cubeAction, Hist
 
 	$scope.deleteHistoryItem = function (id) {
 		HistoryService.delete(id);
-	}
+	};
 });
 
 app.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordovaDialogs) {
@@ -992,7 +992,7 @@ app.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordo
 
 	$scope.setMaxHistoryItems = function(number) {
 		$localstorage.set('history_items', number);
-	}
+	};
 
 	$scope.resetColours = function () {
 		$cordovaDialogs.confirm('Are you sure you want to reset to the default values?', 'Reset', ['Cancel','OK']).then(function(buttonIndex) {
@@ -1000,7 +1000,7 @@ app.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordo
 				$defaults.resetColours();
 			}
 		});
-	}
+	};
 
 	$scope.resetUserDefinedFunctions = function () {
 		$cordovaDialogs.confirm('Are you sure you want to reset to the default values?', 'Reset', ['Cancel','OK']).then(function(buttonIndex) {
@@ -1008,7 +1008,7 @@ app.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordo
 				$defaults.resetUserDefinedFunctions();
 			}
 		});
-	}
+	};
 
 	$scope.resetStatic = function () {
 		$cordovaDialogs.confirm('Are you sure you want to reset to the default values?', 'Reset', ['Cancel','OK']).then(function(buttonIndex) {
@@ -1016,7 +1016,7 @@ app.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordo
 				$defaults.resetStatic();
 			}
 		});
-	}
+	};
 
 	$scope.resetHistory = function () {
 		$cordovaDialogs.confirm('Are you sure you want to clear the history?', 'Reset', ['Cancel','OK']).then(function(buttonIndex) {
@@ -1024,7 +1024,7 @@ app.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordo
 				$defaults.resetHistory();
 			}
 		});
-	}
+	};
 
 	$scope.resetOthers = function() {
 		$cordovaDialogs.confirm('Are you sure you want to reset background settings?', 'Reset', ['Cancel','OK']).then(function(buttonIndex) {
@@ -1032,7 +1032,7 @@ app.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordo
 				$defaults.resetOthers();
 			}
 		});
-	}
+	};
 
 	$scope.resetAll = function () {
 		$cordovaDialogs.confirm('Are you sure you want to reset all settings?', 'Reset All', ['Cancel','OK']).then(function(buttonIndex) {
@@ -1044,7 +1044,7 @@ app.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordo
 				$defaults.resetOthers();
 			}
 		});
-	}
+	};
 });
 
 app.controller('AboutCtrl', function($ionicPlatform, $scope, $cordovaDevice, $cordovaAppVersion) {
@@ -1101,11 +1101,11 @@ app.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourServic
 
 	$scope.deleteUserColour = function (id) {
 		ColourService.delete(id);
-	}
+	};
 
 	$scope.reorderItem = function(item, fromIndex, toIndex) {
 		ColourService.reorder(item, fromIndex, toIndex);
-	}
+	};
 });
 
 app.controller('UserDefinedModalCtrl', function($ionicPlatform, $scope, $ionicModal, $localstorage) {
@@ -1164,7 +1164,7 @@ app.controller('StaticCreatorCtrl', function($ionicPlatform, $scope, HistoryServ
 		} else {
 			$scope.saveButton = false;
 		}
-	}
+	};
 
 	$scope.addStaticCommand = function (command) {
 	var item =	{

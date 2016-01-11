@@ -25,7 +25,7 @@ app.factory('$localstorage', ['$window', function($window) {
 		clear: function() {
 			$window.localStorage.clear();
 		}
-	}
+	};
 }]);
 
 app.factory('$defaults', ['$localstorage', function($localstorage) {
@@ -237,7 +237,7 @@ app.factory('$defaults', ['$localstorage', function($localstorage) {
 			$localstorage.delete('bluetoothUUID');
 			$localstorage.delete('liveAllColourChanges');
 		}
-	}
+	};
 }]);
 
 app.factory('$cubeAction', ['$cordovaBluetoothSerial', 'HistoryService', '$ionicContentBanner', function($cordovaBluetoothSerial, HistoryService, $ionicContentBanner) {
@@ -500,5 +500,5 @@ app.factory('$cubeAction', ['$cordovaBluetoothSerial', 'HistoryService', '$ionic
 				}
 			);
 		}
-	}
+	};
 }]);

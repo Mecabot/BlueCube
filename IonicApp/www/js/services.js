@@ -21,7 +21,7 @@ app.service('HistoryService', function($localstorage) {
 		}
 
 		return commands;
-	}
+	};
 
 	this.get = function(historyID) {
 		for (i in commands) {
@@ -29,7 +29,7 @@ app.service('HistoryService', function($localstorage) {
 				return historyID[i].cmd;
 			}
 		}
-	}
+	};
 
 	this.add = function(command) {
 		var maxHistoryItems;
@@ -55,7 +55,7 @@ app.service('HistoryService', function($localstorage) {
 		commands.unshift(historyItem);
 		$localstorage.setObject('history', commands);
 		$localstorage.set('history_uniqueID', uniqueID);
-	}
+	};
 
 	this.delete = function(historyID) {
 		for (i in commands) {
@@ -65,13 +65,13 @@ app.service('HistoryService', function($localstorage) {
 		}
 
 		$localstorage.setObject('history', commands);
-	}
+	};
 
 	this.reorder = function(item, fromIndex, toIndex) {
 		commands.splice(fromIndex, 1);
 		commands.splice(toIndex, 0, item);
 		$localstorage.setObject('history', commands);
-	}
+	};
 });
 
 app.service('ColourService', function($localstorage, $defaults) {
@@ -92,7 +92,7 @@ app.service('ColourService', function($localstorage, $defaults) {
 		colours = $localstorage.getObject('userDefinedColours');
 
 		return colours;
-	}
+	};
 
 	this.get = function(colourId) {
 		for (i in colours) {
@@ -100,7 +100,7 @@ app.service('ColourService', function($localstorage, $defaults) {
 				return colours[i];
 			}
 		}
-	}
+	};
 
 	this.add = function(userDefinedColour) {
 		var newColour =	{
@@ -112,7 +112,7 @@ app.service('ColourService', function($localstorage, $defaults) {
 		colours.push(newColour);
 		$localstorage.setObject('userDefinedColours', colours);
 		$localstorage.set('userDefinedColours_uniqueID', uniqueID);
-	}
+	};
 
 	this.delete = function(colourId) {
 		for (i in colours) {
@@ -122,13 +122,13 @@ app.service('ColourService', function($localstorage, $defaults) {
 		}
 
 		$localstorage.setObject('userDefinedColours', colours);
-	}
+	};
 
 	this.reorder = function(item, fromIndex, toIndex) {
 		colours.splice(fromIndex, 1);
 		colours.splice(toIndex, 0, item);
 		$localstorage.setObject('userDefinedColours', colours);
-	}
+	};
 });
 
 app.service('StaticFavouritesService', function($localstorage, $defaults) {
@@ -150,7 +150,7 @@ app.service('StaticFavouritesService', function($localstorage, $defaults) {
 		staticFavourites = $localstorage.getObject('staticFavourites');
 
 		return staticFavourites;
-	}
+	};
 
 	this.get = function(id) {
 		for (i in staticFavourites) {
@@ -158,7 +158,7 @@ app.service('StaticFavouritesService', function($localstorage, $defaults) {
 				return staticFavourites[i].cmds;
 			}
 		}
-	}
+	};
 
 	this.add = function(name, cmds) {
 		var favouriteItem =	{
@@ -170,7 +170,7 @@ app.service('StaticFavouritesService', function($localstorage, $defaults) {
 		staticFavourites.push(favouriteItem);
 		$localstorage.setObject('staticFavourites', staticFavourites);
 		$localstorage.set('staticFavourites_uniqueID', uniqueID);
-	}
+	};
 
 	this.delete = function(id) {
 		for (i in staticFavourites) {
@@ -180,13 +180,13 @@ app.service('StaticFavouritesService', function($localstorage, $defaults) {
 		}
 
 		$localstorage.setObject('staticFavourites', staticFavourites);
-	}
+	};
 
 	this.reorder = function(item, fromIndex, toIndex) {
 		staticFavourites.splice(fromIndex, 1);
 		staticFavourites.splice(toIndex, 0, item);
 		$localstorage.setObject('staticFavourites', staticFavourites);
-	}
+	};
 });
 
 app.service('UserDefinedService', function($localstorage, $defaults) {
@@ -208,7 +208,7 @@ app.service('UserDefinedService', function($localstorage, $defaults) {
 		userDefinedFunctions = $localstorage.getObject('userDefinedFunctions');
 
 		return userDefinedFunctions;
-	}
+	};
 
 	this.get = function(id) {
 		for (i in userDefinedFunctions) {
@@ -216,7 +216,7 @@ app.service('UserDefinedService', function($localstorage, $defaults) {
 				return userDefinedFunctions[i];
 			}
 		}
-	}
+	};
 
 	this.add = function(udf) {
 		var userDefinedItem =	{
@@ -230,7 +230,7 @@ app.service('UserDefinedService', function($localstorage, $defaults) {
 		userDefinedFunctions.push(userDefinedItem);
 		$localstorage.setObject('userDefinedFunctions', userDefinedFunctions);
 		$localstorage.set('userDefinedFunctions_uniqueID', uniqueID);
-	}
+	};
 
 	this.delete = function(id) {
 		for (i in userDefinedFunctions) {
@@ -240,11 +240,11 @@ app.service('UserDefinedService', function($localstorage, $defaults) {
 		}
 
 		$localstorage.setObject('userDefinedFunctions', userDefinedFunctions);
-	}
+	};
 
 	this.reorder = function(item, fromIndex, toIndex) {
 		userDefinedFunctions.splice(fromIndex, 1);
 		userDefinedFunctions.splice(toIndex, 0, item);
 		$localstorage.setObject('userDefinedFunctions', userDefinedFunctions);
-	}
+	};
 });
