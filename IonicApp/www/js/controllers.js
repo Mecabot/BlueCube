@@ -884,7 +884,7 @@ angular.module('BlueCube.controllers', [])
 	      cmdToSend = $cmds[i].cmd;
 
   	    // To work in the loop, I needed to wrap the timeout call in a closure function,
-  	    // and pass the values into it. If I didin't do this, it would only use the last
+  	    // and pass the values into it. If I didn't do this, it would only use the last
   	    // value for all calls.
 	      (function(cmdToSend, i) {
           $timeout(function() { $cubeAction.sendMessage(cmdToSend, true); }, i);
@@ -993,7 +993,7 @@ angular.module('BlueCube.controllers', [])
 
 .controller('AboutCtrl', function($ionicPlatform, $scope, $cordovaDevice, $cordovaAppVersion) {
 	$ionicPlatform.ready(function() {
-		// getting device infor from $cordovaDevice
+		// getting device info from $cordovaDevice
 		var device = $cordovaDevice.getDevice();
 
 		$scope.manufacturer = device.manufacturer;
