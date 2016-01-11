@@ -119,9 +119,8 @@ app.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourSe
 	};
 
 	$scope.addUserColour = function () {
-		newColour = $scope.hexColour;
-		ColourService.add(newColour);
 		// Save the currently selected colour to the favourites list
+		ColourService.add($scope.hexColour);
 	};
 
 	$scope.deleteUserColour = function (id) {
