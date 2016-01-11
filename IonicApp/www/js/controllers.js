@@ -12,11 +12,15 @@ app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 app.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourService, $localstorage) {
 	if ($localstorage.get('liveAllColourChanges', 'true') == "true") {
 		$scope.live = true;
+
+		// Hide the button to manually send colour changes
+		$scope.useSelectedColourButton = false;
 	} else {
 		$scope.live = false;
-	}
 
-	$scope.useSelectedColourButton = false;
+		// Show the button to manually send colour changes
+		$scope.useSelectedColourButton = true;
+	}
 
 	$scope.data = {
 		showDelete: false,
