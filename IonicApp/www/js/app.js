@@ -21,6 +21,8 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 })
 
 .config(function($stateProvider, $urlRouterProvider, $translateProvider) {
+	// Handle the difference between Australian English and American English
+	// by preparing translations for Colour and Favourite
 	$translateProvider.translations('en-AU', {
 		colourSpelling:		"Colour",
 		favouriteSpelling:	"Favourite"
@@ -31,10 +33,16 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 		favouriteSpelling:	"Favorite"
 	});
 
+	// Set the default language to Australian English
 	$translateProvider.preferredLanguage("en-AU");
 	$translateProvider.fallbackLanguage("en-AU");
+
+	// Set the translator to sanitise any variables it's applied to to
+	// mitigate any XSS attempts.
 	$translateProvider.useSanitizeValueStrategy('sanitize');
 
+	// Specify all of the app routing / states, including the template and
+	// controller to use for each page.
 	$stateProvider
 		.state('app', {
 			url: '/app',
@@ -43,6 +51,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			controller: 'AppCtrl'
 		})
 
+		// All
 		.state('app.all', {
 			url: '/all',
 			cache: false,
@@ -59,6 +68,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		// Shift
 		.state('app.shift', {
 			url: '/shift',
 			cache: false,
@@ -70,6 +80,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		// Set
 		.state('app.set', {
 			url: '/set',
 			cache: false,
@@ -81,6 +92,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		// Next
 		.state('app.next', {
 			url: '/next',
 			cache: false,
@@ -92,6 +104,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		// Set Plane
 		.state('app.setplane', {
 			url: '/setplane',
 			cache: false,
@@ -103,6 +116,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		// Copy Plane
 		.state('app.copyplane', {
 			url: '/copyplane',
 			cache: false,
@@ -114,6 +128,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		//Move Plane
 		.state('app.moveplane', {
 			url: '/moveplane',
 			cache: false,
@@ -125,6 +140,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		// Line
 		.state('app.line', {
 			url: '/line',
 			cache: false,
@@ -136,6 +152,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		// Box
 		.state('app.box', {
 			url: '/box',
 			cache: false,
@@ -147,6 +164,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		// Sphere
 		.state('app.sphere', {
 			url: '/sphere',
 			cache: false,
@@ -158,6 +176,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		// Connect
 		.state('app.connect', {
 			url: '/connect',
 			cache: false,
@@ -169,6 +188,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		// User Defined Functions
 		.state('app.userdefined', {
 			url: '/userdefined',
 			cache: false,
@@ -180,6 +200,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		// Static Favourites
 		.state('app.static', {
 			url: '/static',
 			cache: false,
@@ -191,6 +212,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		// History
 		.state('app.history', {
 			url: '/history',
 			cache: true,
@@ -202,6 +224,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		// Settings
 		.state('app.settings', {
 			url: '/settings',
 			cache: false,
@@ -213,6 +236,7 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
+		// About
 		.state('app.about', {
 			url: '/about',
 			cache: true,
@@ -224,6 +248,6 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 		}
 	});
 
-	// if none of the above states are matched, use this as the fallback
+	// If none of the above are requested, default to the connect page
 	$urlRouterProvider.otherwise('/app/connect');
 });
