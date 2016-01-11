@@ -60,14 +60,8 @@ void FaceSweep::update()
   else if ((_state == 2) && (currentMillis - _previousMillis >= _theDelay))
   {
     // Draw frame 2 of the animation
-    _cube.set(0, 0, 0, BLACK);
-    _cube.set(1, 0, 0, BLACK);
-    _cube.set(2, 0, 0, BLACK);
-    _cube.set(3, 0, 0, BLACK);
-    _cube.set(0, 1, 0, _theColour);
-    _cube.set(1, 1, 0, _theColour);
-    _cube.set(2, 1, 0, _theColour);
-    _cube.set(3, 1, 0, _theColour);
+    _cube.line(0, 0, 0, 3, 0, 0, BLACK);
+    _cube.line(0, 1, 0, 3, 1, 0, _theColour);
 
     // Flag that we need to move to the next state
     _state = 3;
@@ -77,22 +71,10 @@ void FaceSweep::update()
   else if ((_state == 3) && (currentMillis - _previousMillis >= _theDelay))
   {
     // Draw frame 3 of the animation
-    _cube.set(0, 1, 0, BLACK);
-    _cube.set(1, 1, 0, BLACK);
-    _cube.set(2, 1, 0, BLACK);
-    _cube.set(3, 1, 0, BLACK);
-    _cube.set(0, 0, 1, BLACK);
-    _cube.set(1, 0, 1, BLACK);
-    _cube.set(2, 0, 1, BLACK);
-    _cube.set(3, 0, 1, BLACK);
-    _cube.set(0, 2, 0, _theColour);
-    _cube.set(1, 2, 0, _theColour);
-    _cube.set(2, 2, 0, _theColour);
-    _cube.set(3, 2, 0, _theColour);
-    _cube.set(0, 1, 1, _theColour);
-    _cube.set(1, 1, 1, _theColour);
-    _cube.set(2, 1, 1, _theColour);
-    _cube.set(3, 1, 1, _theColour);
+    _cube.line(0, 1, 0, 3, 1, 0, BLACK);
+    _cube.line(0, 0, 1, 3, 0, 1, BLACK);
+    _cube.line(0, 2, 0, 3, 2, 0, _theColour);
+    _cube.line(0, 1, 1, 3, 1, 1, _theColour);
 
     // Flag that we need to move to the next state
     _state = 4;
@@ -102,30 +84,12 @@ void FaceSweep::update()
   else if ((_state == 4) && (currentMillis - _previousMillis >= _theDelay))
   {
     // Draw frame 4 of the animation
-    _cube.set(0, 2, 0, BLACK);
-    _cube.set(1, 2, 0, BLACK);
-    _cube.set(2, 2, 0, BLACK);
-    _cube.set(3, 2, 0, BLACK);
-    _cube.set(0, 1, 1, BLACK);
-    _cube.set(1, 1, 1, BLACK);
-    _cube.set(2, 1, 1, BLACK);
-    _cube.set(3, 1, 1, BLACK);
-    _cube.set(0, 0, 2, BLACK);
-    _cube.set(1, 0, 2, BLACK);
-    _cube.set(2, 0, 2, BLACK);
-    _cube.set(3, 0, 2, BLACK);
-    _cube.set(0, 3, 0, _theColour);
-    _cube.set(1, 3, 0, _theColour);
-    _cube.set(2, 3, 0, _theColour);
-    _cube.set(3, 3, 0, _theColour);
-    _cube.set(0, 2, 1, _theColour);
-    _cube.set(1, 2, 1, _theColour);
-    _cube.set(2, 2, 1, _theColour);
-    _cube.set(3, 2, 1, _theColour);
-    _cube.set(0, 1, 2, _theColour);
-    _cube.set(1, 1, 2, _theColour);
-    _cube.set(2, 1, 2, _theColour);
-    _cube.set(3, 1, 2, _theColour);
+    _cube.line(0, 2, 0, 3, 2, 0, BLACK);
+    _cube.line(0, 1, 1, 3, 1, 1, BLACK);
+    _cube.line(0, 0, 2, 3, 0, 2, BLACK);
+    _cube.line(0, 3, 0, 3, 3, 0, _theColour);
+    _cube.line(0, 2, 1, 3, 2, 1, _theColour);
+    _cube.line(0, 1, 2, 3, 1, 2, _theColour);
 
     // Flag that we need to move to the next state
     _state = 5;
@@ -135,30 +99,12 @@ void FaceSweep::update()
   else if ((_state == 5) && (currentMillis - _previousMillis >= _theDelay))
   {
     // Draw frame 5 of the animation
-    _cube.set(0, 3, 0, BLACK);
-    _cube.set(1, 3, 0, BLACK);
-    _cube.set(2, 3, 0, BLACK);
-    _cube.set(3, 3, 0, BLACK);
-    _cube.set(0, 2, 1, BLACK);
-    _cube.set(1, 2, 1, BLACK);
-    _cube.set(2, 2, 1, BLACK);
-    _cube.set(3, 2, 1, BLACK);
-    _cube.set(0, 1, 2, BLACK);
-    _cube.set(1, 1, 2, BLACK);
-    _cube.set(2, 1, 2, BLACK);
-    _cube.set(3, 1, 2, BLACK);
-    _cube.set(0, 1, 3, _theColour);
-    _cube.set(1, 1, 3, _theColour);
-    _cube.set(2, 1, 3, _theColour);
-    _cube.set(3, 1, 3, _theColour);
-    _cube.set(0, 2, 2, _theColour);
-    _cube.set(1, 2, 2, _theColour);
-    _cube.set(2, 2, 2, _theColour);
-    _cube.set(3, 2, 2, _theColour);
-    _cube.set(0, 3, 1, _theColour);
-    _cube.set(1, 3, 1, _theColour);
-    _cube.set(2, 3, 1, _theColour);
-    _cube.set(3, 3, 1, _theColour);
+    _cube.line(0, 3, 0, 3, 3, 0, BLACK);
+    _cube.line(0, 2, 1, 3, 2, 1, BLACK);
+    _cube.line(0, 1, 2, 3, 1, 2, BLACK);
+    _cube.line(0, 1, 3, 3, 1, 3, _theColour);
+    _cube.line(0, 2, 2, 3, 2, 2, _theColour);
+    _cube.line(0, 3, 1, 3, 3, 1, _theColour);
 
     // Flag that we need to move to the next state
     _state = 6;
@@ -168,22 +114,10 @@ void FaceSweep::update()
   else if ((_state == 6) && (currentMillis - _previousMillis >= _theDelay))
   {
     // Draw frame 6 of the animation
-    _cube.set(0, 2, 2, BLACK);
-    _cube.set(1, 2, 2, BLACK);
-    _cube.set(2, 2, 2, BLACK);
-    _cube.set(3, 2, 2, BLACK);
-    _cube.set(0, 3, 1, BLACK);
-    _cube.set(1, 3, 1, BLACK);
-    _cube.set(2, 3, 1, BLACK);
-    _cube.set(3, 3, 1, BLACK);
-    _cube.set(0, 2, 3, _theColour);
-    _cube.set(1, 2, 3, _theColour);
-    _cube.set(2, 2, 3, _theColour);
-    _cube.set(3, 2, 3, _theColour);
-    _cube.set(0, 3, 2, _theColour);
-    _cube.set(1, 3, 2, _theColour);
-    _cube.set(2, 3, 2, _theColour);
-    _cube.set(3, 3, 2, _theColour);
+    _cube.line(0, 2, 2, 3, 2, 2, BLACK);
+    _cube.line(0, 3, 1, 3, 3, 1, BLACK);
+    _cube.line(0, 2, 3, 3, 2, 3, _theColour);
+    _cube.line(0, 3, 2, 3, 3, 2, _theColour);
 
     // Flag that we need to move to the next state
     _state = 7;
@@ -193,14 +127,8 @@ void FaceSweep::update()
   else if ((_state == 7) && (currentMillis - _previousMillis >= _theDelay))
   {
     // Draw frame 7 of the animation
-    _cube.set(0, 3, 2, BLACK);
-    _cube.set(1, 3, 2, BLACK);
-    _cube.set(2, 3, 2, BLACK);
-    _cube.set(3, 3, 2, BLACK);
-    _cube.set(0, 3, 3, _theColour);
-    _cube.set(1, 3, 3, _theColour);
-    _cube.set(2, 3, 3, _theColour);
-    _cube.set(3, 3, 3, _theColour);
+    _cube.line(0, 3, 2, 3, 3, 2, BLACK);
+    _cube.line(0, 3, 3, 3, 3, 3, _theColour);
 
     // Flag that we need to move to the next state
     _state = 8;
