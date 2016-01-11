@@ -90,13 +90,10 @@ void setup(void)
     waitCounter++;
   }
 
-  // Print Debug Info if a serial interface is present
-  if (Serial)
-  {
-    Serial.print("BlueCube v");
-    Serial.println(SCRIPT_VERSION);
-  }
-  
+  // Print script name and version
+  Serial.print("BlueCube v");
+  Serial.println(SCRIPT_VERSION);
+
   // Tell the cube library that the function 'userFunctionHandler' should be
   // called if the user uses the 'user ### colour;' serial command line
   // instruction
