@@ -1,56 +1,115 @@
 /*
- * RandomColours.cpp - Randomly lightup all of the LEDs on a Freetronix 4x4x4 cube
+ *  File:     RandomColours.cpp - Randomly lightup all of the LEDs on a Freetronix 4x4x4 cube (non blocking)
+ *  Version:  0.8
+ *  Author:   Adam Reed (adam@secretcode.ninja)
+ *  Licence:  BSD 3-Clause Licence
  */
 
+// Include for Arduino Library
 #include "Arduino.h"
+
+// Include for Cube Library
 #include "Cube.h"
+
+// Include the header file for this class
 #include "RandomColours.h"
 
 RandomColours::RandomColours(Cube cube, int theDelay)
 {
-  _theDelay = theDelay;
+  // Retain the reference to the cube
   _cube = cube;
 
+  // Retain the delay we will use
+  _theDelay = theDelay;
+
+  // Set the time we last ran the code to zero as it hasn't run yet
   _previousMillis = 0;
 
-  randomSeed(analogRead(0));
+  // Seed the random number generator so that we get different results each
+  // time the cube is started
+  randomSeed(analogRead(RANDOM_PIN));
 }
 
 void RandomColours::pastels() {
-  // check to see if it's time to change the state of the LED
+  // Handles drawing the Random Pastels Colours animation.
+
+  /* This code is designed to be non blocking, so instead of using
+   * "delay()", it uses the time and the difference between this run
+   * and the last run to determine if it needs to update the cube. As
+   * this animation doesn't have "states" we don't use a state machine.
+   */
+
+   // Get the current time
   unsigned long currentMillis = millis();
+
   if (currentMillis - _previousMillis >= _theDelay) 
   {
+    // Pick a random x, y, z, location on the cube, and set it's colour to
+    // the mixture of random values of red, green and blue (each between 0 and 254)
     _cube.set(random(4), random(4), random(4), RGB(random(255), random(255), random(255)));
-    _previousMillis = currentMillis;   // Remember the time
+
+    // Remember the time for future reference
+    _previousMillis = currentMillis;
   }
 }
 
 void RandomColours::allColours() {
-  // check to see if it's time to change the state of the LED
+  // Handles drawing the Random Colours animation.
+
+  /* This code is designed to be non blocking, so instead of using
+   * "delay()", it uses the time and the difference between this run
+   * and the last run to determine if it needs to update the cube. As
+   * this animation doesn't have "states" we don't use a state machine.
+   */
+
+   // Get the current time
   unsigned long currentMillis = millis();
+
   if (currentMillis - _previousMillis >= _theDelay) 
   {
+    // For three random numbers that are either 0 or 255 which
+    // represents either fully on or fully off for each of the colour
+    // channels
     byte rr = random(0, 2) * 255;
     byte gg = random(0, 2) * 255;
     byte bb = random(0, 2) * 255;
   
+    // Pick a random x, y, z, location on the cube, and set it's colour to
+    // the mixture of red, green and blue random values from above
     _cube.set(random(4), random(4), random(4), RGB(rr, gg, bb));
-    _previousMillis = currentMillis;   // Remember the time
+
+    // Remember the time for future reference
+    _previousMillis = currentMillis;
   }
 }
 
 void RandomColours::primary()
 {
-  // check to see if it's time to change the state of the LED
+  // Handles drawing the Random Primary Colours animation.
+
+  /* This code is designed to be non blocking, so instead of using
+   * "delay()", it uses the time and the difference between this run
+   * and the last run to determine if it needs to update the cube. As
+   * this animation doesn't have "states" we don't use a state machine.
+   */
+
+   // Get the current time
   unsigned long currentMillis = millis();
+
   if (currentMillis - _previousMillis >= _theDelay) 
   {
+    // Define the three primary colours
     rgb_t colours[3] = {RED, GREEN, BLUE};
+
+    // Randomly pick an index to use for the above colours array
     byte i = random(0, 3);
 
+    // Pick a random x, y, z, location on the cube and set it's colour
+    // to the colour at the randomly picked index
     _cube.set(random(4), random(4), random(4), colours[i]);
-    _previousMillis = currentMillis;   // Remember the time
+
+    // Remember the time for future reference
+    _previousMillis = currentMillis;
   }
 }
 
