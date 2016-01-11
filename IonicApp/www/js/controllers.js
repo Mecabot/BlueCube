@@ -1,5 +1,6 @@
 var app = angular.module('BlueCube.controllers', [])
 
+// Controller for the application
 app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 	// With the new view caching in Ionic, Controllers are only called
 	// when they are recreated or on app start, instead of every page change.
@@ -9,9 +10,8 @@ app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 	//});
 });
 
+// Controller for the 'All' page
 app.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourService, $localstorage) {
-	// Handles the "All" page
-
 	// Get whether the user wishes to send colour updates directly to the cube as they are picked,
 	// or whether they want to want until they specifically send the colour.
 	if ($localstorage.get('liveAllColourChanges', 'true') == "true") {
@@ -136,9 +136,8 @@ app.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourSe
 	};
 });
 
+// Controller for the 'Shift' page
 app.controller('ShiftCtrl', function($ionicPlatform, $scope, $cubeAction) {
-	// Handles the "Shift" page
-
 	$scope.up = function () {
 		// Up button clicked, so submit the appropriate message to the cube,
 		// and add it to the history
