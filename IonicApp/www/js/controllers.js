@@ -135,27 +135,41 @@ app.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourSe
 });
 
 app.controller('ShiftCtrl', function($ionicPlatform, $scope, $cubeAction) {
+	// Handles the "Shift" page
+
 	$scope.up = function () {
+		// Up button clicked, so submit the appropriate message to the cube,
+		// and add it to the history
 		$cubeAction.sendMessage('shift Z +;', true);
 	}
 
 	$scope.down = function () {
+		// Down button clicked, so submit the appropriate message to the cube,
+		// and add it to the history
 		$cubeAction.sendMessage('shift Z -;', true);
 	}
 
 	$scope.left = function () {
+		// Left button clicked, so submit the appropriate message to the cube,
+		// and add it to the history
 		$cubeAction.sendMessage('shift X -;', true);
 	}
 
 	$scope.right = function () {
+		// Right button clicked, so submit the appropriate message to the cube,
+		// and add it to the history
 		$cubeAction.sendMessage('shift X +;', true);
 	}
 
 	$scope.back = function () {
+		// Back button clicked, so submit the appropriate message to the cube,
+		// and add it to the history
 		$cubeAction.sendMessage('shift Y +;', true);
 	}
 
 	$scope.forward = function () {
+		// Forward button clicked, so submit the appropriate message to the cube,
+		// and add it to the history
 		$cubeAction.sendMessage('shift Y -;', true);
 	}
 });
