@@ -126,12 +126,12 @@ app.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourSe
 	$scope.deleteUserColour = function (id) {
 		// Delete the colour favourite with the provided id.
 		ColourService.delete(id);
-	}
+	};
 
 	$scope.reorderItem = function(item, fromIndex, toIndex) {
 		// Reorder the favourite colours list
 		ColourService.reorder(item, fromIndex, toIndex);
-	}
+	};
 });
 
 app.controller('ShiftCtrl', function($ionicPlatform, $scope, $cubeAction) {
