@@ -10,40 +10,67 @@ app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 });
 
 app.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourService, $localstorage) {
+	// Get whether the user wishes to send colour updates directly to the cube as they are picked,
+	// or whether they want to want until they specifically send the colour.
 	if ($localstorage.get('liveAllColourChanges', 'true') == "true") {
+		// Either no setting was set, or the user wants to make live changes
+
+		// Indicate that we are in live mode
 		$scope.live = true;
 
 		// Hide the button to manually send colour changes
 		$scope.useSelectedColourButton = false;
 	} else {
+		// Indicate that we are not in live mode
 		$scope.live = false;
 
 		// Show the button to manually send colour changes
 		$scope.useSelectedColourButton = true;
 	}
 
+	// Flag that deleting and re-ordering of the favourite colours list is off by default
 	$scope.data = {
 		showDelete: false,
 		showReordering: false,
 	};
 
 	$scope.$on('$ionicView.beforeEnter', function() {
+		// Get the list of favourite colours and store it in the colours array before the
+		// page is loaded.
 		$scope.colours = ColourService.list();
 	});
 
 	$ionicPlatform.ready(function() {
+		// Get the initial colour to set the colour selector to
 		var initialColour = $localstorage.get('selectedColour', '00d1ff');
+
+		// Make the colour available to the view
 		$scope.hexColour = initialColour;
+
+		// Set the colour selector to the initial colour
 		initialColour = '#' + initialColour;
 		$scope.colour = {targetColor: initialColour};
+
+		// Make the list of colour favourites available to the view
 		$scope.colours = ColourService.list();
 
+		// What for when the user selects a new colour via the colour picker
 		$scope.$watchCollection('colour.targetColor', function(newValue, oldValue) {
 			if (newValue != oldValue) {
+				// The colour has changed so track it
+
+				// The colour is returned as #XXXXXX whereas we don't required the #,
+				// so get only the hex part of the colour string
 				$scope.hexColour = newValue.substring(1);
+
+				// Save the choice for future reference
 				$localstorage.set('selectedColour', $scope.hexColour);
+
 				if ($scope.live == true) {
+					// We are in live mode, so build the message to send to the cube
 					var message = "all " + $scope.hexColour + ";";
+
+					// Submit the message to the cube, and add it to the history
 					$cubeAction.sendMessage(message, true);
 				}
 			}
@@ -51,35 +78,59 @@ app.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourSe
 	});
 
 	$scope.liveChanged = function() {
+		// Called whenever the "Automatically Change" toggle is changed
+
 		if ($scope.live == false) {
+			// User wants to enable live mode
+
+			// Flag we are in live mode, and save this choice
 			$scope.live = true;
 			$localstorage.set('liveAllColourChanges', 'true');
+
+			// Hide the button to manually change the colour
 			$scope.useSelectedColourButton = false;
 		} else {
+			// User wants manual mode
+
+			// Flag we are in manual mode, and save this choice
 			$scope.live = false;
 			$localstorage.set('liveAllColourChanges', 'false');
+
+			// Show the button to manually change the colour
 			$scope.useSelectedColourButton = true;
 		}
 	};
 
 	$scope.sendSelectedColour = function(selectedColour) {
+		// The user has either clicked one of the colour favourites, or manually
+		// wishes to change the colour
+
 		if (selectedColour == null) {
+			// No colour was provided, so it's a manual colour change. As such use the
+			// colour that has been selected via the colour picker
 			selectedColour = $scope.hexColour;
 		}
+
+		// Build the message to send to the cube
 		var message = "all " + selectedColour + ";";
+
+		// Submit the message to the cube, and add it to the history
 		$cubeAction.sendMessage(message, true);
 	};
 
 	$scope.addUserColour = function () {
 		newColour = $scope.hexColour;
 		ColourService.add(newColour);
+		// Save the currently selected colour to the favourites list
 	};
 
 	$scope.deleteUserColour = function (id) {
+		// Delete the colour favourite with the provided id.
 		ColourService.delete(id);
 	}
 
 	$scope.reorderItem = function(item, fromIndex, toIndex) {
+		// Reorder the favourite colours list
 		ColourService.reorder(item, fromIndex, toIndex);
 	}
 });
