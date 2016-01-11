@@ -114,14 +114,49 @@ angular.module('BlueCube.utils', [])
 			var udfDefaults = [
 													{
 														id: 0,
-														name: "ZigZag",
+														name: "ZigZag Blue",
 														number: 1,
 														colourRequired: true,
 														colour: "0000ff",
+													},
+													{
+														id: 1,
+														name: "ZigZag Green",
+														number: 1,
+														colourRequired: true,
+														colour: "00ff00",
+													},
+													{
+														id: 2,
+														name: "Random Pastels",
+														number: 2,
+														colourRequired: false,
+														colour: "",
+													},
+													{
+														id: 3,
+														name: "Random Colours",
+														number: 3,
+														colourRequired: false,
+														colour: "",
+													},
+													{
+														id: 4,
+														name: "Random Primary Colours",
+														number: 4,
+														colourRequired: false,
+														colour: "",
+													},
+													{
+														id: 5,
+														name: "Face Sweep",
+														number: 5,
+														colourRequired: false,
+														colour: "",
 													}
 												];
 			$localstorage.setObject('userDefinedFunctions', udfDefaults);
-			$localstorage.set('userDefinedFunctions_uniqueID', 1);
+			$localstorage.set('userDefinedFunctions_uniqueID', 6);
 		},
 
 		resetOthers: function() {
