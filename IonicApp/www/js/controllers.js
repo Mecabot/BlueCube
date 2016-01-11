@@ -934,7 +934,7 @@ angular.module('BlueCube.controllers', [])
   $scope.resetColours = function () {
     $cordovaDialogs.confirm('Are you sure you want to reset to the default values?', 'Reset', ['Cancel','OK'])
     .then(function(buttonIndex) {
-      if (buttonIndex == 1) {
+      if (buttonIndex == 2) {
         $defaults.resetColours();
       }
     });
@@ -943,7 +943,7 @@ angular.module('BlueCube.controllers', [])
   $scope.resetUserDefinedFunctions = function () {
     $cordovaDialogs.confirm('Are you sure you want to reset to the default values?', 'Reset', ['Cancel','OK'])
     .then(function(buttonIndex) {
-      if (buttonIndex ==1) {
+      if (buttonIndex == 2) {
         $defaults.resetUserDefinedFunctions();
       }
     });
@@ -952,7 +952,7 @@ angular.module('BlueCube.controllers', [])
   $scope.resetStatic = function () {
     $cordovaDialogs.confirm('Are you sure you want to reset to the default values?', 'Reset', ['Cancel','OK'])
     .then(function(buttonIndex) {
-      if (buttonIndex ==1) {
+      if (buttonIndex == 2) {
         $defaults.resetStatic();
       }
     });
@@ -961,7 +961,7 @@ angular.module('BlueCube.controllers', [])
   $scope.resetHistory = function () {
     $cordovaDialogs.confirm('Are you sure you want to clear the history?', 'Reset', ['Cancel','OK'])
     .then(function(buttonIndex) {
-      if (buttonIndex == 1) {
+      if (buttonIndex == 2) {
         $defaults.resetHistory();
       }
     });
@@ -970,7 +970,7 @@ angular.module('BlueCube.controllers', [])
   $scope.resetOthers = function() {
     $cordovaDialogs.confirm('Are you sure you want to reset background settings?', 'Reset', ['Cancel','OK'])
     .then(function(buttonIndex) {
-      if (buttonIndex == 1) {
+      if (buttonIndex == 2) {
         $defaults.resetOthers();
       }
     });
@@ -980,11 +980,11 @@ angular.module('BlueCube.controllers', [])
     $cordovaDialogs.confirm('Are you sure you want to reset all settings?', 'Reset All', ['Cancel','OK'])
     .then(function(buttonIndex) {
       if (buttonIndex == 2) {
-        $scope.resetColours();
-        $scope.resetUserDefinedFunctions();
-        $scope.resetStatic();
-        $scope.resetHistory();
-        $scope.resetOthers();
+        $defaults.resetColours();
+        $defaults.resetUserDefinedFunctions();
+        $defaults.resetStatic();
+        $defaults.resetHistory();
+        $defaults.resetOthers();
       }
     });
   }
