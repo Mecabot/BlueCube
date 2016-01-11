@@ -1,5 +1,5 @@
 /*
- *  File:     Bluetooth.h - Non blocking bluetooth functionality 
+ *  File:     Bluetooth.h - Non blocking bluetooth functionality
  *            for Freetronics 4x4x4 Cube
  *  Version:  0.8
  *  Author:   Adam Reed (adam@secretcode.ninja)
@@ -34,12 +34,12 @@
 // Declare out class, with public and private variables
 class Bluetooth {
   public:
-    // Constructor method, requiring a pointer to the bluetooth object, and 
+    // Constructor method, requiring a pointer to the bluetooth object, and
     // the time in milliseconds to wait for a complete message
     Bluetooth(Adafruit_BLE *ble, int timeout);
 
     // Function for checking and processing any received messages
-    void checkForCommand(); 
+    void checkForCommand();
 
   private:
     // Bluetooth object

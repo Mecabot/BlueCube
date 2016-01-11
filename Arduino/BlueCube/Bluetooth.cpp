@@ -1,12 +1,12 @@
 /*
- *  File:     Bluetooth.cpp - Non blocking bluetooth functionality 
+ *  File:     Bluetooth.cpp - Non blocking bluetooth functionality
  *            for Freetronics 4x4x4 Cube
  *  Version:  0.8
  *  Author:   Adam Reed (adam@secretcode.ninja)
  *  Licence:  BSD 3-Clause Licence
- *  
+ *
  *  Notes:    This code was based on the nRF51822 based Bluefruit LE modules
- *            example code provided by Adafruit, particularly the 
+ *            example code provided by Adafruit, particularly the
  *            packetParser() function.
  */
 
@@ -38,11 +38,11 @@ Bluetooth::Bluetooth(Adafruit_BLE *ble, int timeout)
 void Bluetooth::_prepareForCommand()
 {
   // Called once at the start of each attempt to read a command
-  
+
   // Reset the packet buffer
   memset(_packetBuffer, 0, READ_BUFSIZE + 1);   // Fill buffer with zeros
-  _bufferIndex = 0;                             // Reset current position within the  
-                                                // received character buffer
+  _bufferIndex = 0;                             // Reset current position within the
+  // received character buffer
   // Reset the time remaining before timeout
   _timeRemaining = _timeout;
 }
@@ -77,7 +77,7 @@ void Bluetooth::checkForCommand()
         if (c == ';') {
           // We have reached the end of the message, so print a new line
           //serial->println();
-          
+
           // Set the timeout to zero as we don't need to wait any longer for characters
           _timeRemaining = 0;
 
@@ -87,7 +87,7 @@ void Bluetooth::checkForCommand()
       }
     }
   }
-  
+
   if (_timeRemaining == 0 )
   {
     if (!_bufferIndex) {
@@ -97,13 +97,13 @@ void Bluetooth::checkForCommand()
       _prepareForCommand();
 
       // exit the function
-      return;               
+      return;
     }
 
     // We have data, so pass it to the cube's parser to read the message and act upon it
-    
+
     // Null terminate the packet buffer
-    _packetBuffer[_bufferIndex] = 0;  
+    _packetBuffer[_bufferIndex] = 0;
 
     // Call the cube libraries parser to action the message
     bytecode_t bytecode = {};
