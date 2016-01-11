@@ -1,10 +1,10 @@
 angular.module('BlueCube.services', [])
 
 .service('HistoryService', function($localstorage) {
-  var commands;
-  var uniqueID;
+	var commands;
+	var uniqueID;
 
-  if ($localstorage.getObject('history') != undefined) {
+	if ($localstorage.getObject('history') != undefined) {
 		commands = $localstorage.getObject('history');
 	} else {
 		commands = [];
@@ -14,15 +14,14 @@ angular.module('BlueCube.services', [])
 	uniqueID = parseInt($localstorage.get('history_uniqueID'));
 
 	this.list = function() {
-    if ($localstorage.getObject('history') != undefined) {
-		  commands = $localstorage.getObject('history');
-	  } else {
-		  commands = [];
-  	}
+		if ($localstorage.getObject('history') != undefined) {
+			commands = $localstorage.getObject('history');
+		} else {
+			commands = [];
+		}
 
-  	return commands;
+		return commands;
 	}
-
 
 	this.get = function(historyID) {
 		for (i in commands) {
@@ -33,29 +32,29 @@ angular.module('BlueCube.services', [])
 	}
 
 	this.add = function(command) {
-	  var maxHistoryItems;
+		var maxHistoryItems;
 
-	  if ($localstorage.get('history_items') != undefined) {
-	    maxHistoryItems = parseInt($localstorage.get('history_items'));
-    } else {
-      maxHistoryItems = 100;
-    }
+		if ($localstorage.get('history_items') != undefined) {
+			maxHistoryItems = parseInt($localstorage.get('history_items'));
+		} else {
+			maxHistoryItems = 100;
+		}
 
-	  var historyItem = {
-	                      id: uniqueID,
-	                      cmd: command,
-	                    };
+		var historyItem = 	{
+								id: uniqueID,
+								cmd: command,
+							};
 
-    if (commands.length >= maxHistoryItems) {
-      for(i = maxHistoryItems - 1; i <= commands.length; i++) {
-        commands.pop();
-      }
-    }
+		if (commands.length >= maxHistoryItems) {
+			for(i = maxHistoryItems - 1; i <= commands.length; i++) {
+				commands.pop();
+			}
+		}
 
 		uniqueID = uniqueID + 1;
 		commands.unshift(historyItem);
 		$localstorage.setObject('history', commands);
-    $localstorage.set('history_uniqueID', uniqueID);
+		$localstorage.set('history_uniqueID', uniqueID);
 	}
 
 	this.delete = function(historyID) {
@@ -68,7 +67,7 @@ angular.module('BlueCube.services', [])
 		$localstorage.setObject('history', commands);
 	}
 
-  this.reorder = function(item, fromIndex, toIndex) {
+	this.reorder = function(item, fromIndex, toIndex) {
 		commands.splice(fromIndex, 1);
 		commands.splice(toIndex, 0, item);
 		$localstorage.setObject('history', commands);
@@ -79,20 +78,20 @@ angular.module('BlueCube.services', [])
 	var uniqueID;
 	var colours;
 
-  if ($localstorage.getObject('userDefinedColours') == undefined) {
-  	$defaults.resetColours();
-  }
+	if ($localstorage.getObject('userDefinedColours') == undefined) {
+		$defaults.resetColours();
+	}
 
-  colours = $localstorage.getObject('userDefinedColours');
-  uniqueID = parseInt($localstorage.get('userDefinedColours_uniqueID'));
+	colours = $localstorage.getObject('userDefinedColours');
+	uniqueID = parseInt($localstorage.get('userDefinedColours_uniqueID'));
 
 	this.list = function() {
-    if ($localstorage.getObject('userDefinedColours') == undefined) {
-    	$defaults.resetColours();
-    }
-    colours = $localstorage.getObject('userDefinedColours');
+		if ($localstorage.getObject('userDefinedColours') == undefined) {
+			$defaults.resetColours();
+		}
+		colours = $localstorage.getObject('userDefinedColours');
 
-    return colours;
+		return colours;
 	}
 
 	this.get = function(colourId) {
@@ -104,10 +103,10 @@ angular.module('BlueCube.services', [])
 	}
 
 	this.add = function(userDefinedColour) {
-		var newColour = {
-											 id: uniqueID,
-											hex: userDefinedColour,
-										};
+		var newColour =	{
+							id: uniqueID,
+							hex: userDefinedColour,
+						};
 
 		uniqueID = uniqueID + 1;
 		colours.push(newColour);
@@ -133,24 +132,24 @@ angular.module('BlueCube.services', [])
 })
 
 .service('StaticFavouritesService', function($localstorage, $defaults) {
-  var staticFavourites;
-  var uniqueID;
+	var staticFavourites;
+	var uniqueID;
 
-  if ($localstorage.getObject('staticFavourites') == undefined) {
-  	$defaults.resetStatic();
+	if ($localstorage.getObject('staticFavourites') == undefined) {
+		$defaults.resetStatic();
 	}
 
 	staticFavourites = $localstorage.getObject('staticFavourites');
 	uniqueID = parseInt($localstorage.get('staticFavourites_uniqueID'));
 
 	this.list = function() {
-    if ($localstorage.getObject('staticFavourites') == undefined) {
-    	$defaults.resetStatic();
-  	}
+		if ($localstorage.getObject('staticFavourites') == undefined) {
+			$defaults.resetStatic();
+		}
 
-  	staticFavourites = $localstorage.getObject('staticFavourites');
+		staticFavourites = $localstorage.getObject('staticFavourites');
 
-    return staticFavourites;
+		return staticFavourites;
 	}
 
 
@@ -163,15 +162,15 @@ angular.module('BlueCube.services', [])
 	}
 
 	this.add = function(name, cmds) {
-	  var favouriteItem = {
-	                      id: uniqueID,
-	                      name: name,
-	                      cmds: cmds,
-	                    };
+		var favouriteItem =	{
+								id: uniqueID,
+								name: name,
+								cmds: cmds,
+							};
 		uniqueID = uniqueID + 1;
 		staticFavourites.push(favouriteItem);
 		$localstorage.setObject('staticFavourites', staticFavourites);
-    $localstorage.set('staticFavourites_uniqueID', uniqueID);
+		$localstorage.set('staticFavourites_uniqueID', uniqueID);
 	}
 
 	this.delete = function(id) {
@@ -184,7 +183,7 @@ angular.module('BlueCube.services', [])
 		$localstorage.setObject('staticFavourites', staticFavourites);
 	}
 
-  this.reorder = function(item, fromIndex, toIndex) {
+	this.reorder = function(item, fromIndex, toIndex) {
 		staticFavourites.splice(fromIndex, 1);
 		staticFavourites.splice(toIndex, 0, item);
 		$localstorage.setObject('staticFavourites', staticFavourites);
@@ -192,24 +191,24 @@ angular.module('BlueCube.services', [])
 })
 
 .service('UserDefinedService', function($localstorage, $defaults) {
-  var userDefinedFunctions;
-  var uniqueID;
+	var userDefinedFunctions;
+	var uniqueID;
 
-  if ($localstorage.getObject('userDefinedFunctions') == undefined) {
-  	$defaults.resetUserDefinedFunctions();
+	if ($localstorage.getObject('userDefinedFunctions') == undefined) {
+		$defaults.resetUserDefinedFunctions();
 	}
 
 	userDefinedFunctions = $localstorage.getObject('userDefinedFunctions');
 	uniqueID = parseInt($localstorage.get('userDefinedFunctions_uniqueID'));
 
 	this.list = function() {
-    if ($localstorage.getObject('userDefinedFunctions') == undefined) {
-    	$defaults.resetUserDefinedFunctions();
-  	}
+		if ($localstorage.getObject('userDefinedFunctions') == undefined) {
+			$defaults.resetUserDefinedFunctions();
+		}
 
-  	userDefinedFunctions = $localstorage.getObject('userDefinedFunctions');
+		userDefinedFunctions = $localstorage.getObject('userDefinedFunctions');
 
-    return userDefinedFunctions;
+		return userDefinedFunctions;
 	}
 
 
@@ -222,17 +221,17 @@ angular.module('BlueCube.services', [])
 	}
 
 	this.add = function(udf) {
-	  var userDefinedItem = {
-	                      id: uniqueID,
-	                      name: udf.name,
-	                      number: udf.number,
-	                      colourRequired: udf.colourRequired,
-	                      colour: udf.colour,
-	                    };
+		var userDefinedItem =	{
+									id: uniqueID,
+									name: udf.name,
+									number: udf.number,
+									colourRequired: udf.colourRequired,
+									colour: udf.colour,
+								};
 		uniqueID = uniqueID + 1;
 		userDefinedFunctions.push(userDefinedItem);
 		$localstorage.setObject('userDefinedFunctions', userDefinedFunctions);
-    $localstorage.set('userDefinedFunctions_uniqueID', uniqueID);
+		$localstorage.set('userDefinedFunctions_uniqueID', uniqueID);
 	}
 
 	this.delete = function(id) {
@@ -245,7 +244,7 @@ angular.module('BlueCube.services', [])
 		$localstorage.setObject('userDefinedFunctions', userDefinedFunctions);
 	}
 
-  this.reorder = function(item, fromIndex, toIndex) {
+	this.reorder = function(item, fromIndex, toIndex) {
 		userDefinedFunctions.splice(fromIndex, 1);
 		userDefinedFunctions.splice(toIndex, 0, item);
 		$localstorage.setObject('userDefinedFunctions', userDefinedFunctions);

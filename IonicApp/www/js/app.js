@@ -17,23 +17,23 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			// org.apache.cordova.statusbar required
 			StatusBar.styleDefault();
 		}
-
 	});
 })
 
 .config(function($stateProvider, $urlRouterProvider, $translateProvider) {
-  $translateProvider.translations('en-AU', {
-      colourSpelling: "Colour",
-      favouriteSpelling: "Favourite"
-  });
-  $translateProvider.translations('en-US', {
-      colourSpelling: "Color",
-      favouriteSpelling: "Favorite"
-  });
+	$translateProvider.translations('en-AU', {
+		colourSpelling:		"Colour",
+		favouriteSpelling:	"Favourite"
+	});
 
-  $translateProvider.preferredLanguage("en-AU");
-  $translateProvider.fallbackLanguage("en-AU");
-  $translateProvider.useSanitizeValueStrategy('sanitize');
+	$translateProvider.translations('en-US', {
+		colourSpelling:		"Color",
+		favouriteSpelling:	"Favorite"
+	});
+
+	$translateProvider.preferredLanguage("en-AU");
+	$translateProvider.fallbackLanguage("en-AU");
+	$translateProvider.useSanitizeValueStrategy('sanitize');
 
 	$stateProvider
 		.state('app', {
@@ -202,27 +202,27 @@ angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueC
 			}
 		})
 
-    .state('app.settings', {
-     url: '/settings',
-     cache: false,
-     views: {
-         'menuContent': {
-             templateUrl: 'templates/settings.html',
-             controller : 'SettingsCtrl'
-         }
-     }
-    })
+		.state('app.settings', {
+			url: '/settings',
+			cache: false,
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/settings.html',
+					controller : 'SettingsCtrl'
+				}
+			}
+		})
 
-    .state('app.about', {
-     url: '/about',
-     cache: true,
-     views: {
-         'menuContent': {
-             templateUrl: 'templates/about.html',
-             controller : 'AboutCtrl'
-         }
-     }
-    });
+		.state('app.about', {
+			url: '/about',
+			cache: true,
+			views: {
+			'menuContent': {
+				templateUrl: 'templates/about.html',
+				controller : 'AboutCtrl'
+			}
+		}
+	});
 
 	// if none of the above states are matched, use this as the fallback
 	$urlRouterProvider.otherwise('/app/connect');
