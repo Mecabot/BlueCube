@@ -72,7 +72,10 @@ Bluetooth bluetooth(&ble, BLE_READPACKET_TIMEOUT);
 void setup(void)
 {
   Serial.begin(115200);
-  
+
+  // Set the pin connected to "MOD" on the bluetooth module to output
+  pinMode(BLUEFRUIT_UART_MODE_PIN, OUTPUT);
+
   // Serial port options for control of the Cube using serial commands are:
   // 0: Control via the USB connector (most common).
   // 1: Control via the RXD and TXD pins on the main board.
@@ -99,58 +102,50 @@ void setup(void)
   // instruction
   setDelegate(userFunctionHandler);
 
-  pinMode(BLUEFRUIT_UART_MODE_PIN, OUTPUT);
-
-  Serial.println(F("Adafruit Bluefruit App Controller Example"));
-  Serial.println(F("-----------------------------------------"));
-
   /* Initialise the module */
-  Serial.print(F("Initialising the Bluefruit LE module: "));
+  if (VERBOSE_MODE)
+  {
+    Serial.println("Initialising Bluetooth");
+  }
 
   if ( !ble.begin(VERBOSE_MODE) )
-  {
-    Serial.println(F("Couldn't find Bluefruit, make sure it's in CoMmanD mode & check wiring?"));
+  { // Bluetooth couldn't be started,
+    Serial.println("Couldn't find Bluetooth");
+  } else {
+    // Bluetooth has been started
+    if (VERBOSE_MODE)
+    {
+      Serial.println("OK!");
+    }
+
+    // Disable command echo from Bluetooth
+    ble.echo(false);
+
+    if (VERBOSE_MODE)
+    {
+      // Print Bluetooth information */
+      Serial.println("Requesting Bluetooth info");
+      ble.info();
+    }
+
+    // Bluetooth debug info is a little annoying after this point!.
+    ble.verbose(false);
+
+    if (VERBOSE_MODE)
+    {
+      Serial.println("Set to data mode");
+    }
+    
+    // LED Activity command is only supported from 0.6.6
+    if ( ble.isVersionAtLeast(MINIMUM_FIRMWARE_VERSION) )
+    {
+      // Change Mode LED Activity
+      ble.sendCommandCheckOK("AT+HWModeLED=" MODE_LED_BEHAVIOUR);
+    }
+
+    // Set Bluetooth to DATA mode
+    ble.setMode(BLUEFRUIT_MODE_DATA);
   }
-  Serial.println( F("OK!") );
-
-  /* Disable command echo from Bluefruit */
-  ble.echo(false);
-
-  Serial.println("Requesting Bluefruit info:");
-  /* Print Bluefruit information */
-  ble.info();
-
-  Serial.println("MAC Address:");
-  ble.sendCommandCheckOK("AT+BLEGETADDR");
-  Serial.println();
-  
-  Serial.println(F("Please use Adafruit Bluefruit LE app to connect in Controller mode"));
-  Serial.println(F("Then activate/use the sensors, color picker, game controller, etc!"));
-  Serial.println();
-
-  ble.verbose(false);  // debug info is a little annoying after this point!
-
-  /* Wait for connection */
-  while (! ble.isConnected()) {
-      delay(500);
-  }
-
-  Serial.println(F("******************************"));
-
-  // LED Activity command is only supported from 0.6.6
-  if ( ble.isVersionAtLeast(MINIMUM_FIRMWARE_VERSION) )
-  {
-    // Change Mode LED Activity
-    Serial.println(F("Change LED activity to " MODE_LED_BEHAVIOUR));
-    ble.sendCommandCheckOK("AT+HWModeLED=" MODE_LED_BEHAVIOUR);
-  }
-
-  // Set Bluefruit to DATA mode
-  Serial.println( F("Switching to DATA mode!") );
-  ble.setMode(BLUEFRUIT_MODE_DATA);
-
-  Serial.println(F("******************************"));
-
 }
 
 void loop(void)
