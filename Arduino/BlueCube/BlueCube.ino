@@ -1,5 +1,5 @@
 /*
- *  File:     BlueCube.ino 
+ *  File:     BlueCube.ino
  *  Version:  0.8
  *  Author:   Adam Reed (adam@secretcode.ninja)
  *  Licence:  BSD 3-Clause Licence
@@ -13,9 +13,9 @@
 
     BLUEFRUIT_HWSERIAL_NAME   Name of the HW serial port the Bluefruit BLE
                               device is connected to
-    
+
     - Bluetooth
-    BLUEFRUIT_UART_MODE_PIN   The pin that has been connected to 'MOD'           
+    BLUEFRUIT_UART_MODE_PIN   The pin that has been connected to 'MOD'
     MINIMUM_FIRMWARE_VERSION  Minimum firmware version to have some features
     MODE_LED_BEHAVIOUR        LED activity, valid options are
                               "DISABLE" or "MODE" or "BLEUART" or
