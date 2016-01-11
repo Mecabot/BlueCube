@@ -4,6 +4,10 @@
  *  Version:  0.8
  *  Author:   Adam Reed (adam@secretcode.ninja)
  *  Licence:  BSD 3-Clause Licence
+ *  
+ *  Notes:    This code was based on the nRF51822 based Bluefruit LE modules
+ *            example code provided by Adafruit, particularly the 
+ *            packetParser() function.
  */
 
 // Include for Arduino Library
