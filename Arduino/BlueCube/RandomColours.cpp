@@ -61,8 +61,8 @@ void RandomColours::allColours() {
    * and the last run to determine if it needs to update the cube. As
    * this animation doesn't have "states" we don't use a state machine.
    *
-   *  Notes:    This code was based on the RandomPastels, RandomColour, 
-   *            and RandomPrimary examples by Jonathan Oxer 
+   *  Notes:    This code was based on the RandomPastels, RandomColour,
+   *            and RandomPrimary examples by Jonathan Oxer
    *            (jon@freetronics.com) that ship as part of the Cube
    *            Library code.
    */

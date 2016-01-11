@@ -137,7 +137,7 @@ void setup(void)
     {
       Serial.println("Set to data mode");
     }
-    
+
     // LED Activity command is only supported from 0.6.6
     if ( ble.isVersionAtLeast(MINIMUM_FIRMWARE_VERSION) )
     {

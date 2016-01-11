@@ -23,12 +23,12 @@ class FaceSweep {
     // milliseconds between animations, and the colour to use.
     FaceSweep(Cube cube, int theDelay, rgb_t theColour = BLUE);
 
-    // Function to determine what the current state of the annimation 
+    // Function to determine what the current state of the annimation
     // should be, and to update the cube to that state if appropriate.
     void update();
 
   private:
-    // Reference to the cube  
+    // Reference to the cube
     Cube _cube;
 
     // Delay between animation states in milliseconds

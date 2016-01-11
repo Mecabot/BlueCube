@@ -32,7 +32,7 @@ class RandomColours {
     // Constructor method, requiring the cube class, the time in
     // milliseconds between animations, and the colour to use.
     RandomColours(Cube cube, int theDelay);
-    
+
     // Functions to draw the three different animations that we have
     // in this class that randomly fill the cube with constantly
     // changing colours
@@ -44,16 +44,16 @@ class RandomColours {
     void allColours();
 
     // Primary (Red, Green, and Blue) Colours
-    void primary(); 
+    void primary();
 
   private:
-    // Reference to the cube  
+    // Reference to the cube
     Cube _cube;
 
     // Delay between animation states in milliseconds
     int _theDelay;
 
-    // Tracks the time the code was last run    
+    // Tracks the time the code was last run
     unsigned long _previousMillis;
 };
 
