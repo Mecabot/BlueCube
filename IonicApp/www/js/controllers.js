@@ -10,6 +10,8 @@ app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 });
 
 app.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourService, $localstorage) {
+	// Handles the "All" page
+
 	// Get whether the user wishes to send colour updates directly to the cube as they are picked,
 	// or whether they want to want until they specifically send the colour.
 	if ($localstorage.get('liveAllColourChanges', 'true') == "true") {
