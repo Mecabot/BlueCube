@@ -47,23 +47,14 @@ void ZigZag::update(rgb_t theColour)
   {
     // Draw frame 1 of the animation
     _cube.all(BLACK);
-    _cube.set(1, 0, 0, theColour);
-    _cube.set(3, 0, 0, theColour);
-    _cube.set(0, 1, 0, theColour);
-    _cube.set(2, 1, 0, theColour);
-    _cube.set(1, 2, 0, theColour);
-    _cube.set(3, 2, 0, theColour);
     _cube.set(0, 3, 0, theColour);
-    _cube.set(2, 3, 0, theColour);
+    _cube.line(0, 1, 0, 2, 3, 0, theColour);
+    _cube.line(1, 0, 0, 3, 2, 0, theColour);
+    _cube.set(3, 0, 0, theColour);
     _cube.copyplane(Z, 0, 2);
-    _cube.set(0, 0, 1, theColour);
-    _cube.set(2, 0, 1, theColour);
-    _cube.set(1, 1, 1, theColour);
-    _cube.set(3, 1, 1, theColour);
-    _cube.set(0, 2, 1, theColour);
-    _cube.set(2, 2, 1, theColour);
-    _cube.set(1, 3, 1, theColour);
-    _cube.set(3, 3, 1, theColour);
+    _cube.line(0, 2, 1, 1, 3, 1, theColour);
+    _cube.line(0, 0, 1, 3, 3, 1, theColour);
+    _cube.line(2, 0, 1, 3, 1, 1, theColour);
     _cube.copyplane(Z, 1, 3);
 
     // Flag that we need to move to the other state
@@ -75,23 +66,14 @@ void ZigZag::update(rgb_t theColour)
   {
     // Draw frame 2 of the animation
     _cube.all(BLACK);
-    _cube.set(0, 0, 0, theColour);
-    _cube.set(2, 0, 0, theColour);
-    _cube.set(1, 1, 0, theColour);
-    _cube.set(3, 1, 0, theColour);
-    _cube.set(0, 2, 0, theColour);
-    _cube.set(2, 2, 0, theColour);
-    _cube.set(1, 3, 0, theColour);
-    _cube.set(3, 3, 0, theColour);
+    _cube.line(0, 2, 0, 1, 3, 0, theColour);
+    _cube.line(0, 0, 0, 3, 3, 0, theColour);
+    _cube.line(2, 0, 0, 3, 1, 0, theColour);
     _cube.copyplane(Z, 0, 2);
-    _cube.set(1, 0, 1, theColour);
-    _cube.set(3, 0, 1, theColour);
-    _cube.set(0, 1, 1, theColour);
-    _cube.set(2, 1, 1, theColour);
-    _cube.set(1, 2, 1, theColour);
-    _cube.set(3, 2, 1, theColour);
     _cube.set(0, 3, 1, theColour);
-    _cube.set(2, 3, 1, theColour);
+    _cube.line(0, 1, 1, 2, 3, 1, theColour);
+    _cube.line(1, 0, 1, 3, 2, 1, theColour);
+    _cube.set(3, 0, 1, theColour);
     _cube.copyplane(Z, 1, 3);
 
     // Flag that we need to move to the other state
