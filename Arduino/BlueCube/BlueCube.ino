@@ -11,10 +11,9 @@
     SCRIPT_VERSION            The version of this code
     VERBOSE_MODE              Set to 'true' enables debug output to
 
+    - Bluetooth
     BLUEFRUIT_HWSERIAL_NAME   Name of the HW serial port the Bluefruit BLE
                               device is connected to
-
-    - Bluetooth
     BLUEFRUIT_UART_MODE_PIN   The pin that has been connected to 'MOD'
     MINIMUM_FIRMWARE_VERSION  Minimum firmware version to have some features
     MODE_LED_BEHAVIOUR        LED activity, valid options are
@@ -26,12 +25,17 @@
     RANDOM_COLOURS_DELAY      Delay before randomly setting the next colour
     FACESWEEP_DELAY           Delay between the movements in the animation
 ============================================================================ */
+// General Defines
 #define SCRIPT_VERSION              "0.8"
 #define VERBOSE_MODE                true
+
+// Bluetooth Defines
 #define BLUEFRUIT_UART_MODE_PIN     5
 #define BLUEFRUIT_HWSERIAL_NAME     Serial1
 #define MINIMUM_FIRMWARE_VERSION    "0.6.6"
 #define MODE_LED_BEHAVIOUR          "MODE"
+
+// Pattern Defines
 #define ZIGZAG_DELAY                300
 #define RANDOM_COLOURS_DELAY        2
 #define FACESWEEP_DELAY             100
@@ -60,17 +64,18 @@ rgb_t theColour; // Track the colour to use with the user defined function
 // Cube
 Cube cube;
 
+// Bluetooth
+Adafruit_BluefruitLE_UART ble(BLUEFRUIT_HWSERIAL_NAME, BLUEFRUIT_UART_MODE_PIN);
+Bluetooth bluetooth(&ble, BLE_READPACKET_TIMEOUT);
+
 // Patterns
 ZigZag zigzag(cube, ZIGZAG_DELAY);
 RandomColours randomColours(cube, RANDOM_COLOURS_DELAY);
 FaceSweep facesweep(cube, FACESWEEP_DELAY);
 
-// Bluetooth
-Adafruit_BluefruitLE_UART ble(BLUEFRUIT_HWSERIAL_NAME, BLUEFRUIT_UART_MODE_PIN);
-Bluetooth bluetooth(&ble, BLE_READPACKET_TIMEOUT);
-
 void setup(void)
 {
+  // Start the standard serial port
   Serial.begin(115200);
 
   // Set the pin connected to "MOD" on the bluetooth module to output
@@ -147,6 +152,7 @@ void setup(void)
 
 void loop(void)
 {
+  // Check for any commands from the bluetooth module
   bluetooth.checkForCommand();
 
   if (cube.inUserMode())
