@@ -826,44 +826,57 @@ app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, $ioni
 	};
 });
 
+// Controller for the 'Connect' page
 app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading, $localstorage, $ionicSideMenuDelegate, $translate) {
+	// Show the connect button, and hide the disconnect button by default
 	$scope.connectButton = true;
 	$scope.disconnectButton = false;
+
+	// Hide the log text
 	$scope.hideLogText = true;
 
+	// Determine what state the user last had the auto connect toggle set to, and reset
+	// it to that state
 	if ($localstorage.get('autoConnect') == "true") {
 		$scope.autoConnect = true;
 	} else {
 		$scope.autoConnect = false;
 	}
 
-	// Function called every time this view is shown
-	$scope.$on('$ionicView.beforeEnter', function() {
-		$scope.checkConnected();
-	});
-
-	$scope.$on('$ionicView.afterEnter', function() {
-		if ($scope.autoConnect == true) {
-			$cordovaBluetoothSerial.isConnected().then(
-				function() {
-					// Yep - do nothing
-				},
-				function() {
-					$scope.connect();
-				}
-			);
-		}
-	});
-
 	$ionicPlatform.ready(function() {
 		if (typeof navigator.globalization !== "undefined") {
+			// Get the preferred language of the users device
 			navigator.globalization.getPreferredLanguage(function(language) {
+				// Tell the translation frame work to use the users language
 				$translate.use(language.value).then(function(data) {
 				}, function(error) {
 				});
 			}, null);
 		}
 	});
+
+	// Function called just before this view is shown
+	$scope.$on('$ionicView.beforeEnter', function() {
+		// Check whether or not we are connected to the cube
+		$scope.checkConnected();
+	});
+
+	// Function called just after a view is shown
+	$scope.$on('$ionicView.afterEnter', function() {
+		if ($scope.autoConnect == true) {
+			// User wishes to attempt to auto connect, so check current connection status
+			$cordovaBluetoothSerial.isConnected().then(
+				function() {
+					// Connected, so no action required
+				},
+				function() {
+					// Not connected. Attempt to connect
+					$scope.connect();
+				}
+			);
+		}
+	});
+
 	// Functions for showing and hiding the loading overlay
 	$scope.showConnectionOverlay = function() {
 		$ionicLoading.show({
@@ -876,18 +889,29 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 	};
 
 	$scope.autoConnectChanged = function() {
+		// Called every time the auto connect toggle is changed
+
 		if ($scope.autoConnect == false) {
+			// Auto Connect was previously set to false
+
+			// Enable Auto Connect, and save the users choice
 			$scope.autoConnect = true;
 			$localstorage.set('autoConnect', 'true');
+
+			// Attempt to connect to the cube, if not already connected
 			$cordovaBluetoothSerial.isConnected().then(
 				function() {
-					// Yep - do nothing
+					// Connected, so no action required
 				},
 				function() {
+					// Not connected. Attempt to connect
 					$scope.connect();
 				}
 			);
 		} else {
+			// Auto Connect was previously set to true
+
+			// Disable Auto Connect, and save the users choice
 			$scope.autoConnect = false;
 			$localstorage.set('autoConnect', 'false');
 		}
@@ -895,14 +919,17 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 
 	// Function to Connect to the BlueCube
 	$scope.connect = function() {
+		// Show the progress overlay
 		$scope.showConnectionOverlay();
 
-		// Check if Bluetooth is enabled
+		// Unhide the log text
 		$scope.hideLogText = false;
+
+		// Check if Bluetooth is enabled
 		$scope.logText = "Starting Connection Procedures<br>";
 		$cordovaBluetoothSerial.isEnabled().then(
 			function() {
-				// Bluetooth is enabled
+				// Bluetooth is enabled, so inform the user
 				$scope.logText = $scope.logText + "Bluetooth is enabled...<br>";
 
 				// Find possible devices to connect to
@@ -922,45 +949,72 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 							// Connect to the device
 							$cordovaBluetoothSerial.connect(bluetoothDeviceID).then(
 								function() {
-									// Connected
-									$localstorage.set('bluetoothUUID', bluetoothDeviceID);
+									// Successfully connected to cube
 									$scope.logText = "BlueCube (" + bluetoothDeviceID + ") is Connected<br>";
+
+									// Save the ID of the cube we connected to
+									$localstorage.set('bluetoothUUID', bluetoothDeviceID);
+
+									// Disable the connect button, and enable the disconnect button
 									$scope.connectButton = false;
 									$scope.disconnectButton = true;
+
+									// Hide the progress overlay
 									$scope.hideConnectionOverlay();
+
+									// Open the side menu so that the user can choose where they want to go
 									$ionicSideMenuDelegate.toggleLeft();
 								},
 								function() {
 									// Failed to connect
 									$scope.logText = "ERROR: Failed to connect to BlueCube (" + bluetoothDeviceID + ")<br>";
+
+									// Enable the connect button so the user can try again,
+									// and disable the disconnect button
 									$scope.connectButton = true;
 									$scope.disconnectButton = false;
+
+									// Hide the progress overlay
 									$scope.hideConnectionOverlay();
 								}
 							);
 						} else {
 							// No devices found
 							$scope.logText = "Error: No BlueCube found to connect to<br>";
+
+							// Enable the connect button so the user can try again,
+							// and disable the disconnect button
 							$scope.connectButton = true;
 							$scope.disconnectButton = false;
+
+							// Hide the progress overlay
 							$scope.hideConnectionOverlay();
 						}
 					},
 					function(reason) {
 						// Error finding Bluetooth devices.
 						$scope.logText = "ERROR: Listing Bluetooth Devices Failed: " + reason + "<br>";
+
+						// Enable the connect button so the user can try again,
+						// and disable the disconnect button
 						$scope.connectButton = true;
 						$scope.disconnectButton = false;
+
+						// Hide the progress overlay
 						$scope.hideConnectionOverlay();
 					}
 				);
-
 			},
 			function() {
 				// Bluetooth is not enabled
 				$scope.logText = "ERROR: Bluetooth is *NOT* enabled. Please enable it and try again.<br>";
+
+				// Enable the connect button so the user can try again,
+				// and disable the disconnect button
 				$scope.connecyButton = false;
 				$scope.disconnectButton = false;
+
+				// Hide the progress overlay
 				$scope.hideConnectionOverlay();
 			}
 		);
@@ -970,31 +1024,42 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 	$scope.disconnect = function() {
 		$cordovaBluetoothSerial.disconnect().then(
 			function() {
+				// Disconnect was sucessfull
 				$scope.logText = "Disconnected from BlueCube (" + $localstorage.get('bluetoothUUID') + ")<br>";
+
+				// Enable the connect button, and hide the disconnect button
 				$scope.connectButton = true;
 				$scope.disconnectButton = false;
 			},
 			function(error) {
+				// Couldn't disconnect
 				$scope.logText = "ERROR: Failed to disconnect: " + error + "<br>";
+
+				// Leave the disconnect button visable
 				$scope.disconnectButton = true;
 			}
 		);
 	};
 
-	// Function to setup the state of the view
+	// Function to setup the state of the view based on our connection status
 	$scope.checkConnected = function() {
 		// Check current connection status
 		$cordovaBluetoothSerial.isConnected().then(
 			function() {
+				// Connected
 				$scope.logText = "BlueCube (" + $localstorage.get('bluetoothUUID') + ") is Connected<br>";
+
+				// Show disconnect button, and hide connect button
 				$scope.disconnectButton = true;
 				$scope.connectButton = false;
 			},
 			function() {
+				// Disconnected
 				$scope.logText = "Not connected to a BlueCube<br>";
+
+				// Show connect button, and hide disconnect button
 				$scope.connectButton = true;
 				$scope.disconnectButton = false;
-				//$scope.connect();
 			}
 		);
 	};
