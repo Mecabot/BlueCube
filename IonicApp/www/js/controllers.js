@@ -429,62 +429,87 @@ app.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $i
 	};
 });
 
+// Controller for the 'Line' page
 app.controller('LineCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs) {
+	// Array for tracking each of the LEDs in the cube
 	$scope.cube = [];
 
 	$ionicPlatform.ready(function() {
+		// Get the users last selected colour
 		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+	});
 
-		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
-			scope: $scope,
-			animation: 'slide-in-up'
-		}).then(function(modal) {
-			$scope.modal = modal
-		});
+	// Items for defining and handling the Colour Picker Modal
+	$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.modal = modal
+	});
 
-		$scope.openModal = function() {
-			$scope.modal.show()
-		};
+	$scope.openModal = function() {
+		// Open the modal window
+		$scope.modal.show()
+	};
 
-		$scope.chooseFavouriteColour = function(selectedColour) {
-			$localstorage.set('selectedColour', selectedColour);
-			$scope.selectedColour = selectedColour;
-			$scope.closeModal();
-		};
+	$scope.closeModal = function() {
+		// Close the modal window
+		$scope.modal.hide();
 
-		$scope.closeModal = function() {
-			$scope.modal.hide();
-			$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
-		};
+		// Get the colour that was selected while the modal window was shown
+		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+	};
 
-		$scope.$on('$destroy', function() {
-			$scope.modal.remove();
-		});
+	$scope.$on('$destroy', function() {
+		// Remove the modal from the scope, avoiding a memory leak
+		$scope.modal.remove();
 	});
 
 	$scope.drawLine = function() {
+		// Called when the user wishes to draw a line between two points
+
+		// Start to declare the message to send to the cube
 		var message = "line ";
+
+		// Counter for how many points the user selected
 		var selected = 0;
-		for (i = 0; i <= 64; i++) {
+		for (var i = 0; i <= 64; i++) {
+			// Find the point(s) that the user selected
 			if ($scope.cube[i] == true) {
 				selected = selected + 1;
+
+				// Add the coordinate of the point to the message to send to the cube
 				message = message + $cubeAction.lookupCoords(i) + " ";
 			}
 		}
 
 		if (selected == 2) {
+			// Only 2 points were selected - so draw the line
+
 			// Clear the selected points
-			for (i = 0; i <= 64; i++) {
+			for (var i = 0; i <= 64; i++) {
 				$scope.cube[i] = null;
 			}
 
-			// Draw the line
+			// Finish the message for the cube by getting the selected colour, and sending it
+			// to the cube (and add it to the history)
 			message = message + $localstorage.get('selectedColour', '00d1ff') + ";";
 			$cubeAction.sendMessage(message, true);
 		} else {
-			// Tell them to pick again
+			// More or less than 2 points were selected, so tell the user to only select 2
 			$cordovaDialogs.alert('Please select only 2 points', 'Line', 'OK');
 		}
+	};
+
+	$scope.chooseFavouriteColour = function(selectedColour) {
+		// Called when the user picks one of the favourite colours from the colour picker modal
+
+		// Sets the selected colour to that of the favourite
+		$localstorage.set('selectedColour', selectedColour);
+		$scope.selectedColour = selectedColour;
+
+		// Close the modal window
+		$scope.closeModal();
 	};
 });
 
