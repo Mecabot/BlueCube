@@ -864,6 +864,16 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 			}, null);
 		}
 	});
+	// Functions for showing and hiding the loading overlay
+	$scope.showConnectionOverlay = function() {
+		$ionicLoading.show({
+			template: '<ion-spinner icon="lines" class="spinner-light"></ion-spinner><br>Connecting to BlueCube'
+		});
+	};
+
+	$scope.hideConnectionOverlay = function() {
+		$ionicLoading.hide();
+	};
 
 	$scope.autoConnectChanged = function() {
 		if ($scope.autoConnect == false) {
@@ -883,20 +893,9 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 		}
 	};
 
-	// Functions for showing and hiding the loading overlay
-	$scope.show = function() {
-		$ionicLoading.show({
-			template: '<ion-spinner icon="lines" class="spinner-light"></ion-spinner><br>Connecting to BlueCube'
-		});
-	};
-
-	$scope.hide = function() {
-		$ionicLoading.hide();
-	};
-
 	// Function to Connect to the BlueCube
 	$scope.connect = function() {
-		$scope.show();
+		$scope.showConnectionOverlay();
 
 		// Check if Bluetooth is enabled
 		$scope.hideLogText = false;
@@ -928,7 +927,7 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 									$scope.logText = "BlueCube (" + bluetoothDeviceID + ") is Connected<br>";
 									$scope.connectButton = false;
 									$scope.disconnectButton = true;
-									$scope.hide();
+									$scope.hideConnectionOverlay();
 									$ionicSideMenuDelegate.toggleLeft();
 								},
 								function() {
@@ -936,7 +935,7 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 									$scope.logText = "ERROR: Failed to connect to BlueCube (" + bluetoothDeviceID + ")<br>";
 									$scope.connectButton = true;
 									$scope.disconnectButton = false;
-									$scope.hide();
+									$scope.hideConnectionOverlay();
 								}
 							);
 						} else {
@@ -944,7 +943,7 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 							$scope.logText = "Error: No BlueCube found to connect to<br>";
 							$scope.connectButton = true;
 							$scope.disconnectButton = false;
-							$scope.hide();
+							$scope.hideConnectionOverlay();
 						}
 					},
 					function(reason) {
@@ -952,7 +951,7 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 						$scope.logText = "ERROR: Listing Bluetooth Devices Failed: " + reason + "<br>";
 						$scope.connectButton = true;
 						$scope.disconnectButton = false;
-						$scope.hide();
+						$scope.hideConnectionOverlay();
 					}
 				);
 
@@ -962,7 +961,7 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 				$scope.logText = "ERROR: Bluetooth is *NOT* enabled. Please enable it and try again.<br>";
 				$scope.connecyButton = false;
 				$scope.disconnectButton = false;
-				$scope.hide();
+				$scope.hideConnectionOverlay();
 			}
 		);
 	};
