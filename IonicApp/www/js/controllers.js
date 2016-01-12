@@ -175,48 +175,68 @@ app.controller('ShiftCtrl', function($ionicPlatform, $scope, $cubeAction) {
 	};
 });
 
+// Controller for the 'Set' page
 app.controller('SetCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
+	// Array for tracking each of the LEDs in the cube
 	$scope.cube = [];
 
 	$ionicPlatform.ready(function() {
+		// Get the users last selected colour
 		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
-
-		$scope.setLED = function (id) {
-			var colourToUse = "BLACK";
-			if ($scope.cube[id] == true) {
-				colourToUse = $localstorage.get('selectedColour', '00d1ff');
-			}
-
-			var message = "set " + $cubeAction.lookupCoords(id) + " " + colourToUse + ";";
-			$cubeAction.sendMessage(message, true);
-		};
-
-		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
-			scope: $scope,
-			animation: 'slide-in-up'
-		}).then(function(modal) {
-			$scope.modal = modal
-		});
-
-		$scope.openModal = function() {
-			$scope.modal.show()
-		};
-
-		$scope.chooseFavouriteColour = function(selectedColour) {
-			$localstorage.set('selectedColour', selectedColour);
-			$scope.selectedColour = selectedColour;
-			$scope.closeModal();
-		};
-
-		$scope.closeModal = function() {
-			$scope.modal.hide();
-			$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
-		};
-
-		$scope.$on('$destroy', function() {
-			$scope.modal.remove();
-		});
 	});
+
+	// Items for defining and handling the Colour Picker Modal
+	$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.modal = modal
+	});
+
+	$scope.openModal = function() {
+		// Open the modal window
+		$scope.modal.show()
+	};
+
+	$scope.closeModal = function() {
+		// Close the modal window
+		$scope.modal.hide();
+
+		// Get the colour that was selected while the modal window was shown
+		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+	};
+
+	$scope.$on('$destroy', function() {
+		// Remove the modal from the scope, avoiding a memory leak
+		$scope.modal.remove();
+	});
+
+	$scope.setLED = function (id) {
+		// Called when the user clicks on one of the LEDs represented by the grid
+
+		// Default to using black for an LED, unless the user has actually turned it on
+		var colourToUse = "BLACK";
+		if ($scope.cube[id] == true) {
+			// LED was turned on, so get the selected colour
+			colourToUse = $localstorage.get('selectedColour', '00d1ff');
+		}
+
+		// Build the message to send, translating the LEDs number into it's coordinates, and
+		// then submit the message to the cube (adding it to the history)
+		var message = "set " + $cubeAction.lookupCoords(id) + " " + colourToUse + ";";
+		$cubeAction.sendMessage(message, true);
+	};
+
+	$scope.chooseFavouriteColour = function(selectedColour) {
+		// Called when the user picks one of the favourite colours from the colour picker modal
+
+		// Sets the selected colour to that of the favourite
+		$localstorage.set('selectedColour', selectedColour);
+		$scope.selectedColour = selectedColour;
+
+		// Close the modal window
+		$scope.closeModal();
+	};
 });
 
 app.controller('NextCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
