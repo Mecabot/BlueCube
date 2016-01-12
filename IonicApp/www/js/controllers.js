@@ -296,44 +296,60 @@ app.controller('NextCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicM
 	};
 });
 
+// Controller for the 'Set Plane' page
 app.controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
 	$ionicPlatform.ready(function() {
+		// Set the default initial axis and offset
 		$scope.values = {
 			axis: 'X',
 			offset: '0',
 		};
+
+		// Get the users last selected colour
 		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+	});
 
-		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
-			scope: $scope,
-			animation: 'slide-in-up'
-		}).then(function(modal) {
-			$scope.modal = modal
-		});
+	// Items for defining and handling the Colour Picker Modal
+	$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.modal = modal
+	});
 
-		$scope.openModal = function() {
-			$scope.modal.show()
-		};
+	$scope.openModal = function() {
+		// Open the modal window
+		$scope.modal.show()
+	};
 
-		$scope.chooseFavouriteColour = function(selectedColour) {
-			$localstorage.set('selectedColour', selectedColour);
-			$scope.selectedColour = selectedColour;
-			$scope.closeModal();
-		};
+	$scope.closeModal = function() {
+		// Close the modal window
+		$scope.modal.hide();
 
-		$scope.closeModal = function() {
-			$scope.modal.hide();
-			$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
-		};
+		// Get the colour that was selected while the modal window was shown
+		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+	};
 
-		$scope.$on('$destroy', function() {
-			$scope.modal.remove();
-		});
+	$scope.$on('$destroy', function() {
+		// Remove the modal from the scope, avoiding a memory leak
+		$scope.modal.remove();
 	});
 
 	$scope.setPlane = function() {
+		// Build the message to send, then submit the message to the cube (adding it to the history)
 		var message = "setplane " + $scope.values.axis + " " + $scope.values.offset + " " + $scope.selectedColour + ";";
 		$cubeAction.sendMessage(message, true);
+	};
+
+	$scope.chooseFavouriteColour = function(selectedColour) {
+		// Called when the user picks one of the favourite colours from the colour picker modal
+
+		// Sets the selected colour to that of the favourite
+		$localstorage.set('selectedColour', selectedColour);
+		$scope.selectedColour = selectedColour;
+
+		// Close the modal window
+		$scope.closeModal();
 	};
 });
 
