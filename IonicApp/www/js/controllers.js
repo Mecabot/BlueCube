@@ -670,103 +670,159 @@ app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicMo
 	};
 });
 
+// Controller for the 'Sphere' page
 app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs) {
+	// Array for tracking each of the LEDs in the cube
 	$scope.cube = [];
+
+	// Track whether the user is trying to select the main colour, or the secondary colour used for some options
 	var secondaryColourSelector = false;
+
+	// Variable to store previous colour choices to work around having two colour pickers instead of just one
 	var cachedColour = "";
 
 	$ionicPlatform.ready(function() {
+		// Set the default initial sphere style and size
 		$scope.style = {
 			sphereStyle: '0',
 			sphereSize: '3',
 		};
+
+		// Get the users last selected colour, and the last "other" selected colour
 		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 		$scope.otherColour = $localstorage.get('otherColour', 'f80ed1');
+
+		// Hide the button to pick the second colour by default
 		$scope.showSecontaryColour = false;
+	});
 
-		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
-			scope: $scope,
-			animation: 'slide-in-up'
-		}).then(function(modal) {
-			$scope.modal = modal
-		});
+	// Items for defining and handling the Colour Picker Modal
+	$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.modal = modal
+	});
 
-		$scope.openModalPrimary = function() {
-		  secondaryColourSelector = false;
-			$scope.modal.show()
-		};
+	$scope.openModalPrimary = function() {
+		// Flag that we are picking the primary colour
+		secondaryColourSelector = false;
 
-		$scope.openModalSecondary = function() {
-			secondaryColourSelector = true;
-			cachedColour = $localstorage.get('selectedColour', '00d1ff');
-			var otherColour = $localstorage.get('otherColour', 'f80ed1');
-			$localstorage.set('selectedColour', otherColour);
-			$scope.modal.show()
-		};
+		// Open the modal window
+		$scope.modal.show()
+	};
 
-		$scope.chooseFavouriteColour = function(selectedColour) {
-			if (secondaryColourSelector) {
-				$localstorage.set('otherColour', selectedColour);
-				$scope.otherColour = selectedColour;
-			} else {
-				$localstorage.set('selectedColour', selectedColour);
-				$scope.selectedColour = selectedColour;
-			}
-			$scope.closeModal();
-		};
+	$scope.openModalSecondary = function() {
+		// Flag that we are picking the secondary colour
+		secondaryColourSelector = true;
 
-		$scope.closeModal = function() {
-			$scope.modal.hide();
-			if (secondaryColourSelector) {
-				$scope.otherColour = $localstorage.get('selectedColour', '00d1ff');
-				$localstorage.set('selectedColour', cachedColour);
-				$localstorage.set('otherColour', $scope.otherColour);
-			} else {
-				$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
-			}
-		};
+		// To work around the colour picker only setting the selectedColour, we cache
+		// the primary selected colour, and then replace it with the previously saved
+		// secondary colour
+		cachedColour = $localstorage.get('selectedColour', '00d1ff');
+		var otherColour = $localstorage.get('otherColour', 'f80ed1');
+		$localstorage.set('selectedColour', otherColour);
 
-		$scope.$on('$destroy', function() {
-			$scope.modal.remove();
-		});
+		// Open the modal window
+		$scope.modal.show()
+	};
+
+	$scope.closeModal = function() {
+		// Close the modal window
+		$scope.modal.hide();
+
+		if (secondaryColourSelector) {
+			// We picked the colour for the secondary colour, so handle resetting values
+
+			// Get the colour that was selected while the modal window was shown
+			$scope.otherColour = $localstorage.get('selectedColour', '00d1ff');
+
+			// Reset the selectedColour to the previously cached version
+			$localstorage.set('selectedColour', cachedColour);
+			// Store the secondary colour for future reference
+			$localstorage.set('otherColour', $scope.otherColour);
+		} else {
+			// Get the colour that was selected while the modal window was shown
+			$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+		}
+	};
+
+	$scope.$on('$destroy', function() {
+		// Remove the modal from the scope, avoiding a memory leak
+		$scope.modal.remove();
 	});
 
 	$scope.styleSelection = function() {
+		// Called when the user changes the selected value in the style selector
+
 		if (parseInt($scope.style.sphereStyle) == 0) {
+			// Style 0 (Walls Only) doesn't require a secondary colour so don't show the button
 			$scope.showSecontaryColour = false;
 		} else {
+			// Style 1 (Solid) has a secondary colour so show the button
 				$scope.showSecontaryColour = true;
 		}
 	};
 
 	$scope.drawSphere = function() {
+		// Called when the user wishes to draw a sphere starting from a given point
+
+		// Start to declare the message to send to the cube
 		var message = "sphere ";
+
+		// Counter for how many points the user selected
 		var selected = 0;
-		for (i = 0; i <= 64; i++) {
+		for (var i = 0; i <= 64; i++) {
+			// Find the point(s) that the user selected
 			if ($scope.cube[i] == true) {
 				selected = selected + 1;
+
+				// Add the coordinate of the point to the message to send to the cube
 				message = message + $cubeAction.lookupCoords(i) + " ";
 			}
 		}
 
 		if (selected == 1) {
+			// Only 1 point was selected - so draw the sphere
+
 			// Clear the selected points
-			for (i = 0; i <= 64; i++) {
+			for (var i = 0; i <= 64; i++) {
 				$scope.cube[i] = null;
 			}
 
+			// Add the size and selected style to the message to send to the cube
 			message = message + " " + $scope.style.sphereSize + " " + $localstorage.get('selectedColour', '00d1ff');
 			if (parseInt($scope.style.sphereStyle) == 0) {
+				// End the message for the cube as it doesn't require any more info, and send it along
+				// adding the message to the history
 				message = message + ";";
 				$cubeAction.sendMessage(message, true);
 			} else {
+				// Add the secondary colour as it is required, and send it along to the cube adding
+				//the message to the history
 				message = message + " " + $localstorage.get('otherColour', 'f80ed1') + ";";
 				$cubeAction.sendMessage(message, true);
 			}
 		} else {
-			// Tell them to pick again
+			// More or less than 1 point were selected, so tell the user to only select 1
 			$cordovaDialogs.alert('Please select only 1 point', 'Sphere', 'OK');
 		}
+	};
+
+	$scope.chooseFavouriteColour = function(selectedColour) {
+		// Called when the user picks one of the favourite colours from the colour picker modal
+
+		if (secondaryColourSelector) {
+			// This was for the secondary colour, so save its value and pass it to the view
+			$localstorage.set('otherColour', selectedColour);
+			$scope.otherColour = selectedColour;
+		} else {
+			// This was for the primary colour, so save its value and pass it to the view
+			$localstorage.set('selectedColour', selectedColour);
+			$scope.selectedColour = selectedColour;
+		}
+		// Close the modal window
+		$scope.closeModal();
 	};
 });
 
