@@ -353,8 +353,10 @@ app.controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $io
 	};
 });
 
+// Controller for the 'Copy Plane' page
 app.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
 	$ionicPlatform.ready(function() {
+		// Set the default initial axis and start and destination offset
 		$scope.values = {
 			axis: 'X',
 			fromOffset: '0',
@@ -363,6 +365,7 @@ app.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $i
 	});
 
 	$scope.copyPlane = function() {
+		// Build the message to send, then submit the message to the cube (adding it to the history)
 		var message = "copyplane " + $scope.values.axis + " " + $scope.values.fromOffset + " " + $scope.values.toOffset + ";";
 		$cubeAction.sendMessage(message, true);
 	};
