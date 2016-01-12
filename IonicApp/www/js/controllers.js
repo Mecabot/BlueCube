@@ -240,8 +240,6 @@ app.controller('SetCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicMo
 });
 
 app.controller('NextCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
-	$scope.cube = [];
-
 	$ionicPlatform.ready(function() {
 		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 
