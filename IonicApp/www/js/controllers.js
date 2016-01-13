@@ -1151,17 +1151,17 @@ app.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction, 
 		$scope.modal.hide();
 	};
 
-	$scope.deleteFavourite = function (id) {
+	$scope.deleteUserDefinedFunction = function (id) {
 		// Delete the selected user defined function
 		UserDefinedService.delete(id);
 	};
 
-	$scope.reorderFavourites = function(item, fromIndex, toIndex) {
+	$scope.reorderUserDefinedFunction = function(item, fromIndex, toIndex) {
 		// Reorder how the user defined favourites are displayed
 		UserDefinedService.reorder(item, fromIndex, toIndex);
 	};
 
-	$scope.sendUDF = function (id) {
+	$scope.sendUserDefinedFunction = function (id) {
 		// Run when the user selected a user defined function
 
 		// Lookup the details for the user defined function

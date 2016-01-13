@@ -21,10 +21,10 @@
 
 			<div class="padding-top">
 				<ion-list type="list-inset" show-delete="data.showDelete" show-reorder="data.showReordering">
-					<ion-item ng-repeat="item in userDefinedFunctions track by item.id" ng-click="sendUDF({{item.id}})">
+					<ion-item ng-repeat="item in userDefinedFunctions track by item.id" ng-click="sendUserDefinedFunction({{item.id}})">
 						{{item.name}}
-						<ion-delete-button class="ion-close-round" ng-click="deleteFavourite({{item.id}})"></ion-delete-button>
-						<ion-reorder-button class="ion-navicon" on-reorder="reorderFavourites(item, $fromIndex, $toIndex)"></ion-reorder-button>
+						<ion-delete-button class="ion-close-round" ng-click="deleteUserDefinedFunction({{item.id}})"></ion-delete-button>
+						<ion-reorder-button class="ion-navicon" on-reorder="reorderUserDefinedFunction(item, $fromIndex, $toIndex)"></ion-reorder-button>
 					</ion-item>
 				</ion-list>
 				<div ng-show="!userDefinedFunctions.length" class="padding-horizontal" align="center">
