@@ -1157,7 +1157,7 @@ app.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction, 
 	};
 
 	$scope.reorderUserDefinedFunction = function(item, fromIndex, toIndex) {
-		// Reorder how the user defined favourites are displayed
+		// Reorder how the user defined functions are displayed
 		UserDefinedService.reorder(item, fromIndex, toIndex);
 	};
 
