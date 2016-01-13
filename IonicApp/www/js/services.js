@@ -24,7 +24,7 @@ app.service('HistoryService', function($localstorage) {
 	};
 
 	this.get = function(historyID) {
-		for (i in commands) {
+		for (var i in commands) {
 			if (commands[i].id == historyID) {
 				return historyID[i].cmd;
 			}
@@ -46,7 +46,7 @@ app.service('HistoryService', function($localstorage) {
 							};
 
 		if (commands.length >= maxHistoryItems) {
-			for(i = maxHistoryItems - 1; i <= commands.length; i++) {
+			for(var i = maxHistoryItems - 1; i <= commands.length; i++) {
 				commands.pop();
 			}
 		}
@@ -58,7 +58,7 @@ app.service('HistoryService', function($localstorage) {
 	};
 
 	this.delete = function(historyID) {
-		for (i in commands) {
+		for (var i in commands) {
 			if (commands[i].id == historyID) {
 				commands.splice(i, 1);
 			}
@@ -95,7 +95,7 @@ app.service('ColourService', function($localstorage, $defaults) {
 	};
 
 	this.get = function(colourId) {
-		for (i in colours) {
+		for (var i in colours) {
 			if (colours[i].id == colourId) {
 				return colours[i];
 			}
@@ -115,7 +115,7 @@ app.service('ColourService', function($localstorage, $defaults) {
 	};
 
 	this.delete = function(colourId) {
-		for (i in colours) {
+		for (var i in colours) {
 			if (colours[i].id == colourId) {
 				colours.splice(i, 1);
 			}
@@ -153,7 +153,7 @@ app.service('StaticFavouritesService', function($localstorage, $defaults) {
 	};
 
 	this.get = function(id) {
-		for (i in staticFavourites) {
+		for (var i in staticFavourites) {
 			if (staticFavourites[i].id == id) {
 				return staticFavourites[i].cmds;
 			}
@@ -173,7 +173,7 @@ app.service('StaticFavouritesService', function($localstorage, $defaults) {
 	};
 
 	this.delete = function(id) {
-		for (i in staticFavourites) {
+		for (var i in staticFavourites) {
 			if (staticFavourites[i].id == id) {
 				staticFavourites.splice(i, 1);
 			}
@@ -211,7 +211,7 @@ app.service('UserDefinedService', function($localstorage, $defaults) {
 	};
 
 	this.get = function(id) {
-		for (i in userDefinedFunctions) {
+		for (var i in userDefinedFunctions) {
 			if (userDefinedFunctions[i].id == id) {
 				return userDefinedFunctions[i];
 			}
@@ -233,7 +233,7 @@ app.service('UserDefinedService', function($localstorage, $defaults) {
 	};
 
 	this.delete = function(id) {
-		for (i in userDefinedFunctions) {
+		for (var i in userDefinedFunctions) {
 			if (userDefinedFunctions[i].id == id) {
 				userDefinedFunctions.splice(i, 1);
 			}
