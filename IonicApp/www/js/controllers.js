@@ -1580,14 +1580,6 @@ app.controller('StaticCreatorCtrl', function($ionicPlatform, $scope, HistoryServ
 		$scope.commands = HistoryService.list();
 	});
 
-	$scope.showSaveButton = function () {
-		if ($scope.staticCommands.length >= 1) {
-			$scope.saveButton = true;
-		} else {
-			$scope.saveButton = false;
-		}
-	};
-
 	$scope.addStaticCommand = function (command) {
 		// User wants to add a history item to the static favourite
 
@@ -1606,7 +1598,6 @@ app.controller('StaticCreatorCtrl', function($ionicPlatform, $scope, HistoryServ
 
 		// Increment the uniqueID so that it isn't reused which causes problems
 		uniqueID = uniqueID + 1;
-		$scope.showSaveButton();
 	};
 
 	$scope.deleteStaticCommand = function (id) {
@@ -1620,7 +1611,6 @@ app.controller('StaticCreatorCtrl', function($ionicPlatform, $scope, HistoryServ
 
 		// Ensure the new array of static favourites is available to the calling view
 		$scope.staticCommandsData.cmds = $scope.staticCommands;
-		$scope.showSaveButton();
 	};
 
 	$scope.reorderStaticCommands = function(item, fromIndex, toIndex) {
