@@ -1086,11 +1086,12 @@ app.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction, 
 		$scope.userDefinedFunctions = UserDefinedService.list();
 
 		// Create placeholder variables for items that will come from a modal window
-		$scope.userDefinedFuntionData = {};
-		$scope.userDefinedFuntionData.name = '';
-		$scope.userDefinedFuntionData.number = '';
-		$scope.userDefinedFuntionData.colourRequired = false;
-		$scope.userDefinedFuntionData.colour = '';
+		$scope.userDefinedFuntionData =	{
+											name: '',
+											number: '',
+											colourRequired: false,
+											colour: '',
+										};
 	});
 
 	// Items for defining and handling the User Defined Functions Modal
@@ -1119,10 +1120,12 @@ app.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction, 
 	// Execute action when the modal is hidden (closed)
 	$scope.$on('modal.hidden', function() {
 		// Clear any values the client set in the modal window
-		$scope.userDefinedFuntionData.name = '';
-		$scope.userDefinedFuntionData.number = '';
-		$scope.userDefinedFuntionData.colourRequired = false;
-		$scope.userDefinedFuntionData.colour = '';
+		$scope.userDefinedFuntionData =	{
+											name: '',
+											number: '',
+											colourRequired: false,
+											colour: '',
+										};
 	});
 
 	$scope.saveUserDefinedFunction = function() {
