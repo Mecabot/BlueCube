@@ -1180,92 +1180,123 @@ app.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction, 
 	};
 });
 
+// Controller for the 'Static Favourites' page
 app.controller('StaticCtrl', function($ionicPlatform, $scope, $timeout, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs, StaticFavouritesService) {
+	// Don't show the delete or reordering buttons on the list items by default
 	$scope.data = {
 		showDelete: false,
 		showReordering: false,
 	};
 
+	// Array for the individual commands that make up static favourite
 	$scope.staticCommands = [];
 
 	$scope.$on('$ionicView.beforeEnter', function() {
+		// Get the list of previously defined static favourites
 		$scope.favourites = StaticFavouritesService.list();
 	});
 
 	$ionicPlatform.ready(function() {
+		// Get the list of previously defined static favourites
 		$scope.favourites = StaticFavouritesService.list();
+
+		// Create placeholder variables for items that will come from a modal window
 		$scope.staticCommandsData = {};
 		$scope.staticCommandsData.name = '';
 		$scope.staticCommandsData.cmds = [];
 		$scope.saveButton = false;
-
-		$ionicModal.fromTemplateUrl('templates/staticCreator.html', {
-			scope: $scope,
-			animation: 'slide-in-up'
-		}).then(function(modal) {
-			$scope.modal = modal
-		});
-
-		$scope.openModal = function() {
-			$scope.modal.show()
-		};
-
-		$scope.closeModal = function() {
-			$scope.modal.hide();
-		};
-
-		// Execute action on hide modal
-		$scope.$on('modal.hidden', function() {
-			$scope.staticCommands = [];
-			$scope.staticCommandsData.name = '';
-			$scope.staticCommandsData.cmds = [];
-			$scope.saveButton = false;
-		});
-
-		$scope.$on('$destroy', function() {
-			$scope.modal.remove();
-		});
-
-		$scope.saveFavourite = function() {
-			if ($scope.staticCommandsData.name == "") {
-				$cordovaDialogs.alert('Please provide a name', 'Error', 'OK');
-			} else {
-				if ($scope.staticCommandsData.cmds.length == 0) {
-					$cordovaDialogs.alert('Please select at least 1 item', 'Error', 'OK');
-				} else {
-					StaticFavouritesService.add($scope.staticCommandsData.name, $scope.staticCommandsData.cmds);
-					$scope.modal.hide();
-				}
-			}
-		};
-
-		$scope.deleteFavourite = function (id) {
-			StaticFavouritesService.delete(id);
-		};
-
-		$scope.reorderFavourites = function(item, fromIndex, toIndex) {
-			StaticFavouritesService.reorder(item, fromIndex, toIndex);
-		};
-
-		$scope.sendFavourite = function (id) {
-			$cmds = StaticFavouritesService.get(id);
-
-			for (i = 0; i < $cmds.length; i++) {
-				cmdToSend = $cmds[i].cmd;
-
-				// To work in the loop, I needed to wrap the timeout call in a closure function,
-				// and pass the values into it. If I didn't do this, it would only use the last
-				// value for all calls.
-				(function(cmdToSend, i) {
-					$timeout(function() {
-						$cubeAction.sendMessage(cmdToSend, true);
-					}, i);
-				})(cmdToSend, i);
-			}
-		};
 	});
+
+	// Items for defining and handling the Static Favourites Creator Modal
+	$ionicModal.fromTemplateUrl('templates/staticCreator.html', {
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.modal = modal
+	});
+
+	$scope.openModal = function() {
+		// Open the modal window
+		$scope.modal.show()
+	};
+
+	$scope.closeModal = function() {
+		// Close the modal window
+		$scope.modal.hide();
+	};
+
+	$scope.$on('$destroy', function() {
+		// Remove the modal from the scope, avoiding a memory leak
+		$scope.modal.remove();
+	});
+
+	// Execute action on hide modal
+	$scope.$on('modal.hidden', function() {
+		// Clear any values the client set in the modal window
+		$scope.staticCommands = [];
+		$scope.staticCommandsData.name = '';
+		$scope.staticCommandsData.cmds = [];
+		$scope.saveButton = false;
+	});
+
+	$scope.saveFavourite = function() {
+		// Called from the modal when the user wishes to save a static favourite
+
+		if ($scope.staticCommandsData.name == "") {
+			// A name wasn't provided but is required, so ask the user for it
+			$cordovaDialogs.alert('Please provide a name', 'Error', 'OK');
+		} else {
+			if ($scope.staticCommandsData.cmds.length == 0) {
+				// The user didn't select any commands to include in the favourite, so
+				// prompt them to add at least a single command
+				$cordovaDialogs.alert('Please select at least 1 item', 'Error', 'OK');
+			} else {
+				// Save the items the user selected
+				StaticFavouritesService.add($scope.staticCommandsData.name, $scope.staticCommandsData.cmds);
+
+				// Close the modal window
+				$scope.modal.hide();
+			}
+		}
+	};
+
+	$scope.deleteFavourite = function (id) {
+		// Delete the selected static favourite
+		StaticFavouritesService.delete(id);
+	};
+
+	$scope.reorderFavourites = function(item, fromIndex, toIndex) {
+		// Reorder how the static favourites are displayed
+		StaticFavouritesService.reorder(item, fromIndex, toIndex);
+	};
+
+	$scope.sendFavourite = function (id) {
+		// Run when the user selects a static favourite to send to the cube
+
+		// Get the details of the static favourite that the use selected
+		var $cmds = StaticFavouritesService.get(id);
+
+		for (var i = 0; i < $cmds.length; i++) {
+			// Get the commands that make up the static favourite
+			cmdToSend = $cmds[i].cmd;
+
+			// To work in the loop, I needed to wrap the timeout call in a closure function,
+			// and pass the values into it. If I didn't do this, it would only use the last
+			// value for all calls.
+			(function(cmdToSend, i) {
+				$timeout(function() {
+					// Send each command that is part of the static favourite to the cube.
+					// This is wrapped in a timeout with an increasing but tiny delay before
+					// its run to stop the bluetooth stack and the cube from getting swamped
+					// and not being able to transmit and process all of the commands
+					$cubeAction.sendMessage(cmdToSend, true);
+				}, i);
+			})(cmdToSend, i);
+		}
+	};
 });
 
+// Controller for the 'History' page
 app.controller('HistoryCtrl', function($ionicPlatform, $scope, $cubeAction, HistoryService, $localstorage) {
 	$scope.data = {
 		showDelete: false,
