@@ -1339,8 +1339,10 @@ app.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordo
 		maxHistoryItems = 100;
 	}
 
-	$scope.data = {'maxHistoryItems': maxHistoryItems};
 	// Provide the value for the maximum number of history items to the view
+	$scope.data =	{
+						'maxHistoryItems': maxHistoryItems
+					};
 
 	$scope.setMaxHistoryItems = function(number) {
 		// When the user changes the slider for the number of history items, save it
