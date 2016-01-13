@@ -1326,64 +1326,99 @@ app.controller('HistoryCtrl', function($ionicPlatform, $scope, $cubeAction, Hist
 	};
 });
 
+// Controller for the 'Settings' page
 app.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordovaDialogs) {
+	// Track what the maximum number of items we should keep in the history is
 	var maxHistoryItems;
 
 	if ($localstorage.get('history_items') != undefined) {
+		// Get the previously saved setting for the number of history items
 		maxHistoryItems = parseInt($localstorage.get('history_items'));
 	} else {
+		// No value has been set, so default to storing 100 history items
 		maxHistoryItems = 100;
 	}
 
 	$scope.data = {'maxHistoryItems': maxHistoryItems};
+	// Provide the value for the maximum number of history items to the view
 
 	$scope.setMaxHistoryItems = function(number) {
+		// When the user changes the slider for the number of history items, save it
 		$localstorage.set('history_items', number);
 	};
 
 	$scope.resetColours = function () {
+		// Run when the user wishes to reset the colours
+
+		// Confirm that they want to reset
 		$cordovaDialogs.confirm('Are you sure you want to reset to the default values?', 'Reset', ['Cancel','OK']).then(function(buttonIndex) {
 			if (buttonIndex == 2) {
+				// User clicked 'OK', so reset the colours
 				$defaults.resetColours();
 			}
 		});
 	};
 
 	$scope.resetUserDefinedFunctions = function () {
+		// Run when the user wishes to reset the list of user defined functions
+
+		// Confirm that they want to reset
 		$cordovaDialogs.confirm('Are you sure you want to reset to the default values?', 'Reset', ['Cancel','OK']).then(function(buttonIndex) {
 			if (buttonIndex == 2) {
+
+				// User clicked 'OK', so reset the user defined functions
 				$defaults.resetUserDefinedFunctions();
 			}
 		});
 	};
 
 	$scope.resetStatic = function () {
+		// Run when the user wishes to reset the list of static favourites
+
+		// Confirm that they want to reset
 		$cordovaDialogs.confirm('Are you sure you want to reset to the default values?', 'Reset', ['Cancel','OK']).then(function(buttonIndex) {
 			if (buttonIndex == 2) {
+
+				// User clicked 'OK', so reset the static favourites
 				$defaults.resetStatic();
 			}
 		});
 	};
 
 	$scope.resetHistory = function () {
+		// Run when the user wishes to reset the history
+
+		// Confirm that they want to reset
 		$cordovaDialogs.confirm('Are you sure you want to clear the history?', 'Reset', ['Cancel','OK']).then(function(buttonIndex) {
 			if (buttonIndex == 2) {
+
+				// User clicked 'OK', so clear the history
 				$defaults.resetHistory();
 			}
 		});
 	};
 
 	$scope.resetOthers = function() {
+		// Run when the user wishes to reset background settings (items like auto connect)
+
+		// Confirm that they want to reset
 		$cordovaDialogs.confirm('Are you sure you want to reset background settings?', 'Reset', ['Cancel','OK']).then(function(buttonIndex) {
 			if (buttonIndex == 2) {
+
+				// User clicked 'OK', so reset the background values
 				$defaults.resetOthers();
 			}
 		});
 	};
 
 	$scope.resetAll = function () {
+		// Run when the user wishes to reset everything
+
+		// Confirm that they want to reset
 		$cordovaDialogs.confirm('Are you sure you want to reset all settings?', 'Reset All', ['Cancel','OK']).then(function(buttonIndex) {
 			if (buttonIndex == 2) {
+
+				// User clicked 'OK', so reset everything
 				$defaults.resetColours();
 				$defaults.resetUserDefinedFunctions();
 				$defaults.resetStatic();
