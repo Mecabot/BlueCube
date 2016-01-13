@@ -1563,16 +1563,20 @@ app.controller('UserDefinedModalCtrl', function($ionicPlatform, $scope, $ionicMo
 	};
 });
 
+// Controller for the 'Static Favourite Creator' modal
 app.controller('StaticCreatorCtrl', function($ionicPlatform, $scope, HistoryService, $localstorage) {
+	// When adding items to the array of commands for a static favourite we need to give them an
+	// index number / uniqueID, so set the initial starting value
 	var uniqueID = 1;
 
-
+	// Don't show the delete or reordering buttons on the list items by default
 	$scope.dataModal = {
 		showDelete: false,
 		showReordering: false,
 	};
 
 	$ionicPlatform.ready(function() {
+		// Get the list of history items
 		$scope.commands = HistoryService.list();
 	});
 
@@ -1585,30 +1589,46 @@ app.controller('StaticCreatorCtrl', function($ionicPlatform, $scope, HistoryServ
 	};
 
 	$scope.addStaticCommand = function (command) {
-	var item =	{
-					id: uniqueID,
-					cmd: command,
-				};
+		// User wants to add a history item to the static favourite
 
-		uniqueID = uniqueID + 1;
+		// Create a item to add to our array of static favourites,
+		// including the current unique ID, and the provided command
+		var item =	{
+						id: uniqueID,
+						cmd: command,
+					};
+
+		// Add the new item to the array
 		$scope.staticCommands.push(item);
+
+		// Ensure the new array of static favourites is available to the calling view
 		$scope.staticCommandsData.cmds = $scope.staticCommands;
+
+		// Increment the uniqueID so that it isn't reused which causes problems
+		uniqueID = uniqueID + 1;
 		$scope.showSaveButton();
 	};
 
 	$scope.deleteStaticCommand = function (id) {
-		for (i in $scope.staticCommands) {
+		// Delete an item from the array of static favourites
+		for (var i in $scope.staticCommands) {
 			if ($scope.staticCommands[i].id == id) {
+				// We are at the ID of the item to remove, so remove it
 				$scope.staticCommands.splice(i, 1);
 			}
 		}
+
+		// Ensure the new array of static favourites is available to the calling view
 		$scope.staticCommandsData.cmds = $scope.staticCommands;
 		$scope.showSaveButton();
 	};
 
 	$scope.reorderStaticCommands = function(item, fromIndex, toIndex) {
+		// Reorder the static favourites command list
 		$scope.staticCommands.splice(fromIndex, 1);
 		$scope.staticCommands.splice(toIndex, 0, item);
+
+		// Ensure the new array of static favourites is available to the calling view
 		$scope.staticCommandsData.cmds = $scope.staticCommands;
 	};
 });
