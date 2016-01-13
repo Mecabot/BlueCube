@@ -1275,11 +1275,11 @@ app.controller('StaticCtrl', function($ionicPlatform, $scope, $timeout, $cubeAct
 		// Run when the user selects a static favourite to send to the cube
 
 		// Get the details of the static favourite that the use selected
-		var $cmds = StaticFavouritesService.get(id);
+		var cmds = StaticFavouritesService.get(id);
 
-		for (var i = 0; i < $cmds.length; i++) {
+		for (var i = 0; i < cmds.length; i++) {
 			// Get the commands that make up the static favourite
-			cmdToSend = $cmds[i].cmd;
+			var cmdToSend = cmds[i].cmd;
 
 			// To work in the loop, I needed to wrap the timeout call in a closure function,
 			// and pass the values into it. If I didn't do this, it would only use the last
