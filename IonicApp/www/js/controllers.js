@@ -1065,86 +1065,116 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 	};
 });
 
+// Controller for the 'User Defined Functions' page
 app.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs, UserDefinedService) {
+	// Don't show the delete or reordering buttons on the list items by default
 	$scope.data = {
 		showDelete: false,
 		showReordering: false,
 	};
 
 	$scope.$on('$ionicView.beforeEnter', function() {
+		// Get the list of previously defined user defined functions
 		$scope.userDefinedFunctions = UserDefinedService.list();
+
+		// Get the previously selected colour
 		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 	});
 
 	$ionicPlatform.ready(function() {
+		// Get the list of previously defined user defined functions
 		$scope.userDefinedFunctions = UserDefinedService.list();
+
+		// Create placeholder variables for items that will come from a modal window
 		$scope.userDefinedFuntionData = {};
 		$scope.userDefinedFuntionData.name = '';
 		$scope.userDefinedFuntionData.number = '';
 		$scope.userDefinedFuntionData.colourRequired = false;
 		$scope.userDefinedFuntionData.colour = '';
-
-		$ionicModal.fromTemplateUrl('templates/userDefinedModal.html', {
-			scope: $scope,
-			animation: 'slide-in-up'
-		}).then(function(modal) {
-			$scope.modal = modal
-		});
-
-		$scope.openModal = function() {
-			$scope.modal.show()
-		};
-
-		$scope.closeModal = function() {
-			$scope.modal.hide();
-		};
-
-		// Execute action on hide modal
-		$scope.$on('modal.hidden', function() {
-			$scope.userDefinedFuntionData.name = '';
-			$scope.userDefinedFuntionData.number = '';
-			$scope.userDefinedFuntionData.colourRequired = false;
-			$scope.userDefinedFuntionData.colour = '';
-		});
-
-		$scope.$on('$destroy', function() {
-			$scope.modal.remove();
-		});
-
-		$scope.saveUserDefinedFunction = function() {
-			if ($scope.userDefinedFuntionData.name == "") {
-				$cordovaDialogs.alert('Please provide a name', 'Error', 'OK');
-				return false;
-			}
-			if (isNaN(parseInt($scope.userDefinedFuntionData.number))) {
-				$cordovaDialogs.alert('Please provide a number that matches the user defined function in the Arduino sketch', 'Error', 'OK');
-				return false;
-			}
-
-			// Add the item
-			$scope.userDefinedFuntionData.colour = $localstorage.get('selectedColour', '00d1ff');
-			UserDefinedService.add($scope.userDefinedFuntionData);
-			$scope.modal.hide();
-		};
-
-		$scope.deleteFavourite = function (id) {
-			UserDefinedService.delete(id);
-		};
-
-		$scope.reorderFavourites = function(item, fromIndex, toIndex) {
-			UserDefinedService.reorder(item, fromIndex, toIndex);
-		};
-
-		$scope.sendUDF = function (id) {
-			$udf = UserDefinedService.get(id);
-			var message = "user " + $udf.number;
-			if ($udf.colourRequired == true) {
-				message = message + " " + $udf.colour;
-			}
-			message = message + ";";
-			$cubeAction.sendMessage(message, true);
-		};
 	});
+
+	// Items for defining and handling the User Defined Functions Modal
+	$ionicModal.fromTemplateUrl('templates/userDefinedModal.html', {
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.modal = modal
+	});
+
+	$scope.openModal = function() {
+		// Open the modal window
+		$scope.modal.show()
+	};
+
+	$scope.closeModal = function() {
+		// Close the modal window
+		$scope.modal.hide();
+	};
+
+	$scope.$on('$destroy', function() {
+		// Remove the modal from the scope, avoiding a memory leak
+		$scope.modal.remove();
+	});
+
+	// Execute action when the modal is hidden (closed)
+	$scope.$on('modal.hidden', function() {
+		// Clear any values the client set in the modal window
+		$scope.userDefinedFuntionData.name = '';
+		$scope.userDefinedFuntionData.number = '';
+		$scope.userDefinedFuntionData.colourRequired = false;
+		$scope.userDefinedFuntionData.colour = '';
+	});
+
+	$scope.saveUserDefinedFunction = function() {
+		// Run from the modal whenever the user wishes to save a new user defined function
+
+		if ($scope.userDefinedFuntionData.name == "") {
+			// A name wasn't provided but is required. Prompt the user for one.
+			$cordovaDialogs.alert('Please provide a name', 'Error', 'OK');
+			return false;
+		}
+		if (isNaN(parseInt($scope.userDefinedFuntionData.number))) {
+			// User defined functions are identified by a number. One was either not provided,
+			// or what was provided is not a number. Prompt the user for a valid number
+			$cordovaDialogs.alert('Please provide a number that matches the user defined function in the Arduino sketch', 'Error', 'OK');
+			return false;
+		}
+
+		// Save the item, after retrieving the previously selected colour.
+		$scope.userDefinedFuntionData.colour = $localstorage.get('selectedColour', '00d1ff');
+		UserDefinedService.add($scope.userDefinedFuntionData);
+
+		// Hide the modal
+		$scope.modal.hide();
+	};
+
+	$scope.deleteFavourite = function (id) {
+		// Delete the selected user defined function
+		UserDefinedService.delete(id);
+	};
+
+	$scope.reorderFavourites = function(item, fromIndex, toIndex) {
+		// Reorder how the user defined favourites are displayed
+		UserDefinedService.reorder(item, fromIndex, toIndex);
+	};
+
+	$scope.sendUDF = function (id) {
+		// Run when the user selected a user defined function
+
+		// Lookup the details for the user defined function
+		$udf = UserDefinedService.get(id);
+
+		// Start to build the message to send to the cube
+		var message = "user " + $udf.number;
+		if ($udf.colourRequired == true) {
+			// Add the colour that was selected if required
+			message = message + " " + $udf.colour;
+		}
+
+		// Finish the message and send it to the cube, adding it to the history
+		message = message + ";";
+		$cubeAction.sendMessage(message, true);
+	};
 });
 
 app.controller('StaticCtrl', function($ionicPlatform, $scope, $timeout, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs, StaticFavouritesService) {
