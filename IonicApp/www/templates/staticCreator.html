@@ -39,7 +39,7 @@
 						</ion-item>
 					</ion-list>
 					<div class="padding-horizontal">
-						<button ng-click="saveFavourite()" ng-show="saveButton" class="button button-block button-positive">
+						<button ng-click="saveFavourite()" ng-show="staticCommands.length" class="button button-block button-positive">
 							Save {{"favouriteSpelling" | translate}}
 						</button>
 						<div ng-show="!staticCommands.length" class="padding-horizontal" align="center">

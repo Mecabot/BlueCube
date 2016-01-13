@@ -1201,10 +1201,10 @@ app.controller('StaticCtrl', function($ionicPlatform, $scope, $timeout, $cubeAct
 		$scope.favourites = StaticFavouritesService.list();
 
 		// Create placeholder variables for items that will come from a modal window
-		$scope.staticCommandsData = {};
-		$scope.staticCommandsData.name = '';
-		$scope.staticCommandsData.cmds = [];
-		$scope.saveButton = false;
+		$scope.staticCommandsData =	{
+										name: '',
+										cmds: [],
+									};
 	});
 
 	// Items for defining and handling the Static Favourites Creator Modal
@@ -1234,9 +1234,10 @@ app.controller('StaticCtrl', function($ionicPlatform, $scope, $timeout, $cubeAct
 	$scope.$on('modal.hidden', function() {
 		// Clear any values the client set in the modal window
 		$scope.staticCommands = [];
-		$scope.staticCommandsData.name = '';
-		$scope.staticCommandsData.cmds = [];
-		$scope.saveButton = false;
+		$scope.staticCommandsData =	{
+										name: '',
+										cmds: [],
+									};
 	});
 
 	$scope.saveFavourite = function() {
