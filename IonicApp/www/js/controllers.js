@@ -1299,23 +1299,29 @@ app.controller('StaticCtrl', function($ionicPlatform, $scope, $timeout, $cubeAct
 
 // Controller for the 'History' page
 app.controller('HistoryCtrl', function($ionicPlatform, $scope, $cubeAction, HistoryService, $localstorage) {
+	// Don't show the delete button on the list items by default
 	$scope.data = {
 		showDelete: false,
 	};
 
 	$scope.$on('$ionicView.beforeEnter', function() {
+		// Get the list of previously transmitted commands
 		$scope.commands = HistoryService.list();
 	});
 
 	$ionicPlatform.ready(function() {
+		// Get the list of previously transmitted commands
 		$scope.commands = HistoryService.list();
 	});
 
 	$scope.replayHistoryItem = function(command) {
+		// When the user selects a item from the list, resend it to the command,
+		// but don't add it to the history
 		$cubeAction.sendMessage(command, false);
 	};
 
 	$scope.deleteHistoryItem = function (id) {
+		// Delete the selected item from the history
 		HistoryService.delete(id);
 	};
 });
