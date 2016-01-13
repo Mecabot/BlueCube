@@ -1512,41 +1512,55 @@ app.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourServic
 	};
 });
 
+// Controller for the 'User Defined Functions' modal
 app.controller('UserDefinedModalCtrl', function($ionicPlatform, $scope, $ionicModal, $localstorage) {
+	// Don't show the delete or reordering buttons on the list items by default
 	$scope.dataModal = {
 		showDelete: false,
 		showReordering: false,
 	};
 
 	$ionicPlatform.ready(function() {
+		// Get the users last selected colour
 		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
-
-		$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
-			scope: $scope,
-			animation: 'slide-in-up'
-		}).then(function(modal) {
-			$scope.modal = modal
-		});
-
-		$scope.openModal = function() {
-			$scope.modal.show()
-		};
-
-		$scope.chooseFavouriteColour = function(selectedColour) {
-			$localstorage.set('selectedColour', selectedColour);
-			$scope.selectedColour = selectedColour;
-			$scope.closeModal();
-		};
-
-		$scope.closeModal = function() {
-			$scope.modal.hide();
-			$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
-		};
-
-		$scope.$on('$destroy', function() {
-			$scope.modal.remove();
-		});
 	});
+
+	// Items for defining and handling the Colour Picker Modal
+	$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.modal = modal
+	});
+
+	$scope.openModal = function() {
+		// Open the modal window
+		$scope.modal.show()
+	};
+
+	$scope.closeModal = function() {
+		// Close the modal window
+		$scope.modal.hide();
+
+		// Get the colour that was selected while the modal window was shown
+		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+	};
+
+	$scope.$on('$destroy', function() {
+		// Remove the modal from the scope, avoiding a memory leak
+		$scope.modal.remove();
+	});
+
+	$scope.chooseFavouriteColour = function(selectedColour) {
+		// Called when the user picks one of the favourite colours from the colour picker modal
+
+		// Sets the selected colour to that of the favourite
+		$localstorage.set('selectedColour', selectedColour);
+		$scope.selectedColour = selectedColour;
+
+		// Close the modal window
+		$scope.closeModal();
+	};
 });
 
 app.controller('StaticCreatorCtrl', function($ionicPlatform, $scope, HistoryService, $localstorage) {
