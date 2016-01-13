@@ -1431,17 +1431,18 @@ app.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordo
 	};
 });
 
+// Controller for the 'About' page
 app.controller('AboutCtrl', function($ionicPlatform, $scope, $cordovaDevice, $cordovaAppVersion) {
 	$ionicPlatform.ready(function() {
-		// getting device info from $cordovaDevice
+		// Get information about the device
 		var device = $cordovaDevice.getDevice();
-
 		$scope.manufacturer = device.manufacturer;
 		$scope.model = device.model;
 		$scope.platform = device.platform;
 		$scope.version = device.version;
 		$scope.uuid = device.uuid;
 
+		// Get the apps version and build number
 		$cordovaAppVersion.getVersionNumber().then(function (version) {
 			$scope.appVersion = version;
 		}, false);
@@ -1449,6 +1450,7 @@ app.controller('AboutCtrl', function($ionicPlatform, $scope, $cordovaDevice, $co
 			$scope.appBuild = build;
 		}, false);
 
+		// Get the preferred language of the device
 		if (typeof navigator.globalization !== "undefined") {
 			navigator.globalization.getPreferredLanguage(function(language) {
 				$scope.language = language.value;
@@ -1457,37 +1459,55 @@ app.controller('AboutCtrl', function($ionicPlatform, $scope, $cordovaDevice, $co
 	});
 });
 
+// Controller for the 'Colour Picker' modal
 app.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourService, $localstorage) {
+	// Don't show the delete or reordering buttons on the list items by default
 	$scope.data = {
 		showDelete: false,
 		showReordering: false,
 	};
 
 	$ionicPlatform.ready(function() {
+		// Get the initial colour to set the colour selector to
 		var initialColour = $localstorage.get('selectedColour', '00d1ff');
+
+		// Make the colour available to the view
 		$scope.hexColour = initialColour;
+
+		// Set the colour selector to the initial colour
 		initialColour = '#' + initialColour;
 		$scope.colour = {targetColor: initialColour};
+
+		// Make the list of colour favourites available to the view
 		$scope.colours = ColourService.list();
 
+		// What for when the user selects a new colour via the colour picker
 		$scope.$watchCollection('colour.targetColor', function(newValue, oldValue) {
 			if (newValue != oldValue) {
+				// The colour has changed so track it
+
+				// The colour is returned as #XXXXXX whereas we don't required the #,
+				// so get only the hex part of the colour string
 				$scope.hexColour = newValue.substring(1);
+
+				// Save the choice for future reference
 				$localstorage.set('selectedColour', $scope.hexColour);
 			}
 		});
 	});
 
 	$scope.addUserColour = function () {
-		newColour = $scope.hexColour;
-		ColourService.add(newColour);
+		// Save the currently selected colour to the favourites list
+		ColourService.add($scope.hexColour);
 	};
 
 	$scope.deleteUserColour = function (id) {
+		// Delete the colour favourite with the provided id.
 		ColourService.delete(id);
 	};
 
 	$scope.reorderItem = function(item, fromIndex, toIndex) {
+		// Reorder the favourite colours list
 		ColourService.reorder(item, fromIndex, toIndex);
 	};
 });
