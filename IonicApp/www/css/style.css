@@ -1,36 +1,38 @@
 .spinner svg {
+    /* Set the size of the "spinner" icon that is shown while attempting to connect to a cube */
 	width: 40px;
 	height: 40px;
 }
 
 .sp-container {
+    /* Background colour and border for the spectrum colour picker */
 	background-color: #FFFFFF;
 	border: none;
 }
 
 .sp-picker-container {
+    /* Set the size of the spectrum colour picker */
 	width: 300px;
 }
 
 .item .item-content {
+    /* Make list items background colours transparent */
 	background-color: transparent !important;
 }
 
 .list-inset {
+  /* Remove extra margin space at the top of lists */
   margin-top: 0px; !important;
 }
 
 .item .item-divider {
+  /* Set the font size for the headings in cards */
   font-size: 20px !important;
 }
 
-hr.ledGrid {
-    border: 0;
-    height: 1px;
-    background: #dddddd;
-}
-
 .content-banner {
+  /* Setup the details for the banner we show, moving it to the bottom of the viewpoint
+     and overriding a number of other settings from the provided defaults */
   width: 100%;
   color: white;
   height: 30px;
@@ -46,15 +48,27 @@ hr.ledGrid {
 }
 
 .content-banner.error {
+  /* Apply settings to the banner for errors when specifically in error mode */
   opacity: 0.9 !important;
   background-color: red !important;
   font-weight: bold !important;
 }
 
+/* ledGrid items are used when we show the grid of individual LEDs from the cube */
+
 .row.ledGrid {
+  /* Reduce the padding at the top of each row so that it's a more compact display */
   padding-top: 1px !important;
 }
 
 .col.ledGrid {
+  /* Reduce the padding for each coloum so that it's a more compact display */
   padding: 0px !important;
+}
+
+hr.ledGrid {
+    /* Format a horizontal ruler to divide planes of the cube */
+    border: 0;
+    height: 1px;
+    background: #dddddd;
 }
