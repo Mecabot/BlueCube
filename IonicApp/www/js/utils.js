@@ -1,36 +1,49 @@
 var app = angular.module('BlueCube.utils', [])
 
+// Functions to make dealing with local storage easier
 app.factory('$localstorage', ['$window', function($window) {
 	return {
+		// set: Save a simple key value pair
 		set: function(key, value) {
 			$window.localStorage[key] = value;
 		},
 
+		// get: Return the value of a provided key, and if it isn't set return the provided default
 		get: function(key, defaultValue) {
 			return $window.localStorage[key] || defaultValue;
 		},
 
+		// setObject: Save a complex object as a key value pair
 		setObject: function(key, value) {
+			// Convert the object into JSON and then save it
 			$window.localStorage[key] = JSON.stringify(value);
 		},
 
+		// getObject: Return a complex object for a provided key, or null if it isn't set
 		getObject: function(key) {
+			// Convert the object back from JSON before returning it
 			return JSON.parse($window.localStorage[key] || null);
 		},
 
+		// delete: Delete a given key and its associated value
 		delete: function(key) {
 			$window.localStorage.removeItem(key);
 		},
 
+		// clear: Remove all stored items
 		clear: function() {
 			$window.localStorage.clear();
 		}
 	};
 }]);
 
+// Functions to handle the default settings or provided items
 app.factory('$defaults', ['$localstorage', function($localstorage) {
 	return {
+		// resetColours: Setup the default colours including favourite colours
 		resetColours: function() {
+			// Define the default favourite colours (which match the defined colours in the cub
+			// library
 			var colours = [
 				{
 					id: 1,
@@ -70,19 +83,28 @@ app.factory('$defaults', ['$localstorage', function($localstorage) {
 				}
 			];
 
+			// Store the favourite colours, and the uniqueID for the next colour
 			$localstorage.setObject('userDefinedColours', colours);
 			$localstorage.set('userDefinedColours_uniqueID', 10);
+
+			// Store the default selected primary and secondary colours
 			$localstorage.set('selectedColour', '00d1ff');
 			$localstorage.set('otherColour', 'f80ed1');
 		},
 
+		// resetHistory: Clear the history list
 		resetHistory: function() {
+			// Clear the history, and reset the uniqueID
 			$localstorage.delete('history');
 			$localstorage.set('history_uniqueID', 0);
+
+			// Set the default number of history items
 			$localstorage.set('history_items', 100);
 		},
 
+		// resetStatic: Setup the default static favourites
 		resetStatic: function() {
+			// Define the static favourites
 			var staticDefaults = [
 				{
 					id: 0,
@@ -178,12 +200,18 @@ app.factory('$defaults', ['$localstorage', function($localstorage) {
 							]
 				}
 			];
-			$localstorage.delete('staticFavourite');
+
+			// Store the static favourites, and the uniqueID for the next favourite
 			$localstorage.setObject('staticFavourites', staticDefaults);
 			$localstorage.set('staticFavourites_uniqueID', 4);
+
+			// The static favourites modal temporarily stores data - delete it
+			$localstorage.delete('staticFavourite');
 		},
 
+		// resetUserDefinedFunctions: Setup the user defined functions
 		resetUserDefinedFunctions: function() {
+			// Define the user defined functions
 			var udfDefaults =	[
 									{
 										id: 0,
@@ -228,23 +256,35 @@ app.factory('$defaults', ['$localstorage', function($localstorage) {
 										colour: "",
 									}
 								];
+
+			// Store the user defined functions, and the uniqueID for the next function
 			$localstorage.setObject('userDefinedFunctions', udfDefaults);
 			$localstorage.set('userDefinedFunctions_uniqueID', 6);
 		},
 
+		// resetOthers: Delete any background settings that we set
 		resetOthers: function() {
+			// Delete whether to auto connect to the cube or not
 			$localstorage.delete('autoConnect');
+
+			// Delete the UUID of the last cube we connected to
 			$localstorage.delete('bluetoothUUID');
+
+			// Delete whether we send all of the colour changes, or only selected ones
 			$localstorage.delete('liveAllColourChanges');
 		}
 	};
 }]);
 
+// Functions to specifically dealing with the cube
 app.factory('$cubeAction', ['$cordovaBluetoothSerial', 'HistoryService', '$ionicContentBanner', function($cordovaBluetoothSerial, HistoryService, $ionicContentBanner) {
 	return {
+		// lookupCoords: Turns the id number of a LED [1 to 64] to its XYZ coordinates
 		lookupCoords: function(id) {
+			// Define the coords variable to hold the XYZ position
 			var coords = "000";
 
+			// Switch that turns the ID into a coordinate
 			switch(id) {
 				case 1:
 					coords = "000";
@@ -440,44 +480,58 @@ app.factory('$cubeAction', ['$cordovaBluetoothSerial', 'HistoryService', '$ionic
 					break;
 			}
 
+			// Return the coordinate to the calling function
 			return coords;
 		},
 
+		// sendMessage: Send a message to the cube
 		sendMessage: function(message, addToHistory) {
 			if (addToHistory == true) {
+				// Add the message to the history
 				HistoryService.add(message);
 			}
+
+			// Log what we are sending
+			console.log("Sending: " + message);
 
 			// It appears that the iOS bluetooth stack can only handle 20 chars at a time, anything more
 			// and it doesn't actually send the message, and then disconnects.
 
 			// As such, split the message into 20 char chunks, which the cube will put back together into
 			// a single message as long as it's received within the timeout period.
-			console.log("Sending: " + message);
-
 			if (message.length <= 20) {
+				// Message didn't need to be broken up
 				this.write(message);
 			} else {
+				// At the cube end we don't allow more than 32 characters for a message, so spliting
+				// the message into two parts is all that is required
 				this.write(message.substr(0,20));
 				this.write(message.substr(20));
 			}
 		},
 
+		// write: Transmit the message to the cube
 		write: function(message) {
+			// Tracks the banner we show when there is a error sending the message
 			var contentBannerInstance;
 
+			// Check whether we are connected to the cube
 			$cordovaBluetoothSerial.isConnected().then(
 				function() {
+					// We are connected, so send the message
 					$cordovaBluetoothSerial.write(message).then(
 						function () {
+							// Message was successfully sent.
 							console.log(message + " sent");
-							//CLOSE content banner!!!
+
+							// Close the banner if it is open
 							if (contentBannerInstance) {
 								contentBannerInstance();
 								contentBannerInstance = null;
 							}
 						},
 						function (error) {
+							// Message failed to send, so show an error message
 							contentBannerInstance = $ionicContentBanner.show({
 								text: ['Error communicating with cube'],
 								interval: 3000,
@@ -485,11 +539,14 @@ app.factory('$cubeAction', ['$cordovaBluetoothSerial', 'HistoryService', '$ionic
 								type: 'error',
 								transition: 'fade'
 							});
+
+							// Log that there was an error
 							console.log("Error with " + message + " " + error);
 						}
 					);
 				},
 				function() {
+					// Cube not connected, so show an error message
 					contentBannerInstance = $ionicContentBanner.show({
 						text: ['Cube not connected'],
 						interval: 3000,
