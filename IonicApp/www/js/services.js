@@ -1,75 +1,108 @@
 var app = angular.module('BlueCube.services', [])
 
+// History Service that manages the history of commands
 app.service('HistoryService', function($localstorage) {
+	// Array that holds each of the commands that have previously been sent to the cube
 	var commands;
+
+	// We require a UniqueID for each command, so this variable tracks it
 	var uniqueID;
 
 	if ($localstorage.getObject('history') != undefined) {
+		// Get the previously saved history items
 		commands = $localstorage.getObject('history');
 	} else {
+		// There are no history items saved, so set the unique ID to 0
 		commands = [];
 		$localstorage.set('history_uniqueID', 0);
 	}
 
+	// Get the UniqueID that we previously saved
 	uniqueID = parseInt($localstorage.get('history_uniqueID'));
 
+	// Return a list of all history commands
 	this.list = function() {
 		if ($localstorage.getObject('history') != undefined) {
+			// Get the previously saved history items
 			commands = $localstorage.getObject('history');
 		} else {
+			// There are no history items saved
 			commands = [];
 		}
 
+		// Returns the array of history items
 		return commands;
 	};
 
+	// Get a specific history item
 	this.get = function(historyID) {
 		for (var i in commands) {
 			if (commands[i].id == historyID) {
+				// Loop through all of the history until the item matches the required one,
+				// and send the specific command back to the requestor
 				return historyID[i].cmd;
 			}
 		}
 	};
 
+	// Add an item to the history
 	this.add = function(command) {
+		// Track the maximum of history items we should have
 		var maxHistoryItems;
 
+		// Get the previously saved maximum number of history items, otherwise use the
+		// default number.
 		if ($localstorage.get('history_items') != undefined) {
 			maxHistoryItems = parseInt($localstorage.get('history_items'));
 		} else {
 			maxHistoryItems = 100;
 		}
 
+		// Build the item to add, using the passed in command and the uniqueID we have
 		var historyItem = 	{
 								id: uniqueID,
 								cmd: command,
 							};
 
+		// Determine if we have reached the maximum number of items we should have
 		if (commands.length >= maxHistoryItems) {
 			for(var i = maxHistoryItems - 1; i <= commands.length; i++) {
+				// Working from the oldest to newest item in the array, remove one item from
+				// the end until there are only the maximum number of items - 1 in the array
 				commands.pop();
 			}
 		}
 
-		uniqueID = uniqueID + 1;
+		// Add the new item to the beginning of the array, and save it for future use
 		commands.unshift(historyItem);
 		$localstorage.setObject('history', commands);
+
+		// Increment the unique ID, and save it for future reference
+		uniqueID = uniqueID + 1;
 		$localstorage.set('history_uniqueID', uniqueID);
 	};
 
+	// Delete a given item from the history
 	this.delete = function(historyID) {
 		for (var i in commands) {
 			if (commands[i].id == historyID) {
+				// Loop through all of the history until the item matches the required one,
+				// and then delete it
 				commands.splice(i, 1);
 			}
 		}
 
+		// Save the updated array of history items
 		$localstorage.setObject('history', commands);
 	};
 
+	// Reorder the array of history items
 	this.reorder = function(item, fromIndex, toIndex) {
+		// Move the selected item from it's current location to the new location
 		commands.splice(fromIndex, 1);
 		commands.splice(toIndex, 0, item);
+
+		// Save the updated array of history items
 		$localstorage.setObject('history', commands);
 	};
 });
