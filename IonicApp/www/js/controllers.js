@@ -176,7 +176,7 @@ app.controller('ShiftCtrl', function($ionicPlatform, $scope, $cubeAction) {
 });
 
 // Controller for the 'Set' page
-app.controller('SetCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
+app.controller('SetCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, $localstorage) {
 	// Array for tracking each of the LEDs in the cube
 	$scope.cube = [];
 
@@ -185,30 +185,17 @@ app.controller('SetCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicMo
 		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 	});
 
-	// Items for defining and handling the Colour Picker Modal
-	$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
-		scope: $scope,
-		animation: 'slide-in-up'
-	}).then(function(modal) {
-		$scope.modal = modal
-	});
-
+	// Open the colour picker
 	$scope.openModal = function() {
-		// Open the modal window
-		$scope.modal.show()
+		ModalService.init('templates/colourPicker.html', $scope).then(function(modal) {
+			modal.show();
+		});
 	};
 
-	$scope.closeModal = function() {
-		// Close the modal window
-		$scope.modal.hide();
-
+	// Execute action when the modal is hidden (closed)
+	$scope.$on('modal.hidden', function() {
 		// Get the colour that was selected while the modal window was shown
 		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
-	};
-
-	$scope.$on('$destroy', function() {
-		// Remove the modal from the scope, avoiding a memory leak
-		$scope.modal.remove();
 	});
 
 	$scope.setLED = function (id) {
@@ -226,50 +213,26 @@ app.controller('SetCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicMo
 		var message = "set " + $cubeAction.lookupCoords(id) + " " + colourToUse + ";";
 		$cubeAction.sendMessage(message, true);
 	};
-
-	$scope.chooseFavouriteColour = function(selectedColour) {
-		// Called when the user picks one of the favourite colours from the colour picker modal
-
-		// Sets the selected colour to that of the favourite
-		$localstorage.set('selectedColour', selectedColour);
-		$scope.selectedColour = selectedColour;
-
-		// Close the modal window
-		$scope.closeModal();
-	};
 });
 
 // Controller for the 'Next' page
-app.controller('NextCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
+app.controller('NextCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, $localstorage) {
 	$ionicPlatform.ready(function() {
 		// Get the users last selected colour
 		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 	});
 
-	// Items for defining and handling the Colour Picker Modal
-	$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
-		scope: $scope,
-		animation: 'slide-in-up'
-	}).then(function(modal) {
-		$scope.modal = modal
-	});
-
+	// Open the colour picker
 	$scope.openModal = function() {
-		// Open the modal window
-		$scope.modal.show()
+		ModalService.init('templates/colourPicker.html', $scope).then(function(modal) {
+			modal.show();
+		});
 	};
 
-	$scope.closeModal = function() {
-		// Close the modal window
-		$scope.modal.hide();
-
+	// Execute action when the modal is hidden (closed)
+	$scope.$on('modal.hidden', function() {
 		// Get the colour that was selected while the modal window was shown
 		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
-	};
-
-	$scope.$on('$destroy', function() {
-		// Remove the modal from the scope, avoiding a memory leak
-		$scope.modal.remove();
 	});
 
 	$scope.next = function () {
@@ -283,21 +246,10 @@ app.controller('NextCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicM
 		var message = "next " + colourToUse + ";";
 		$cubeAction.sendMessage(message, true);
 	};
-
-	$scope.chooseFavouriteColour = function(selectedColour) {
-		// Called when the user picks one of the favourite colours from the colour picker modal
-
-		// Sets the selected colour to that of the favourite
-		$localstorage.set('selectedColour', selectedColour);
-		$scope.selectedColour = selectedColour;
-
-		// Close the modal window
-		$scope.closeModal();
-	};
 });
 
 // Controller for the 'Set Plane' page
-app.controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
+app.controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, $localstorage) {
 	$ionicPlatform.ready(function() {
 		// Set the default initial axis and offset
 		$scope.values = {
@@ -309,30 +261,17 @@ app.controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $io
 		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 	});
 
-	// Items for defining and handling the Colour Picker Modal
-	$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
-		scope: $scope,
-		animation: 'slide-in-up'
-	}).then(function(modal) {
-		$scope.modal = modal
-	});
-
+	// Open the colour picker
 	$scope.openModal = function() {
-		// Open the modal window
-		$scope.modal.show()
+		ModalService.init('templates/colourPicker.html', $scope).then(function(modal) {
+			modal.show();
+		});
 	};
 
-	$scope.closeModal = function() {
-		// Close the modal window
-		$scope.modal.hide();
-
+	// Execute action when the modal is hidden (closed)
+	$scope.$on('modal.hidden', function() {
 		// Get the colour that was selected while the modal window was shown
 		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
-	};
-
-	$scope.$on('$destroy', function() {
-		// Remove the modal from the scope, avoiding a memory leak
-		$scope.modal.remove();
 	});
 
 	$scope.setPlane = function() {
@@ -340,21 +279,10 @@ app.controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $io
 		var message = "setplane " + $scope.values.axis + " " + $scope.values.offset + " " + $scope.selectedColour + ";";
 		$cubeAction.sendMessage(message, true);
 	};
-
-	$scope.chooseFavouriteColour = function(selectedColour) {
-		// Called when the user picks one of the favourite colours from the colour picker modal
-
-		// Sets the selected colour to that of the favourite
-		$localstorage.set('selectedColour', selectedColour);
-		$scope.selectedColour = selectedColour;
-
-		// Close the modal window
-		$scope.closeModal();
-	};
 });
 
 // Controller for the 'Copy Plane' page
-app.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
+app.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, $localstorage) {
 	$ionicPlatform.ready(function() {
 		// Set the default initial axis and start and destination offset
 		$scope.values = {
@@ -372,7 +300,7 @@ app.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $i
 })
 
 // Controller for the 'Move Plane' page
-.controller('MovePlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage) {
+.controller('MovePlaneCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, $localstorage) {
 	$ionicPlatform.ready(function() {
 		// Set the default initial axis and start and destination offset
 		$scope.values = {
@@ -385,30 +313,17 @@ app.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $i
 		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 	});
 
-	// Items for defining and handling the Colour Picker Modal
-	$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
-		scope: $scope,
-		animation: 'slide-in-up'
-	}).then(function(modal) {
-		$scope.modal = modal
-	});
-
+	// Open the colour picker
 	$scope.openModal = function() {
-		// Open the modal window
-		$scope.modal.show()
+		ModalService.init('templates/colourPicker.html', $scope).then(function(modal) {
+			modal.show();
+		});
 	};
 
-	$scope.closeModal = function() {
-		// Close the modal window
-		$scope.modal.hide();
-
+	// Execute action when the modal is hidden (closed)
+	$scope.$on('modal.hidden', function() {
 		// Get the colour that was selected while the modal window was shown
 		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
-	};
-
-	$scope.$on('$destroy', function() {
-		// Remove the modal from the scope, avoiding a memory leak
-		$scope.modal.remove();
 	});
 
 	$scope.movePlane = function() {
@@ -416,21 +331,10 @@ app.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, $i
 		var message = "moveplane " + $scope.values.axis + " " + $scope.values.fromOffset + " " + $scope.values.toOffset + " " + $scope.selectedColour + ";";
 		$cubeAction.sendMessage(message, true);
 	};
-
-	$scope.chooseFavouriteColour = function(selectedColour) {
-		// Called when the user picks one of the favourite colours from the colour picker modal
-
-		// Sets the selected colour to that of the favourite
-		$localstorage.set('selectedColour', selectedColour);
-		$scope.selectedColour = selectedColour;
-
-		// Close the modal window
-		$scope.closeModal();
-	};
 });
 
 // Controller for the 'Line' page
-app.controller('LineCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs) {
+app.controller('LineCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, $localstorage, $cordovaDialogs) {
 	// Array for tracking each of the LEDs in the cube
 	$scope.cube = [];
 
@@ -439,30 +343,17 @@ app.controller('LineCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicM
 		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 	});
 
-	// Items for defining and handling the Colour Picker Modal
-	$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
-		scope: $scope,
-		animation: 'slide-in-up'
-	}).then(function(modal) {
-		$scope.modal = modal
-	});
-
+	// Open the colour picker
 	$scope.openModal = function() {
-		// Open the modal window
-		$scope.modal.show()
+		ModalService.init('templates/colourPicker.html', $scope).then(function(modal) {
+			modal.show();
+		});
 	};
 
-	$scope.closeModal = function() {
-		// Close the modal window
-		$scope.modal.hide();
-
+	// Execute action when the modal is hidden (closed)
+	$scope.$on('modal.hidden', function() {
 		// Get the colour that was selected while the modal window was shown
 		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
-	};
-
-	$scope.$on('$destroy', function() {
-		// Remove the modal from the scope, avoiding a memory leak
-		$scope.modal.remove();
 	});
 
 	$scope.drawLine = function() {
@@ -500,26 +391,15 @@ app.controller('LineCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicM
 			$cordovaDialogs.alert('Please select only 2 points', 'Line', 'OK');
 		}
 	};
-
-	$scope.chooseFavouriteColour = function(selectedColour) {
-		// Called when the user picks one of the favourite colours from the colour picker modal
-
-		// Sets the selected colour to that of the favourite
-		$localstorage.set('selectedColour', selectedColour);
-		$scope.selectedColour = selectedColour;
-
-		// Close the modal window
-		$scope.closeModal();
-	};
 });
 
 // Controller for the 'Box' page
-app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs) {
+app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, $localstorage, $cordovaDialogs) {
 	// Array for tracking each of the LEDs in the cube
 	$scope.cube = [];
 
 	// Track whether the user is trying to select the main colour, or the secondary colour used for some options
-	var secondaryColourSelector = false;
+	$scope.secondaryColourSelector = false;
 
 	// Variable to store previous colour choices to work around having two colour pickers instead of just one
 	var cachedColour = "";
@@ -538,25 +418,20 @@ app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicMo
 		$scope.showSecontaryColour = false;
 	});
 
-	// Items for defining and handling the Colour Picker Modal
-	$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
-		scope: $scope,
-		animation: 'slide-in-up'
-	}).then(function(modal) {
-		$scope.modal = modal
-	});
-
+	// Open the colour picker for the primary colour
 	$scope.openModalPrimary = function() {
 		// Flag that we are picking the primary colour
-		secondaryColourSelector = false;
+		$scope.secondaryColourSelector = false;
 
-		// Open the modal window
-		$scope.modal.show()
+		ModalService.init('templates/colourPicker.html', $scope).then(function(modal) {
+			modal.show();
+		});
 	};
 
+	// Open the colour picker for the secondary colour
 	$scope.openModalSecondary = function() {
 		// Flag that we are picking the secondary colour
-		secondaryColourSelector = true;
+		$scope.secondaryColourSelector = true;
 
 		// To work around the colour picker only setting the selectedColour, we cache
 		// the primary selected colour, and then replace it with the previously saved
@@ -565,15 +440,14 @@ app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicMo
 		var otherColour = $localstorage.get('otherColour', 'f80ed1');
 		$localstorage.set('selectedColour', otherColour);
 
-		// Open the modal window
-		$scope.modal.show()
+		ModalService.init('templates/colourPicker.html', $scope).then(function(modal) {
+			modal.show();
+		});
 	};
 
-	$scope.closeModal = function() {
-		// Close the modal window
-		$scope.modal.hide();
-
-		if (secondaryColourSelector) {
+	// Execute action when the modal is hidden (closed)
+	$scope.$on('modal.hidden', function() {
+		if ($scope.secondaryColourSelector) {
 			// We picked the colour for the secondary colour, so handle resetting values
 
 			// Get the colour that was selected while the modal window was shown
@@ -587,11 +461,6 @@ app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicMo
 			// Get the colour that was selected while the modal window was shown
 			$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 		}
-	};
-
-	$scope.$on('$destroy', function() {
-		// Remove the modal from the scope, avoiding a memory leak
-		$scope.modal.remove();
 	});
 
 	$scope.styleSelection = function() {
@@ -652,31 +521,15 @@ app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicMo
 			$cordovaDialogs.alert('Please select only 2 points', 'Box', 'OK');
 		}
 	};
-
-	$scope.chooseFavouriteColour = function(selectedColour) {
-		// Called when the user picks one of the favourite colours from the colour picker modal
-
-		if (secondaryColourSelector) {
-			// This was for the secondary colour, so save its value and pass it to the view
-			$localstorage.set('otherColour', selectedColour);
-			$scope.otherColour = selectedColour;
-		} else {
-			// This was for the primary colour, so save its value and pass it to the view
-			$localstorage.set('selectedColour', selectedColour);
-			$scope.selectedColour = selectedColour;
-		}
-		// Close the modal window
-		$scope.closeModal();
-	};
 });
 
 // Controller for the 'Sphere' page
-app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs) {
+app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, $localstorage, $cordovaDialogs) {
 	// Array for tracking each of the LEDs in the cube
 	$scope.cube = [];
 
 	// Track whether the user is trying to select the main colour, or the secondary colour used for some options
-	var secondaryColourSelector = false;
+	$scope.secondaryColourSelector = false;
 
 	// Variable to store previous colour choices to work around having two colour pickers instead of just one
 	var cachedColour = "";
@@ -696,25 +549,20 @@ app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, $ioni
 		$scope.showSecontaryColour = false;
 	});
 
-	// Items for defining and handling the Colour Picker Modal
-	$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
-		scope: $scope,
-		animation: 'slide-in-up'
-	}).then(function(modal) {
-		$scope.modal = modal
-	});
-
+	// Open the colour picker for the primary colour
 	$scope.openModalPrimary = function() {
 		// Flag that we are picking the primary colour
-		secondaryColourSelector = false;
+		$scope.secondaryColourSelector = false;
 
-		// Open the modal window
-		$scope.modal.show()
+		ModalService.init('templates/colourPicker.html', $scope).then(function(modal) {
+			modal.show();
+		});
 	};
 
+	// Open the colour picker for the secondary colour
 	$scope.openModalSecondary = function() {
 		// Flag that we are picking the secondary colour
-		secondaryColourSelector = true;
+		$scope.secondaryColourSelector = true;
 
 		// To work around the colour picker only setting the selectedColour, we cache
 		// the primary selected colour, and then replace it with the previously saved
@@ -723,15 +571,14 @@ app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, $ioni
 		var otherColour = $localstorage.get('otherColour', 'f80ed1');
 		$localstorage.set('selectedColour', otherColour);
 
-		// Open the modal window
-		$scope.modal.show()
+		ModalService.init('templates/colourPicker.html', $scope).then(function(modal) {
+			modal.show();
+		});
 	};
 
-	$scope.closeModal = function() {
-		// Close the modal window
-		$scope.modal.hide();
-
-		if (secondaryColourSelector) {
+	// Execute action when the modal is hidden (closed)
+	$scope.$on('modal.hidden', function() {
+		if ($scope.secondaryColourSelector) {
 			// We picked the colour for the secondary colour, so handle resetting values
 
 			// Get the colour that was selected while the modal window was shown
@@ -745,11 +592,6 @@ app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, $ioni
 			// Get the colour that was selected while the modal window was shown
 			$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 		}
-	};
-
-	$scope.$on('$destroy', function() {
-		// Remove the modal from the scope, avoiding a memory leak
-		$scope.modal.remove();
 	});
 
 	$scope.styleSelection = function() {
@@ -807,22 +649,6 @@ app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, $ioni
 			// More or less than 1 point were selected, so tell the user to only select 1
 			$cordovaDialogs.alert('Please select only 1 point', 'Sphere', 'OK');
 		}
-	};
-
-	$scope.chooseFavouriteColour = function(selectedColour) {
-		// Called when the user picks one of the favourite colours from the colour picker modal
-
-		if (secondaryColourSelector) {
-			// This was for the secondary colour, so save its value and pass it to the view
-			$localstorage.set('otherColour', selectedColour);
-			$scope.otherColour = selectedColour;
-		} else {
-			// This was for the primary colour, so save its value and pass it to the view
-			$localstorage.set('selectedColour', selectedColour);
-			$scope.selectedColour = selectedColour;
-		}
-		// Close the modal window
-		$scope.closeModal();
 	};
 });
 
@@ -1066,7 +892,7 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 });
 
 // Controller for the 'User Defined Functions' page
-app.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs, UserDefinedService) {
+app.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, $localstorage, $cordovaDialogs, UserDefinedService) {
 	// Don't show the delete or reordering buttons on the list items by default
 	$scope.data = {
 		showDelete: false,
@@ -1094,28 +920,12 @@ app.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction, 
 										};
 	});
 
-	// Items for defining and handling the User Defined Functions Modal
-	$ionicModal.fromTemplateUrl('templates/userDefinedModal.html', {
-		scope: $scope,
-		animation: 'slide-in-up'
-	}).then(function(modal) {
-		$scope.modal = modal
-	});
-
+	// Open the User Defined Functions Modal
 	$scope.openModal = function() {
-		// Open the modal window
-		$scope.modal.show()
+		ModalService.init('templates/userDefinedModal.html', $scope).then(function(modal) {
+			modal.show();
+		});
 	};
-
-	$scope.closeModal = function() {
-		// Close the modal window
-		$scope.modal.hide();
-	};
-
-	$scope.$on('$destroy', function() {
-		// Remove the modal from the scope, avoiding a memory leak
-		$scope.modal.remove();
-	});
 
 	// Execute action when the modal is hidden (closed)
 	$scope.$on('modal.hidden', function() {
@@ -1181,7 +991,7 @@ app.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction, 
 });
 
 // Controller for the 'Static Favourites' page
-app.controller('StaticCtrl', function($ionicPlatform, $scope, $timeout, $cubeAction, $ionicModal, $localstorage, $cordovaDialogs, StaticFavouritesService) {
+app.controller('StaticCtrl', function($ionicPlatform, $scope, $timeout, $cubeAction, ModalService, $localstorage, $cordovaDialogs, StaticFavouritesService) {
 	// Don't show the delete or reordering buttons on the list items by default
 	$scope.data = {
 		showDelete: false,
@@ -1207,28 +1017,12 @@ app.controller('StaticCtrl', function($ionicPlatform, $scope, $timeout, $cubeAct
 									};
 	});
 
-	// Items for defining and handling the Static Favourites Creator Modal
-	$ionicModal.fromTemplateUrl('templates/staticCreator.html', {
-		scope: $scope,
-		animation: 'slide-in-up'
-	}).then(function(modal) {
-		$scope.modal = modal
-	});
-
+	// Open the Static Favourites Creator Modal
 	$scope.openModal = function() {
-		// Open the modal window
-		$scope.modal.show()
+		ModalService.init('templates/staticCreator.html', $scope).then(function(modal) {
+			modal.show();
+		});
 	};
-
-	$scope.closeModal = function() {
-		// Close the modal window
-		$scope.modal.hide();
-	};
-
-	$scope.$on('$destroy', function() {
-		// Remove the modal from the scope, avoiding a memory leak
-		$scope.modal.remove();
-	});
 
 	// Execute action on hide modal
 	$scope.$on('modal.hidden', function() {
@@ -1510,10 +1304,26 @@ app.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourServic
 		// Reorder the favourite colours list
 		ColourService.reorder(item, fromIndex, toIndex);
 	};
+
+	$scope.chooseFavouriteColour = function(selectedColour) {
+		// Called when the user picks one of the favourite colours from the colour picker modal
+
+		if ($scope.secondaryColourSelector) {
+			// This was for the secondary colour, so save its value and pass it to the view
+			$localstorage.set('otherColour', selectedColour);
+			$scope.otherColour = selectedColour;
+		} else {
+			// This was for the primary colour, so save its value and pass it to the view
+			$localstorage.set('selectedColour', selectedColour);
+			$scope.selectedColour = selectedColour;
+		}
+		// Close the modal window
+		$scope.closeModal();
+	};
 });
 
 // Controller for the 'User Defined Functions' modal
-app.controller('UserDefinedModalCtrl', function($ionicPlatform, $scope, $ionicModal, $localstorage) {
+app.controller('UserDefinedModalCtrl', function($ionicPlatform, $scope, ModalService, $localstorage) {
 	// Don't show the delete or reordering buttons on the list items by default
 	$scope.dataModal = {
 		showDelete: false,
@@ -1525,42 +1335,18 @@ app.controller('UserDefinedModalCtrl', function($ionicPlatform, $scope, $ionicMo
 		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
 	});
 
-	// Items for defining and handling the Colour Picker Modal
-	$ionicModal.fromTemplateUrl('templates/colourPicker.html', {
-		scope: $scope,
-		animation: 'slide-in-up'
-	}).then(function(modal) {
-		$scope.modal = modal
-	});
-
+	// Open the colour picker
 	$scope.openModal = function() {
-		// Open the modal window
-		$scope.modal.show()
+		ModalService.init('templates/colourPicker.html', $scope).then(function(modal) {
+			modal.show();
+		});
 	};
 
-	$scope.closeModal = function() {
-		// Close the modal window
-		$scope.modal.hide();
-
+	// Execute action when the modal is hidden (closed)
+	$scope.$on('modal.hidden', function() {
 		// Get the colour that was selected while the modal window was shown
 		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
-	};
-
-	$scope.$on('$destroy', function() {
-		// Remove the modal from the scope, avoiding a memory leak
-		$scope.modal.remove();
 	});
-
-	$scope.chooseFavouriteColour = function(selectedColour) {
-		// Called when the user picks one of the favourite colours from the colour picker modal
-
-		// Sets the selected colour to that of the favourite
-		$localstorage.set('selectedColour', selectedColour);
-		$scope.selectedColour = selectedColour;
-
-		// Close the modal window
-		$scope.closeModal();
-	};
 });
 
 // Controller for the 'Static Favourite Creator' modal

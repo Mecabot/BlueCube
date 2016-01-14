@@ -368,3 +368,48 @@ app.service('UserDefinedService', function($localstorage, $defaults) {
 		$localstorage.setObject('userDefinedFunctions', userDefinedFunctions);
 	};
 });
+
+// Modal Service that handles the creation, display, and removal of modal windows
+// - based on code from https://codepen.io/calendee/pen/DJgkc.
+app.service('ModalService', function($ionicModal, $rootScope) {
+	// Initialisation function for the modal, that setups the modal and the associated functions
+	var init = function(template, $scope) {
+		// Use an Angular promise for this function
+		var promise;
+
+		// Either use the provided scope or create a new scope for the modal
+		$scope = $scope || $rootScope.$new();
+
+		// Setup the modal popup
+		promise = 	$ionicModal.fromTemplateUrl(template, {
+						scope: $scope,
+						animation: 'slide-in-up'
+					}).then(function(modal) {
+						$scope.modal = modal;
+						return modal;
+					});
+
+		$scope.openModal = function() {
+			// Open the modal window
+			$scope.modal.show();
+		};
+
+		$scope.closeModal = function() {
+			// Close the modal window
+			$scope.modal.hide();
+		};
+
+		$scope.$on('$destroy', function() {
+			// Remove the modal from the scope, avoiding a memory leak
+			$scope.modal.remove();
+		});
+
+		// Return the promise
+		return promise;
+	};
+
+	// Expose the init function to the rest of the app
+	return {
+		init: init
+	};
+});
