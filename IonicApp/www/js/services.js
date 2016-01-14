@@ -107,59 +107,88 @@ app.service('HistoryService', function($localstorage) {
 	};
 });
 
+// Colour Service that manages the favourites colours list
 app.service('ColourService', function($localstorage, $defaults) {
+	// We require a UniqueID for each command, so this variable tracks it
 	var uniqueID;
+
+	// Array that holds each of the favourite colours that have previously been set
 	var colours;
 
 	if ($localstorage.getObject('userDefinedColours') == undefined) {
+		// No previously defined colours exist, so call our reset function to set the default
+		// favourites
 		$defaults.resetColours();
 	}
 
+	// Get the saved colour favourites and unique id
 	colours = $localstorage.getObject('userDefinedColours');
 	uniqueID = parseInt($localstorage.get('userDefinedColours_uniqueID'));
 
+	// Return a list of all favourite colours
 	this.list = function() {
 		if ($localstorage.getObject('userDefinedColours') == undefined) {
+			// No previously defined colours exist, so call our reset function to set
+			// the default favourites
 			$defaults.resetColours();
 		}
+
+		// Get the previously saved colour favourites
 		colours = $localstorage.getObject('userDefinedColours');
 
+		// Return the array of colours
 		return colours;
 	};
 
+	// Get a specific favourite colour
 	this.get = function(colourId) {
 		for (var i in colours) {
 			if (colours[i].id == colourId) {
+				// Loop through all of the favourite colours until the item matches the
+				// required one, and send it back to the requestor
 				return colours[i];
 			}
 		}
 	};
 
+	// Add an selected colour to the favourites
 	this.add = function(userDefinedColour) {
+		// Build the item to add, using the passed in colour and the uniqueID we have
 		var newColour =	{
 							id: uniqueID,
 							hex: userDefinedColour,
 						};
 
-		uniqueID = uniqueID + 1;
+		// Add the new colour to the array of favourites, and save it for future use
 		colours.push(newColour);
 		$localstorage.setObject('userDefinedColours', colours);
+
+		// Increment the unique ID, and save it for future reference
+		uniqueID = uniqueID + 1;
 		$localstorage.set('userDefinedColours_uniqueID', uniqueID);
 	};
 
+	// Delete a given colour from the favourites
 	this.delete = function(colourId) {
 		for (var i in colours) {
 			if (colours[i].id == colourId) {
+				// Loop through all of the colour favourites until the item matches the
+				// required one, and then delete it
 				colours.splice(i, 1);
 			}
 		}
 
+		// Save the updated array of colour favourites
 		$localstorage.setObject('userDefinedColours', colours);
 	};
 
+	// Reorder the array of colours
 	this.reorder = function(item, fromIndex, toIndex) {
-		colours.splice(fromIndex, 1);
-		colours.splice(toIndex, 0, item);
+		// Move the selected item from it's current location to the new location
+		commands.splice(fromIndex, 1);
+		commands.splice(toIndex, 0, item);
+
+		// Save the updated array of colour favourites
 		$localstorage.setObject('userDefinedColours', colours);
 	};
 });
