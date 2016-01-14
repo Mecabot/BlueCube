@@ -193,27 +193,41 @@ app.service('ColourService', function($localstorage, $defaults) {
 	};
 });
 
+// Static Favourites Service that manages the static favourites list, and the commands that it
+// represents
 app.service('StaticFavouritesService', function($localstorage, $defaults) {
+	// Array that holds each of the static favourites that have been set
 	var staticFavourites;
+
+	// We require a UniqueID for each command, so this variable tracks it
 	var uniqueID;
 
 	if ($localstorage.getObject('staticFavourites') == undefined) {
+		// No previously defined static favourites exist, so call our reset function to set
+		// the default favourites
 		$defaults.resetStatic();
 	}
 
+	// Get the saved static favourites and unique id
 	staticFavourites = $localstorage.getObject('staticFavourites');
 	uniqueID = parseInt($localstorage.get('staticFavourites_uniqueID'));
 
+	// Return a list of all static favourites
 	this.list = function() {
 		if ($localstorage.getObject('staticFavourites') == undefined) {
+			// No previously defined static favourites exist, so call our reset function to set
+			// the default favourites
 			$defaults.resetStatic();
 		}
 
+		// Get the saved static favourites
 		staticFavourites = $localstorage.getObject('staticFavourites');
 
+		// Return the array of static favourites
 		return staticFavourites;
 	};
 
+	// Get a specific static favourite
 	this.get = function(id) {
 		for (var i in staticFavourites) {
 			if (staticFavourites[i].id == id) {
@@ -222,56 +236,84 @@ app.service('StaticFavouritesService', function($localstorage, $defaults) {
 		}
 	};
 
+	// Add a static favourite to the array of
 	this.add = function(name, cmds) {
+		// Build the item to add, using the passed in name, commands and the uniqueID we have
 		var favouriteItem =	{
 								id: uniqueID,
 								name: name,
 								cmds: cmds,
 							};
-		uniqueID = uniqueID + 1;
+
+		// Add the new static favourite to the array of static favourites, and save it for
+		// future use
 		staticFavourites.push(favouriteItem);
 		$localstorage.setObject('staticFavourites', staticFavourites);
+
+		// Increment the unique ID, and save it for future reference
+		uniqueID = uniqueID + 1;
 		$localstorage.set('staticFavourites_uniqueID', uniqueID);
 	};
 
+	// Delete a given static favourite from the static favourites
 	this.delete = function(id) {
 		for (var i in staticFavourites) {
 			if (staticFavourites[i].id == id) {
+				// Loop through all of the static favourites until the item matches the
+				// required one, and then delete it
 				staticFavourites.splice(i, 1);
 			}
 		}
 
+		// Save the updated array of static favourites
 		$localstorage.setObject('staticFavourites', staticFavourites);
 	};
 
+	// Reorder the array of static favourites
 	this.reorder = function(item, fromIndex, toIndex) {
+		// Move the selected item from it's current location to the new location
 		staticFavourites.splice(fromIndex, 1);
 		staticFavourites.splice(toIndex, 0, item);
+
+		// Save the updated array of static favourites
 		$localstorage.setObject('staticFavourites', staticFavourites);
 	};
 });
 
+// User Defined Service that manages the user defined functions list
 app.service('UserDefinedService', function($localstorage, $defaults) {
+	// Array that holds each of user defined functions that have been set
 	var userDefinedFunctions;
+
+	// We require a UniqueID for each command, so this variable tracks it
 	var uniqueID;
 
 	if ($localstorage.getObject('userDefinedFunctions') == undefined) {
+		// No previously defined user defined functions exist, so call our reset function to set
+		// the default user defined functions
 		$defaults.resetUserDefinedFunctions();
 	}
 
+	// Get the saved user defined functions and unique id
 	userDefinedFunctions = $localstorage.getObject('userDefinedFunctions');
 	uniqueID = parseInt($localstorage.get('userDefinedFunctions_uniqueID'));
 
+	// Return a list of all user defined functions
 	this.list = function() {
 		if ($localstorage.getObject('userDefinedFunctions') == undefined) {
+			// No previously defined user defined functions exist, so call our reset function to set
+			// the default user defined functions
 			$defaults.resetUserDefinedFunctions();
 		}
 
+		// Get the saved user defined functions
 		userDefinedFunctions = $localstorage.getObject('userDefinedFunctions');
 
+		// Return the array of user defined functions
 		return userDefinedFunctions;
 	};
 
+	// Get a specific user defined function
 	this.get = function(id) {
 		for (var i in userDefinedFunctions) {
 			if (userDefinedFunctions[i].id == id) {
@@ -280,7 +322,10 @@ app.service('UserDefinedService', function($localstorage, $defaults) {
 		}
 	};
 
+	// Add an selected user defined function to the array of user defined functions
 	this.add = function(udf) {
+		// Build the item to add, using the passed in user defined function object properties
+		// and the uniqueID we have
 		var userDefinedItem =	{
 									id: uniqueID,
 									name: udf.name,
@@ -288,25 +333,38 @@ app.service('UserDefinedService', function($localstorage, $defaults) {
 									colourRequired: udf.colourRequired,
 									colour: udf.colour,
 								};
-		uniqueID = uniqueID + 1;
+
+		// Add the new user defined function to the array of user defined functions, and save it for
+		// future use
 		userDefinedFunctions.push(userDefinedItem);
 		$localstorage.setObject('userDefinedFunctions', userDefinedFunctions);
+
+		// Increment the unique ID, and save it for future reference
+		uniqueID = uniqueID + 1;
 		$localstorage.set('userDefinedFunctions_uniqueID', uniqueID);
 	};
 
+	// Delete a given user defined function from the user defined functions
 	this.delete = function(id) {
 		for (var i in userDefinedFunctions) {
 			if (userDefinedFunctions[i].id == id) {
+				// Loop through all of the user defined functions until the item matches the
+				// required one, and then delete it
 				userDefinedFunctions.splice(i, 1);
 			}
 		}
 
+		// Save the updated array of user defined functions
 		$localstorage.setObject('userDefinedFunctions', userDefinedFunctions);
 	};
 
+	// Reorder the array of user defined functions
 	this.reorder = function(item, fromIndex, toIndex) {
+		// Move the selected item from it's current location to the new location
 		userDefinedFunctions.splice(fromIndex, 1);
 		userDefinedFunctions.splice(toIndex, 0, item);
+
+		// Save the updated array of user defined functions
 		$localstorage.setObject('userDefinedFunctions', userDefinedFunctions);
 	};
 });
