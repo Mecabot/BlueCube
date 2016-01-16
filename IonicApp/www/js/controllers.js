@@ -362,15 +362,19 @@ app.controller('LineCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSe
 		// Start to declare the message to send to the cube
 		var message = "line ";
 
+		// Store the selected coordinates
+		var coords = [];
+
 		// Counter for how many points the user selected
 		var selected = 0;
 		for (var i = 0; i <= 64; i++) {
 			// Find the point(s) that the user selected
 			if ($scope.cube[i] == true) {
-				selected = selected + 1;
+				// Get the coordinates
+				coords[selected] = $cubeAction.lookupCoords(i);
 
-				// Add the coordinate of the point to the message to send to the cube
-				message = message + $cubeAction.lookupCoords(i) + " ";
+				// Increment the counter for found points
+				selected = selected + 1;
 			}
 		}
 
@@ -381,6 +385,50 @@ app.controller('LineCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSe
 			for (var i = 0; i <= 64; i++) {
 				$scope.cube[i] = null;
 			}
+
+			/* There is a bug in the Cube's API, where when you draw a line, in particular cases
+			 * what you would consider the end point needs to be the start point, otherwise it failes
+			 * to draw.
+			 *
+			 * For example, selecting 010 030 works, but 030 010 does not even though they should
+			 * both result in all of the LEDs being lit.
+			 *
+			 * The following code set's up the first and second points, and then reverses them
+			 * if it finds the examples where the Cube API fails.
+			 */
+			firstPoint = coords[0];
+			secondPoint = coords[1];
+
+			if (parseInt(coords[0].charAt(1)) > parseInt(coords[1].charAt(1)) &&
+			    parseInt(coords[0].charAt(2)) < parseInt(coords[1].charAt(2))) {
+				// Start Y > End Y & Start Z < End Z
+				firstPoint = coords[1];
+				secondPoint = coords[0];
+			}
+
+			if (parseInt(coords[0].charAt(0)) > parseInt(coords[1].charAt(0)) &&
+			    parseInt(coords[0].charAt(1)) == parseInt(coords[1].charAt(1))) {
+				// Start X > End X & Start Y == End Y
+				firstPoint = coords[1];
+				secondPoint = coords[0];
+			}
+
+			if (parseInt(coords[0].charAt(0)) > parseInt(coords[1].charAt(0)) &&
+			    parseInt(coords[0].charAt(2)) == parseInt(coords[1].charAt(2))) {
+				// Start X > End X & Start Z == End Z
+				firstPoint = coords[1];
+				secondPoint = coords[0];
+			}
+
+			if (parseInt(coords[0].charAt(1)) > parseInt(coords[1].charAt(1)) &&
+			    parseInt(coords[0].charAt(0)) == parseInt(coords[1].charAt(0))) {
+				// Start Y > End Y & Start X == End X
+				firstPoint = coords[1];
+				secondPoint = coords[0];
+			}
+
+			// Add the new coordinates to the message to send to the cube
+			message = message + firstPoint + " " + secondPoint + " ";
 
 			// Finish the message for the cube by getting the selected colour, and sending it
 			// to the cube (and add it to the history)
