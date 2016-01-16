@@ -4,6 +4,11 @@ document.addEventListener('deviceready', function() {
 
 var app = angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueCube.directives', 'BlueCube.services', 'BlueCube.utils', 'pascalprecht.translate', 'ngSanitize', 'jett.ionic.content.banner']);
 
+app.constant('colourDefaults', {
+	defaultColour: '00d1ff',
+	otherColour: 'f80ed1',
+});
+
 app.run(function($ionicPlatform) {
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

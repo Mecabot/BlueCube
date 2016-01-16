@@ -108,15 +108,15 @@ app.service('HistoryService', function($localstorage) {
 });
 
 // Colour Service that manages the favourites colours list
-app.service('ColourService', function($localstorage, $defaults) {
+app.service('ColourService', function($localstorage, $defaults, colourDefaults) {
 	// We require a UniqueID for each command, so this variable tracks it
 	var uniqueID;
 
 	// Array that holds each of the favourite colours that have previously been set
 	var colours;
 
-	var selectedColour = $localstorage.get('selectedColour', '00d1ff');
-	var otherColour = $localstorage.get('otherColour', 'f80ed1');
+	var selectedColour = $localstorage.get('selectedColour', colourDefaults.defaultColour);
+	var otherColour = $localstorage.get('otherColour', colourDefaults.otherColour);
 
 	if ($localstorage.getObject('userDefinedColours') == undefined) {
 		// No previously defined colours exist, so call our reset function to set the default

@@ -38,7 +38,7 @@ app.factory('$localstorage', ['$window', function($window) {
 }]);
 
 // Functions to handle the default settings or provided items
-app.factory('$defaults', ['$localstorage', function($localstorage) {
+app.factory('$defaults', ['$localstorage', 'colourDefaults', function($localstorage, colourDefaults) {
 	return {
 		// resetColours: Setup the default colours including favourite colours
 		resetColours: function() {
@@ -88,8 +88,8 @@ app.factory('$defaults', ['$localstorage', function($localstorage) {
 			$localstorage.set('userDefinedColours_uniqueID', 10);
 
 			// Store the default selected primary and secondary colours
-			$localstorage.set('selectedColour', '00d1ff');
-			$localstorage.set('otherColour', 'f80ed1');
+			$localstorage.set('selectedColour', colourDefaults.defaultColour);
+			$localstorage.set('otherColour', colourDefaults.otherColour);
 		},
 
 		// resetHistory: Clear the history list
