@@ -1,7 +1,11 @@
 var app = angular.module('BlueCube.defaults', [])
 
+// Default settings for key parts of the app
 app.constant('appDefaults', {
+	// Whether to attempt to auto connect to the cube ("true" | "false")
 	autoConnect: "true",
+
+	// Whether to send colour changes automatically in the All view ("true" | "false")
 	liveAllColourChanges: "true",
 
 	// Minimum and Maximum allowable history items (I recommend keeping this between 20 and 200)
@@ -13,9 +17,18 @@ app.constant('appDefaults', {
 	maxHistoryItems: 100,
 });
 
+// Default settings for Colours within the app
 app.constant('colourDefaults', {
+	// The default colour used for the colour picker if the user hasn't previously selected a
+	// colour
 	defaultColour: '00d1ff',
+
+	// The default colour used for the second colour picker (if required) if the user hasn't
+	// previously selected a colour
 	otherColour: 'f80ed1',
+
+	// The default favourite colours. These match the defined colours in the Cube Library, but there
+	// is no reason that they can't be changed
 	favouriteColours:	[
 							{
 								id: 1,
@@ -54,16 +67,44 @@ app.constant('colourDefaults', {
 								hex: 'ffff00',	// Yellow
 							}
 						],
+
+	// To ensure that each favourite colour has a unique ID, we store the next ID that should
+	// be used. It's 10 because we have 9 favourites above already defined.
 	favouriteColoursNextIndex: 10,
 });
 
+// Default settings for the Set, Copy and Move Plane Views
 app.constant('axisDefaults', {
+	// Default axis to select ('X' | 'Y' | 'Z')
 	axis: 'X',
+
+	// The first or only offset to use ('0' | '1' | '2' | '3')
 	fromOffset: '0',
+
+	// The second offset to use ('0' | '1' | '2' | '3')
 	toOffset: '1',
 });
 
+// Define the defaults for the Box and Sphere views
+app.constant('graphicsDefaults', {
+	/* boxStyle:	0 = Solid
+					1 = Walls Only
+					2 = Edges Only
+					3 = Walls Filled
+					4 = Edges Filled */
+	boxStyle: '0',
+
+	/* sphereStyle:	0: Walls Only
+					1: Solid */
+	sphereStyle: '0',
+
+	// sphereSize:	3 or 4
+	sphereSize: '3',
+});
+
+// Initially provided static favourites
 app.constant('staticFavouritesDefaults', {
+	// A sample set of static favourites to get the user started
 	staticFavourites: 	[
 							{
 								id: 0,
@@ -159,10 +200,17 @@ app.constant('staticFavouritesDefaults', {
 									]
 						}
 					],
+
+	// To ensure that each static favourite has a unique ID, we store the next ID that should
+	// be used. It's 4 because we have 3 static favourites above already defined.
 	staticFavouritesNextIndex: 4,
 });
 
+
+// Initially provided user defined functions
 app.constant('userDefinedFunctionsDefaults', {
+	// Provide a sample set of user defined functions to match those that ship with the included
+	// Arduino sketch
 	userDefinedFunctions:	[
 								{
 									id: 0,
@@ -207,22 +255,8 @@ app.constant('userDefinedFunctionsDefaults', {
 									colour: "",
 								}
 							],
+
+	// To ensure that each user defined function has a unique ID, we store the next ID that should
+	// be used. It's 6 because we have 5 user defined functions above already defined.
 	userDefinedFunctionsNextIndex: 6,
-});
-
-// Define the defaults for the Box and Sphere views
-app.constant('graphicsDefaults', {
-	/* boxStyle:	0 = Solid
-					1 = Walls Only
-					2 = Edges Only
-					3 = Walls Filled
-					4 = Edges Filled */
-	boxStyle: '0',
-
-	/* sphereStyle:	0: Walls Only
-					1: Solid */
-	sphereStyle: '0',
-
-	// sphereSize:	3 or 4
-	sphereSize: '3',
 });
