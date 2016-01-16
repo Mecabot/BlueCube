@@ -697,7 +697,7 @@ app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, Modal
 });
 
 // Controller for the 'Connect' page
-app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading, $localstorage, $ionicSideMenuDelegate, $translate, appDefaults) {
+app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading, $localstorage, $ionicSideMenuDelegate, $translate, appDefaults, $interval) {
 	// Functions for showing and hiding the loading overlay
 	$scope.showConnectionOverlay = function() {
 		$ionicLoading.show({
@@ -876,10 +876,37 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 		}
 	});
 
+	// Track the interval for updating the signal strength
+	var rssiInterval = undefined;
+
+	// Get the Received Signal Strength Indicator of the bluetooth connection
+	$scope.getRSSI = function() {
+		$cordovaBluetoothSerial.isConnected().then(
+			function() {
+				// We are connected so get the RSSI
+				$cordovaBluetoothSerial.readRSSI().then(
+					function(rssi) {
+						// Make the RSSI available to the view
+						$scope.rssi = rssi;
+					},
+					function() {
+					}
+				);
+			},
+			function() {
+				// We aren't connected, so clear the RSSI value
+				$scope.rssi = undefined;
+			}
+		);
+	};
+
 	// Function called just before this view is shown
 	$scope.$on('$ionicView.beforeEnter', function() {
 		// Check whether or not we are connected to the cube
 		$scope.checkConnected();
+
+		// Start getting the RSSI of the bluetooth connection every 1/2 second
+		rssiInterval = $interval($scope.getRSSI, 500);
 	});
 
 	// Function called just after a view is shown
@@ -896,6 +923,15 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 				}
 			);
 		}
+	});
+
+	// Function called after we leave this view
+	$scope.$on('$ionicView.leave', function() {
+		// Stop getting the RSSI of the bluetooth connection
+		$interval.cancel(rssiInterval);
+
+		// Clear the last RSSI value
+		$scope.rssi = undefined;
 	});
 
 	$scope.autoConnectChanged = function() {

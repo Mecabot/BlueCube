@@ -34,6 +34,15 @@
 			<div class="padding-horizontal" ng-bind-html="logText">
 			</div>
 		</div>
+
+		<div class="card" ng-show="rssi">
+			<div class="item item-divider">
+				RSSI
+			</div>
+			<div class="padding-horizontal">
+				{{rssi}}
+			</div>
+		</div>
 	</ion-content>
 
 </ion-view>
