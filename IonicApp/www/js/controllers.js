@@ -44,7 +44,7 @@ app.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourSe
 
 	$ionicPlatform.ready(function() {
 		// Get the initial colour to set the colour selector to
-		var initialColour = ColourService.getSelectedColour();
+		var initialColour = $localstorage.get('selectedColour', ColourService.getSelectedColour());
 
 		// Make the colour available to the view
 		$scope.hexColour = initialColour;
@@ -1218,7 +1218,7 @@ app.controller('AboutCtrl', function($ionicPlatform, $scope, $cordovaDevice, $co
 });
 
 // Controller for the 'Colour Picker' modal
-app.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourService) {
+app.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourService, $localstorage) {
 	// Don't show the delete or reordering buttons on the list items by default
 	$scope.data = {
 		showDelete: false,
@@ -1230,9 +1230,9 @@ app.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourServic
 		var initialColour;
 
 		if ($scope.secondaryColourSelector) {
-			initialColour = ColourService.getOtherSelectedColour();
+			initialColour = $localstorage.get('otherColour', ColourService.getOtherSelectedColour());
 		} else {
-			initialColour = ColourService.getSelectedColour();
+			initialColour = $localstorage.get('selectedColour', ColourService.getSelectedColour());
 		}
 
 		// Make the colour available to the view
