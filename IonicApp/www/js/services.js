@@ -115,6 +115,9 @@ app.service('ColourService', function($localstorage, $defaults) {
 	// Array that holds each of the favourite colours that have previously been set
 	var colours;
 
+	var selectedColour = $localstorage.get('selectedColour', '00d1ff');
+	var otherColour = $localstorage.get('otherColour', 'f80ed1');
+
 	if ($localstorage.getObject('userDefinedColours') == undefined) {
 		// No previously defined colours exist, so call our reset function to set the default
 		// favourites
@@ -191,6 +194,31 @@ app.service('ColourService', function($localstorage, $defaults) {
 		// Save the updated array of colour favourites
 		$localstorage.setObject('userDefinedColours', colours);
 	};
+
+	this.getSelectedColour = function() {
+		return selectedColour;
+	};
+
+	this.getOtherSelectedColour = function() {
+		return otherColour;
+	};
+
+	this.setSelectedColour = function(colour, selectedFromFavourites) {
+		if (!selectedFromFavourites) {
+			$localstorage.set('selectedColour', colour);
+		}
+
+		selectedColour = colour;
+	};
+
+	this.setOtherSelectedColour = function(colour, selectedFromFavourites) {
+		if (!selectedFromFavourites) {
+			$localstorage.set('otherColour', colour);
+		}
+
+		otherColour = colour;
+	};
+
 });
 
 // Static Favourites Service that manages the static favourites list, and the commands that it

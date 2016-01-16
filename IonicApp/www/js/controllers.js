@@ -44,7 +44,7 @@ app.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourSe
 
 	$ionicPlatform.ready(function() {
 		// Get the initial colour to set the colour selector to
-		var initialColour = $localstorage.get('selectedColour', '00d1ff');
+		var initialColour = ColourService.getSelectedColour();
 
 		// Make the colour available to the view
 		$scope.hexColour = initialColour;
@@ -66,7 +66,7 @@ app.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourSe
 				$scope.hexColour = newValue.substring(1);
 
 				// Save the choice for future reference
-				$localstorage.set('selectedColour', $scope.hexColour);
+				ColourService.setSelectedColour($scope.hexColour, false);
 
 				if ($scope.live == true) {
 					// We are in live mode, so build the message to send to the cube
@@ -176,13 +176,13 @@ app.controller('ShiftCtrl', function($ionicPlatform, $scope, $cubeAction) {
 });
 
 // Controller for the 'Set' page
-app.controller('SetCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, $localstorage) {
+app.controller('SetCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, ColourService) {
 	// Array for tracking each of the LEDs in the cube
 	$scope.cube = [];
 
 	$ionicPlatform.ready(function() {
 		// Get the users last selected colour
-		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+		$scope.selectedColour = ColourService.getSelectedColour();
 	});
 
 	// Open the colour picker
@@ -195,7 +195,7 @@ app.controller('SetCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSer
 	// Execute action when the modal is hidden (closed)
 	$scope.$on('modal.hidden', function() {
 		// Get the colour that was selected while the modal window was shown
-		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+		$scope.selectedColour = ColourService.getSelectedColour();
 	});
 
 	$scope.setLED = function (id) {
@@ -205,7 +205,7 @@ app.controller('SetCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSer
 		var colourToUse = "BLACK";
 		if ($scope.cube[id] == true) {
 			// LED was turned on, so get the selected colour
-			colourToUse = $localstorage.get('selectedColour', '00d1ff');
+			colourToUse = ColourService.getSelectedColour();
 		}
 
 		// Build the message to send, translating the LEDs number into it's coordinates, and
@@ -216,10 +216,10 @@ app.controller('SetCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSer
 });
 
 // Controller for the 'Next' page
-app.controller('NextCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, $localstorage) {
+app.controller('NextCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, ColourService) {
 	$ionicPlatform.ready(function() {
 		// Get the users last selected colour
-		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+		$scope.selectedColour = ColourService.getSelectedColour();
 	});
 
 	// Open the colour picker
@@ -232,14 +232,14 @@ app.controller('NextCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSe
 	// Execute action when the modal is hidden (closed)
 	$scope.$on('modal.hidden', function() {
 		// Get the colour that was selected while the modal window was shown
-		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+		$scope.selectedColour = ColourService.getSelectedColour();
 	});
 
 	$scope.next = function () {
 		// Called when the user clicks the "Next" button
 
 		// Get the colour that the user has selected
-		var colourToUse = $localstorage.get('selectedColour', '00d1ff');
+		var colourToUse = ColourService.getSelectedColour();
 
 		// Build the message to send, then submit the message to the cube
 		// (adding it to the history)
@@ -249,7 +249,7 @@ app.controller('NextCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSe
 });
 
 // Controller for the 'Set Plane' page
-app.controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, $localstorage) {
+app.controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, ColourService) {
 	$ionicPlatform.ready(function() {
 		// Set the default initial axis and offset
 		$scope.values = {
@@ -258,7 +258,7 @@ app.controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, Mod
 		};
 
 		// Get the users last selected colour
-		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+		$scope.selectedColour = ColourService.getSelectedColour();
 	});
 
 	// Open the colour picker
@@ -271,7 +271,7 @@ app.controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, Mod
 	// Execute action when the modal is hidden (closed)
 	$scope.$on('modal.hidden', function() {
 		// Get the colour that was selected while the modal window was shown
-		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+		$scope.selectedColour = ColourService.getSelectedColour();
 	});
 
 	$scope.setPlane = function() {
@@ -282,7 +282,7 @@ app.controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, Mod
 });
 
 // Controller for the 'Copy Plane' page
-app.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, $localstorage) {
+app.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService) {
 	$ionicPlatform.ready(function() {
 		// Set the default initial axis and start and destination offset
 		$scope.values = {
@@ -300,7 +300,7 @@ app.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, Mo
 })
 
 // Controller for the 'Move Plane' page
-.controller('MovePlaneCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, $localstorage) {
+.controller('MovePlaneCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, ColourService) {
 	$ionicPlatform.ready(function() {
 		// Set the default initial axis and start and destination offset
 		$scope.values = {
@@ -310,7 +310,7 @@ app.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, Mo
 		};
 
 		// Get the users last selected colour
-		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+		$scope.selectedColour = ColourService.getSelectedColour();
 	});
 
 	// Open the colour picker
@@ -323,7 +323,7 @@ app.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, Mo
 	// Execute action when the modal is hidden (closed)
 	$scope.$on('modal.hidden', function() {
 		// Get the colour that was selected while the modal window was shown
-		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+		$scope.selectedColour = ColourService.getSelectedColour();
 	});
 
 	$scope.movePlane = function() {
@@ -334,13 +334,13 @@ app.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, Mo
 });
 
 // Controller for the 'Line' page
-app.controller('LineCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, $localstorage, $cordovaDialogs) {
+app.controller('LineCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, ColourService, $cordovaDialogs) {
 	// Array for tracking each of the LEDs in the cube
 	$scope.cube = [];
 
 	$ionicPlatform.ready(function() {
 		// Get the users last selected colour
-		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+		$scope.selectedColour = ColourService.getSelectedColour();
 	});
 
 	// Open the colour picker
@@ -353,7 +353,7 @@ app.controller('LineCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSe
 	// Execute action when the modal is hidden (closed)
 	$scope.$on('modal.hidden', function() {
 		// Get the colour that was selected while the modal window was shown
-		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+		$scope.selectedColour = ColourService.getSelectedColour();
 	});
 
 	$scope.drawLine = function() {
@@ -384,7 +384,7 @@ app.controller('LineCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSe
 
 			// Finish the message for the cube by getting the selected colour, and sending it
 			// to the cube (and add it to the history)
-			message = message + $localstorage.get('selectedColour', '00d1ff') + ";";
+			message = message + $scope.selectedColour + ";";
 			$cubeAction.sendMessage(message, true);
 		} else {
 			// More or less than 2 points were selected, so tell the user to only select 2
@@ -394,7 +394,7 @@ app.controller('LineCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSe
 });
 
 // Controller for the 'Box' page
-app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, $localstorage, $cordovaDialogs) {
+app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, ColourService, $cordovaDialogs) {
 	// Array for tracking each of the LEDs in the cube
 	$scope.cube = [];
 
@@ -411,8 +411,8 @@ app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSer
 		};
 
 		// Get the users last selected colour, and the last "other" selected colour
-		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
-		$scope.otherColour = $localstorage.get('otherColour', 'f80ed1');
+		$scope.selectedColour = ColourService.getSelectedColour();
+		$scope.otherColour = ColourService.getOtherSelectedColour();
 
 		// Hide the button to pick the second colour by default
 		$scope.showSecontaryColour = false;
@@ -440,13 +440,9 @@ app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSer
 
 	// Execute action when the modal is hidden (closed)
 	$scope.$on('modal.hidden', function() {
-		if ($scope.secondaryColourSelector) {
-			// Get the colour that was selected while the modal window was shown
-			$scope.otherColour = $localstorage.get('otherColour', 'f80ed1');
-		} else {
-			// Get the colour that was selected while the modal window was shown
-			$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
-		}
+		// Get the colours that was selected regardless of which modal window was shown
+		$scope.selectedColour = ColourService.getSelectedColour();
+		$scope.otherColour = ColourService.getOtherSelectedColour();
 	});
 
 	$scope.styleSelection = function() {
@@ -490,7 +486,7 @@ app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSer
 			}
 
 			// Add the primary colour, and selected style to the message to send to the cube
-			message = message + $localstorage.get('selectedColour', '00d1ff') + " " + $scope.style.boxStyle;
+			message = message + $scope.selectedColour + " " + $scope.style.boxStyle;
 			if (parseInt($scope.style.boxStyle) <= 2) {
 				// End the message for the cube as it doesn't require any more info, and send it along
 				// adding the message to the history
@@ -499,7 +495,7 @@ app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSer
 			} else {
 				// Add the secondary colour as it is required, and send it along to the cube adding
 				//the message to the history
-				message = message + " " + $localstorage.get('otherColour', 'f80ed1') + ";";
+				message = message + " " + $scope.otherColour + ";";
 				$cubeAction.sendMessage(message, true);
 			}
 		} else {
@@ -510,7 +506,7 @@ app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSer
 });
 
 // Controller for the 'Sphere' page
-app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, $localstorage, $cordovaDialogs) {
+app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, ColourService, $cordovaDialogs) {
 	// Array for tracking each of the LEDs in the cube
 	$scope.cube = [];
 
@@ -528,8 +524,8 @@ app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, Modal
 		};
 
 		// Get the users last selected colour, and the last "other" selected colour
-		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
-		$scope.otherColour = $localstorage.get('otherColour', 'f80ed1');
+		$scope.selectedColour = ColourService.getSelectedColour();
+		$scope.otherColour = ColourService.getOtherSelectedColour();
 
 		// Hide the button to pick the second colour by default
 		$scope.showSecontaryColour = false;
@@ -557,15 +553,9 @@ app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, Modal
 
 	// Execute action when the modal is hidden (closed)
 	$scope.$on('modal.hidden', function() {
-		if ($scope.secondaryColourSelector) {
-			// We picked the colour for the secondary colour, so handle resetting values
-
-			// Get the colour that was selected while the modal window was shown
-			$scope.otherColour = $localstorage.get('otherColour', 'f80ed1');
-		} else {
-			// Get the colour that was selected while the modal window was shown
-			$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
-		}
+		// Get the colours that was selected regardless of which modal window was shown
+		$scope.selectedColour = ColourService.getSelectedColour();
+		$scope.otherColour = ColourService.getOtherSelectedColour();
 	});
 
 	$scope.styleSelection = function() {
@@ -607,7 +597,7 @@ app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, Modal
 			}
 
 			// Add the size and selected style to the message to send to the cube
-			message = message + " " + $scope.style.sphereSize + " " + $localstorage.get('selectedColour', '00d1ff');
+			message = message + " " + $scope.style.sphereSize + " " + $scope.selectedColour;
 			if (parseInt($scope.style.sphereStyle) == 0) {
 				// End the message for the cube as it doesn't require any more info, and send it along
 				// adding the message to the history
@@ -616,7 +606,7 @@ app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, Modal
 			} else {
 				// Add the secondary colour as it is required, and send it along to the cube adding
 				//the message to the history
-				message = message + " " + $localstorage.get('otherColour', 'f80ed1') + ";";
+				message = message + " " + $scope.otherColour + ";";
 				$cubeAction.sendMessage(message, true);
 			}
 		} else {
@@ -866,7 +856,7 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 });
 
 // Controller for the 'User Defined Functions' page
-app.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, $localstorage, $cordovaDialogs, UserDefinedService) {
+app.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, ColourService, $cordovaDialogs, UserDefinedService) {
 	// Don't show the delete or reordering buttons on the list items by default
 	$scope.data = {
 		showDelete: false,
@@ -878,7 +868,7 @@ app.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction, 
 		$scope.userDefinedFunctions = UserDefinedService.list();
 
 		// Get the previously selected colour
-		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+		$scope.selectedColour = ColourService.getSelectedColour();
 	});
 
 	$ionicPlatform.ready(function() {
@@ -928,7 +918,7 @@ app.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction, 
 		}
 
 		// Save the item, after retrieving the previously selected colour.
-		$scope.userDefinedFuntionData.colour = $localstorage.get('selectedColour', '00d1ff');
+		$scope.userDefinedFuntionData.colour = ColourService.getSelectedColour();
 		UserDefinedService.add($scope.userDefinedFuntionData);
 
 		// Hide the modal
@@ -965,7 +955,7 @@ app.controller('UserDefinedCtrl', function($ionicPlatform, $scope, $cubeAction, 
 });
 
 // Controller for the 'Static Favourites' page
-app.controller('StaticCtrl', function($ionicPlatform, $scope, $timeout, $cubeAction, ModalService, $localstorage, $cordovaDialogs, StaticFavouritesService) {
+app.controller('StaticCtrl', function($ionicPlatform, $scope, $timeout, $cubeAction, ModalService, $cordovaDialogs, StaticFavouritesService) {
 	// Don't show the delete or reordering buttons on the list items by default
 	$scope.data = {
 		showDelete: false,
@@ -1066,7 +1056,7 @@ app.controller('StaticCtrl', function($ionicPlatform, $scope, $timeout, $cubeAct
 });
 
 // Controller for the 'History' page
-app.controller('HistoryCtrl', function($ionicPlatform, $scope, $cubeAction, HistoryService, $localstorage) {
+app.controller('HistoryCtrl', function($ionicPlatform, $scope, $cubeAction, HistoryService) {
 	// Don't show the delete button on the list items by default
 	$scope.data = {
 		showDelete: false,
@@ -1228,7 +1218,7 @@ app.controller('AboutCtrl', function($ionicPlatform, $scope, $cordovaDevice, $co
 });
 
 // Controller for the 'Colour Picker' modal
-app.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourService, $localstorage) {
+app.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourService) {
 	// Don't show the delete or reordering buttons on the list items by default
 	$scope.data = {
 		showDelete: false,
@@ -1240,9 +1230,9 @@ app.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourServic
 		var initialColour;
 
 		if ($scope.secondaryColourSelector) {
-			initialColour = $localstorage.get('otherColour', 'f80ed1');
+			initialColour = ColourService.getOtherSelectedColour();
 		} else {
-			initialColour = $localstorage.get('selectedColour', '00d1ff');
+			initialColour = ColourService.getSelectedColour();
 		}
 
 		// Make the colour available to the view
@@ -1266,9 +1256,9 @@ app.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourServic
 
 				// Save the choice for future reference
 				if ($scope.secondaryColourSelector) {
-					$localstorage.set('otherColour', $scope.hexColour);
+					ColourService.setOtherSelectedColour($scope.hexColour, false);
 				} else {
-					$localstorage.set('selectedColour', $scope.hexColour);
+					ColourService.setSelectedColour($scope.hexColour, false);
 				}
 			}
 		});
@@ -1294,11 +1284,11 @@ app.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourServic
 
 		if ($scope.secondaryColourSelector) {
 			// This was for the secondary colour, so save its value and pass it to the view
-			$localstorage.set('otherColour', selectedColour);
+			ColourService.setOtherSelectedColour(selectedColour, true);
 			$scope.otherColour = selectedColour;
 		} else {
 			// This was for the primary colour, so save its value and pass it to the view
-			$localstorage.set('selectedColour', selectedColour);
+			ColourService.setSelectedColour(selectedColour, true);
 			$scope.selectedColour = selectedColour;
 		}
 		// Close the modal window
@@ -1307,7 +1297,7 @@ app.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourServic
 });
 
 // Controller for the 'User Defined Functions' modal
-app.controller('UserDefinedModalCtrl', function($ionicPlatform, $scope, ModalService, $localstorage) {
+app.controller('UserDefinedModalCtrl', function($ionicPlatform, $scope, ModalService, ColourService) {
 	// Don't show the delete or reordering buttons on the list items by default
 	$scope.dataModal = {
 		showDelete: false,
@@ -1316,7 +1306,7 @@ app.controller('UserDefinedModalCtrl', function($ionicPlatform, $scope, ModalSer
 
 	$ionicPlatform.ready(function() {
 		// Get the users last selected colour
-		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+		$scope.selectedColour = ColourService.getSelectedColour();
 	});
 
 	// Open the colour picker
@@ -1329,12 +1319,12 @@ app.controller('UserDefinedModalCtrl', function($ionicPlatform, $scope, ModalSer
 	// Execute action when the modal is hidden (closed)
 	$scope.$on('modal.hidden', function() {
 		// Get the colour that was selected while the modal window was shown
-		$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
+		$scope.selectedColour = ColourService.getSelectedColour();
 	});
 });
 
 // Controller for the 'Static Favourite Creator' modal
-app.controller('StaticCreatorCtrl', function($ionicPlatform, $scope, HistoryService, $localstorage) {
+app.controller('StaticCreatorCtrl', function($ionicPlatform, $scope, HistoryService) {
 	// When adding items to the array of commands for a static favourite we need to give them an
 	// index number / uniqueID, so set the initial starting value
 	var uniqueID = 1;
