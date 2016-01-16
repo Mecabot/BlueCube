@@ -249,12 +249,12 @@ app.controller('NextCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSe
 });
 
 // Controller for the 'Set Plane' page
-app.controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, ColourService) {
+app.controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, ColourService, axisDefaults) {
 	$ionicPlatform.ready(function() {
 		// Set the default initial axis and offset
 		$scope.values = {
-			axis: 'X',
-			offset: '0',
+			axis: axisDefaults.axis,
+			offset: axisDefaults.fromOffset,
 		};
 
 		// Get the users last selected colour
@@ -282,13 +282,13 @@ app.controller('SetPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, Mod
 });
 
 // Controller for the 'Copy Plane' page
-app.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService) {
+app.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, axisDefaults) {
 	$ionicPlatform.ready(function() {
 		// Set the default initial axis and start and destination offset
 		$scope.values = {
-			axis: 'X',
-			fromOffset: '0',
-			toOffset: '1',
+			axis: axisDefaults.axis,
+			fromOffset: axisDefaults.fromOffset,
+			toOffset: axisDefaults.toOffset,
 		};
 	});
 
@@ -300,13 +300,13 @@ app.controller('CopyPlaneCtrl', function($ionicPlatform, $scope, $cubeAction, Mo
 })
 
 // Controller for the 'Move Plane' page
-.controller('MovePlaneCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, ColourService) {
+.controller('MovePlaneCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, ColourService, axisDefaults) {
 	$ionicPlatform.ready(function() {
 		// Set the default initial axis and start and destination offset
 		$scope.values = {
-			axis: 'X',
-			fromOffset: '0',
-			toOffset: '1',
+			axis: axisDefaults.axis,
+			fromOffset: axisDefaults.fromOffset,
+			toOffset: axisDefaults.toOffset,
 		};
 
 		// Get the users last selected colour

@@ -9,6 +9,12 @@ app.constant('colourDefaults', {
 	otherColour: 'f80ed1',
 });
 
+app.constant('axisDefaults', {
+	axis: 'X',
+	fromOffset: '0',
+	toOffset: '1',
+});
+
 app.run(function($ionicPlatform) {
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
