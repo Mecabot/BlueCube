@@ -433,13 +433,6 @@ app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSer
 		// Flag that we are picking the secondary colour
 		$scope.secondaryColourSelector = true;
 
-		// To work around the colour picker only setting the selectedColour, we cache
-		// the primary selected colour, and then replace it with the previously saved
-		// secondary colour
-		cachedColour = $localstorage.get('selectedColour', '00d1ff');
-		var otherColour = $localstorage.get('otherColour', 'f80ed1');
-		$localstorage.set('selectedColour', otherColour);
-
 		ModalService.init('templates/colourPicker.html', $scope).then(function(modal) {
 			modal.show();
 		});
@@ -448,15 +441,8 @@ app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSer
 	// Execute action when the modal is hidden (closed)
 	$scope.$on('modal.hidden', function() {
 		if ($scope.secondaryColourSelector) {
-			// We picked the colour for the secondary colour, so handle resetting values
-
 			// Get the colour that was selected while the modal window was shown
-			$scope.otherColour = $localstorage.get('selectedColour', '00d1ff');
-
-			// Reset the selectedColour to the previously cached version
-			$localstorage.set('selectedColour', cachedColour);
-			// Store the secondary colour for future reference
-			$localstorage.set('otherColour', $scope.otherColour);
+			$scope.otherColour = $localstorage.get('otherColour', 'f80ed1');
 		} else {
 			// Get the colour that was selected while the modal window was shown
 			$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
@@ -564,13 +550,6 @@ app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, Modal
 		// Flag that we are picking the secondary colour
 		$scope.secondaryColourSelector = true;
 
-		// To work around the colour picker only setting the selectedColour, we cache
-		// the primary selected colour, and then replace it with the previously saved
-		// secondary colour
-		cachedColour = $localstorage.get('selectedColour', '00d1ff');
-		var otherColour = $localstorage.get('otherColour', 'f80ed1');
-		$localstorage.set('selectedColour', otherColour);
-
 		ModalService.init('templates/colourPicker.html', $scope).then(function(modal) {
 			modal.show();
 		});
@@ -582,12 +561,7 @@ app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, Modal
 			// We picked the colour for the secondary colour, so handle resetting values
 
 			// Get the colour that was selected while the modal window was shown
-			$scope.otherColour = $localstorage.get('selectedColour', '00d1ff');
-
-			// Reset the selectedColour to the previously cached version
-			$localstorage.set('selectedColour', cachedColour);
-			// Store the secondary colour for future reference
-			$localstorage.set('otherColour', $scope.otherColour);
+			$scope.otherColour = $localstorage.get('otherColour', 'f80ed1');
 		} else {
 			// Get the colour that was selected while the modal window was shown
 			$scope.selectedColour = $localstorage.get('selectedColour', '00d1ff');
@@ -1263,7 +1237,13 @@ app.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourServic
 
 	$ionicPlatform.ready(function() {
 		// Get the initial colour to set the colour selector to
-		var initialColour = $localstorage.get('selectedColour', '00d1ff');
+		var initialColour;
+
+		if ($scope.secondaryColourSelector) {
+			initialColour = $localstorage.get('otherColour', 'f80ed1');
+		} else {
+			initialColour = $localstorage.get('selectedColour', '00d1ff');
+		}
 
 		// Make the colour available to the view
 		$scope.hexColour = initialColour;
@@ -1285,7 +1265,11 @@ app.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourServic
 				$scope.hexColour = newValue.substring(1);
 
 				// Save the choice for future reference
-				$localstorage.set('selectedColour', $scope.hexColour);
+				if ($scope.secondaryColourSelector) {
+					$localstorage.set('otherColour', $scope.hexColour);
+				} else {
+					$localstorage.set('selectedColour', $scope.hexColour);
+				}
 			}
 		});
 	});
