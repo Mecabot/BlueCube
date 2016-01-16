@@ -13,6 +13,45 @@ app.constant('appDefaults', {
 app.constant('colourDefaults', {
 	defaultColour: '00d1ff',
 	otherColour: 'f80ed1',
+	favouriteColours:	[
+							{
+								id: 1,
+								hex: '000000',	// Black
+							},
+							{
+								id: 2,
+								hex: '0000FF',	// Blue
+							},
+							{
+								id: 3,
+								hex: '00ff00',	// Green
+							},
+							{
+								id: 4,
+								hex: 'ff4500',	// Orange
+							},
+							{
+								id: 5,
+								hex: 'ff1444',	// Pink
+							},
+							{
+								id: 6,
+								hex: 'ff00ff',	// Purple
+							},
+							{
+								id: 7,
+								hex: 'ff0000',	// Red
+							},
+							{
+								id: 8,
+								hex: 'ffffff',	// White
+							},
+							{
+								id: 9,
+								hex: 'ffff00',	// Yellow
+							}
+						],
+	favouriteColoursNextIndex: 10,
 });
 
 app.constant('axisDefaults', {

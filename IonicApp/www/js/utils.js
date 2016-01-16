@@ -42,50 +42,10 @@ app.factory('$defaults', ['$localstorage', 'colourDefaults', 'appDefaults', func
 	return {
 		// resetColours: Setup the default colours including favourite colours
 		resetColours: function() {
-			// Define the default favourite colours (which match the defined colours in the cub
-			// library
-			var colours = [
-				{
-					id: 1,
-					hex: '000000',  // Black
-				},
-				{
-					id: 2,
-					hex: '0000FF',  // Blue
-				},
-				{
-					id: 3,
-					hex: '00ff00',  // Green
-				},
-				{
-					id: 4,
-					hex: 'ff4500', // Orange
-				},
-				{
-					id: 5,
-					hex: 'ff1444', // Pink
-				},
-				{
-					id: 6,
-					hex: 'ff00ff', // Purple
-				},
-				{
-					id: 7,
-					hex: 'ff0000',  // Red
-				},
-				{
-					id: 8,
-					hex: 'ffffff',  // White
-				},
-				{
-					id: 9,
-					hex: 'ffff00',  // Yellow
-				}
-			];
-
-			// Store the favourite colours, and the uniqueID for the next colour
-			$localstorage.setObject('userDefinedColours', colours);
-			$localstorage.set('userDefinedColours_uniqueID', 10);
+			// Store the favourite colours, and the uniqueID for the next colour from the defaults
+			// provided
+			$localstorage.setObject('userDefinedColours', colourDefaults.favouriteColours);
+			$localstorage.set('userDefinedColours_uniqueID', colourDefaults.favouriteColoursNextIndex);
 
 			// Store the default selected primary and secondary colours
 			$localstorage.set('selectedColour', colourDefaults.defaultColour);
