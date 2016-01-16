@@ -15,6 +15,23 @@ app.constant('axisDefaults', {
 	toOffset: '1',
 });
 
+// Define the defaults for the Box and Sphere views
+app.constant('graphicsDefaults', {
+	/* boxStyle:	0 = Solid
+					1 = Walls Only
+					2 = Edges Only
+					3 = Walls Filled
+					4 = Edges Filled */
+	boxStyle: '0',
+
+	/* sphereStyle:	0: Walls Only
+					1: Solid */
+	sphereStyle: '0',
+
+	// sphereSize:	3 or 4
+	sphereSize: '3',
+});
+
 app.run(function($ionicPlatform) {
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

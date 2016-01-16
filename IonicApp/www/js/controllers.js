@@ -442,7 +442,7 @@ app.controller('LineCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSe
 });
 
 // Controller for the 'Box' page
-app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, ColourService, $cordovaDialogs) {
+app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, ColourService, $cordovaDialogs, graphicsDefaults) {
 	// Array for tracking each of the LEDs in the cube
 	$scope.cube = [];
 
@@ -455,7 +455,7 @@ app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSer
 	$ionicPlatform.ready(function() {
 		// Set the default initial box style
 		$scope.style = {
-			boxStyle: '0',
+			boxStyle: graphicsDefaults.boxStyle,
 		};
 
 		// Get the users last selected colour, and the last "other" selected colour
@@ -586,7 +586,7 @@ app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSer
 });
 
 // Controller for the 'Sphere' page
-app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, ColourService, $cordovaDialogs) {
+app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, ModalService, ColourService, $cordovaDialogs, graphicsDefaults) {
 	// Array for tracking each of the LEDs in the cube
 	$scope.cube = [];
 
@@ -599,8 +599,8 @@ app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, Modal
 	$ionicPlatform.ready(function() {
 		// Set the default initial sphere style and size
 		$scope.style = {
-			sphereStyle: '0',
-			sphereSize: '3',
+			sphereStyle: graphicsDefaults.sphereStyle,
+			sphereSize: graphicsDefaults.sphereSize,
 		};
 
 		// Get the users last selected colour, and the last "other" selected colour
