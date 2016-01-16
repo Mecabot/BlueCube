@@ -465,15 +465,23 @@ app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSer
 		// Start to declare the message to send to the cube
 		var message = "box ";
 
+		// Store the selected coordinates
+		var coords = [];
+
+		// Track our calculated coordinates
+		var firstPoint = '';
+		var secondPoint = '';
+
 		// Counter for how many points the user selected
 		var selected = 0;
 		for (var i = 0; i <= 64; i++) {
 			// Find the point(s) that the user selected
 			if ($scope.cube[i] == true) {
-				selected = selected + 1;
+				// Get the coordinates
+				coords[selected] = $cubeAction.lookupCoords(i);
 
-				// Add the coordinate of the point to the message to send to the cube
-				message = message + $cubeAction.lookupCoords(i) + " ";
+				// Increment the counter for found points
+				selected = selected + 1;
 			}
 		}
 
@@ -484,6 +492,30 @@ app.controller('BoxCtrl', function($ionicPlatform, $scope, $cubeAction, ModalSer
 			for (var i = 0; i <= 64; i++) {
 				$scope.cube[i] = null;
 			}
+
+			/* There is a bug in the Cube's API, where when you draw a box, it needs to
+			 * start at the smallest coordinate to the largest.
+			 *
+			 * For example, selecting 000 333 works, but 300 033 does not even though they should
+			 * both result in all of the LEDs being lit.
+
+			 * The following code looks at the X, then Y, and finally Z value, and finds the lowest
+			 * one, which it assigns to the first point, and the highest to the second point. This
+			 * results in potentially different coordinates being used then what the user picked, but
+			 * achieves the results they desired.
+			 */
+			for (var i = 0; i <= 2; i++) {
+				if (parseInt(coords[0].charAt(i)) <= parseInt(coords[1].charAt(i))) {
+					firstPoint = firstPoint + coords[0].charAt(i);
+					secondPoint = secondPoint + coords[1].charAt(i);
+				} else {
+					firstPoint = firstPoint + coords[1].charAt(i);
+					secondPoint = secondPoint + coords[0].charAt(i);
+				}
+			}
+
+			// Add the new coordinates to the message to send to the cube
+			message = message + firstPoint + " " + secondPoint + " ";
 
 			// Add the primary colour, and selected style to the message to send to the cube
 			message = message + $scope.selectedColour + " " + $scope.style.boxStyle;
