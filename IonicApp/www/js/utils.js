@@ -38,7 +38,7 @@ app.factory('$localstorage', ['$window', function($window) {
 }]);
 
 // Functions to handle the default settings or provided items
-app.factory('$defaults', ['$localstorage', 'colourDefaults', function($localstorage, colourDefaults) {
+app.factory('$defaults', ['$localstorage', 'colourDefaults', 'appDefaults', function($localstorage, colourDefaults, appDefaults) {
 	return {
 		// resetColours: Setup the default colours including favourite colours
 		resetColours: function() {
@@ -99,7 +99,7 @@ app.factory('$defaults', ['$localstorage', 'colourDefaults', function($localstor
 			$localstorage.set('history_uniqueID', 0);
 
 			// Set the default number of history items
-			$localstorage.set('history_items', 100);
+			$localstorage.set('history_items', appDefaults.maxHistoryItems);
 		},
 
 		// resetStatic: Setup the default static favourites

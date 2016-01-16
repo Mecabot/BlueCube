@@ -11,10 +11,10 @@ app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 });
 
 // Controller for the 'All' page
-app.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourService, $localstorage) {
+app.controller('AllCtrl', function($ionicPlatform, $scope, $cubeAction, ColourService, $localstorage, appDefaults) {
 	// Get whether the user wishes to send colour updates directly to the cube as they are picked,
 	// or whether they want to want until they specifically send the colour.
-	if ($localstorage.get('liveAllColourChanges', 'true') == "true") {
+	if ($localstorage.get('liveAllColourChanges', appDefaults.liveAllColourChanges) == "true") {
 		// Either no setting was set, or the user wants to make live changes
 
 		// Indicate that we are in live mode
@@ -697,7 +697,7 @@ app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, Modal
 });
 
 // Controller for the 'Connect' page
-app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading, $localstorage, $ionicSideMenuDelegate, $translate) {
+app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading, $localstorage, $ionicSideMenuDelegate, $translate, appDefaults) {
 	// Functions for showing and hiding the loading overlay
 	$scope.showConnectionOverlay = function() {
 		$ionicLoading.show({
@@ -858,7 +858,7 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 
 	// Determine what state the user last had the auto connect toggle set to, and reset
 	// it to that state
-	if ($localstorage.get('autoConnect') == "true") {
+	if ($localstorage.get('autoConnect', appDefaults.autoConnect) == "true") {
 		$scope.autoConnect = true;
 	} else {
 		$scope.autoConnect = false;
@@ -1158,7 +1158,7 @@ app.controller('HistoryCtrl', function($ionicPlatform, $scope, $cubeAction, Hist
 });
 
 // Controller for the 'Settings' page
-app.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordovaDialogs) {
+app.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordovaDialogs, appDefaults) {
 	// Track what the maximum number of items we should keep in the history is
 	var maxHistoryItems;
 
@@ -1166,8 +1166,8 @@ app.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordo
 		// Get the previously saved setting for the number of history items
 		maxHistoryItems = parseInt($localstorage.get('history_items'));
 	} else {
-		// No value has been set, so default to storing 100 history items
-		maxHistoryItems = 100;
+		// No value has been set, so set the default number of history items
+		maxHistoryItems = appDefaults.maxHistoryItems;
 	}
 
 	// Provide the value for the maximum number of history items to the view

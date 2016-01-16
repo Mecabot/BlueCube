@@ -1,7 +1,7 @@
 var app = angular.module('BlueCube.services', [])
 
 // History Service that manages the history of commands
-app.service('HistoryService', function($localstorage) {
+app.service('HistoryService', function($localstorage, appDefaults) {
 	// Array that holds each of the commands that have previously been sent to the cube
 	var commands;
 
@@ -55,7 +55,7 @@ app.service('HistoryService', function($localstorage) {
 		if ($localstorage.get('history_items') != undefined) {
 			maxHistoryItems = parseInt($localstorage.get('history_items'));
 		} else {
-			maxHistoryItems = 100;
+			maxHistoryItems = appDefaults.maxHistoryItems;
 		}
 
 		// Build the item to add, using the passed in command and the uniqueID we have

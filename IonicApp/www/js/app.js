@@ -4,6 +4,12 @@ document.addEventListener('deviceready', function() {
 
 var app = angular.module('BlueCube', ['ionic', 'BlueCube.controllers', 'ngCordova', 'BlueCube.directives', 'BlueCube.services', 'BlueCube.utils', 'pascalprecht.translate', 'ngSanitize', 'jett.ionic.content.banner']);
 
+app.constant('appDefaults', {
+	autoConnect: "true",
+	liveAllColourChanges: "true",
+	maxHistoryItems: 100,
+});
+
 app.constant('colourDefaults', {
 	defaultColour: '00d1ff',
 	otherColour: 'f80ed1',
