@@ -3,6 +3,13 @@ var app = angular.module('BlueCube.defaults', [])
 app.constant('appDefaults', {
 	autoConnect: "true",
 	liveAllColourChanges: "true",
+
+	// Minimum and Maximum allowable history items (I recommend keeping this between 20 and 200)
+	minAllowedHistoryItems: 20,
+	maxAllowedHistoryItems: 200,
+
+	// Maximum number of items to keep in the history (it should be between minAllowedHistoryItems
+	// and maxAllowedHistoryItems set above)
 	maxHistoryItems: 100,
 });
 

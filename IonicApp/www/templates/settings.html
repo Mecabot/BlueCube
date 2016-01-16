@@ -20,7 +20,7 @@
 			<div class="list">
 				<div class="item range range-positive">
 					<i class="icon ion-ios-list-outline"></i>
-					<input type="range" name="maxHistoryItems" min="10" max="200" ng-model="data.maxHistoryItems" ng-change="setMaxHistoryItems(data.maxHistoryItems)">
+					<input type="range" name="maxHistoryItems" min="{{data.minAllowedHistoryItems}}" max="{{data.maxAllowedHistoryItems}}" ng-model="data.maxHistoryItems" ng-change="setMaxHistoryItems(data.maxHistoryItems)">
 					<i class="icon ion-ios-list"></i>
 					{{data.maxHistoryItems}}
 				</div>
