@@ -1,6 +1,3 @@
-document.addEventListener('deviceready', function() {
-    angular.bootstrap(document, ['BlueCube']);
-}, false);
 /*
  *  File:		app.js
  *  Purpose:	Handles setting up the app, and all of the routing for pages (including the
@@ -9,8 +6,15 @@ document.addEventListener('deviceready', function() {
  *  Licence:	BSD 3-Clause Licence
  */
 
+// Loads the AngularJS app once the device is ready (so that access to all of the APIs etc are
+// available). Normally this isn't needed (you would just add ng-app="BlueCube" to the body tag
+// in index.html), but I found it makes parts of my app work better.
+document.addEventListener('deviceready', function() {
+	angular.bootstrap(document, ['BlueCube']);
+}, false);
 
 var app = angular.module('BlueCube', ['ionic', 'BlueCube.defaults', 'BlueCube.controllers', 'ngCordova', 'BlueCube.directives', 'BlueCube.services', 'BlueCube.utils', 'pascalprecht.translate', 'ngSanitize', 'jett.ionic.content.banner']);
+
 app.run(function($ionicPlatform) {
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
