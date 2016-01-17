@@ -911,6 +911,9 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 			function() {
 				// We aren't connected, so clear the RSSI value
 				$scope.rssi = undefined;
+
+				// Make sure the connect button is shown
+				$scope.showConnectButton(true);
 			}
 		);
 	};
