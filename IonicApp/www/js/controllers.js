@@ -1253,11 +1253,11 @@ app.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordo
 		$localstorage.set('history_items', number);
 	};
 
-	$scope.resetColours = function () {
+	$scope.resetColours = function (colourLocalised, favouriteLocalised) {
 		// Run when the user wishes to reset the colours
 
 		// Confirm that they want to reset
-		$cordovaDialogs.confirm('Are you sure you want to reset to the default values?', 'Reset', ['Cancel','OK']).then(function(buttonIndex) {
+		$cordovaDialogs.confirm('Are you sure you want to reset to the default ' + favouriteLocalised + ' ' + colourLocalised + 's?', 'Reset', ['Cancel','OK']).then(function(buttonIndex) {
 			if (buttonIndex == 2) {
 				// User clicked 'OK', so reset the colours
 				$defaults.resetColours();
@@ -1269,7 +1269,7 @@ app.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordo
 		// Run when the user wishes to reset the list of user defined functions
 
 		// Confirm that they want to reset
-		$cordovaDialogs.confirm('Are you sure you want to reset to the default values?', 'Reset', ['Cancel','OK']).then(function(buttonIndex) {
+		$cordovaDialogs.confirm('Are you sure you want to reset to the default user defined functions?', 'Reset', ['Cancel','OK']).then(function(buttonIndex) {
 			if (buttonIndex == 2) {
 
 				// User clicked 'OK', so reset the user defined functions
@@ -1278,11 +1278,11 @@ app.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordo
 		});
 	};
 
-	$scope.resetStatic = function () {
+	$scope.resetStatic = function (favouriteLocalised) {
 		// Run when the user wishes to reset the list of static favourites
 
 		// Confirm that they want to reset
-		$cordovaDialogs.confirm('Are you sure you want to reset to the default values?', 'Reset', ['Cancel','OK']).then(function(buttonIndex) {
+		$cordovaDialogs.confirm('Are you sure you want to reset to the default static ' + favouriteLocalised + 's?', 'Reset', ['Cancel','OK']).then(function(buttonIndex) {
 			if (buttonIndex == 2) {
 
 				// User clicked 'OK', so reset the static favourites
@@ -1304,7 +1304,7 @@ app.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordo
 		});
 	};
 
-	$scope.resetOthers = function() {
+	$scope.resetBackgroundSettings = function() {
 		// Run when the user wishes to reset background settings (items like auto connect)
 
 		// Confirm that they want to reset

@@ -22,7 +22,7 @@
 
 			<div class="padding-horizontal">
 				<button class="button button-block button-energized" ng-click="resetHistory()">
-					Reset History
+					Clear History
 				</button>
 			</div>
 			<div class="list">
@@ -41,7 +41,7 @@
 			</div>
 
 			<div class="padding-horizontal">
-				<button class="button button-block button-energized" ng-click="resetColours()">
+				<button class="button button-block button-energized" ng-click="resetColours('{{'colourSpelling' | translate | lowercase}}', '{{'favouriteSpelling' | translate | lowercase}}')">
 					Reset {{"favouriteSpelling" | translate}} {{"colourSpelling" | translate}}s
 				</button>
 
@@ -49,12 +49,12 @@
 					Reset User Defined Functions
 				</button>
 
-				<button class="button button-block button-energized" ng-click="resetStatic()">
+				<button class="button button-block button-energized" ng-click="resetStatic('{{'favouriteSpelling' | translate | lowercase}}')">
 					Reset Static {{"favouriteSpelling" | translate}}s
 				</button>
 
-				<button class="button button-block button-energized" ng-click="resetOthers()">
-					Reset Other Data
+				<button class="button button-block button-energized" ng-click="resetBackgroundSettings()">
+					Reset Background Settings
 				</button>
 
 
