@@ -195,8 +195,8 @@ app.service('ColourService', function($localstorage, $defaults, colourDefaults) 
 	// Reorder the array of colours
 	this.reorder = function(item, fromIndex, toIndex) {
 		// Move the selected item from it's current location to the new location
-		commands.splice(fromIndex, 1);
-		commands.splice(toIndex, 0, item);
+		colours.splice(fromIndex, 1);
+		colours.splice(toIndex, 0, item);
 
 		// Save the updated array of colour favourites
 		$localstorage.setObject('userDefinedColours', colours);
