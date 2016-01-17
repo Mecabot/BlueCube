@@ -1,3 +1,10 @@
+/*
+ *  File:		services.js
+ *  Purpose:	Services that manage data for the app
+ *  Author:		Adam Reed (adam@secretcode.ninja)
+ *  Licence:	BSD 3-Clause Licence
+ */
+
 var app = angular.module('BlueCube.services', [])
 
 // History Service that manages the history of commands

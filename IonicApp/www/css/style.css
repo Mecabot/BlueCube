@@ -1,3 +1,11 @@
+/*
+ *  File:		style.css
+ *  Purpose:	Style Sheet for the BlueCube app, adding a few items, but primarily overriding
+ *				default values set from the ionic app or the various plugins
+ *  Author:		Adam Reed (adam@secretcode.ninja)
+ *  Licence:	BSD 3-Clause Licence
+ */
+
 .spinner svg {
 	/* Set the size of the "spinner" icon that is shown while attempting to connect to a cube */
 	width: 40px;

@@ -1,3 +1,10 @@
+/*
+ *  File:		controllers.js
+ *  Purpose:	Code that manages each of the views and modals, and implements the users choices
+ *  Author:		Adam Reed (adam@secretcode.ninja)
+ *  Licence:	BSD 3-Clause Licence
+ */
+
 var app = angular.module('BlueCube.controllers', [])
 
 // Controller for the application

@@ -1,3 +1,10 @@
+/*
+ *  File:		defaults.js
+ *  Purpose:	Default values, settings and initial values for the app
+ *  Author:		Adam Reed (adam@secretcode.ninja)
+ *  Licence:	BSD 3-Clause Licence
+ */
+
 var app = angular.module('BlueCube.defaults', [])
 
 // Default settings for key parts of the app

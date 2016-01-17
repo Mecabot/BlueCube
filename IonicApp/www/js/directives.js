@@ -1,3 +1,10 @@
+/*
+ *  File:		directives.js
+ *  Purpose:	Directives that add some smarts to HTML elements for the app
+ *  Author:		Adam Reed (adam@secretcode.ninja)
+ *  Licence:	BSD 3-Clause Licence
+ */
+
 var app = angular.module('BlueCube.directives', [])
 
 // Directive for the Colour Picker which uses the Spectrum Javascript Library

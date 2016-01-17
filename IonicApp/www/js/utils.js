@@ -1,3 +1,10 @@
+/*
+ *  File:		utils.js
+ *  Purpose:	Utility functions for the app
+ *  Author:		Adam Reed (adam@secretcode.ninja)
+ *  Licence:	BSD 3-Clause Licence
+ */
+
 var app = angular.module('BlueCube.utils', [])
 
 // Functions to make dealing with local storage easier

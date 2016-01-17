@@ -1,6 +1,13 @@
 document.addEventListener('deviceready', function() {
     angular.bootstrap(document, ['BlueCube']);
 }, false);
+/*
+ *  File:		app.js
+ *  Purpose:	Handles setting up the app, and all of the routing for pages (including the
+ *				template and controller to use)
+ *  Author:		Adam Reed (adam@secretcode.ninja)
+ *  Licence:	BSD 3-Clause Licence
+ */
 
 
 var app = angular.module('BlueCube', ['ionic', 'BlueCube.defaults', 'BlueCube.controllers', 'ngCordova', 'BlueCube.directives', 'BlueCube.services', 'BlueCube.utils', 'pascalprecht.translate', 'ngSanitize', 'jett.ionic.content.banner']);
