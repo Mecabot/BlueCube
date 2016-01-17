@@ -704,7 +704,10 @@ app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, Modal
 });
 
 // Controller for the 'Connect' page
-app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading, $localstorage, $ionicSideMenuDelegate, $translate, appDefaults, $interval) {
+app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading, $localstorage, $ionicSideMenuDelegate, $translate, appDefaults, $interval, $cordovaDialogs) {
+	// Hide the log text
+	$scope.hideLogText = true;
+
 	// Functions for showing and hiding the loading overlay
 	$scope.showConnectionOverlay = function() {
 		$ionicLoading.show({
@@ -776,6 +779,9 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 
 									// Open the side menu so that the user can choose where they want to go
 									$ionicSideMenuDelegate.toggleLeft();
+
+									// Hide the log text
+									$scope.hideLogText = true;
 								},
 								function() {
 									// Failed to connect
@@ -784,6 +790,9 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 									// Enable the connect button so the user can try again,
 									// and disable the disconnect button
 									$scope.showConnectButton(true);
+
+									// Tell the user connecting failed
+									$cordovaDialogs.alert("Failed to connect to BlueCube (" + bluetoothDeviceID + ")", 'Error', 'OK');
 								}
 							);
 						} else {
@@ -793,6 +802,9 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 							// Enable the connect button so the user can try again,
 							// and disable the disconnect button
 							$scope.showConnectButton(true);
+
+							// Tell the user no device found
+							$cordovaDialogs.alert("No BlueCube found to connect to", 'Error', 'OK');
 						}
 					},
 					function(reason) {
@@ -802,6 +814,9 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 						// Enable the connect button so the user can try again,
 						// and disable the disconnect button
 						$scope.showConnectButton(true);
+
+						// Tell the user we couldn't list available bluetooth devices
+						$cordovaDialogs.alert("Listing Bluetooth devices failed due to " + reason, 'Error', 'OK');
 					}
 				);
 			},
@@ -812,6 +827,9 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 				// Enable the connect button so the user can try again,
 				// and disable the disconnect button
 				$scope.showConnectButton(true);
+
+				// Tell the user bluetooth isn't enabled
+				$cordovaDialogs.alert("Bluetooth is disabled. Please enable it and try again.", 'Error', 'OK');
 			}
 		);
 	};
@@ -820,18 +838,17 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 	$scope.disconnect = function() {
 		$cordovaBluetoothSerial.disconnect().then(
 			function() {
-				// Disconnect was sucessfull
-				$scope.logText = "Disconnected from BlueCube (" + $localstorage.get('bluetoothUUID') + ")<br>";
-
 				// Enable the connect button, and hide the disconnect button
 				$scope.showConnectButton(true);
 			},
 			function(error) {
 				// Couldn't disconnect
-				$scope.logText = "ERROR: Failed to disconnect: " + error + "<br>";
 
 				// Leave the disconnect button visable
 				$scope.showConnectButton(false);
+
+				// Tell the user we couldn't disconnect
+				$cordovaDialogs.alert("Failed to disconnect. Please try again.", 'Error', 'OK');
 			}
 		);
 	};
@@ -841,16 +858,10 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 		// Check current connection status
 		$cordovaBluetoothSerial.isConnected().then(
 			function() {
-				// Connected
-				$scope.logText = "BlueCube (" + $localstorage.get('bluetoothUUID') + ") is Connected<br>";
-
 				// Show disconnect button, and hide connect button
 				$scope.showConnectButton(false);
 			},
 			function() {
-				// Disconnected
-				$scope.logText = "Not connected to a BlueCube<br>";
-
 				// Show connect button, and hide disconnect button
 				$scope.showConnectButton(true);
 			}
@@ -859,9 +870,6 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 
 	// Show the connect button, and hide the disconnect button by default
 	$scope.showConnectButton(true);
-
-	// Hide the log text
-	$scope.hideLogText = true;
 
 	// Determine what state the user last had the auto connect toggle set to, and reset
 	// it to that state
