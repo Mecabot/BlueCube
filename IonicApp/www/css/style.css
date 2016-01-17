@@ -79,3 +79,10 @@ hr.ledGrid {
 	height: 1px;
 	background: #dddddd;
 }
+
+.rssiIndicator {
+	/* The background colour (same as the ionic positive colour) and height of the RSSI indicator
+	   on the connect page */
+	background: #0c60ee;
+	height: 20px;
+}

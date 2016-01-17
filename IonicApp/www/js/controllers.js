@@ -903,6 +903,23 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 					function(rssi) {
 						// Make the RSSI available to the view
 						$scope.rssi = rssi;
+
+						// Convert the RSSI figure (-###) into a percentage so that we can use it
+						// to draw a "bar" indicating the signal strength, using a local
+						// implementation of the "map" function from the Arduino language
+						var rssiSize = (rssi - appDefaults.signalConsideredNoStrengthAt) * 100 / (appDefaults.signalConsideredFullStrengthAt - appDefaults.signalConsideredNoStrengthAt);
+
+						// Bound the rssiSize to 0 to 100.
+						if (parseInt(rssiSize) < 0) {
+							rssiSize = 0;
+						}
+
+						if (parseInt(rssiSize)  > 100) {
+							rssiSize = 100;
+						}
+
+						// Make the rssiSize available to the view
+						$scope.rssiSize = rssiSize;
 					},
 					function() {
 					}

@@ -22,6 +22,11 @@ app.constant('appDefaults', {
 	// Maximum number of items to keep in the history (it should be between minAllowedHistoryItems
 	// and maxAllowedHistoryItems set above)
 	maxHistoryItems: 100,
+
+	// Items for RSSI Signal Strength Indicator, that set the bounds for what we consider full
+	// signal strength and at where we consider we have no signal.
+	signalConsideredFullStrengthAt: -30,
+	signalConsideredNoStrengthAt: -100,
 });
 
 // Default settings for Colours within the app
