@@ -43,7 +43,7 @@
 					</div>
 				</div>
 
-				<div class="padding-top">
+				<div class="padding-top padding-bottom">
 					<ion-list type="list-inset" show-delete="data.showDelete" show-reorder="data.showReordering">
 						<ion-item ng-repeat="userColour in colours track by userColour.id" ng-style="{'background-color': '#{{userColour.hex}}'}" ng-click="chooseFavouriteColour('{{userColour.hex}}')">
 							#{{userColour.hex}}
