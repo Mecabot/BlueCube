@@ -737,10 +737,6 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 			$scope.connectButton = false;
 			$scope.disconnectButton = true;
 		}
-
-		// Make sure that the progress overlay isn't shown if we are changing the connect
-		// or disconnect button state
-		$scope.hideConnectionOverlay();
 	};
 
 	// Connect to the cube selected from the modal popup
@@ -766,6 +762,9 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 				// Save the ID of the cube we connected to
 				$localstorage.set('bluetoothUUID', bluetoothDeviceID);
 
+				// Hide the progress overlay
+				$scope.hideConnectionOverlay();
+
 				// Disable the connect button, and enable the disconnect button
 				$scope.showConnectButton(false);
 
@@ -782,6 +781,9 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 				// Enable the connect button so the user can try again,
 				// and disable the disconnect button
 				$scope.showConnectButton(true);
+
+				// Hide the progress overlay
+				$scope.hideConnectionOverlay();
 
 				// Tell the user connecting failed
 				$cordovaDialogs.alert("Failed to connect to BlueCube (" + bluetoothDeviceID + ")", 'Error', 'OK');
@@ -806,7 +808,6 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 
 				// Find possible devices to connect to
 				$scope.logText = $scope.logText + "Searching for Bluetooth Devices<br>";
-				var bluetoothDeviceID = null; // Tracker for the device to connect to
 
 				$cordovaBluetoothSerial.list().then(
 					function(peripherals) {
@@ -815,13 +816,10 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 							// Items found, so list Bluetooth Devices (that the library knows about)
 							$scope.logText = $scope.logText + JSON.stringify(peripherals) + "<br>";
 
-							// Get the first device that we find's ID.
-							bluetoothDeviceID = peripherals[0].id;
-
 							// Connect to the device
 							if (peripherals.length == 1) {
 								// Only 1 device, so connect directly to it
-								$scope.blueCubeConnect(bluetoothDeviceID);
+								$scope.blueCubeConnect(peripherals[0].id);
 							} else {
 								// More than 1 device, so let the user pick which one they want
 
@@ -842,6 +840,9 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 							// and disable the disconnect button
 							$scope.showConnectButton(true);
 
+							// Hide the progress overlay
+							$scope.hideConnectionOverlay();
+
 							// Tell the user no device found
 							$cordovaDialogs.alert("No BlueCube found to connect to", 'Error', 'OK');
 						}
@@ -853,6 +854,9 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 						// Enable the connect button so the user can try again,
 						// and disable the disconnect button
 						$scope.showConnectButton(true);
+
+						// Hide the progress overlay
+						$scope.hideConnectionOverlay();
 
 						// Tell the user we couldn't list available bluetooth devices
 						$cordovaDialogs.alert("Listing Bluetooth devices failed due to " + reason, 'Error', 'OK');
@@ -866,6 +870,9 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 				// Enable the connect button so the user can try again,
 				// and disable the disconnect button
 				$scope.showConnectButton(true);
+
+				// Hide the progress overlay
+				$scope.hideConnectionOverlay();
 
 				// Tell the user bluetooth isn't enabled
 				$cordovaDialogs.alert("Bluetooth is disabled. Please enable it and try again.", 'Error', 'OK');
