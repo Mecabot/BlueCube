@@ -1344,7 +1344,6 @@ app.controller('AboutCtrl', function($ionicPlatform, $scope, $cordovaDevice, $co
 		$scope.model = device.model;
 		$scope.platform = device.platform;
 		$scope.version = device.version;
-		$scope.uuid = device.uuid;
 
 		// Get the apps version and build number
 		$cordovaAppVersion.getVersionNumber().then(function (version) {
