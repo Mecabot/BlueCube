@@ -704,9 +704,16 @@ app.controller('SphereCtrl', function($ionicPlatform, $scope, $cubeAction, Modal
 });
 
 // Controller for the 'Connect' page
-app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading, $localstorage, $ionicSideMenuDelegate, $translate, appDefaults, $interval, $cordovaDialogs) {
+app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetoothSerial, $ionicLoading, $localstorage, $ionicSideMenuDelegate, $translate, appDefaults, $interval, $cordovaDialogs, ModalService) {
 	// Hide the log text
 	$scope.hideLogText = true;
+
+	// Open the bluecube picker
+	$scope.openModal = function() {
+		ModalService.init('templates/multipleBlueCubes.html', $scope).then(function(modal) {
+			modal.show();
+		});
+	};
 
 	// Functions for showing and hiding the loading overlay
 	$scope.showConnectionOverlay = function() {
@@ -736,7 +743,53 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 		$scope.hideConnectionOverlay();
 	};
 
-	// Function to Connect to the BlueCube
+	// Connect to the cube selected from the modal popup
+	$scope.connectToSelectedCube = function(bluetoothDeviceID) {
+		// Close the modal
+		$scope.closeModal();
+
+		// Reshow the connection overlay
+		$scope.showConnectionOverlay();
+
+		// Connect to the given device
+		$scope.blueCubeConnect(bluetoothDeviceID);
+	};
+
+	// Connect to a particular BlueCube
+	$scope.blueCubeConnect = function(bluetoothDeviceID) {
+		// Connect to the device
+		$cordovaBluetoothSerial.connect(bluetoothDeviceID).then(
+			function() {
+				// Successfully connected to cube
+				$scope.logText = "BlueCube (" + bluetoothDeviceID + ") is Connected<br>";
+
+				// Save the ID of the cube we connected to
+				$localstorage.set('bluetoothUUID', bluetoothDeviceID);
+
+				// Disable the connect button, and enable the disconnect button
+				$scope.showConnectButton(false);
+
+				// Open the side menu so that the user can choose where they want to go
+				$ionicSideMenuDelegate.toggleLeft();
+
+				// Hide the log text
+				$scope.hideLogText = true;
+			},
+			function() {
+				// Failed to connect
+				$scope.logText = "ERROR: Failed to connect to BlueCube (" + bluetoothDeviceID + ")<br>";
+
+				// Enable the connect button so the user can try again,
+				// and disable the disconnect button
+				$scope.showConnectButton(true);
+
+				// Tell the user connecting failed
+				$cordovaDialogs.alert("Failed to connect to BlueCube (" + bluetoothDeviceID + ")", 'Error', 'OK');
+			}
+		);
+	};
+
+	// Function to Attempt to connect to the BlueCube
 	$scope.connect = function() {
 		// Show the progress overlay
 		$scope.showConnectionOverlay();
@@ -766,35 +819,21 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBluetooth
 							bluetoothDeviceID = peripherals[0].id;
 
 							// Connect to the device
-							$cordovaBluetoothSerial.connect(bluetoothDeviceID).then(
-								function() {
-									// Successfully connected to cube
-									$scope.logText = "BlueCube (" + bluetoothDeviceID + ") is Connected<br>";
+							if (peripherals.length == 1) {
+								// Only 1 device, so connect directly to it
+								$scope.blueCubeConnect(bluetoothDeviceID);
+							} else {
+								// More than 1 device, so let the user pick which one they want
 
-									// Save the ID of the cube we connected to
-									$localstorage.set('bluetoothUUID', bluetoothDeviceID);
+								// Make the list of available devices available to the modal
+								$scope.bluecubes = peripherals;
 
-									// Disable the connect button, and enable the disconnect button
-									$scope.showConnectButton(false);
+								// Hide the connection overlay
+								$scope.hideConnectionOverlay();
 
-									// Open the side menu so that the user can choose where they want to go
-									$ionicSideMenuDelegate.toggleLeft();
-
-									// Hide the log text
-									$scope.hideLogText = true;
-								},
-								function() {
-									// Failed to connect
-									$scope.logText = "ERROR: Failed to connect to BlueCube (" + bluetoothDeviceID + ")<br>";
-
-									// Enable the connect button so the user can try again,
-									// and disable the disconnect button
-									$scope.showConnectButton(true);
-
-									// Tell the user connecting failed
-									$cordovaDialogs.alert("Failed to connect to BlueCube (" + bluetoothDeviceID + ")", 'Error', 'OK');
-								}
-							);
+								// Show the modal allowing the user to choose which one they want
+								$scope.openModal();
+							}
 						} else {
 							// No devices found
 							$scope.logText = "Error: No BlueCube found to connect to<br>";
@@ -1476,6 +1515,11 @@ app.controller('UserDefinedModalCtrl', function($ionicPlatform, $scope, ModalSer
 		// Get the colour that was selected while the modal window was shown
 		$scope.selectedColour = ColourService.getSelectedColour();
 	});
+});
+
+// Controller for the 'Multiple BlueCubes' modal
+app.controller('WhichBlueCubeCtrl', function($ionicPlatform, $scope) {
+	// All items for this page are handled via the ConnectCtrl
 });
 
 // Controller for the 'Static Favourite Creator' modal

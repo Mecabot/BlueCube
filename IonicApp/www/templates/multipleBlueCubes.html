@@ -1,0 +1,36 @@
+<!--
+ *  File:		multipleBlueCubes.html
+ *  Purpose:	Modal popup allowing the user to pick the BlueCube to connect to if multiple exist
+ *  Author:		Adam Reed (adam@secretcode.ninja)
+ *  Licence:	BSD 3-Clause Licence
+-->
+
+<ion-view view-title="WhichBlueCube">
+
+	<div class="modal">
+		<ion-header-bar class="bar bar-header bar-positive">
+			<h1 class="title">
+				Connect
+			</h1>
+		</ion-header-bar>
+
+		<ion-content ng-controller="WhichBlueCubeCtrl">
+			<div class="card">
+				<div class="item item-divider">
+					Please pick a BlueCube
+				</div>
+
+				<div class="padding-top">
+					<ion-list type="list-inset">
+						<ion-item ng-repeat="bluecube in bluecubes track by bluecube.id" ng-click="connectToSelectedCube('{{bluecube.id}}')">
+							{{bluecube.id}}
+						</ion-item>
+					</ion-list>
+				</div>
+			</div>
+			<br>
+		</ion-content>
+
+	</div>
+
+</ion-view>
