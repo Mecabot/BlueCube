@@ -15,7 +15,7 @@
 
 	<ion-content>
 
-		<div class="padding" align="center">
+		<div class="padding-top padding-horizontal" align="center">
 			<h1>BlueCube</h1>
 			<h4>Version {{appVersion}} ({{appBuild}})</h4>
 			<p>By Adam Reed (adam@secretcode.ninja)</p>
@@ -27,7 +27,7 @@
 			</div>
 
 			<div class="padding-horizontal padding-top">
-				<p>The BlueCube is designed to allow remote control of a <a href="http://www.freetronics.com.au/products/cube4-4x4x4-rgb-led-cube">Freetronics 4x4x4 RGB LED Cube</a> via Bluetooth Low Energy (LE) from a compatible mobile (cell) phone using a <a href="https://www.adafruit.com/product/2479">Adafruit BlueFruit LE UART Friend</a>, and the companion sketch to this app.</p>
+				<p>The BlueCube is designed to allow remote control of a <a href="#" onclick="window.open('http://www.freetronics.com.au/products/cube4-4x4x4-rgb-led-cube', '_system', 'location=yes'); return false;">Freetronics 4x4x4 RGB LED Cube</a> via Bluetooth Low Energy (LE) from a compatible mobile (cell) phone using a <a href="#" onclick="window.open('https://www.adafruit.com/product/2479', '_system', 'location=yes'); return false;">Adafruit BlueFruit LE UART Friend</a>, and the companion sketch to this app.</p>
 			</div>
 		</div>
 
@@ -39,32 +39,33 @@
 			<div class="padding">
 				<p>This app was build upon the work of others. I wish to thank:-</p>
 				<ul class="aboutLists">
-					<li>Freetronics, for making an awesome cube kit, and providing a <a href="https://github.com/freetronics/Cube4">handy library</a> for manipulating it.</li>
-					<li>Adafruit, for making great hardware, and backing it up with sample code and libraries so that it is easy to implement, particularly the <a href="https://github.com/adafruit/Adafruit_BluefruitLE_nRF51">Adafruit BluefruitLE nRF51 Library</a> used by this app.</li>
-					<li>Members of the <a href="http://forum.freetronics.com/viewforum.php?f=32">Freetronics 4x4x4 RGB Cube forum</a> for sample sketches, and particularly "sparky-nz" for providing the <a href="http://forum.freetronics.com/viewtopic.php?f=32&amp;t=5562">template</a> for the LED Coordinates.</li>
-					<li><a href="https://cordova.apache.org">Cordova Project</a> and the <a href="http://ionicframework.com">Ionic Framework</a>. The use of these frameworks allowed for this code to be compatible with iOS, Android and Windows Phone all from the same codebase, and meant I only had to focus on specific functionality required for BlueCube, not a heap of other boilerplate code. Various plugins (installed via cordova plugin add ...) were also utilised to help with functionality. They include:-
+					<li>Freetronics, for making an awesome cube kit, and providing a <a href="#" onclick="window.open('https://github.com/freetronics/Cube4', '_system', 'location=yes'); return false;">handy library</a> for manipulating it.</li>
+					<li>Adafruit, for making great hardware, and backing it up with sample code and libraries so that it is easy to implement, particularly the <a href="#" onclick="window.open('https://github.com/adafruit/Adafruit_BluefruitLE_nRF51', '_system', 'location=yes'); return false;">Adafruit BluefruitLE nRF51 Library</a> used by this app.</li>
+					<li>Members of the <a href="#" onclick="window.open('http://forum.freetronics.com/viewforum.php?f=32', '_system', 'location=yes'); return false;">Freetronics 4x4x4 RGB Cube forum</a> for sample sketches, and particularly "sparky-nz" for providing the <a href="#" onclick="window.open('http://forum.freetronics.com/viewtopic.php?f=32&amp;t=5562', '_system', 'location=yes'); return false;">template</a> for the LED Coordinates.</li>
+					<li><a href="#" onclick="window.open('https://cordova.apache.org', '_system', 'location=yes'); return false;">Cordova Project</a> and the <a href="#" onclick="window.open('http://ionicframework.com', '_system', 'location=yes'); return false;">Ionic Framework</a>. The use of these frameworks allowed for this code to be compatible with iOS, Android and Windows Phone all from the same codebase, and meant I only had to focus on specific functionality required for BlueCube, not a heap of other boilerplate code. Various plugins (installed via cordova plugin add ...) were also utilised to help with functionality. They include:-
 						<ul class="aboutLists aboutListsExtraIndent">
-							<li>cordova-plugin-progress-indicator</li>
 							<li>cordova-plugin-app-version</li>
 							<li>cordova-plugin-appinfo</li>
-							<li><a href="https://github.com/don/BluetoothSerial">cordova-plugin-bluetooth-serial</a> - handles the bluetooth communications</li>
+							<li><a href="#" onclick="window.open('https://github.com/don/BluetoothSerial', '_system', 'location=yes'); return false;">cordova-plugin-bluetooth-serial</a> - handles the bluetooth communications</li>
 							<li>cordova-plugin-console</li>
 							<li>cordova-plugin-device</li>
 							<li>cordova-plugin-dialogs</li>
-							<li>cordova-plugin-globalization used in conjunction with <a href="https://angular-translate.github.io">angular-translate</a> to allow localisation of the app</li>
+							<li>cordova-plugin-globalization used in conjunction with <a href="#" onclick="window.open('https://angular-translate.github.io', '_system', 'location=yes'); return false;"">angular-translate</a> to allow localisation of the app</li>
+							<li>cordova-plugin-inappbrowser</li>
+							<li>cordova-plugin-progress-indicator</li>
 							<li>cordova-plugin-splashscreen</li>
 							<li>cordova-plugin-statusbar</li>
 							<li>cordova-plugin-whitelist</li>
-							<li><a href="http://ngcordova.com">ng-cordova</a> which makes it easier to interact with some of these plugins</li>
+							<li><a href="#" onclick="window.open('http://ngcordova.com', '_system', 'location=yes'); return false;">ng-cordova</a> which makes it easier to interact with some of these plugins</li>
 						</ul>
 					</li>
 					<li>Other functionality was also added. This includes:-
 						<ul class="aboutLists aboutListsExtraIndent">
-							<li><a href="http://bgrins.github.io/spectrum/">Spectrum</a> Colour Picker, and it was implemented using sample code from <a href="http://jsfiddle.net/g/LAJCa/">http://jsfiddle.net/g/LAJCa/</a>.</li>
-							<li><a href="https://market.ionic.io/plugins/ionic-content-banner">Ionic Content Banner</a> by Devin Jett.</li>
+							<li><a href="#" onclick="window.open('http://bgrins.github.io/spectrum/', '_system', 'location=yes'); return false;">Spectrum</a> Colour Picker, and it was implemented using sample code from <a href="#" onclick="window.open('http://jsfiddle.net/g/LAJCa/', '_system', 'location=yes'); return false;">http://jsfiddle.net/g/LAJCa/</a>.</li>
+							<li><a href="#" onclick="window.open('https://market.ionic.io/plugins/ionic-content-banner', '_system', 'location=yes'); return false;">Ionic Content Banner</a> by Devin Jett.</li>
 						</ul>
 					</li>
-					<li>The apps icon and splash screen were based off the work outlined <a href="http://www.deke.com/content/dekes-techniques-241-drawing-orthogonal-cube-with-line-tool-illustrator">here</a>.</li>
+					<li>The apps icon and splash screen were based off the work outlined <a href="#" onclick="window.open('http://www.deke.com/content/dekes-techniques-241-drawing-orthogonal-cube-with-line-tool-illustrator', '_system', 'location=yes'); return false;">here</a>.</li>
 				</ul>
 			</div>
 		</div>
