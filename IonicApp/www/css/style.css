@@ -30,7 +30,7 @@
 
 .list-inset {
 	/* Remove extra margin space at the top of lists */
-	margin-top: 0px; !important;
+	margin-top: 0px !important;
 }
 
 .item .item-divider {
