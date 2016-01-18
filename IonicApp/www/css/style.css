@@ -86,3 +86,20 @@ hr.ledGrid {
 	background: #0c60ee;
 	height: 20px;
 }
+
+.aboutImgs {
+	/* Set the width of the images to fit the view */
+	width: 100%;
+}
+
+ul.aboutLists {
+	/* Override the ionic list formatting for the about page */
+	list-style-type: disc !important;
+	list-style: disc !important;
+	list-style-position: inside !important;
+}
+
+ul.aboutListsExtraIndent {
+	/* Add padding for lists within a list */
+	padding-left: 20px;
+}

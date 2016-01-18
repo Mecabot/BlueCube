@@ -252,12 +252,36 @@ app.config(function($stateProvider, $urlRouterProvider, $translateProvider) {
 			url: '/about',
 			cache: true,
 			views: {
-			'menuContent': {
-				templateUrl: 'templates/about.html',
-				controller : 'AboutCtrl'
+				'menuContent': {
+					templateUrl: 'templates/about.html',
+					controller : 'AboutCtrl'
+				}
 			}
-		}
-	});
+		})
+
+		// Wiring
+		.state('app.wiring', {
+			url: '/wiring',
+			cache: true,
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/wiring.html',
+					controller : 'WiringCtrl'
+				}
+			}
+		})
+
+		// LED Coordinates
+		.state('app.ledcoordinates', {
+			url: '/ledcoordinates',
+			cache: true,
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/ledCoordinates.html',
+					controller : 'LEDCoordinatesCtrl'
+				}
+			}
+		});
 
 	// If none of the above are requested, default to the connect page
 	$urlRouterProvider.otherwise('/app/connect');

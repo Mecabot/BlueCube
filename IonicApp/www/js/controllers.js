@@ -1363,6 +1363,16 @@ app.controller('AboutCtrl', function($ionicPlatform, $scope, $cordovaDevice, $co
 	});
 });
 
+// Controller for the 'Wiring' page
+app.controller('WiringCtrl', function($ionicPlatform, $scope) {
+	// We just display static content on this page, so no code is required
+});
+
+// Controller for the 'LED Coordinates' page
+app.controller('LEDCoordinatesCtrl', function($ionicPlatform, $scope) {
+	// We just display static content on this page, so no code is required
+});
+
 // Controller for the 'Colour Picker' modal
 app.controller('ColourPickerCtrl', function($ionicPlatform, $scope, ColourService, $localstorage) {
 	// Don't show the delete or reordering buttons on the list items by default

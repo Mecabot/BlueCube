@@ -1,11 +1,11 @@
 <!--
  *  File:		about.html
- *  Purpose:	Displays information about the app and how to make it work
+ *  Purpose:	Displays information about the app and thanks to the projects that helped
  *  Author:		Adam Reed (adam@secretcode.ninja)
  *  Licence:	BSD 3-Clause Licence
 -->
 
-<ion-view view-title="About">
+<ion-view view-title="About" hide-back-button="true" nav-transition="none">
 
 	<ion-nav-bar class="bar-positive">
 		<ion-nav-buttons side="left">
@@ -14,40 +14,85 @@
 	</ion-nav-bar>
 
 	<ion-content>
+
+		<div class="padding" align="center">
+			<h1>BlueCube</h1>
+			<h4>Version {{appVersion}} ({{appBuild}})</h4>
+			<p>By Adam Reed (adam@secretcode.ninja)</p>
+		</div>
+
 		<div class="card">
 			<div class="item item-divider">
-				Your device information!
+				Information
 			</div>
 
-			<div class="item item-text-wrap">
-				<ul class="list">
-					<li class="item">
-						Manufacturer : {{manufacturer}}
-					</li>
-					<li class="item">
-						Model : {{model}}
-					</li>
-					<li class="item">
-						Platform : {{platform}}
-					</li>
-					<li class="item">
-						Platform Version : {{version}}
-					</li>
-					<li class="item">
-						UUID : {{uuid}}
-					</li>
-					<li class="item">
-						App Version : {{appVersion}}
-					</li>
-					<li class="item">
-						App Build : {{appBuild}}
-					</li>
-				</ul>
-					<li class="item">
-						Language : {{language}}
-					</li>
-				</div>
+			<div class="padding-horizontal padding-top">
+				<p>The BlueCube is designed to allow remote control of a <a href="http://www.freetronics.com.au/products/cube4-4x4x4-rgb-led-cube">Freetronics 4x4x4 RGB LED Cube</a> via Bluetooth Low Energy (LE) from a compatible mobile (cell) phone using a <a href="https://www.adafruit.com/product/2479">Adafruit BlueFruit LE UART Friend</a>, and the companion sketch to this app.</p>
+			</div>
 		</div>
+
+		<div class="card">
+			<div class="item item-divider">
+				Thanks
+			</div>
+
+			<div class="padding">
+				<p>This app was build upon the work of others. I wish to thank:-</p>
+				<ul class="aboutLists">
+					<li>Freetronics, for making an awesome cube kit, and providing a <a href="https://github.com/freetronics/Cube4">handy library</a> for manipulating it.</li>
+					<li>Adafruit, for making great hardware, and backing it up with sample code and libraries so that it is easy to implement, particularly the <a href="https://github.com/adafruit/Adafruit_BluefruitLE_nRF51">Adafruit BluefruitLE nRF51 Library</a> used by this app.</li>
+					<li>Members of the <a href="http://forum.freetronics.com/viewforum.php?f=32">Freetronics 4x4x4 RGB Cube forum</a> for sample sketches, and particularly "sparky-nz" for providing the <a href="http://forum.freetronics.com/viewtopic.php?f=32&amp;t=5562">template</a> for the LED Coordinates.</li>
+					<li><a href="https://cordova.apache.org">Cordova Project</a> and the <a href="http://ionicframework.com">Ionic Framework</a>. The use of these frameworks allowed for this code to be compatible with iOS, Android and Windows Phone all from the same codebase, and meant I only had to focus on specific functionality required for BlueCube, not a heap of other boilerplate code. Various plugins (installed via cordova plugin add ...) were also utilised to help with functionality. They include:-
+						<ul class="aboutLists aboutListsExtraIndent">
+							<li>cordova-plugin-progress-indicator</li>
+							<li>cordova-plugin-app-version</li>
+							<li>cordova-plugin-appinfo</li>
+							<li><a href="https://github.com/don/BluetoothSerial">cordova-plugin-bluetooth-serial</a> - handles the bluetooth communications</li>
+							<li>cordova-plugin-console</li>
+							<li>cordova-plugin-device</li>
+							<li>cordova-plugin-dialogs</li>
+							<li>cordova-plugin-globalization used in conjunction with <a href="https://angular-translate.github.io">angular-translate</a> to allow localisation of the app</li>
+							<li>cordova-plugin-splashscreen</li>
+							<li>cordova-plugin-statusbar</li>
+							<li>cordova-plugin-whitelist</li>
+							<li><a href="http://ngcordova.com">ng-cordova</a> which makes it easier to interact with some of these plugins</li>
+						</ul>
+					</li>
+					<li>Other functionality was also added. This includes:-
+						<ul class="aboutLists aboutListsExtraIndent">
+							<li><a href="http://bgrins.github.io/spectrum/">Spectrum</a> Colour Picker, and it was implemented using sample code from <a href="http://jsfiddle.net/g/LAJCa/">http://jsfiddle.net/g/LAJCa/</a>.</li>
+							<li><a href="https://market.ionic.io/plugins/ionic-content-banner">Ionic Content Banner</a> by Devin Jett.</li>
+						</ul>
+					</li>
+					<li>The apps icon and splash screen were based off the work outlined <a href="http://www.deke.com/content/dekes-techniques-241-drawing-orthogonal-cube-with-line-tool-illustrator">here</a>.</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="item item-divider">
+				Device
+			</div>
+
+			<div class="padding">
+				BlueCube version {{appVersion}} ({{appBuild}}) is running on a {{manufacturer}} {{model}} running {{platform}} {{version}} with a locale of {{language}}
+			</div>
+		</div>
+
+		<br/>
+		<br/>
 	</ion-content>
+
+	<div class="tabs tabs-icon-only">
+		<a nav-clear class="tab-item active" title="About" icon-on="ion-ios-information-outline" icon-off="ion-ios-information-outline-outline" href="#/app/about">
+			<i class="icon ion-ios-information"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+		</a>
+		<a nav-clear class="tab-item disable-user-behavior" title="Wiring" icon-on="ion-ios-pulse-strong" icon-off="ion-ios-pulse" href="#/app/wiring">
+			<i class="icon ion-ios-pulse"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+		</a>
+		<a nav-clear class="tab-item disable-user-behavior" title="LED Coordinates" icon-on="ion-ios-grid-view" icon-off="ion-ios-grid-view-outline" href="#/app/ledcoordinates">
+			<i class="icon ion-ios-grid-view-outline"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+		</a>
+	</div>
 
 </ion-view>

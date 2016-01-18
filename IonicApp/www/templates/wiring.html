@@ -1,0 +1,116 @@
+<!--
+ *  File:		wiring.html
+ *  Purpose:	Displays information about how to wire the cube and bluetooth module together
+ *  Author:		Adam Reed (adam@secretcode.ninja)
+ *  Licence:	BSD 3-Clause Licence
+-->
+
+<ion-view view-title="Wiring" hide-back-button="true" nav-transition="none">
+
+	<ion-nav-bar class="bar-positive">
+		<ion-nav-buttons side="left">
+			<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+		</ion-nav-buttons>
+	</ion-nav-bar>
+
+	<ion-content>
+		<div class="card">
+			<div class="item item-divider">
+				Wiring
+			</div>
+
+			<div class="padding">
+				<div class="row">
+					<div class="col col-40" align="right">
+						<h3 style="margin: 0px;">Cube</h3>
+					</div>
+					<div class="col col-10" align="center">
+					</div>
+					<div class="col col-50">
+						<h3 style="margin: 0px;">Bluefruit LE UART</h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col col-40" align="right">
+						<h4 style="color: red; margin: 0px;">+5V</h4>
+					</div>
+					<div class="col col-10" align="center">
+						<h4 style="color: red; margin: 0px;"><i class="icon ion-arrow-right-c"></i></h4>
+					</div>
+					<div class="col col-50">
+						<h4 style="color: red; margin: 0px;">VIN</h4>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col col-40" align="right">
+						<h4 style="color: black; margin: 0px;">GND</h4>
+					</div>
+					<div class="col col-10" align="center">
+						<h4 style="color: black; margin: 0px;"><i class="icon ion-arrow-right-c"></i></h4>
+					</div>
+					<div class="col col-50">
+						<h4 style="color: black; margin: 0px;">GND and CTS</h4>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col col-40" align="right">
+						<h4 style="color: green; margin: 0px;">RX</h4>
+					</div>
+					<div class="col col-10" align="center">
+						<h4 style="color: green; margin: 0px;"><i class="icon ion-arrow-right-c"></i></h4>
+					</div>
+					<div class="col col-50">
+						<h4 style="color: green; margin: 0px;">TX</h4>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col col-40" align="right">
+						<h4 style="color: gold; margin: 0px;">TX</h4>
+					</div>
+					<div class="col col-10" align="center">
+						<h4 style="color: gold; margin: 0px;"><i class="icon ion-arrow-right-c"></i></h4>
+					</div>
+					<div class="col col-50">
+						<h4 style="color: gold; margin: 0px;">RX</h4>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col col-40" align="right">
+						<h4 style="color: brown; margin: 0px;">D5</h4>
+					</div>
+					<div class="col col-10" align="center">
+						<h4 style="color: brown; margin: 0px;"><i class="icon ion-arrow-right-c"></i></h4>
+					</div>
+					<div class="col col-50">
+						<h4 style="color: brown; margin: 0px;">MOD</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="item item-divider">
+				Wiring Diagram
+			</div>
+
+			<div class="padding">
+				<img ng-src="img/Wiring.png" class="aboutImgs"/>
+			</div>
+		</div>
+		<br/>
+		<br/>
+	</ion-content>
+
+	<div class="tabs tabs-icon-only">
+		<a nav-clear class="tab-item disable-user-behavior" title="About" icon-on="ion-ios-information-outline" icon-off="ion-ios-information" href="#/app/about">
+			<i class="icon ion-ios-information-outline"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+		</a>
+		<a nav-clear class="tab-item active" title="Wiring" icon-on="ion-ios-pulse-strong" icon-off="ion-ios-pulse" href="#/app/wiring">
+			<i class="icon ion-ios-pulse-strong"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+		</a>
+		<a nav-clear class="tab-item disable-user-behavior" title="LED Coordinates" icon-on="ion-ios-grid-view-outline" icon-off="ion-ios-grid-view" href="#/app/ledcoordinates">
+			<i class="icon ion-ios-grid-view-outline"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+		</a>
+	</div>
+
+</ion-view>
