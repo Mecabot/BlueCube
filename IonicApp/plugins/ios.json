@@ -9,23 +9,7 @@
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"CDVDevice\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"Console\"><param name=\"ios-package\" value=\"CDVLogger\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"StatusBar\"><param name=\"ios-package\" value=\"CDVStatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<preference name=\"StatusBarOverlaysWebView\" value=\"true\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<preference name=\"StatusBarStyle\" value=\"lightcontent\" />",
                             "count": 1
                         },
                         {
@@ -45,15 +29,31 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"Globalization\"><param name=\"ios-package\" value=\"CDVGlobalization\" /></feature>",
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"CDVDevice\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"InAppBrowser\"><param name=\"ios-package\" value=\"CDVInAppBrowser\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"StatusBar\"><param name=\"ios-package\" value=\"CDVStatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"StatusBarOverlaysWebView\" value=\"true\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"StatusBarStyle\" value=\"lightcontent\" />",
                             "count": 1
                         }
                     ],
@@ -90,19 +90,7 @@
         }
     },
     "installed_plugins": {
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
-        },
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
-        },
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
-        },
-        "cordova-plugin-bluetooth-serial": {
-            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
-        },
-        "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         },
         "cordova-plugin-dialogs": {
@@ -117,13 +105,25 @@
         "cordova-plugin-app-version": {
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
-        },
         "cordova-plugin-globalization": {
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
+        },
         "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
+        },
+        "cordova-plugin-bluetooth-serial": {
+            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
+        },
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         }
     },

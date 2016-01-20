@@ -1,40 +1,8 @@
 {
-    "cordova-plugin-whitelist": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-whitelist@1"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "cordova-plugin-device": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-device"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-console": {
         "source": {
             "type": "registry",
             "id": "cordova-plugin-console"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "cordova-plugin-bluetooth-serial": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-bluetooth-serial"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "cordova-plugin-statusbar": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-statusbar"
         },
         "is_top_level": true,
         "variables": {}
@@ -72,14 +40,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-splashscreen": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-splashscreen"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-globalization": {
         "source": {
             "type": "registry",
@@ -88,10 +48,50 @@
         "is_top_level": true,
         "variables": {}
     },
+    "cordova-plugin-device": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-device"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
     "cordova-plugin-inappbrowser": {
         "source": {
             "type": "registry",
             "id": "cordova-plugin-inappbrowser"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-splashscreen": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-splashscreen"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-statusbar": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-statusbar"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-bluetooth-serial": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-bluetooth-serial"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-whitelist": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-whitelist"
         },
         "is_top_level": true,
         "variables": {}
