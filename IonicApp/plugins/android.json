@@ -21,15 +21,15 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
                             "count": 1
                         },
                         {
                             "xml": "<feature name=\"Globalization\"><param name=\"android-package\" value=\"org.apache.cordova.globalization.Globalization\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
                             "count": 1
                         },
                         {
@@ -53,6 +53,10 @@
                         {
                             "xml": "<feature name=\"BluetoothSerial\"><param name=\"android-package\" value=\"com.megster.cordova.BluetoothSerial\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"BLE\"><param name=\"android-package\" value=\"com.megster.cordova.ble.central.BLECentralPlugin\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -62,11 +66,11 @@
                     "/manifest": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.BLUETOOTH\" />",
-                            "count": 1
+                            "count": 2
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.BLUETOOTH_ADMIN\" />",
-                            "count": 1
+                            "count": 2
                         }
                     ]
                 }
@@ -83,16 +87,19 @@
         "cordova-plugin-appinfo": {
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         },
+        "cordova-plugin-bluetooth-serial": {
+            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
+        },
         "cordova-plugin-console": {
+            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
+        },
+        "cordova-plugin-device": {
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         },
         "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         },
         "cordova-plugin-globalization": {
-            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
-        },
-        "cordova-plugin-device": {
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         },
         "cordova-plugin-inappbrowser": {
@@ -104,10 +111,10 @@
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         },
-        "cordova-plugin-bluetooth-serial": {
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         },
-        "cordova-plugin-whitelist": {
+        "cordova-plugin-ble-central": {
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         }
     },
