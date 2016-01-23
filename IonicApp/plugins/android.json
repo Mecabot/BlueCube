@@ -51,10 +51,6 @@
                     ],
                     "/widget": [
                         {
-                            "xml": "<feature name=\"BluetoothSerial\"><param name=\"android-package\" value=\"com.megster.cordova.BluetoothSerial\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"BLE\"><param name=\"android-package\" value=\"com.megster.cordova.ble.central.BLECentralPlugin\" /></feature>",
                             "count": 1
                         }
@@ -66,11 +62,11 @@
                     "/manifest": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.BLUETOOTH\" />",
-                            "count": 2
+                            "count": 1
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.BLUETOOTH_ADMIN\" />",
-                            "count": 2
+                            "count": 1
                         }
                     ]
                 }
@@ -85,9 +81,6 @@
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         },
         "cordova-plugin-appinfo": {
-            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
-        },
-        "cordova-plugin-bluetooth-serial": {
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         },
         "cordova-plugin-console": {

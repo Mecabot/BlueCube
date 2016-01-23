@@ -59,10 +59,6 @@
                     ],
                     "/widget": [
                         {
-                            "xml": "<feature name=\"BluetoothSerial\"><param name=\"ios-package\" onload=\"true\" value=\"MEGBluetoothSerial\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"BLE\"><param name=\"ios-package\" onload=\"true\" value=\"BLECentralPlugin\" /></feature>",
                             "count": 1
                         }
@@ -74,7 +70,7 @@
                     "CoreBluetooth.framework": [
                         {
                             "xml": false,
-                            "count": 2
+                            "count": 1
                         }
                     ],
                     "AudioToolbox.framework": [
@@ -101,9 +97,6 @@
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         },
         "cordova-plugin-appinfo": {
-            "PACKAGE_NAME": "ninja.secretcode.BlueCube"
-        },
-        "cordova-plugin-bluetooth-serial": {
             "PACKAGE_NAME": "ninja.secretcode.BlueCube"
         },
         "cordova-plugin-console": {
