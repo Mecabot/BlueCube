@@ -103,7 +103,7 @@ app.factory('$defaults', ['$localstorage', 'colourDefaults', 'appDefaults', 'sta
 }]);
 
 // Functions to specifically dealing with the cube
-app.factory('$cubeAction', ['$cordovaBluetoothSerial', 'HistoryService', '$ionicContentBanner', function($cordovaBluetoothSerial, HistoryService, $ionicContentBanner) {
+app.factory('$cubeAction', ['$cordovaBLE', 'HistoryService', '$ionicContentBanner', 'bleDefaults', '$localstorage', function($cordovaBLE, HistoryService, $ionicContentBanner, bleDefaults, $localstorage) {
 	return {
 		// lookupCoords: Turns the id number of a LED [1 to 64] to its XYZ coordinates
 		lookupCoords: function(id) {
@@ -341,11 +341,17 @@ app.factory('$cubeAction', ['$cordovaBluetoothSerial', 'HistoryService', '$ionic
 			// Tracks the banner we show when there is a error sending the message
 			var contentBannerInstance;
 
+			// Get the ID of the cube we are connected to
+			var bluecubeID = $localstorage.get('bluetoothUUID', '');
+
+		// Get the binary data to transmit
+		var data = this.stringToBytes(message);
+
 			// Check whether we are connected to the cube
-			$cordovaBluetoothSerial.isConnected().then(
+			$cordovaBLE.isConnected(bluecubeID).then(
 				function() {
 					// We are connected, so send the message
-					$cordovaBluetoothSerial.write(message).then(
+					$cordovaBLE.write(bluecubeID, bleDefaults.serviceUUID, bleDefaults.txCharacteristic, data).then(
 						function () {
 							// Message was successfully sent.
 							console.log(message + " sent");
@@ -382,6 +388,19 @@ app.factory('$cubeAction', ['$cordovaBluetoothSerial', 'HistoryService', '$ionic
 					});
 				}
 			);
+		},
+
+		stringToBytes: function(string) {
+			// Create an array that has the same length as the input string
+			var array = new Uint8Array(string.length);
+
+			// Convert each of the characters in the input string into their ASCII codes
+			for (var i = 0, l = string.length; i < l; i++) {
+				array[i] = string.charCodeAt(i);
+			}
+
+			// Return the binary representation of the array
+			return array.buffer;
 		}
 	};
 }]);
