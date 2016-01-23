@@ -947,57 +947,10 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBLE, $ion
 		}
 	});
 
-	// Track the interval for updating the signal strength
-	var rssiInterval = undefined;
-
-	// Get the Received Signal Strength Indicator of the bluetooth connection
-	$scope.getRSSI = function() {
-		$cordovaBluetoothSerial.isConnected().then(
-			function() {
-				// We are connected so get the RSSI
-				$cordovaBluetoothSerial.readRSSI().then(
-					function(rssi) {
-						// Make the RSSI available to the view
-						$scope.rssi = rssi;
-
-						// Convert the RSSI figure (-###) into a percentage so that we can use it
-						// to draw a "bar" indicating the signal strength, using a local
-						// implementation of the "map" function from the Arduino language
-						var rssiSize = (rssi - appDefaults.signalConsideredNoStrengthAt) * 100 / (appDefaults.signalConsideredFullStrengthAt - appDefaults.signalConsideredNoStrengthAt);
-
-						// Bound the rssiSize to 0 to 100.
-						if (parseInt(rssiSize) < 0) {
-							rssiSize = 0;
-						}
-
-						if (parseInt(rssiSize)  > 100) {
-							rssiSize = 100;
-						}
-
-						// Make the rssiSize available to the view
-						$scope.rssiSize = rssiSize;
-					},
-					function() {
-					}
-				);
-			},
-			function() {
-				// We aren't connected, so clear the RSSI value
-				$scope.rssi = undefined;
-
-				// Make sure the connect button is shown
-				$scope.showConnectButton(true);
-			}
-		);
-	};
-
 	// Function called just before this view is shown
 	$scope.$on('$ionicView.beforeEnter', function() {
 		// Check whether or not we are connected to the cube
 		$scope.checkConnected();
-
-		// Start getting the RSSI of the bluetooth connection every 1/2 second
-		rssiInterval = $interval($scope.getRSSI, 500);
 	});
 
 	// Function called just after a view is shown
@@ -1014,15 +967,6 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBLE, $ion
 				}
 			);
 		}
-	});
-
-	// Function called after we leave this view
-	$scope.$on('$ionicView.leave', function() {
-		// Stop getting the RSSI of the bluetooth connection
-		$interval.cancel(rssiInterval);
-
-		// Clear the last RSSI value
-		$scope.rssi = undefined;
 	});
 
 	$scope.autoConnectChanged = function() {
