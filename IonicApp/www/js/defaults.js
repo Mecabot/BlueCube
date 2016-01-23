@@ -29,6 +29,15 @@ app.constant('appDefaults', {
 	signalConsideredNoStrengthAt: -100,
 });
 
+// Bluetooth LE Characteristic and search time
+app.constant('bleDefaults', {
+	// Characteristics for the Nordic's UART Service as used by the Adafruit Bluefruit LE devices
+	serviceUUID: '6e400001-b5a3-f393-e0a9-e50e24dcca9e',
+	txCharacteristic: '6e400002-b5a3-f393-e0a9-e50e24dcca9e',	// transmit is from the phone's perspective
+	rxCharacteristic: '6e400003-b5a3-f393-e0a9-e50e24dcca9e',	// receive is from the phone's perspective
+	searchTime: 3	// seconds
+});
+
 // Default settings for Colours within the app
 app.constant('colourDefaults', {
 	// The default colour used for the colour picker if the user hasn't previously selected a
