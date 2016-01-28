@@ -102,7 +102,7 @@ void setup(void)
   // Tell the cube library that the function 'userFunctionHandler' should be
   // called if the user uses the 'user ### colour;' serial command line
   // instruction
-  setDelegate(userFunctionHandler);
+  cube.setDelegate(userFunctionHandler);
 
   /* Initialise the module */
   if (VERBOSE_MODE)
