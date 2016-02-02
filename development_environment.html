@@ -1,0 +1,780 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>development_environment</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">Development Environment</h1>
+
+<p>To give you the maximum flexibility, I have not published the apps into the app stores. Instead I&#39;ve provided the source code that you can modify and improve as you wish, and then deploy it to your own phone or tablet without needing to access the stores.</p>
+
+<p>To be able to build and deploy the app, you need to have the appropriate development environment setup. This page outlines how to setup this environment, assuming that none of the requirements have been previously installed. </p>
+
+<p>Where possible I accept the default values. This may result in options that we don&#39;t need being installed, but I prefer to have the &quot;standard&quot; environment setup.</p>
+
+<blockquote>
+<p>The following instructions were tested on Mac OS X 10.11 El Capitan, and Windows 10.</p>
+</blockquote>
+
+<h2 id="toc_1">Ionic Platform</h2>
+
+<p>The app is created using the <a href="http://ionicframework.com">Ionic Framework</a>. Ionic allows for the creation of &quot;hybrid&quot; applications that can be run on multiple platforms from a single code base of HTML 5, CSS and Javascript. Ionic leverages <a href="http://cordova.apache.org">Cordova</a> to support this code reuse across platforms, and the <a href="https://nodejs.org/en/">NodeJS</a> javascript runtime environment.</p>
+
+<p>To install Ionic, I followed the steps as outlined on the Ionic <a href="http://ionicframework.com/getting-started/">Getting Started</a> page (and added a step for <code>xml2js</code>). I&#39;ve listed the steps out below, but if you run into problems, follow the advice of that page.</p>
+
+<h3 id="toc_2">Instal Node.js</h3>
+
+<p>At the time of writing, Node.js v4.x.x is supported by Ionic, whereas the newer v5.x.x is not. As such we will install the version 4 LTS (Long Term Support) edition of Node.js.</p>
+
+<p>Visit <a href="https://nodejs.org/en/">NodeJS</a> homepage, and download the latest version 4 LTS edition that is appropriate for your platform. For this example it was v4.2.6 LTS</p>
+
+<h4 id="toc_3">OS X Install</h4>
+
+<ol>
+<li>Run the installer that was downloaded
+a. Click &quot;Continue&quot; on the &quot;Introduction&quot; screen
+b. Click &quot;Continue&quot; on the &quot;License&quot; screen
+c. Click &quot;Agree&quot; to accept the license agreement
+d. The standard install is ok, so just click &quot;Install&quot; on the &quot;Installation Type&quot; screen
+e. Enter the &quot;Username&quot; and &quot;Password&quot; of an administrator on the computer, and then click &quot;Install Software&quot;
+f. Click &quot;Close&quot; at the &quot;Summary&quot; screen</li>
+</ol>
+
+<h4 id="toc_4">Windows Install</h4>
+
+<ol>
+<li>Run the installer that was downloaded
+a. Click &quot;Next&quot; on the setup wizard welcome page
+b. Click &quot;I accept the terms in the License Agreement&quot; checkbox
+c. Click &quot;Next&quot;
+d. Accept the default install location and click &quot;Next&quot;
+e. Accept the defaults in the &quot;Custom Setup&quot;, and click &quot;Next&quot;
+f. Click &quot;Install&quot;
+g. Click &quot;Yes&quot; to allow this the &quot;User Account Control&quot; &quot;Do you want to allow this app to install software on your PC?&quot; dialog
+h. Click &quot;Finish&quot;</li>
+</ol>
+
+<p>Node.js should now be installed.</p>
+
+<h3 id="toc_5">Instal Cordova</h3>
+
+<p>To install Cordova, we use <code>npm</code> via the command line. <code>npm</code> was installed as part of the Node.js installation.</p>
+
+<p>Information on Cordova can be found on it&#39;s <a href="https://cordova.apache.org/">website</a>.</p>
+
+<h4 id="toc_6">OS X Install</h4>
+
+<ol>
+<li>Start &quot;Terminal&quot; from &quot;Applications&quot; -&gt; &quot;Utilities&quot;</li>
+<li>Run <code>sudo npm install -g cordova</code></li>
+<li>Enter your administrator password when prompted</li>
+</ol>
+
+<h4 id="toc_7">Windows install</h4>
+
+<ol>
+<li>Start &quot;Command Prompt&quot; hitting &quot;Windows&quot; + &quot;R&quot; keys, then typing <code>cmd</code></li>
+<li>Run <code>npm install -g cordoca</code></li>
+</ol>
+
+<p>Cordova should now be installed.</p>
+
+<h3 id="toc_8">Install Ionic</h3>
+
+<p>To install Ionic, we use <code>npm</code> via the command line. <code>npm</code> was installed as part of the Node.js installation.</p>
+
+<p>Information on Cordova can be found on it&#39;s <a href="http://ionic.io/">website</a>.</p>
+
+<h4 id="toc_9">OS X Install</h4>
+
+<ol>
+<li>Start &quot;Terminal&quot; from &quot;Applications&quot; -&gt; &quot;Utilities&quot;</li>
+<li>Run <code>sudo npm install -g ionic</code></li>
+<li>Enter your administrator password when prompted</li>
+<li>Run <code>ionic</code></li>
+<li>You will be prompted to say that &quot;xcodebuild&quot; command requires the command line developer tools. Click &quot;Install&quot; to install these tools.</li>
+<li>Click &quot;Agree&quot; to the license agreement</li>
+</ol>
+
+<h4 id="toc_10">Windows install</h4>
+
+<ol>
+<li>Start &quot;Command Prompt&quot; hitting &quot;Windows&quot; + &quot;R&quot; keys, then typing <code>cmd</code></li>
+<li>Run <code>npm install -g ionic</code></li>
+</ol>
+
+<p>Ionic should now be installed.</p>
+
+<h4 id="toc_11">Install XML2JS</h4>
+
+<p>To install xml2js, we use <code>npm</code> via the command line. <code>npm</code> was installed as part of the Node.js installation.</p>
+
+<p>xml2js is used to allow a build script within the BlueCube project to modify the config.xml file.</p>
+
+<h4 id="toc_12">OS X Install</h4>
+
+<ol>
+<li>Start &quot;Terminal&quot; from &quot;Applications&quot; -&gt; &quot;Utilities&quot;</li>
+<li>Run <code>sudo npm install -g xml2js</code></li>
+<li>Enter your administrator password when prompted</li>
+</ol>
+
+<h4 id="toc_13">Windows install</h4>
+
+<ol>
+<li>Start &quot;Command Prompt&quot; hitting &quot;Windows&quot; + &quot;R&quot; keys, then typing <code>cmd</code></li>
+<li>Run <code>npm install -g xml2js</code></li>
+</ol>
+
+<p>xml2js should now be installed.</p>
+
+<h2 id="toc_14">iOS Support (OS X Only)</h2>
+
+<p>To be able to build and deploy iOS applications, you need to install additional components. If you don&#39;t plan on building the iOS version of BlueCube, you can skip this section. I&#39;ve installed the items mentioned on the <a href="http://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html">Cordova iOS Platform Guide</a>. If you encounter any problems please refer to this link.</p>
+
+<h3 id="toc_15">Install Xcode</h3>
+
+<p><a href="https://developer.apple.com/xcode/">Xcode</a> is Apple&#39;s Integrated Development Environment (IDE) for iOS Development.</p>
+
+<ol>
+<li>Visit the <a href="https://itunes.apple.com/us/app/xcode/id497799835?ls=1&amp;mt=12">XCode</a> page within the Mac App Store.</li>
+<li>Click on &quot;Get&quot;</li>
+<li>Click on &quot;Install App&quot;</li>
+<li>If prompted, enter your AppleID and password, then click &quot;Sign In&quot;</li>
+<li>If two factor authentication is on, select the device to verify your identity and click &quot;Continue&quot;
+a. Enter the verification code</li>
+</ol>
+
+<p>Xcode will now download into your &quot;Applications&quot; folder. Please note that depending on your connection speed this may take a little while.</p>
+
+<ol>
+<li>Once Downloaded, launch Xcode via &quot;Applications&quot; -&gt; &quot;Xcode&quot;</li>
+<li>Agree to the &quot;Xcode and iOS SDK License Agreement&quot;</li>
+<li>Enter your administrator &quot;Username&quot; and &quot;Password&quot; then click &quot;OK&quot;</li>
+</ol>
+
+<p>Xcode is now installed</p>
+
+<h3 id="toc_16">Install iOS-Sim</h3>
+
+<p>iOS-Sim allows you to work with the iOS Emulator from the Cordova / Ionic command line tools.</p>
+
+<ol>
+<li>Start &quot;Terminal&quot; from &quot;Applications&quot; -&gt; &quot;Utilities&quot;</li>
+<li>Run <code>sudo npm install -g ios-sim</code></li>
+<li>Enter your administrator password when prompted</li>
+</ol>
+
+<p>iOS-Sim is now installed</p>
+
+<h3 id="toc_17">Install iOS-Deploy</h3>
+
+<p>iOS-Deploy allows you to work with the iOS devices from the Cordova / Ionic command line tools.</p>
+
+<ol>
+<li>Start &quot;Terminal&quot; from &quot;Applications&quot; -&gt; &quot;Utilities&quot;</li>
+<li>Run <code>sudo npm install -g ios-deploy --unsafe-perm=true --allow-root</code></li>
+<li>Enter your administrator password when prompted</li>
+</ol>
+
+<p>iOS-Deploy is now installed</p>
+
+<h2 id="toc_18">Android Support</h2>
+
+<p>To be able to build and deploy Android applications, you need to install additional components. If you don&#39;t plan on building the Android version of BlueCube, you can skip this section. I&#39;ve installed the items mentioned on the <a href="http://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html">Cordova Android Platform Guide</a>. If you encounter any problems please refer to this link.</p>
+
+<h3 id="toc_19">Java Development Kit</h3>
+
+<p>Android applications are written in the Java programming language, and as such require the Java Development Kit (JDK) installed (please note that this is different then the typically installed Java Runtime Environment (JRE)).</p>
+
+<h4 id="toc_20">OS X</h4>
+
+<ol>
+<li>Visit the <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html">Java Development Kit website</a></li>
+<li>Accept the license agreement</li>
+<li>Download the <a href="http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-macosx-x64.dmg">Mac OS X x64</a> installer</li>
+<li>Run the downloaded installer
+a. Click &quot;Continue&quot; on the &quot;Introduction&quot; screen
+b. Click &quot;Install&quot; on the &quot;Installation Type&quot; screen
+c. Enter the &quot;Username&quot; and &quot;Password&quot; of an administrator on the computer, and then click &quot;Install Software&quot;
+d. Click &quot;Close&quot; on the &quot;Summary&quot; screen</li>
+</ol>
+
+<h4 id="toc_21">Windows</h4>
+
+<ol>
+<li>Visit the <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html">Java Development Kit website</a></li>
+<li>Accept the licence agreement</li>
+<li>Download the appropriate installer (<a href="http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-windows-i586.exe">Windows x86</a> or <a href="http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-windows-i586.exe">Windows x64</a>)</li>
+<li>Run the downloaded installer
+a. Click &quot;Yes&quot; to allow this the &quot;User Account Control&quot; &quot;Do you want to allow this app to install software on your PC?&quot; dialog
+b. Click &quot;Next&quot; to start the install wizard
+c. The default install options are fine, so click &quot;Next&quot;
+d. The default install location is fine, so click &quot;Next&quot;
+e. Click &quot;Close&quot;</li>
+</ol>
+
+<p>The Java Development Kit is now installed, however we need to add an environment variable to it&#39;s location. To do that:-</p>
+
+<ol>
+<li>Click on the &quot;Start&quot; menu</li>
+<li>Type &quot;Environment&quot;</li>
+<li>Click on &quot;Edit the system environment variables&quot;</li>
+<li>Click on &quot;Environment Variables...&quot; on the &quot;Advanced&quot; tab of the &quot;System Properties&quot; window that opened</li>
+<li>Click &quot;New...&quot;
+a. Variable Name: JAVA<em>HOME
+b. Variable Value:  C:\Program Files\Java\jdk1.7.0</em>79
+    i. It&#39;s best to click &quot;Browse Directory...&quot; and find where the JDK was installed, ad the location maybe different then the one I have specified</li>
+<li>Click &quot;OK&quot; to set the new variable</li>
+<li>Click &quot;OK&quot; to close the &quot;Environment Variables&quot;</li>
+<li>Click &quot;OK&quot; to close &quot;System Properties&quot;</li>
+</ol>
+
+<h3 id="toc_22">Android Studio</h3>
+
+<p><a href="http://developer.android.com/develop/index.html">Android Studio</a> is Google&#39;s Integrated Development Environment (IDE) for Android development.</p>
+
+<h4 id="toc_23">OS X</h4>
+
+<ol>
+<li>http://developer.android.com/sdk/index.html</li>
+<li>Accept Licence Agreement and Download</li>
+<li>Open the downloaded disk image</li>
+<li>Drag Android Studio into the &quot;Applications&quot; folder</li>
+<li>Run &quot;Android Studio&quot; from the &quot;Applications&quot; folder</li>
+<li>When prompted, click &quot;Open&quot; to allow Android Studio to run as it was downloaded from the internet</li>
+<li>On the &quot;Complete Installation&quot; screen, select &quot;I do not have a previous version of Studio or I do not want to import my settings&quot;</li>
+<li>Click &quot;Next&quot; on the welcome screen</li>
+<li>Ensure &quot;Standard&quot; is selected on the &quot;Install Type&quot; screen and click &quot;Next&quot;</li>
+<li>Verify the selected settings and click &quot;Finish&quot;, taking note of the &quot;Destination Folder&quot;.</li>
+</ol>
+
+<p>The installer will now download additional items that are required. This may take a while.</p>
+
+<ol>
+<li>Click &quot;Finish&quot; when the install is complete. If the &quot;HAXM&quot; installation fails, don&#39;t worry about it. &quot;HAXM&quot; is used for speeding up the emulator, but we don&#39;t use the emulator for this app.</li>
+</ol>
+
+<p>Android Studio is now running</p>
+
+<ol>
+<li>Quit Android Studio</li>
+</ol>
+
+<p>We need to add the location of the Android tools to the <code>PATH</code> environment variable so that Cordova / Ionic can use them. To do this:-</p>
+
+<ol>
+<li>Start &quot;Terminal&quot; from &quot;Applications&quot; -&gt; &quot;Utilities&quot;</li>
+<li>Run <code>pico -w ~/.bash_profile</code></li>
+<li>Add <code>export PATH=${PATH}:/Users/&lt;user&gt;/Library/Android/sdk/platform-tools:/Users/&lt;user&gt;/Library/Android/sdk/tools</code> to the file
+a. If you didn&#39;t change the install path, then the above will just need you to replace <code>&lt;user&gt;</code> with your short user name (the value before the $ sign in terminal). If you changed the install location, use the location that was specified in &quot;Destination Folder&quot; during step 10, replacing the text upto <code>platform-tools</code> and <code>tools</code></li>
+<li>Hit <code>Ctrl+O</code> then enter key to save the file</li>
+<li>Hit <code>Ctrl+X</code> to exit</li>
+<li>Run <code>source ~/.bash_profile</code></li>
+</ol>
+
+<h4 id="toc_24">Windows</h4>
+
+<ol>
+<li>http://developer.android.com/sdk/index.html</li>
+<li>Accept Licence Agreement and Download</li>
+<li>Run the downloaded installer</li>
+<li>Click &quot;Yes&quot; to allow this the &quot;User Account Control&quot; &quot;Do you want to allow this app to install software on your PC?&quot; dialog</li>
+<li>Click &quot;Next&quot; on the &quot;Welcome&quot; screen</li>
+<li>The default components are fine, so click &quot;Next&quot;</li>
+<li>Click &quot;I Agree&quot; to the licence agreement</li>
+<li>The default install locations are ok, so click &quot;Next&quot; (take note of the Android SDK Installation Location)</li>
+<li>The default emulator setup settings are ok, so click &quot;Next&quot;</li>
+<li>The default start menu folder is ok, so click &quot;Install&quot;, and wait for it to finish.</li>
+<li>Click &quot;Next&quot; once the installation is complete</li>
+<li>Uptick &quot;Start Android Studio&quot; and then click &quot;Finish&quot;</li>
+</ol>
+
+<p>We need to add the location of the Android tools to the <code>PATH</code> environment variable so that Cordova / Ionic can use them. To do this:-</p>
+
+<ol>
+<li>Click on the &quot;Start&quot; menu</li>
+<li>Type &quot;Path&quot;</li>
+<li>Click on &quot;Edit the system environment variables&quot;</li>
+<li>Click on &quot;Environment Variables...&quot; on the &quot;Advanced&quot; tab of the &quot;System Properties&quot; window that opened</li>
+<li>Select &quot;PATH&quot; and click &quot;Edit...&quot;</li>
+<li>Add <code>;C:\Android\sdk\platform-tools;C:\Android\sdk\tools</code> to the end of what is already there
+a. If you didn&#39;t change the install path, then the above will be fine. If you changed the install location, use the location that was specified in &quot;Android SDK Installation Location&quot; during step 8, replacing the text upto <code>platform-tools</code> and <code>tools</code></li>
+<li>Click &quot;OK&quot; to set the PATH variable</li>
+<li>Click &quot;OK&quot; to close the &quot;Environment Variables&quot;</li>
+<li>Click &quot;OK&quot; to close &quot;System Properties&quot;</li>
+</ol>
+
+<h3 id="toc_25">Android SDK</h3>
+
+<p>The Android SDK contains the required components to develop Android applications against particular API&#39;s (Android versions).</p>
+
+<h4 id="toc_26">iOS</h4>
+
+<ol>
+<li>Start &quot;Terminal&quot; from &quot;Applications&quot; -&gt; &quot;Utilities&quot;</li>
+<li>Run <code>android</code>
+a. When the &quot;Android SDK Manager&quot; loads, it will check for any updates, and most likely find some. This is ok. We will install these updates in addition to the items we require.</li>
+<li>Expand &quot;Android 5.1.1 (API 22)&quot;</li>
+<li>Click the check box next to &quot;SDK Platform&quot; under &quot;Android 5.1.1 (API 22)&quot;</li>
+<li>Click &quot;Install # Packages&quot; to install that package and any updates that are available</li>
+<li>Select a package on the left, then click &quot;Accept License&quot; on the right
+&amp;. Click &quot;Install&quot;</li>
+</ol>
+
+<h4 id="toc_27">Windows</h4>
+
+<ol>
+<li>Start &quot;Command Prompt&quot; hitting &quot;Windows&quot; + &quot;R&quot; keys, then typing <code>cmd</code></li>
+<li>Run <code>android</code></li>
+<li>Expand &quot;Android 5.1.1 (API 22)&quot;</li>
+<li>Click the check box next to &quot;SDK Platform&quot; under &quot;Android 5.1.1 (API 22)&quot;</li>
+<li>Click &quot;Install # Packages&quot; to install any updates that are available</li>
+<li>Select a package on the left, then click &quot;Accept License&quot; on the right</li>
+<li>Click &quot;Install&quot;</li>
+</ol>
+
+<h2 id="toc_28">Arduino</h2>
+
+<p>The cube is programmed using the Arduino toolset. It is likely that you will have already setup the Arduino environment, but for the sake of completeness, the following are the steps that I&#39;ve used.</p>
+
+<h3 id="toc_29">Arduino IDE</h3>
+
+<p>The <a href="https://www.arduino.cc">Arduino IDE</a> is used to create sketches that are uploaded to the Cube.</p>
+
+<h4 id="toc_30">OS X</h4>
+
+<ol>
+<li>Visit the Arduino IDE <a href="https://www.arduino.cc/en/Main/Software">Download Page</a>, and download the latest version available for Mac OS X</li>
+<li>Click &quot;Just Download&quot;</li>
+<li>Once the download is complete, drag the &quot;Arduino&quot; application into the Applications folder</li>
+<li>Double click on &quot;Arduino&quot; from the Applications folder</li>
+<li>Select &quot;Open&quot; on the dialog that asks you if you are sure you want to open it</li>
+<li>Quit &quot;Arduino&quot;</li>
+</ol>
+
+<h4 id="toc_31">Windows</h4>
+
+<ol>
+<li>Visit the Arduino IDE <a href="https://www.arduino.cc/en/Main/Software">Download Page</a>, and download the latest version available for Windows (I use the Installer version, not the ZIP one).</li>
+<li>Click &quot;Just Download&quot;</li>
+<li>Once downloaded, run the installer
+a. Click &quot;Yes&quot; to allow this the &quot;User Account Control&quot; &quot;Do you want to allow this app to install software on your PC?&quot; dialog
+b. Click &quot;I Agree&quot; to the license agreement
+c. Accept the defaults to be installed, and click &quot;Next&quot;
+d. Accept the default installation folder, and click &quot;Install&quot;
+e. Click &quot;Install&quot; on the window asking you if you wish to install the USB driver
+f. Click &quot;Install&quot; on the window asking you to install the second USB driver
+g. Click &quot;Close</li>
+<li>Start the &quot;Arduino&quot; application, either from the icon on the desktop, or from the Start Menu</li>
+<li>Quit &quot;Arduino&quot;</li>
+</ol>
+
+<h3 id="toc_32">Freetronics Board Profile</h3>
+
+<p>While not specifically required, installing the board profile (and driver on Windows) makes working with the Cube easier.</p>
+
+<h4 id="toc_33">OS X</h4>
+
+<ol>
+<li>Download the latest LeoStick (which is the basis of the Cube) board profile from <a href="https://github.com/freetronics/LeoStickBoardProfile/archive/master.zip">here</a></li>
+<li>Unzip the file by double clicking on it if it didn&#39;t unzip automatically on download</li>
+<li>In your Documents folder, there will be an &quot;Arduino&quot;, create a new folder in it called &quot;hardware&quot;</li>
+<li>Move the &quot;LeoStickBoardProfile-master&quot; folder that was extracted at step 2 into the new &quot;hardware&quot; folder</li>
+</ol>
+
+<h4 id="toc_34">Windows</h4>
+
+<ol>
+<li>Download the latest LeoStick (which is the basis of the Cube) board profile from <a href="https://github.com/freetronics/LeoStickBoardProfile/archive/master.zip">here</a></li>
+<li>Unzip the file by double clicking on it if it didn&#39;t unzip automatically on download</li>
+<li>In your Documents folder, there will be an &quot;Arduino&quot;, create a new folder in it called &quot;hardware&quot;</li>
+<li>Move the &quot;LeoStickBoardProfile-master&quot; folder that was extracted at step 2 into the new &quot;hardware&quot; folder. Make sure that you are moving the &quot;LeoStickBoardProfile-master&quot; folder that contains a series of files, not another folder called &quot;LeoStickBoardProfile-master&quot;.</li>
+</ol>
+
+<p>Additionally there is a driver for Windows that while not required on Windows 10, will help identify the cube. To install the driver:-</p>
+
+<ol>
+<li>Download it from <a href="https://cdn.shopify.com/s/files/1/0045/8932/files/FreetronicsUSBDrivers_v2_2.zip">here</a>, and extract the ZIP</li>
+<li>Right click on &quot;FreetronicsUSB<em>v2</em>2&quot; and click &quot;Install&quot;</li>
+<li>Click &quot;Open&quot; on the dialog asking whether to &quot;open this file?&quot;
+a. Click &quot;Yes&quot; to allow this the &quot;User Account Control&quot; &quot;Do you want to allow this app to install software on your PC?&quot; dialog</li>
+<li>Click &quot;Install&quot; when asked &quot;would you like to install this device software?&quot;</li>
+<li>Click &quot;OK&quot; when the &quot;Operation completed successfully&quot; screen is shown</li>
+</ol>
+
+<h3 id="toc_35">Cube Library</h3>
+
+<p>The cube library provides the API that is used for instructing the cube to preform different actions.</p>
+
+<h4 id="toc_36">OS X</h4>
+
+<ol>
+<li>Visit the <a href="https://github.com/freetronics/Cube4">Cube Library</a> page on Github.</li>
+<li>Click the &quot;Download ZIP&quot; button</li>
+<li>Unzip the file by double clicking on it if it didn&#39;t unzip automatically on download</li>
+<li>In your Documents folder, there will be an &quot;Arduino&quot;, create a new folder in it called &quot;libraries&quot;</li>
+<li>Move the unzipped &quot;Cube4-master&quot; folder that was extracted in step 3 into the libraries folder that was just created</li>
+<li>Rename the folder to &quot;Cube4&quot;</li>
+</ol>
+
+<h4 id="toc_37">Windows</h4>
+
+<ol>
+<li>Visit the <a href="https://github.com/freetronics/Cube4">Cube Library</a> page on Github.</li>
+<li>Click the &quot;Download ZIP&quot; button</li>
+<li>Unzip the file by double clicking on it if it didn&#39;t unzip automatically on download</li>
+<li>In your Documents folder, there will be an &quot;Arduino&quot;, create a new folder in it called &quot;libraries&quot;</li>
+<li>Move the unzipped &quot;Cube4-master&quot; folder that was extracted in step 3 into the libraries folder that was just created. Make sure that you are moving the &quot;Cube4-master&quot; folder that contains a series of files, not another folder called &quot;Cube4-master&quot;.</li>
+<li>Rename the folder to &quot;Cube4&quot;</li>
+</ol>
+
+<h3 id="toc_38">Cube4_ARUtils Library</h3>
+
+<h3 id="toc_39">Cube Library</h3>
+
+<p>The cube library provides the API that is used for instructing the cube to preform different actions.</p>
+
+<h4 id="toc_40">OS X</h4>
+
+<ol>
+<li>Visit the <a href="https://github.com/neographophobic/Cube4_ARUtils">Cube4_ARUtils Library</a> page on Github.</li>
+<li>Click the &quot;Download ZIP&quot; button</li>
+<li>Unzip the file by double clicking on it if it didn&#39;t unzip automatically on download</li>
+<li>Move the unzipped &quot;Cube4_ARUtils-master&quot; folder that was extracted in step 3 into your Documents -&gt; Arduino -&gt; libraries folder.</li>
+<li>Rename the folder to &quot;Cube4_ARUtils&quot;</li>
+</ol>
+
+<h4 id="toc_41">Windows</h4>
+
+<ol>
+<li>Visit the <a href="https://github.com/neographophobic/Cube4_ARUtils">Cube4_ARUtils Library</a> page on Github.</li>
+<li>Click the &quot;Download ZIP&quot; button</li>
+<li>Unzip the file by double clicking on it if it didn&#39;t unzip automatically on download</li>
+<li>Move the unzipped &quot;Cube4<em>ARUtils-master&quot; folder that was extracted in step 3 into your Documents -&gt; Arduino -&gt; libraries folder. Make sure that you are moving the &quot;Cube4</em>ARUtils-master&quot; folder that contains a series of files, not another folder called &quot;Cube4_ARUtils-master&quot;.</li>
+<li>Rename the folder to &quot;Cube4_ARUtils&quot;</li>
+</ol>
+
+<h2 id="toc_42">Other Tools</h2>
+
+<p>In addition to the above requirements, I find that there are some optional tools that make development easier. These tools are listed below:-</p>
+
+<h3 id="toc_43">OS X</h3>
+
+<ul>
+<li><a href="http://www.barebones.com/products/textwrangler/">TextWrangler</a> is a free text editor from <a href="http://www.barebones.com">Bare Bones Software</a>.</li>
+<li><a href="https://www.sourcetreeapp.com">SourceTree</a> is a free graphical front end to Git from <a href="https://www.atlassian.com">Atlassian</a>.</li>
+</ul>
+
+<h3 id="toc_44">Windows</h3>
+
+<ul>
+<li><a href="https://notepad-plus-plus.org">Notepad++</a> is a free text editor.</li>
+<li><a href="http://www.git-scm.com/">Git</a> is a free version control system tool. I&#39;ve used Git during the development of BlueCube.</li>
+<li><a href="https://www.sourcetreeapp.com">SourceTree</a> is a free graphical front end to Git from <a href="https://www.atlassian.com">Atlassian</a>.</li>
+</ul>
+
+
+</body>
+
+</html>
