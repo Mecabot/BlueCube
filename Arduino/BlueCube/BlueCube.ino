@@ -21,9 +21,10 @@
                               "HWUART"  or "SPI"  or "MANUAL"
 
     - Patterns (All delays in milliseconds)
+    COLOURPULSE_INCREMENT     Amount brightness is changed by
+    COLOURPULSE_DELAY         Delay between the change in colour brightness
+    WAVE_DELAY                Delay between the movements in the wave
     ZIGZAG_DELAY              Delay between ZigZag movemements
-    RANDOM_COLOURS_DELAY      Delay before randomly setting the next colour
-    FACESWEEP_DELAY           Delay between the movements in the animation
 ============================================================================ */
 // General Defines
 #define SCRIPT_VERSION              "0.8"
@@ -36,18 +37,20 @@
 #define MODE_LED_BEHAVIOUR          "MODE"
 
 // Pattern Defines
+#define COLOURPULSE_INCREMENT       5
+#define COLOURPULSE_DELAY           50
+#define WAVE_DELAY                  100
 #define ZIGZAG_DELAY                300
-#define RANDOM_COLOURS_DELAY        2
-#define FACESWEEP_DELAY             100
+
 /*========================================================================== */
 
 // Include for Cube Library
 #include "Cube.h"
 
 // Includes for Cube Patterns
+#include "ColourPulse.h"
+#include "Wave.h"
 #include "ZigZag.h"
-#include "RandomColours.h"
-#include "FaceSweep.h"
 
 // Inclueds required for the Bluetooth Connectivity
 #include <SPI.h>
@@ -69,9 +72,9 @@ Adafruit_BluefruitLE_UART ble(BLUEFRUIT_HWSERIAL_NAME, BLUEFRUIT_UART_MODE_PIN);
 Bluetooth bluetooth(&ble, BLE_READPACKET_TIMEOUT);
 
 // Patterns
+ColourPulse colourpulse(cube, COLOURPULSE_INCREMENT, COLOURPULSE_DELAY);
+Wave wave(cube, WAVE_DELAY);
 ZigZag zigzag(cube, ZIGZAG_DELAY);
-RandomColours randomColours(cube, RANDOM_COLOURS_DELAY);
-FaceSweep facesweep(cube, FACESWEEP_DELAY);
 
 void setup(void)
 {
@@ -163,19 +166,13 @@ void loop(void)
     switch (action)
     {
       case 1:
-        zigzag.update(theColour);
+        colourpulse.update(theColour);
         break;
       case 2:
-        randomColours.pastels();
+        wave.update(theColour);
         break;
       case 3:
-        randomColours.allColours();
-        break;
-      case 4:
-        randomColours.primary();
-        break;
-      case 5:
-        facesweep.update();
+        zigzag.update(theColour);
         break;
     }
   }
@@ -201,19 +198,13 @@ void userFunctionHandler(int itemID, rgb_t selectedColour)
   switch (action)
   {
     case 1:
-      serial->println("ZigZag");
+      serial->println("Colour Pulse");
       break;
     case 2:
-      serial->println("Random Pastels");
+      serial->println("Wave");
       break;
     case 3:
-      serial->println("Random Colours");
-      break;
-    case 4:
-      serial->println("Random Primaries");
-      break;
-    case 5:
-      serial->println("Face Sweep");
+      serial->println("Zig Zag");
       break;
   }
 }

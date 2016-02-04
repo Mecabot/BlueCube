@@ -235,49 +235,35 @@ app.constant('userDefinedFunctionsDefaults', {
 	userDefinedFunctions:	[
 								{
 									id: 0,
-									name: "ZigZag Blue",
+									name: "Pulse Blue",
 									number: 1,
 									colourRequired: true,
 									colour: "0000ff",
 								},
 								{
 									id: 1,
-									name: "ZigZag Green",
+									name: "Pulse Green",
 									number: 1,
 									colourRequired: true,
 									colour: "00ff00",
 								},
 								{
 									id: 2,
-									name: "Random Pastels",
+									name: "Wave",
 									number: 2,
-									colourRequired: false,
-									colour: "",
+									colourRequired: true,
+									colour: "fc00ff",
 								},
 								{
 									id: 3,
-									name: "Random Colours",
+									name: "ZigZag",
 									number: 3,
-									colourRequired: false,
-									colour: "",
-								},
-								{
-									id: 4,
-									name: "Random Primary Colours",
-									number: 4,
-									colourRequired: false,
-									colour: "",
-								},
-								{
-									id: 5,
-									name: "Face Sweep",
-									number: 5,
-									colourRequired: false,
-									colour: "",
+									colourRequired: true,
+									colour: "b7ff00",
 								}
 							],
 
 	// To ensure that each user defined function has a unique ID, we store the next ID that should
-	// be used. It's 6 because we have 5 user defined functions above already defined.
-	userDefinedFunctionsNextIndex: 6,
+	// be used. It's 4 because we have 3 user defined functions above already defined.
+	userDefinedFunctionsNextIndex: 4,
 });
