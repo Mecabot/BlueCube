@@ -224,3 +224,8 @@
 		text-decoration: none !important;
 		vertical-align: center;
 	}
+	
+	.alphalist {
+		list-style-type: lower-alpha;
+	}
+	
