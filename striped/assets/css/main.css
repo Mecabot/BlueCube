@@ -1588,6 +1588,7 @@
 		font-family: 'Open Sans Condensed', sans-serif;
 		font-weight: 700;
 		color: #232323;
+		line-height: 1.2em;
 	}
 
 	h1 a, h2 a, h4 a, h5 a, h6 a {
@@ -2209,14 +2210,6 @@
 				line-height: 1.75em;
 			}
 
-			h1, h2 {
-				font-size: 1.2em;
-			}
-
-			h3, h4, h5, h6 {
-				font-size: 1em;
-			}
-
 		/* Button */
 
 			input[type="button"],
@@ -2355,12 +2348,27 @@
 				font-size: 12pt;
 			}
 
-		/* Box */
-
-			.box.post h1, h2 {
-				font-size: 3.25em;
-				line-height: 1.25em;
+			h1 {
+				font-size: 3.4em;
 			}
+
+			h2 {
+				font-size: 2.9em;
+			}
+
+			h3 {
+				font-size: 2.4em;
+			}
+
+			h4 {
+				font-size: 1.9em;
+			}
+
+			h5, h6 {
+				font-size: 1.4em;
+			}
+
+		/* Box */
 
 			.box.post header {
 				padding: 1em 0 0 0;
@@ -2466,13 +2474,28 @@
 			input, textarea, select {
 				font-size: 11pt;
 			}
-
-		/* Box */
-
-			.box.post h1 h2 {
-				font-size: 3.25em;
-				line-height: 1.25em;
+			
+			h1 {
+				font-size: 3em;
 			}
+
+			h2 {
+				font-size: 2.6em;
+			}
+
+			h3 {
+				font-size: 2.2em;
+			}
+
+			h4 {
+				font-size: 1.8em;
+			}
+
+			h5, h6 {
+				font-size: 1.4em;
+			}
+			
+		/* Box */
 
 			.box.post header {
 				padding: 0.5em 0 0 0;
@@ -2594,9 +2617,25 @@
 				font-size: 11pt;
 				letter-spacing: 0;
 			}
+			
+			h1 {
+				font-size: 2.6em;
+			}
 
-			h1, h2, h3, h4, h5, h6 {
-				font-size: 1.5em;
+			h2 {
+				font-size: 2.3em;
+			}
+
+			h3 {
+				font-size: 2.0em;
+			}
+
+			h4 {
+				font-size: 1.7em;
+			}
+
+			h5, h6 {
+				font-size: 1.4em;
 			}
 
 			hr.blue {
