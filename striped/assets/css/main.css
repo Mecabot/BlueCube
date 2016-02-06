@@ -1616,6 +1616,7 @@
 		border: none;
 		border-top: none;
 		background: #1c3880;
+		padding: .5em 0 0 0;
 		margin: 1.75em 0 1.75em 0;
 		border-radius: 7px;
 	}
