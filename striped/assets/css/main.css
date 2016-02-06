@@ -1612,6 +1612,14 @@
 		margin: 1.75em 0 0 0;
 	}
 
+	hr.blue {
+		border: none;
+		border-top: none;
+		background: #1c3880;
+		margin: 1.75em 0 1.75em 0;
+		border-radius: 7px;
+	}
+
 	sub {
 		position: relative;
 		top: 0.5em;
@@ -2539,6 +2547,10 @@
 				font-size: 14pt;
 			}
 
+			hr.blue {
+				padding: 0.75em 0 0 0;
+			}
+
 		/* Logo */
 
 			#logo {
@@ -2585,6 +2597,10 @@
 
 			h1, h2, h3, h4, h5, h6 {
 				font-size: 1.5em;
+			}
+
+			hr.blue {
+				padding: 0.75em 0 0 0;
 			}
 
 		/* Section/Article */
