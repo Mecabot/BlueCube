@@ -153,6 +153,7 @@
 	code, pre {
 		font-family: monospace;
 		color: black;
+		display: inline;
 	}
 
     .justify {
