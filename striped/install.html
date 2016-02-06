@@ -1,0 +1,225 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<!-- Basic Page Needs
+	================================================== -->
+	<title>BlueCube - Install</title>
+	<meta charset="utf-8" />
+
+	<!-- Mobile Specific Metas
+	================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- CSS
+	================================================== -->
+	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+</head>
+
+<body>
+	<!-- Content -->
+	<div id="content">
+		<div class="inner">
+
+			<section class="box post">
+				<header>
+					<h1>Install</h1>
+					<hr class="blue">
+				</header>
+
+				<blockquote>
+					<p>Tip: When moving an extracted folder, make sure that you are moving the folder containing the files, not just a folder that contains another folder called the same thing.</p>
+				</blockquote>
+				<a name="arduino"></a>
+			</section>
+
+			<section class="box post">
+				<header>
+					<h3>Arduino</h3>
+				</header>
+				<p>The Cube is programmed using the Arduino toolset. It is likely that you will have already setup the Arduino environment, but you will probably require additional libraries.</p>
+
+				<h4>IDE</h4>
+				<p>The <a href="https://www.arduino.cc">Arduino IDE</a> is used to create sketches that are uploaded to the Cube.
+				<ol class="default">
+					<li>Visit the Arduino IDE <a href="https://www.arduino.cc/en/Main/Software">Download Page</a>, and download the latest version available for your operating system</li>
+					<li>Click &quot;Just Download&quot;</li>
+				</ol>
+				
+				<h5>On a Mac</h5>
+				<ol class="default">
+					<li>Once the download is complete, drag the &quot;Arduino&quot; application into the Applications folder</li>
+					<li>Double click on &quot;Arduino&quot; from the Applications folder</li>
+					<li>Select &quot;Open&quot; on the dialog that asks you if you are sure you want to open it</li>
+					<li>Quit &quot;Arduino&quot;</li>
+				</ol>
+
+				<h5>On a Windows PC</h5>
+				<ol class="default">
+					<li>Once downloaded, run the installer
+						<ol class="default alphalist">
+							<li>Click &quot;Yes&quot; to allow this the &quot;User Account Control&quot; &quot;Do you want to allow this app to install software on your PC?&quot; dialog</li>
+							<li>Click &quot;I Agree&quot; to the license agreement</li>
+							<li>Accept the defaults to be installed, and click &quot;Next&quot;</li>
+							<li>Accept the default installation folder, and click &quot;Install&quot;</li>
+							<li>Click &quot;Install&quot; on the window asking you if you wish to install the USB driver</li>
+							<li>Click &quot;Install&quot; on the window asking you to install the second USB driver</li>
+							<li>Click &quot;Close</li>
+						</ol>
+					</li>
+					<li>Start the &quot;Arduino&quot; application, either from the icon on the desktop, or from the Start Menu</li>
+					<li>Quit &quot;Arduino&quot;</li>
+				</ol>
+				
+				<h4>Freetronics Board Profile (Optional)</h4>
+				<p>While not specifically required, installing the board profile (and driver on Windows) makes working with the Cube easier.</p>
+				<ol class="default">
+					<li>Download the latest LeoStick (which is the basis of the Cube) board profile from <a href="https://github.com/freetronics/LeoStickBoardProfile/archive/master.zip">here</a></li>
+					<li>Unzip the file</li>
+					<li>In your Documents folder, there will be an &quot;Arduino&quot; folder, create a new folder in it called &quot;hardware&quot;</li>
+					<li>Move the &quot;LeoStickBoardProfile-master&quot; folder that was extracted at step 2 into the new &quot;hardware&quot; folder. </li>
+				</ol>
+
+				<p>Additionally there is a driver for Windows that while not required on Windows 10, will help identify the Cube. To install the driver:-</p>
+
+				<ol class="default">
+					<li>Download it from <a href="https://cdn.shopify.com/s/files/1/0045/8932/files/FreetronicsUSBDrivers_v2_2.zip">here</a>, and extract the ZIP</li>
+					<li>Right click on &quot;FreetronicsUSBv22&quot; and click &quot;Install&quot;</li>
+					<li>Click &quot;Open&quot; on the dialog asking whether to &quot;open this file?&quot;
+						<ol class="default alphalist">
+							<li>Click &quot;Yes&quot; to allow this the &quot;User Account Control&quot; &quot;Do you want to allow this app to install software on your PC?&quot; dialog</li>
+						</ol>
+					</li>
+					<li>Click &quot;Install&quot; when asked &quot;would you like to install this device software?&quot;</li>
+					<li>Click &quot;OK&quot; when the &quot;Operation completed successfully&quot; screen is shown</li>
+				</ol>
+				<a name="cube4"></a>
+			</section>
+
+			<hr class="blue">
+
+			<section class="box post">
+				<header>
+					<h3>Cube4 Library</h3>
+				</header>
+				<p>The cube library provides the API that is used for instructing the cube to preform different actions. Please follow the instructions on the <a href="download.html">download page</a> to get a copy.</p>
+				<ol class="default">
+					<li>Unzip the "Cube4-v#.#.#.zip" file that was previously downloaded (where v#.#.# is the version number)</li>
+					<li>In your Documents folder, there will be an &quot;Arduino&quot;, create a new folder in it called &quot;libraries&quot; (if it doesn't already exist)</li>
+					<li>Move the unzipped &quot;Cube4-v#.#.#&quot; folder that was extracted in step 3 into the libraries folder that was just created</li>
+					<li>Rename the folder to &quot;Cube4&quot;</li>
+				</ol>
+				<a name="cube4_arutils"></a>
+			</section>
+
+			<hr class="blue">
+
+			<section class="box post">
+				<header>
+					<h3>Cube4_ARUtils Library</h3>
+				</header>
+			   <p>The Cube4_ARUtils library provides helper functions for my sketches when interacting with the cube. Please follow the instructions on the <a href="download.html">download page</a> to get a copy.</p>
+			   <ol class="default">
+					<li>Unzip the "Cube4_ARUtils-v#.#.#.zip" file that was previously downloaded (where v#.#.# is the version number)</li>
+			   		<li>Move the unzipped &quot;Cube4_ARUtils-v#.#.#&quot; folder that was extracted above into your Documents <i class="fa fa-arrow-right"></i> Arduino <i class="fa fa-arrow-right"></i> libraries folder.</li>
+			  		<li>Rename the folder to &quot;Cube4_ARUtils&quot;</li>
+			   </ol>
+				<a name="bluetooth"></a>
+			</section>
+
+			<hr class="blue">
+
+			<section class="box post">
+				<header>
+					<h3>Adafruit BluefriutLE_nRF51 Library</h3>
+				</header>
+				<p>The Adafruit BluefriutLE_nRF51 library allows the Cube to communicate with the Bluetooth module. Please follow the instructions on the <a href="download.html">download page</a> to get a copy.</p>
+				<ol class="default">
+					<li>Unzip the "Adafruit_BluefruitLE_nRF51-#.#.#.zip" file that was previously downloaded (where #.#.# is the version number)</li>
+					<li>Move the unzipped &quot;Adafruit_BluefruitLE_nRF51-#.#.#&quot; folder that was extracted above into your Documents <i class="fa fa-arrow-right"></i> Arduino <i class="fa fa-arrow-right"></i> libraries folder.</li>
+					<li>Rename the folder to &quot;Adafruit_BluefruitLE_nRF51&quot;</li>
+				</ol>
+				<a name="sketch"></a>
+			</section>
+
+			<hr class="blue">
+
+			<section class="box post">
+				<header>
+					<h3>BlueCube Sketch</h3>
+				</header>
+				
+				<p>The BlueCube Sketch is the code that is run on the Cube that understands how to communicate with the Bluetooth module, and receive instructions from the mobile apps. Please follow the instructions on the <a href="download.html">download page</a> to get a copy.</p>
+				<p>Additionally, ensure that the steps on the <a href="wiring.html">wiring</a> page have been followed.
+				<ol class="default">
+					<li>Unzip the "BlueCube-v#.#.#.zip" file that was previously downloaded (where v#.#.# is the version number)</li>
+					<li>Within the extracted folder, browse Arduino <i class="fa fa-arrow-right"></i> BlueCube</li>
+					<li>Double click on "BlueCube.ino"</li>
+					<li>Ensure that your Cube is connected to your computer via USB cable</li>
+					<li>From the "Tools" <i class="fa fa-arrow-right"></i> "Board" menu, select "Freetronics LeoStick" if available, otherwise select "Arduino Leonardo"</li>
+					<li>From the "Tools" <i class="fa fa-arrow-right"></i> "Port" menu, select the port that your Cube is connected to</li>
+					<li>Upload the sketch to your Cube</li>
+				</ol>
+
+				<p>Congratulations, you should now be ready to use the apps, to remotely control your Cube.</p>
+				
+				<blockquote>
+					<p>If you get any errors, ensure that the libraries have been correctly installed (goto "Sketch" <i class="fa fa-arrow-right"></i> "Include Library" <i class="fa fa-arrow-right"></i> "Manage Libraries..." and check that Cube4, Cube4_ARUtils, change "Type" to "Installed" and check that "Cube4", "Cube4_ARUtils", and "Adafruit BluefruitLE nR51" are all installed), and that you have selected the correct board and ports.</p>
+				</blockquote>
+
+			</section>			
+		</div> <!-- .inner -->
+	</div> <!-- .content -->
+
+	<!-- Sidebar -->
+	<div id="sidebar">
+		<!-- Logo -->
+		<h1 id="logo">
+			<img src="images/BlueCube.png">
+			<a href="#">BlueCube</a>
+		</h1>
+
+		<!-- Nav -->
+		<nav id="nav">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="wiring.html">Wiring</a></li>
+				<li><a href="download.html">Download</a></li>
+				<li class="current">
+					<a href="install.html">Install</a>
+					<ul>
+						<li><a href="#arduino">Arduino</a></li>
+						<li><a href="#cube4">Cube4</a></li>
+						<li><a href="#cube4_arutils">Cube4_ARUtils</a></li>
+						<li><a href="#bluetooth">Adafruit BluefriutLE_nRF51</a></li>
+						<li><a href="#sketch">BlueCube Sketch</a></li>
+					</ul>
+				</li>
+				<li><a href="usage.html">Usage</a></li>
+				<li><a href="troubleshooting.html">Troubleshooting, FAQs &amp; Support</a></li>
+				<li><a href="development.html">Development Environment</a></li>
+				<li><a href="acknowledgements.html">Acknowledgements</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<!-- Javascript
+	================================================== -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+	<script src="assets/js/main.js"></script>
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-73099470-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+</body>
+</html>
