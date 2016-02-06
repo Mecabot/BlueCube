@@ -1982,7 +1982,14 @@
 /* Nav */
 
 	#nav > ul > li > ul {
-		display: none;
+		margin: 4px 0 5px 30px; 
+		font-size: 0.9em;
+	}
+
+	#nav > ul > li > ul > li {
+		border-top: none;
+		box-shadow: none;
+		padding: 0.15em 0 0.15em 0;
 	}
 
 	#nav ul {
