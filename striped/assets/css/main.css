@@ -2048,7 +2048,7 @@
 		top: 0;
 		width: 100%;
 		z-index: 10001;
-		background: #364050 url("images/bg01.png");
+		background: #387ef5;
 	}
 
 		#titleBar .title {
@@ -2268,7 +2268,7 @@
 
 				#logo a {
 					display: block;
-					background-color: #c94663;
+					background-color: #387ef5;
 					background-image: url("images/bg01.png");
 					padding: 0.875em 0.25em;
 					border-radius: 0.2em;
