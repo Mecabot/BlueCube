@@ -177,6 +177,10 @@
 		border-color: #FFFFFF;
 	}
 	
+	div .tableheading {
+		font-weight: bold; 
+	}
+	
 	div .tableheading p {
 		margin-bottom: 5px;	
 	}
