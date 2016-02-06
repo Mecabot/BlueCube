@@ -1641,6 +1641,10 @@
 		margin-bottom: 1em;
 	}
 
+	.fa-arrow-right {
+		font-size: 0.9em;
+		color: #898989;
+	}
 /* Table */
 
 	table {
