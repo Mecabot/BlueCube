@@ -1584,13 +1584,13 @@
 		color: #232323;
 	}
 
-	h2, h3, h4, h5, h6 {
+	h1, h2, h3, h4, h5, h6 {
 		font-family: 'Open Sans Condensed', sans-serif;
 		font-weight: 700;
 		color: #232323;
 	}
 
-	h2 a, h4 a, h5 a, h6 a {
+	h1 a, h2 a, h4 a, h5 a, h6 a {
 		text-decoration: none;
 		color: inherit;
 	}
@@ -2141,7 +2141,7 @@
 			color: #d4dde0;
 		}
 
-		#sidebar h2, #sidebar h3, #sidebar h4, #sidebar h5, #sidebar h6 {
+		#sidebar h1, #sidebar h2, #sidebar h3, #sidebar h4, #sidebar h5, #sidebar h6 {
 			color: #fff;
 		}
 
@@ -2201,7 +2201,7 @@
 				line-height: 1.75em;
 			}
 
-			h2 {
+			h1, h2 {
 				font-size: 1.2em;
 			}
 
@@ -2349,7 +2349,7 @@
 
 		/* Box */
 
-			.box.post h2 {
+			.box.post h1, h2 {
 				font-size: 3.25em;
 				line-height: 1.25em;
 			}
@@ -2461,7 +2461,7 @@
 
 		/* Box */
 
-			.box.post h2 {
+			.box.post h1 h2 {
 				font-size: 3.25em;
 				line-height: 1.25em;
 			}
@@ -2583,7 +2583,7 @@
 				letter-spacing: 0;
 			}
 
-			h2, h3, h4, h5, h6 {
+			h1, h2, h3, h4, h5, h6 {
 				font-size: 1.5em;
 			}
 
