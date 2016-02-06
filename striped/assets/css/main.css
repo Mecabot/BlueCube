@@ -1724,7 +1724,7 @@
 		}
 
 	section, article {
-		margin-bottom: 3em;
+		margin-bottom: 0em;
 	}
 
 		section > :last-child,
@@ -2355,8 +2355,8 @@
 			}
 
 			.box.post header {
-				padding: 2.75em 0 0 0;
-				margin: 0 0 3em 0;
+				padding: 1em 0 0 0;
+				margin: 0 0 1em 0;
 			}
 
 				.box.post header > p {
@@ -2467,8 +2467,8 @@
 			}
 
 			.box.post header {
-				padding: 1.5em 0 0 0;
-				margin: 0 0 3em 0;
+				padding: 0.5em 0 0 0;
+				margin: 0 0 0.5em 0;
 			}
 
 				.box.post header > p {
@@ -2610,8 +2610,8 @@
 		/* Box */
 
 			.box.post {
-				padding-bottom: 5em;
-				margin-bottom: 6em;
+				padding-bottom: 1em;
+				margin-bottom: 1.1em;
 			}
 
 				.box.post header > p {
