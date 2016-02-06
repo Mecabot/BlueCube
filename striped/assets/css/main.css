@@ -1867,118 +1867,7 @@
 			padding-left: 0.25em;
 		}
 
-/* Pagination */
-
-	.pagination .pages {
-		display: inline-block;
-		font-family: 'Open Sans Condensed', sans-serif;
-		font-weight: 700;
-	}
-
-		.pagination .pages span {
-			display: inline-block;
-			width: 1.5em;
-			text-align: center;
-			margin: 0 0.4em 0 0;
-		}
-
-		.pagination .pages a {
-			cursor: pointer;
-			display: inline-block;
-			text-align: center;
-			text-decoration: none;
-			color: inherit;
-			background-color: #e8e8e8;
-			background-image: url("images/bg02.png");
-			color: #565656;
-			margin: 0 0.4em 0 0;
-			border-radius: 0.4em;
-			-moz-transition: background-color .25s ease-in-out;
-			-webkit-transition: background-color .25s ease-in-out;
-			-ms-transition: background-color .25s ease-in-out;
-			transition: background-color .25s ease-in-out;
-			box-shadow: inset 0 0.075em 0.25em 0 rgba(0, 0, 0, 0.1);
-		}
-
-			.pagination .pages a:hover {
-				background-color: #dadada;
-			}
-
-			.pagination .pages a.active {
-				background-color: #364050;
-				color: #fff;
-				box-shadow: none;
-				text-shadow: -1px -1px 0px rgba(0, 0, 0, 0.5);
-			}
-
 /* Box */
-
-	.box.calendar .inner {
-		position: relative;
-		background-color: #272E39;
-		background-color: rgba(0, 0, 0, 0.15);
-		border-radius: 0.4em;
-		padding: 0.75em 0.5em 0.75em 0.5em;
-		box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 0 0.25em 0 rgba(0, 0, 0, 0.25);
-	}
-
-	.box.calendar caption {
-		font-weight: 700;
-		color: #fff;
-		margin: 0 0 0.25em 0;
-	}
-
-	.box.calendar table {
-		margin: 0 auto;
-	}
-
-	.box.calendar td {
-		cursor: default;
-		padding: 0.35em 0 0.35em 0;
-		border-top: solid 1px rgba(0, 0, 0, 0.25);
-		box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.075);
-	}
-
-	.box.calendar th {
-		cursor: default;
-		padding: 0.35em 0 0.35em 0;
-		border-top: solid 1px rgba(0, 0, 0, 0.25);
-		box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.075);
-		font-weight: 700;
-		color: #fff;
-	}
-
-	.box.calendar td a, .box.calendar td span {
-		display: block;
-		margin: 0 auto;
-		width: 1.5em;
-		height: 1.5em;
-		text-align: center;
-		line-height: 1.4em;
-		border-radius: 0.4em;
-		-moz-transition: background-color .25s ease-in-out;
-		-webkit-transition: background-color .25s ease-in-out;
-		-ms-transition: background-color .25s ease-in-out;
-		transition: background-color .25s ease-in-out;
-		text-decoration: none;
-	}
-
-	.box.calendar td a {
-		color: #fff;
-		font-weight: 700;
-	}
-
-		.box.calendar td a:hover {
-			background-color: rgba(200, 225, 255, 0.1);
-			color: #fff;
-		}
-
-	.box.calendar td.today a {
-		background-color: #c94663;
-		background-image: url("images/bg01.png");
-		box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.15), 0 0.025em 0.15em 0em rgba(0, 0, 0, 0.25);
-		color: #fff !important;
-	}
 
 	.box.post {
 		position: relative;
@@ -2352,33 +2241,6 @@
 					padding: 0.75em 2em 0.75em 2em;
 				}
 
-		/* Pagination */
-
-			.pagination {
-				padding: 3em 0 0 0;
-			}
-
-				.pagination .previous {
-					margin-right: 0.6em;
-				}
-
-				.pagination .next {
-					margin-left: 0.2em;
-				}
-
-				.pagination .pages a {
-					width: 2.75em;
-					height: 2.75em;
-					line-height: 2.75em;
-				}
-
-				.pagination .button {
-					height: 2.75em;
-					padding-top: 0;
-					padding-bottom: 0;
-					line-height: 2.75em;
-				}
-
 		/* Box */
 
 			.box.post .info .stats li a {
@@ -2730,12 +2592,6 @@
 				font-size: 1.25em;
 				padding: 0.75em 0 0.75em 0;
 				margin: 0.5em 0 0.5em 0;
-			}
-
-		/* Pagination */
-
-			.pagination .pages {
-				display: none;
 			}
 
 		/* Box */
