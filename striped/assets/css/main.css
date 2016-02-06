@@ -1875,6 +1875,18 @@
 		ol.default li {
 			padding-left: 0.25em;
 		}
+	
+	ol.default .alphalist {
+		list-style-type: lower-alpha;
+	}
+	
+	ul.default > li > ul {
+		margin-bottom: 0;
+	}
+
+	ol.default > li > ol {
+		margin-bottom: 0;
+	}
 
 /* Box */
 
