@@ -1797,8 +1797,7 @@
 	button,
 	.button {
 		cursor: pointer;
-		background-color: #c94663;
-		background-image: url("images/bg01.png");
+		background-color: rgb(12, 96, 238);
 		border-radius: 0.4em;
 		text-align: center;
 		box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.15);
