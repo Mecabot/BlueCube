@@ -720,8 +720,13 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBLE, $ion
 
 	// Functions for showing and hiding the loading overlay
 	$scope.showConnectionOverlay = function() {
+		// Set a maximum duration, incase something has gone wrong. Time is in milliseconds (I use the
+		// search time + 12 seconds.
+		var maximumDuration = (bleDefaults.searchTime + 12) * 1000;
+
 		$ionicLoading.show({
-			template: '<ion-spinner icon="lines" class="spinner-light"></ion-spinner><br>Connecting to BlueCube'
+			template: '<ion-spinner icon="lines" class="spinner-light"></ion-spinner><br>Connecting to BlueCube',
+			duration: maximumDuration
 		});
 	};
 
