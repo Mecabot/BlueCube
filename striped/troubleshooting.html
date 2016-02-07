@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<!-- Basic Page Needs
+	================================================== -->
+	<title>BlueCube - Troubleshooting, FAQs &amp; Support</title>
+	<meta charset="utf-8" />
+
+	<!-- Mobile Specific Metas
+	================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- CSS
+	================================================== -->
+	<link rel="stylesheet" href="assets/css/main.css" />
+</head>
+
+<body>
+	<!-- Content -->
+	<div id="content">
+		<div class="inner">
+
+			<section class="box post">
+				<header>
+					<h1>Troubleshooting, FAQs &amp; Support</h1>
+					<hr class="blue">
+				</header>
+				<p>I have released this code as a service to the broader community, as is, in an <strong>unsupported manner</strong> with no guarantees of support. Hopefully this website and the following information however is of assistance. If you still require support, try the options listed under <a href="#support">Support</a>.</p>
+				<a name="troubleshooting"></a>
+			</section>
+
+			<section class="box post">
+				<header>
+					<h2>Troubleshooting</h2>
+				</header>
+				<h3>Things to try</h3>
+				<p><strong>Double check the wiring between the Cube and the Bluetooth Module</strong><br>
+				Make sure the Bluetooth module has been correctly connected to the Cube, as per <a href="wiring.html">the wiring pages instructions</a>. There should be a red light that flashes when it is powered up, and a blue light that stays on when a mobile device has connected.</p>
+	
+				<p><strong>Ensure Bluetooth module is in the correct mode</strong><br>
+				Make sure the switch on the Bluetooth module is set to the "CMD" position.</p>
+	
+				<p><strong>Ensure all libraries are correctly installed</strong><br>
+				If you get any errors during the compile of the sketch, ensure that the libraries have been correctly installed (goto "Sketch" -&gt; "Include Library" -&gt; "Manage Libraries..." and check that Cube4, Cube4_ARUtils, change "Type" to "Installed" and check that "Cube4", "Cube4_ARUtils", and "Adafruit BluefruitLE nR51" are all installed), and that you have selected the correct board and ports.</p>
+
+				<p><strong>Try the Adafruit Bluefruit LE Connect App</strong><br>
+				Download the Adafruit Bluefruit LE Connect App from either the <a href="https://itunes.apple.com/au/app/adafruit-bluefruit-le-connect/id830125974?mt=8">Apple App Store</a> or <a href="https://play.google.com/store/apps/details?id=com.adafruit.bluefruit.le.connect&hl=en">Google Play Store</a> and then search for and connect to the "Adafruit Bluefruit LE" peripheral. When prompted choose "UART", and then down the bottom type "all red;" without the quotes and hit send. The cube should turn red if this has worked.</p>
+				<a name="faq"></a>
+			</section>
+
+			<hr class="blue">
+
+			<section class="box post">
+				<header>
+					<h2>Frequently Asked Questions</h2>
+				</header>
+				<p><strong>Does BlueCube work with Vendor X's Bluetooth LE module</strong><br>
+				No. The sketch for the cube, and the iOS and Android apps are all written to work with the Adafruit Bluefruit LE UART Friend.</p>
+				<p>That said, it maybe possible to modify the code to support other Bluetooth LE modules. The modules library would need to be included in the sketch, and the existing bluetooth code removed (starting the Cube on Serial1 instead of Serial), or edited. Additionally, the "ServiceUUID", "txCharacteristic" and "rxCharacteristic" would need to be updated to match the Bluetooth modules values in "BlueCube/IonicApp/www/js/defaults.js", then the mobile apps would need to be recompiled.</p>
+
+				<p><strong>BlueCube doesn't respond to some commands</strong><br>
+				When running your own animation, make sure it isn't using the "delay" command. Delay stops the Cube listening for incoming messages. To avoid this the sketch needs to be non-blocking. This is done by using a state machine, and comparing the time. The examples that ship with BlueCube are all non-blocking, and should be used as a reference.</p> 
+
+				<p><strong>Can I upload new sketches or animations from my mobile device</strong><br>
+				No. BlueCube only supports the API of the Cube library, or running existing animations within the loaded sketch. You can not change the sketch on the Cube from the mobile device.</p> 
+
+				<p><strong>The app doesn't show the current state of the Cube</strong><br>
+				The app doesn't receive any communications from the Cube. As such it doesn't know what state it is currently in. For example on the "Set" screen, if an LED is currently set to green, tapping it will set it to the chosen colour, then tapping again will turn it off.</p> 
+				
+				<p><strong>I want to make some changes to BlueCube. Will you accept the changes?</strong><br>
+				If you would like to see changes you make merged into the BlueCube codebase, please make a pull request in Github. The changes will be assessed and considered for inclusion. 
+				</p>
+
+				<p><strong>I wish BlueCube could do "x". Will you add it?</strong><br>
+				Please log feature requests via the <a href="https://github.com/neographophobic/BlueCube/issues">BlueCube Issue Tracker</a>, however I can offer no guarantees that they will be actioned. BlueCube is however open source, so you can view the latest version of the source code at <a href="https://github.com/neographophobic/BlueCube">https://github.com/neographophobic/BlueCube</a> and possibly make the changes yourself. 
+				</p>
+				<a name="support"></a>
+			</section>
+
+			<hr class="blue">
+
+			<section class="box post">
+				<header>
+					<h2>Support</h2>
+				</header>
+				<h3>Wiki</h3>
+				<p>Please consult the <a href="https://github.com/neographophobic/BlueCube/wiki">BlueCube Github Wiki</a>. There maybe additional tips or tricks that may assist you.</p>
+	
+				<h3>Issue Tracker</h3>
+				<p>If you have a problem, you can raise an issue at the <a href="https://github.com/neographophobic/BlueCube/issues">BlueCube Issue Tracker</a>.</p>
+				<p>Please try to include the steps that you took before the error occurred, any modifications you have made to the sketch or apps, and any other info that might help in tracking down the problem.</p>
+
+				<h3>Source Code</h3>
+				<p>BlueCube is open source. You can view the latest version of the source code at <a href="https://github.com/neographophobic/BlueCube">https://github.com/neographophobic/BlueCube</a>. The comments in the source code may help identify the issue.</p>
+			</section>
+		</div> <!-- .inner -->
+	</div> <!-- .content -->
+
+	<!-- Sidebar -->
+	<div id="sidebar">
+		<!-- Logo -->
+		<h1 id="logo">
+			<img src="images/BlueCube.png">
+			<a href="#">BlueCube</a>
+		</h1>
+
+		<!-- Nav -->
+		<nav id="nav">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="wiring.html">Wiring</a></li>
+				<li><a href="download.html">Download</a></li>
+				<li><a href="install.html">Install</a></li>
+				<li><a href="usage.html">Usage</a></li>
+				<li class="current">
+					<a href="troubleshooting.html">Troubleshooting, FAQs &amp; Support</a>
+					<ul>
+						<li><a href="#troubleshooting">Troubleshooting</a></li>
+						<li><a href="#faq">FAQs</a></li>
+						<li><a href="#support">Support</a></li>
+					</ul>
+				</li>
+				<li><a href="development.html">Development Environment</a></li>
+				<li><a href="acknowledgements.html">Acknowledgements</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<!-- Javascript
+	================================================== -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-73099470-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+</body>
+</html>
