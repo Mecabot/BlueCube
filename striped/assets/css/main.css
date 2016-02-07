@@ -1645,6 +1645,12 @@
 		font-size: 0.9em;
 		color: #898989;
 	}
+
+	code, pre {
+		font-family: monospace;
+		display: inline;
+	}
+
 /* Table */
 
 	table {
