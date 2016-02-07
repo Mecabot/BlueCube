@@ -320,18 +320,18 @@ sup {
 
 <h2 id="toc_2">Change Project ID</h2>
 
-<p>The project has a given ID of &quot;com.example.BlueCube&quot;. This ID needs to be unique for each developer that builds the apps. This change needs to be completed every time you download a new version of BlueCube (the same unique ID can be used for each version). </p>
+<p>The project has a given ID of "com.example.BlueCube". This ID needs to be unique for each developer that builds the apps. This change needs to be completed every time you download a new version of BlueCube (the same unique ID can be used for each version). </p>
 
 <p>To edit it:-</p>
 
 <h3 id="toc_3">OS X</h3>
 
 <ol>
-<li>Browse to &quot;BlueCube&quot; -&gt; &quot;IonicApp&quot;</li>
+<li>Browse to "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp"</li>
 <li>Edit <code>config.xml</code> in the text editor of your choise</li>
-<li>On the second line where it says <code>id=com.example.BlueCube</code> change it so that it is unique to you. Normally the name ID is in reverse DNS format, so if you own &quot;fredsautos.com&quot;, the ID would be <code>id=com.fredsautos.BlueCube</code>. Otherwise just add a random number to the end of &quot;BlueCube&quot;, without any spaces or punctuation. If in doubt, add the machines MAC address at the end. On OS X run <code>ifconfig en0 ether | grep ether | awk &#39;{ print $2 }&#39; | sed s/\://g</code>.</li>
-<li>Start Terminal &quot;Applications&quot; -&gt; &quot;Utilities&quot; -&gt; &quot;Terminal&quot;</li>
-<li>Change to the BlueCube &quot;BlueCube&quot; -&gt; &quot;IonicApp&quot; by <code>cd</code> and dragging the &quot;IonicApp&quot; folder onto the terminal window, then hitting &quot;Enter&quot;. For example, I have the BlueCube folder on my desktop, and my username is <code>adam</code>. In this case the command was <code>cd /Users/adam/Desktop/BlueCube/IonicApp</code></li>
+<li>On the second line where it says <code>id=com.example.BlueCube</code> change it so that it is unique to you. Normally the name ID is in reverse DNS format, so if you own "fredsautos.com", the ID would be <code>id=com.fredsautos.BlueCube</code>. Otherwise just add a random number to the end of "BlueCube", without any spaces or punctuation. If in doubt, add the machines MAC address at the end. On OS X run <code>ifconfig en0 ether | grep ether | awk '{ print $2 }' | sed s/\://g</code>.</li>
+<li>Start Terminal "Applications" <i class="fa fa-arrow-right"></i> "Utilities" <i class="fa fa-arrow-right"></i> "Terminal"</li>
+<li>Change to the BlueCube "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp" by <code>cd</code> and dragging the "IonicApp" folder onto the terminal window, then hitting "Enter". For example, I have the BlueCube folder on my desktop, and my username is <code>adam</code>. In this case the command was <code>cd /Users/adam/Desktop/BlueCube/IonicApp</code></li>
 <li>Remove the previously configured platforms
 a. <code>ionic platform rm ios</code>
 b. <code>ionic platform rm android</code></li>
@@ -344,11 +344,11 @@ a. <code>ionic platform add android</code></li>
 <h3 id="toc_4">Windows</h3>
 
 <ol>
-<li>Browse to &quot;BlueCube&quot; -&gt; &quot;IonicApp&quot;</li>
+<li>Browse to "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp"</li>
 <li>Edit <code>config.xml</code> in the text editor of your choise</li>
-<li>On the second line where it says <code>id=com.example.BlueCube</code> change it so that it is unique to you. Normally the name ID is in reverse DNS format, so if you own &quot;fredsautos.com&quot;, the ID would be <code>id=com.fredsautos.BlueCube</code>. Otherwise just add a random number to the end of &quot;BlueCube&quot;, without any spaces or punctuation. If in doubt, add the machines MAC address at the end. Run <code>getmac</code>, from the command prompt and pick the &quot;Physical Address&quot;, removing the hyphens.</li>
-<li>Start Command Prompt &quot;Windows Key + R&quot; -&gt; &quot;cmd.exe&quot;</li>
-<li>Change to the BlueCube &quot;BlueCube&quot; -&gt; &quot;IonicApp&quot; by <code>cd</code> and dragging the &quot;IonicApp&quot; folder onto the command prompt, then hitting &quot;Enter&quot;. For example, I have the BlueCube folder on my desktop, and my username is <code>adam</code>. In this case the command was <code>cd &quot;C:\Users\adam\Desktop\BlueCube\IonicApp&quot;</code></li>
+<li>On the second line where it says <code>id=com.example.BlueCube</code> change it so that it is unique to you. Normally the name ID is in reverse DNS format, so if you own "fredsautos.com", the ID would be <code>id=com.fredsautos.BlueCube</code>. Otherwise just add a random number to the end of "BlueCube", without any spaces or punctuation. If in doubt, add the machines MAC address at the end. Run <code>getmac</code>, from the command prompt and pick the "Physical Address", removing the hyphens.</li>
+<li>Start Command Prompt "Windows Key + R" <i class="fa fa-arrow-right"></i> "cmd.exe"</li>
+<li>Change to the BlueCube "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp" by <code>cd</code> and dragging the "IonicApp" folder onto the command prompt, then hitting "Enter". For example, I have the BlueCube folder on my desktop, and my username is <code>adam</code>. In this case the command was <code>cd "C:\Users\adam\Desktop\BlueCube\IonicApp"</code></li>
 <li>Remove the previously configured platforms
 a. <code>ionic platform rm ios</code>
 b. <code>ionic platform rm android</code></li>
@@ -358,7 +358,7 @@ a. <code>ionic platform add android</code></li>
 
 <h2 id="toc_5">Build</h2>
 
-<p>Every time you modify the BlueCube&#39;s code, you need to instruct Ionic to build it. This prepares all of the items in a platform specific way. You build the code from the command line.</p>
+<p>Every time you modify the BlueCube's code, you need to instruct Ionic to build it. This prepares all of the items in a platform specific way. You build the code from the command line.</p>
 
 <h3 id="toc_6">OS X</h3>
 

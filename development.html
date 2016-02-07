@@ -25,11 +25,11 @@
 					<h1>Development Environment</h1>
 					<hr class="blue">
 				</header>
-				<p>You only need to follow these instructions if you wish to modify the mobile apps. I&#39;ve provided the source code that you can modify and improve as you wish, and then deploy it to your own phone or tablet without needing to access the stores.</p>
+				<p>You only need to follow these instructions if you wish to modify the mobile apps. I've provided the source code that you can modify and improve as you wish, and then deploy it to your own phone or tablet without needing to access the stores.</p>
 
 				<p>To be able to build and deploy the app, you need to have the appropriate development environment setup. This page outlines how to setup this environment, assuming that none of the requirements have been previously installed. </p>
 
-				<p>Where possible I accept the default values. This may result in options that we don&#39;t need being installed, but I prefer to have the &quot;standard&quot; environment setup.</p>
+				<p>Where possible I accept the default values. This may result in options that we don't need being installed, but I prefer to have the "standard" environment setup.</p>
 
 				<p>To setup the environment to modify the sketch, please see the <a href="install.html#arduino">Arduino section</a> of the install page.</p>
 
@@ -43,9 +43,9 @@
 				<header>
 					<h2>Ionic Platform</h2>
 				</header>
-				<p>The app is created using the <a href="http://ionicframework.com">Ionic Framework</a>. Ionic allows for the creation of &quot;hybrid&quot; applications that can be run on multiple platforms from a single code base of HTML 5, CSS and Javascript. Ionic leverages <a href="http://cordova.apache.org">Cordova</a> to support this code reuse across platforms, and the <a href="https://nodejs.org/en/">NodeJS</a> javascript runtime environment.</p>
+				<p>The app is created using the <a href="http://ionicframework.com">Ionic Framework</a>. Ionic allows for the creation of "hybrid" applications that can be run on multiple platforms from a single code base of HTML 5, CSS and Javascript. Ionic leverages <a href="http://cordova.apache.org">Cordova</a> to support this code reuse across platforms, and the <a href="https://nodejs.org/en/">NodeJS</a> javascript runtime environment.</p>
 
-				<p>To install Ionic, I followed the steps as outlined on the Ionic <a href="http://ionicframework.com/getting-started/">Getting Started</a> page (and added a step for <code>xml2js</code>). I&#39;ve listed the steps out below, but if you run into problems, follow the advice of that page.</p>
+				<p>To install Ionic, I followed the steps as outlined on the Ionic <a href="http://ionicframework.com/getting-started/">Getting Started</a> page (and added a step for <code>xml2js</code>). I've listed the steps out below, but if you run into problems, follow the advice of that page.</p>
 
 				<h3>Instal Node.js</h3>
 				<p>At the time of writing, Node.js v4.x.x is supported by Ionic, whereas the newer v5.x.x is not. As such we will install the version 4 LTS (Long Term Support) edition of Node.js.</p>
@@ -56,12 +56,12 @@
 				<ol class="default">
 					<li>Run the installer that was downloaded
 						<ol class="default alphalist">
-							<li>Click &quot;Continue&quot; on the &quot;Introduction&quot; screen</li>
-							<li>Click &quot;Continue&quot; on the &quot;License&quot; screen</li>
-							<li>Click &quot;Agree&quot; to accept the license agreement</li>
-							<li>The standard install is ok, so just click &quot;Install&quot; on the &quot;Installation Type&quot; screen</li>
-							<li>Enter the &quot;Username&quot; and &quot;Password&quot; of an administrator on the computer, and then click &quot;Install Software&quot;</li>
-							<li>Click &quot;Close&quot; at the &quot;Summary&quot; screen</li>
+							<li>Click "Continue" on the "Introduction" screen</li>
+							<li>Click "Continue" on the "License" screen</li>
+							<li>Click "Agree" to accept the license agreement</li>
+							<li>The standard install is ok, so just click "Install" on the "Installation Type" screen</li>
+							<li>Enter the "Username" and "Password" of an administrator on the computer, and then click "Install Software"</li>
+							<li>Click "Close" at the "Summary" screen</li>
 						</ol>
 					</li>
 				</ol>
@@ -70,14 +70,14 @@
 				<ol class="default">
 					<li>Run the installer that was downloaded
 						<ol class="default alphalist">
-							<li>Click &quot;Next&quot; on the setup wizard welcome page</li>
-							<li>Click &quot;I accept the terms in the License Agreement&quot; checkbox</li>
-							<li>Click &quot;Next&quot;</li>
-							<li>Accept the default install location and click &quot;Next&quot;</li>
-							<li>Accept the defaults in the &quot;Custom Setup&quot;, and click &quot;Next&quot;</li>
-							<li>Click &quot;Install&quot;</li>
-							<li>Click &quot;Yes&quot; to allow this the &quot;User Account Control&quot; &quot;Do you want to allow this app to install software on your PC?&quot; dialog</li>
-							<li>Click &quot;Finish&quot;</li>
+							<li>Click "Next" on the setup wizard welcome page</li>
+							<li>Click "I accept the terms in the License Agreement" checkbox</li>
+							<li>Click "Next"</li>
+							<li>Accept the default install location and click "Next"</li>
+							<li>Accept the defaults in the "Custom Setup", and click "Next"</li>
+							<li>Click "Install"</li>
+							<li>Click "Yes" to allow this the "User Account Control" "Do you want to allow this app to install software on your PC?" dialog</li>
+							<li>Click "Finish"</li>
 						</ol>
 					</li>
 				</ol>
@@ -87,18 +87,18 @@
 				<h3>Instal Cordova</h3>
 				<p>To install Cordova, we use <code>npm</code> via the command line. <code>npm</code> was installed as part of the Node.js installation.</p>
 
-				<p>Information on Cordova can be found on it&#39;s <a href="https://cordova.apache.org/">website</a>.</p>
+				<p>Information on Cordova can be found on it's <a href="https://cordova.apache.org/">website</a>.</p>
 
 				<h4>On a Mac</h4>
 				<ol class="default">
-					<li>Start &quot;Terminal&quot; from &quot;Applications&quot; <i class="fa fa-arrow-right"></i> &quot;Utilities&quot;</li>
+					<li>Start "Terminal" from "Applications" <i class="fa fa-arrow-right"></i> "Utilities"</li>
 					<li>Run <code>sudo npm install -g cordova</code></li>
 					<li>Enter your administrator password when prompted</li>
 				</ol>
 
 				<h4>On a Windows PC</h4>
 				<ol class="default">
-					<li>Start &quot;Command Prompt&quot; hitting &quot;Windows&quot; + &quot;R&quot; keys, then typing <code>cmd</code></li>
+					<li>Start "Command Prompt" hitting "Windows" + "R" keys, then typing <code>cmd</code></li>
 					<li>Run <code>npm install -g cordoca</code></li>
 				</ol>
 
@@ -107,21 +107,21 @@
 				<h3>Install Ionic</h3>
 				<p>To install Ionic, we use <code>npm</code> via the command line. <code>npm</code> was installed as part of the Node.js installation.</p>
 
-				<p>Information on Cordova can be found on it&#39;s <a href="http://ionic.io/">website</a>.</p>
+				<p>Information on Cordova can be found on it's <a href="http://ionic.io/">website</a>.</p>
 
 				<h4>On a Mac</h4>
 				<ol class="default">
-					<li>Start &quot;Terminal&quot; from &quot;Applications&quot; <i class="fa fa-arrow-right"></i> &quot;Utilities&quot;</li>
+					<li>Start "Terminal" from "Applications" <i class="fa fa-arrow-right"></i> "Utilities"</li>
 					<li>Run <code>sudo npm install -g ionic</code></li>
 					<li>Enter your administrator password when prompted</li>
 					<li>Run <code>ionic</code></li>
-					<li>You will be prompted to say that &quot;xcodebuild&quot; command requires the command line developer tools. Click &quot;Install&quot; to install these tools.</li>
-					<li>Click &quot;Agree&quot; to the license agreement</li>
+					<li>You will be prompted to say that "xcodebuild" command requires the command line developer tools. Click "Install" to install these tools.</li>
+					<li>Click "Agree" to the license agreement</li>
 				</ol>
 
 				<h4>On a Windows PC</h4>
 				<ol class="default">
-					<li>Start &quot;Command Prompt&quot; hitting &quot;Windows&quot; + &quot;R&quot; keys, then typing <code>cmd</code></li>
+					<li>Start "Command Prompt" hitting "Windows" + "R" keys, then typing <code>cmd</code></li>
 					<li>Run <code>npm install -g ionic</code></li>
 				</ol>
 
@@ -134,14 +134,14 @@
 
 				<h4>On a Mac</h4>
 				<ol class="default">
-					<li>Start &quot;Terminal&quot; from &quot;Applications&quot; <i class="fa fa-arrow-right"></i> &quot;Utilities&quot;</li>
+					<li>Start "Terminal" from "Applications" <i class="fa fa-arrow-right"></i> "Utilities"</li>
 					<li>Run <code>sudo npm install -g xml2js</code></li>
 					<li>Enter your administrator password when prompted</li>
 				</ol>
 
 				<h4>On a Windows PC</h4>
 				<ol class="default">
-					<li>Start &quot;Command Prompt&quot; hitting &quot;Windows&quot; + &quot;R&quot; keys, then typing <code>cmd</code></li>
+					<li>Start "Command Prompt" hitting "Windows" + "R" keys, then typing <code>cmd</code></li>
 					<li>Run <code>npm install -g xml2js</code></li>
 				</ol>
 
@@ -155,29 +155,29 @@
 				<header>
 					<h2>iOS Support (OS X Only)</h2>
 				</header>
-				<p>To be able to build and deploy iOS applications, you need to install additional components. If you don&#39;t plan on building the iOS version of BlueCube, you can skip this section. I&#39;ve installed the items mentioned on the <a href="http://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html">Cordova iOS Platform Guide</a>. If you encounter any problems please refer to this link.</p>
+				<p>To be able to build and deploy iOS applications, you need to install additional components. If you don't plan on building the iOS version of BlueCube, you can skip this section. I've installed the items mentioned on the <a href="http://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html">Cordova iOS Platform Guide</a>. If you encounter any problems please refer to this link.</p>
 
 				<h3>Install Xcode</h3>
-				<p><a href="https://developer.apple.com/xcode/">Xcode</a> is Apple&#39;s Integrated Development Environment (IDE) for iOS Development.</p>
+				<p><a href="https://developer.apple.com/xcode/">Xcode</a> is Apple's Integrated Development Environment (IDE) for iOS Development.</p>
 
 				<ol class="default">
 					<li>Visit the <a href="https://itunes.apple.com/us/app/xcode/id497799835?ls=1&amp;mt=12">XCode</a> page within the Mac App Store.</li>
-					<li>Click on &quot;Get&quot;</li>
-					<li>Click on &quot;Install App&quot;</li>
-					<li>If prompted, enter your AppleID and password, then click &quot;Sign In&quot;</li>
-					<li>If two factor authentication is on, select the device to verify your identity and click &quot;Continue&quot;
+					<li>Click on "Get"</li>
+					<li>Click on "Install App"</li>
+					<li>If prompted, enter your AppleID and password, then click "Sign In"</li>
+					<li>If two factor authentication is on, select the device to verify your identity and click "Continue"
 						<ol class="default alphalist">
 							<li>Enter the verification code</li>
 						</ol>
 					</li>
 				</ol>
 
-				<p>Xcode will now download into your &quot;Applications&quot; folder. Please note that depending on your connection speed this may take a little while.</p>
+				<p>Xcode will now download into your "Applications" folder. Please note that depending on your connection speed this may take a little while.</p>
 
 				<ol class="default" start="6">
-					<li>Once Downloaded, launch Xcode via &quot;Applications&quot; <i class="fa fa-arrow-right"></i> &quot;Xcode&quot;</li>
-					<li>Agree to the &quot;Xcode and iOS SDK License Agreement&quot;</li>
-					<li>Enter your administrator &quot;Username&quot; and &quot;Password&quot; then click &quot;OK&quot;</li>
+					<li>Once Downloaded, launch Xcode via "Applications" <i class="fa fa-arrow-right"></i> "Xcode"</li>
+					<li>Agree to the "Xcode and iOS SDK License Agreement"</li>
+					<li>Enter your administrator "Username" and "Password" then click "OK"</li>
 				</ol>
 
 				<p>Xcode is now installed</p>
@@ -186,7 +186,7 @@
 				<p>iOS-Sim allows you to work with the iOS Emulator from the Cordova / Ionic command line tools.</p>
 
 				<ol class="default">
-					<li>Start &quot;Terminal&quot; from &quot;Applications&quot; <i class="fa fa-arrow-right"></i> &quot;Utilities&quot;</li>
+					<li>Start "Terminal" from "Applications" <i class="fa fa-arrow-right"></i> "Utilities"</li>
 					<li>Run <code>sudo npm install -g ios-sim</code></li>
 					<li>Enter your administrator password when prompted</li>
 				</ol>
@@ -197,7 +197,7 @@
 				<p>iOS-Deploy allows you to work with the iOS devices from the Cordova / Ionic command line tools.</p>
 
 				<ol class="default">
-					<li>Start &quot;Terminal&quot; from &quot;Applications&quot; <i class="fa fa-arrow-right"></i> &quot;Utilities&quot;</li>
+					<li>Start "Terminal" from "Applications" <i class="fa fa-arrow-right"></i> "Utilities"</li>
 					<li>Run <code>sudo npm install -g ios-deploy --unsafe-perm=true --allow-root</code></li>
 					<li>Enter your administrator password when prompted</li>
 				</ol>
@@ -212,7 +212,7 @@
 				<header>
 					<h2>Android Support</h2>
 				</header>
-				<p>To be able to build and deploy Android applications, you need to install additional components. If you don&#39;t plan on building the Android version of BlueCube, you can skip this section. I&#39;ve installed the items mentioned on the <a href="http://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html">Cordova Android Platform Guide</a>. If you encounter any problems please refer to this link.</p>
+				<p>To be able to build and deploy Android applications, you need to install additional components. If you don't plan on building the Android version of BlueCube, you can skip this section. I've installed the items mentioned on the <a href="http://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html">Cordova Android Platform Guide</a>. If you encounter any problems please refer to this link.</p>
 
 				<h3>Java Development Kit</h3>
 				<p>Android applications are written in the Java programming language, and as such require the Java Development Kit (JDK) installed (please note that this is different then the typically installed Java Runtime Environment (JRE)).</p>
@@ -224,10 +224,10 @@
 					<li>Download the <a href="http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-macosx-x64.dmg">Mac OS X x64</a> installer</li>
 					<li>Run the downloaded installer
 						<ol class="default alphalist">
-							<li>Click &quot;Continue&quot; on the &quot;Introduction&quot; screen</li>
-							<li>Click &quot;Install&quot; on the &quot;Installation Type&quot; screen</li>
-							<li>Enter the &quot;Username&quot; and &quot;Password&quot; of an administrator on the computer, and then click &quot;Install Software&quot;</li>
-							<li>Click &quot;Close&quot; on the &quot;Summary&quot; screen</li>
+							<li>Click "Continue" on the "Introduction" screen</li>
+							<li>Click "Install" on the "Installation Type" screen</li>
+							<li>Enter the "Username" and "Password" of an administrator on the computer, and then click "Install Software"</li>
+							<li>Click "Close" on the "Summary" screen</li>
 						</ol>
 					</li>
 				</ol>
@@ -239,58 +239,58 @@
 					<li>Download the appropriate installer (<a href="http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-windows-i586.exe">Windows x86</a> or <a href="http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-windows-i586.exe">Windows x64</a>)</li>
 					<li>Run the downloaded installer
 						<ol class="default alphalist">
-							<li>Click &quot;Yes&quot; to allow this the &quot;User Account Control&quot; &quot;Do you want to allow this app to install software on your PC?&quot; dialog</li>
-							<li>Click &quot;Next&quot; to start the install wizard</li>
-							<li>The default install options are fine, so click &quot;Next&quot;</li>
-							<li>The default install location is fine, so click &quot;Next&quot;</li>
-							<li>Click &quot;Close&quot;</li>
+							<li>Click "Yes" to allow this the "User Account Control" "Do you want to allow this app to install software on your PC?" dialog</li>
+							<li>Click "Next" to start the install wizard</li>
+							<li>The default install options are fine, so click "Next"</li>
+							<li>The default install location is fine, so click "Next"</li>
+							<li>Click "Close"</li>
 						</ol>
 					</li>
 				</ol>
 
-				<p>The Java Development Kit is now installed, however we need to add an environment variable to it&#39;s location. To do that:-</p>
+				<p>The Java Development Kit is now installed, however we need to add an environment variable to it's location. To do that:-</p>
 
 				<ol class="default" start="5">
-					<li>Click on the &quot;Start&quot; menu</li>
-					<li>Type &quot;Environment&quot;</li>
-					<li>Click on &quot;Edit the system environment variables&quot;</li>
-					<li>Click on &quot;Environment Variables...&quot; on the &quot;Advanced&quot; tab of the &quot;System Properties&quot; window that opened</li>
-					<li>Click &quot;New...&quot;
+					<li>Click on the "Start" menu</li>
+					<li>Type "Environment"</li>
+					<li>Click on "Edit the system environment variables"</li>
+					<li>Click on "Environment Variables..." on the "Advanced" tab of the "System Properties" window that opened</li>
+					<li>Click "New..."
 						<ol class="default alphalist">
 							<li>Variable Name: JAVAHOME</li>
 							<li>Variable Value:  C:\Program Files\Java\jdk1.7.079
 								<ol class="default">							
-									<li>It&#39;s best to click &quot;Browse Directory...&quot; and find where the JDK was installed, ad the location maybe different then the one I have specified</li>
+									<li>It's best to click "Browse Directory..." and find where the JDK was installed, ad the location maybe different then the one I have specified</li>
 								</ol>
 							</li>
 						</ol>
 					</li>
-					<li>Click &quot;OK&quot; to set the new variable</li>
-					<li>Click &quot;OK&quot; to close the &quot;Environment Variables&quot;</li>
-					<li>Click &quot;OK&quot; to close &quot;System Properties&quot;</li>
+					<li>Click "OK" to set the new variable</li>
+					<li>Click "OK" to close the "Environment Variables"</li>
+					<li>Click "OK" to close "System Properties"</li>
 				</ol>
 
 				<h3>Android Studio</h3>
-				<p><a href="http://developer.android.com/develop/index.html">Android Studio</a> is Google&#39;s Integrated Development Environment (IDE) for Android development.</p>
+				<p><a href="http://developer.android.com/develop/index.html">Android Studio</a> is Google's Integrated Development Environment (IDE) for Android development.</p>
 
 				<h4>On a Mac</h4>
 				<ol class="default">
 					<li>http://developer.android.com/sdk/index.html</li>
 					<li>Accept Licence Agreement and Download</li>
 					<li>Open the downloaded disk image</li>
-					<li>Drag Android Studio into the &quot;Applications&quot; folder</li>
-					<li>Run &quot;Android Studio&quot; from the &quot;Applications&quot; folder</li>
-					<li>When prompted, click &quot;Open&quot; to allow Android Studio to run as it was downloaded from the internet</li>
-					<li>On the &quot;Complete Installation&quot; screen, select &quot;I do not have a previous version of Studio or I do not want to import my settings&quot;</li>
-					<li>Click &quot;Next&quot; on the welcome screen</li>
-					<li>Ensure &quot;Standard&quot; is selected on the &quot;Install Type&quot; screen and click &quot;Next&quot;</li>
-					<li>Verify the selected settings and click &quot;Finish&quot;, taking note of the &quot;Destination Folder&quot;.</li>
+					<li>Drag Android Studio into the "Applications" folder</li>
+					<li>Run "Android Studio" from the "Applications" folder</li>
+					<li>When prompted, click "Open" to allow Android Studio to run as it was downloaded from the internet</li>
+					<li>On the "Complete Installation" screen, select "I do not have a previous version of Studio or I do not want to import my settings"</li>
+					<li>Click "Next" on the welcome screen</li>
+					<li>Ensure "Standard" is selected on the "Install Type" screen and click "Next"</li>
+					<li>Verify the selected settings and click "Finish", taking note of the "Destination Folder".</li>
 				</ol>
 
 				<p>The installer will now download additional items that are required. This may take a while.</p>
 
 				<ol class="default" start="11">
-					<li>Click &quot;Finish&quot; when the install is complete. If the &quot;HAXM&quot; installation fails, don&#39;t worry about it. &quot;HAXM&quot; is used for speeding up the emulator, but we don&#39;t use the emulator for this app.</li>
+					<li>Click "Finish" when the install is complete. If the "HAXM" installation fails, don't worry about it. "HAXM" is used for speeding up the emulator, but we don't use the emulator for this app.</li>
 				</ol>
 
 				<p>Android Studio is now running</p>
@@ -302,11 +302,11 @@
 				<p>We need to add the location of the Android tools to the <code>PATH</code> environment variable so that Cordova / Ionic can use them. To do this:-</p>
 
 				<ol class="default" start="13">
-					<li>Start &quot;Terminal&quot; from &quot;Applications&quot; <i class="fa fa-arrow-right"></i> &quot;Utilities&quot;</li>
+					<li>Start "Terminal" from "Applications" <i class="fa fa-arrow-right"></i> "Utilities"</li>
 					<li>Run <code>pico -w ~/.bash_profile</code></li>
 					<li>Add <code>export PATH=${PATH}:/Users/&lt;user&gt;/Library/Android/sdk/platform-tools:/Users/&lt;user&gt;/Library/Android/sdk/tools</code> to the file
 						<ol class="default alphalist">
-							<li>If you didn&#39;t change the install path, then the above will just need you to replace <code>&lt;user&gt;</code> with your short user name (the value before the $ sign in terminal). If you changed the install location, use the location that was specified in &quot;Destination Folder&quot; during step 10, replacing the text upto <code>platform-tools</code> and <code>tools</code></li>
+							<li>If you didn't change the install path, then the above will just need you to replace <code>&lt;user&gt;</code> with your short user name (the value before the $ sign in terminal). If you changed the install location, use the location that was specified in "Destination Folder" during step 10, replacing the text upto <code>platform-tools</code> and <code>tools</code></li>
 						</ol>
 					</li>
 					<li>Hit <code>Ctrl+O</code> then enter key to save the file</li>
@@ -319,66 +319,66 @@
 					<li>http://developer.android.com/sdk/index.html</li>
 					<li>Accept Licence Agreement and Download</li>
 					<li>Run the downloaded installer</li>
-					<li>Click &quot;Yes&quot; to allow this the &quot;User Account Control&quot; &quot;Do you want to allow this app to install software on your PC?&quot; dialog</li>
-					<li>Click &quot;Next&quot; on the &quot;Welcome&quot; screen</li>
-					<li>The default components are fine, so click &quot;Next&quot;</li>
-					<li>Click &quot;I Agree&quot; to the licence agreement</li>
-					<li>The default install locations are ok, so click &quot;Next&quot; (take note of the Android SDK Installation Location)</li>
-					<li>The default emulator setup settings are ok, so click &quot;Next&quot;</li>
-					<li>The default start menu folder is ok, so click &quot;Install&quot;, and wait for it to finish.</li>
-					<li>Click &quot;Next&quot; once the installation is complete</li>
-					<li>Uptick &quot;Start Android Studio&quot; and then click &quot;Finish&quot;</li>
+					<li>Click "Yes" to allow this the "User Account Control" "Do you want to allow this app to install software on your PC?" dialog</li>
+					<li>Click "Next" on the "Welcome" screen</li>
+					<li>The default components are fine, so click "Next"</li>
+					<li>Click "I Agree" to the licence agreement</li>
+					<li>The default install locations are ok, so click "Next" (take note of the Android SDK Installation Location)</li>
+					<li>The default emulator setup settings are ok, so click "Next"</li>
+					<li>The default start menu folder is ok, so click "Install", and wait for it to finish.</li>
+					<li>Click "Next" once the installation is complete</li>
+					<li>Uptick "Start Android Studio" and then click "Finish"</li>
 				</ol>
 
 				<p>We need to add the location of the Android tools to the <code>PATH</code> environment variable so that Cordova / Ionic can use them. To do this:-</p>
 
 				<ol class="default" start="13">
-					<li>Click on the &quot;Start&quot; menu</li>
-					<li>Type &quot;Path&quot;</li>
-					<li>Click on &quot;Edit the system environment variables&quot;</li>
-					<li>Click on &quot;Environment Variables...&quot; on the &quot;Advanced&quot; tab of the &quot;System Properties&quot; window that opened</li>
-					<li>Select &quot;PATH&quot; and click &quot;Edit...&quot;</li>
+					<li>Click on the "Start" menu</li>
+					<li>Type "Path"</li>
+					<li>Click on "Edit the system environment variables"</li>
+					<li>Click on "Environment Variables..." on the "Advanced" tab of the "System Properties" window that opened</li>
+					<li>Select "PATH" and click "Edit..."</li>
 					<li>Add <code>;C:\Android\sdk\platform-tools;C:\Android\sdk\tools</code> to the end of what is already there
 						<ol class="default alphalist">
-							<li>If you didn&#39;t change the install path, then the above will be fine. If you changed the install location, use the location that was specified in &quot;Android SDK Installation Location&quot; during step 8, replacing the text upto <code>platform-tools</code> and <code>tools</code></li>
+							<li>If you didn't change the install path, then the above will be fine. If you changed the install location, use the location that was specified in "Android SDK Installation Location" during step 8, replacing the text upto <code>platform-tools</code> and <code>tools</code></li>
 						</ol>
 					</li>
-					<li>Click &quot;OK&quot; to set the PATH variable</li>
-					<li>Click &quot;OK&quot; to close the &quot;Environment Variables&quot;</li>
-					<li>Click &quot;OK&quot; to close &quot;System Properties&quot;</li>
+					<li>Click "OK" to set the PATH variable</li>
+					<li>Click "OK" to close the "Environment Variables"</li>
+					<li>Click "OK" to close "System Properties"</li>
 				</ol>
 
 				<h3>Android SDK</h3>
-				<p>The Android SDK contains the required components to develop Android applications against particular API&#39;s (Android versions).</p>
+				<p>The Android SDK contains the required components to develop Android applications against particular API's (Android versions).</p>
 
 				<h4>On a Mac</h4>
 				<ol class="default">
-					<li>Start &quot;Terminal&quot; from &quot;Applications&quot; <i class="fa fa-arrow-right"></i> &quot;Utilities&quot;</li>
+					<li>Start "Terminal" from "Applications" <i class="fa fa-arrow-right"></i> "Utilities"</li>
 					<li>Run <code>android</code>
 						<ol class="default alphalist">
-							<li>When the &quot;Android SDK Manager&quot; loads, it will check for any updates, and most likely find some. This is ok. We will install these updates in addition to the items we require.</li>
+							<li>When the "Android SDK Manager" loads, it will check for any updates, and most likely find some. This is ok. We will install these updates in addition to the items we require.</li>
 						</ol>
 					</li>
-					<li>Expand &quot;Android 5.1.1 (API 22)&quot;</li>
-					<li>Click the check box next to &quot;SDK Platform&quot; under &quot;Android 5.1.1 (API 22)&quot;</li>
-					<li>Click &quot;Install # Packages&quot; to install that package and any updates that are available</li>
-					<li>Select a package on the left, then click &quot;Accept License&quot; on the right &amp;.</li>
-					<li>Click &quot;Install&quot;</li>
+					<li>Expand "Android 5.1.1 (API 22)"</li>
+					<li>Click the check box next to "SDK Platform" under "Android 5.1.1 (API 22)"</li>
+					<li>Click "Install # Packages" to install that package and any updates that are available</li>
+					<li>Select a package on the left, then click "Accept License" on the right &amp;.</li>
+					<li>Click "Install"</li>
 				</ol>
 
 				<h4>On a Windows PC</h4>
 				<ol class="default">
-					<li>Start &quot;Command Prompt&quot; hitting &quot;Windows&quot; + &quot;R&quot; keys, then typing <code>cmd</code></li>
+					<li>Start "Command Prompt" hitting "Windows" + "R" keys, then typing <code>cmd</code></li>
 					<li>Run <code>android</code></li>
 						<ol class="default alphalist">
-							<li>When the &quot;Android SDK Manager&quot; loads, it will check for any updates, and most likely find some. This is ok. We will install these updates in addition to the items we require.</li>
+							<li>When the "Android SDK Manager" loads, it will check for any updates, and most likely find some. This is ok. We will install these updates in addition to the items we require.</li>
 						</ol>
 					</li>
-					<li>Expand &quot;Android 5.1.1 (API 22)&quot;</li>
-					<li>Click the check box next to &quot;SDK Platform&quot; under &quot;Android 5.1.1 (API 22)&quot;</li>
-					<li>Click &quot;Install # Packages&quot; to install any updates that are available</li>
-					<li>Select a package on the left, then click &quot;Accept License&quot; on the right.</li>
-					<li>Click &quot;Install&quot;</li>
+					<li>Expand "Android 5.1.1 (API 22)"</li>
+					<li>Click the check box next to "SDK Platform" under "Android 5.1.1 (API 22)"</li>
+					<li>Click "Install # Packages" to install any updates that are available</li>
+					<li>Select a package on the left, then click "Accept License" on the right.</li>
+					<li>Click "Install"</li>
 				</ol>
 				<a name="other"></a>
 			</section>
@@ -400,7 +400,7 @@
 				<h4>On a Windows PC</h4>
 				<ul class="default">
 					<li><a href="https://notepad-plus-plus.org">Notepad++</a> is a free text editor.</li>
-					<li><a href="http://www.git-scm.com/">Git</a> is a free version control system tool. I&#39;ve used Git during the development of BlueCube.</li>
+					<li><a href="http://www.git-scm.com/">Git</a> is a free version control system tool. I've used Git during the development of BlueCube.</li>
 					<li><a href="https://www.sourcetreeapp.com">SourceTree</a> is a free graphical front end to Git from <a href="https://www.atlassian.com">Atlassian</a>.</li>
 				</ul>
 			</section>
