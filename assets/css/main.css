@@ -1801,7 +1801,7 @@
 	button,
 	.button {
 		cursor: pointer;
-		background-color: rgb(12, 96, 238);
+		background-color: #1c3880;
 		border-radius: 0.4em;
 		text-align: center;
 		box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.15);
@@ -2088,7 +2088,7 @@
 		top: 0;
 		width: 100%;
 		z-index: 10001;
-		background: #387ef5;
+		background: #1c3880;
 	}
 
 		#titleBar .title {
@@ -2136,7 +2136,7 @@
 				width: 50px;
 				height: 30px;
 				line-height: 30px;
-				background: #387ef5;
+				background: #1c3880;
 				border-radius: 5px;
 				color: #fff;
 				text-align: center;
