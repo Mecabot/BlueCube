@@ -1,106 +1,101 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
 	<!-- Basic Page Needs
 	================================================== -->
 	<title>BlueCube - Acknowledgements</title>
+	<meta charset="utf-8" />
 
 	<!-- Mobile Specific Metas
 	================================================== -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<!-- CSS
 	================================================== -->
-	<link rel="stylesheet" href="css/base.css">
-	<link rel="stylesheet" href="css/skeleton.css">
-	<link rel="stylesheet" href="css/layout.css">
-	<link rel="stylesheet" href="css/docs.css">
+	<link rel="stylesheet" href="assets/css/main.css" />
 </head>
 
 <body>
-<body>
-	<div class="container">
-		<div class="three columns sidebar">
-			<nav>
-				<div align="center">
-					<img src="img/BlueCube.png" width="90%">
-					<br>
-					<h3 id="navtitle">BlueCube</h3>
-				</div>
-				<ul>
-					<div class="menuitem">
-						<li><a href="index.html">Home</a></li>
-					</div>
-					<div class="menuitem">
-						<li><a href="wiring.html">Wiring</a></li>
-					</div>
-					<div class="menuitem">
-						<li><a href="download.html">Download</a></li>
-					</div>
-					<div class="menuitem">
-						<li><a href="install.html">Install</a></li>
-					</div>
-					<div class="menuitem">
-						<li><a href="usage.html">Usage</a></li>
-					</div>
-					<div class="menuitem">
-						<li><a href="troubleshooting.html">Troubleshooting, FAQs &amp; Support</a></li>
-					</div>
-					<div class="menuitem">
-						<li><a href="development.html">Development Environment</a></li>
-					</div>
-					<div class="menuitem blueborder clearfix">
-						<li><a href="acknowledgements.html">Acknowledgements</a></li>
-					</div>
+	<!-- Content -->
+	<div id="content">
+		<div class="inner">
+
+			<section class="box post">
+				<header>
+					<h1>Acknowledgements</h1>
+					<hr class="blue">
+				</header>
+				<p>BlueCube was developed by <a href="mailto:adam@secretcode.ninja">Adam Reed</a> and is licensed under the BSD 3-Clause Licence which can be found on the <a href="download.html">Download</a> page.</p>
+
+				<p>BlueCube was build upon the work of others. I wish to thank:-</p>
+				<ul class="default">
+					<li>Freetronics, for making an awesome cube kit, and providing a <a href="https://github.com/freetronics/Cube4">handy library</a> for manipulating it.</li>
+					<li>Adafruit, for making great hardware, and backing it up with sample code and libraries so that it is easy to implement, particularly the <a href="https://github.com/adafruit/Adafruit_BluefruitLE_nRF51">Adafruit BluefruitLE nRF51 Library</a> used by BlueCube.</li>
+					<li><a href="http://arduino.cc">Arduino</a>, for making a wonderful ecosystem for people to tinker and learn in.</li>
+					<li>Members of the <a href="http://forum.freetronics.com/viewforum.php?f=32">Freetronics 4x4x4 RGB Cube forum</a> for sample sketches, and particularly "sparky-nz" for providing the <a href="http://forum.freetronics.com/viewtopic.php?f=32&amp;t=5562">template</a> for the LED Coordinates.</li>
+					<li><a href="https://cordova.apache.org">Cordova Project</a> and the <a href="http://ionicframework.com">Ionic Framework</a>. The use of these frameworks allowed for this code to be compatible with iOS, and Android devices all from the same codebase, and meant I only had to focus on specific functionality required for BlueCube, not a heap of other boilerplate code. Various plugins (installed via <pre>cordova plugin add ...</pre>) were also utilised to help with functionality. They include:-
+						<ul class="default">
+							<li>cordova-plugin-app-version</li>
+							<li>cordova-plugin-appinfo</li>
+							<li><a href="https://github.com/don/cordova-plugin-ble-central">cordova-plugin-ble-central</a> - handles the bluetooth communications</li>
+							<li>cordova-plugin-console</li>
+							<li>cordova-plugin-device</li>
+							<li>cordova-plugin-dialogs</li>
+							<li>cordova-plugin-globalization used in conjunction with <a href="https://angular-translate.github.io">angular-translate</a> to allow localisation of the app</li>
+							<li>cordova-plugin-inappbrowser</li>
+							<li>cordova-plugin-progress-indicator</li>
+							<li>cordova-plugin-splashscreen</li>
+							<li>cordova-plugin-statusbar</li>
+							<li>cordova-plugin-whitelist</li>
+							<li><a href="http://ngcordova.com">ng-cordova</a> which makes it easier to interact with some of these plugins</li>
+						</ul>
+					</li>
+					<li>Other functionality was also added to the Ionic app. This includes:-
+						<ul class="default">
+							<li><a href="http://bgrins.github.io/spectrum/">Spectrum</a> Colour Picker, and it was implemented using sample code from <a href="http://jsfiddle.net/g/LAJCa/">http://jsfiddle.net/g/LAJCa/</a>.</li>
+							<li><a href="https://market.ionic.io/plugins/ionic-content-banner">Ionic Content Banner</a> by Devin Jett.</li>
+						</ul>
+					</li>
+					<li>BlueCube's logo, icon and splash screen were based off the work outlined <a href="http://www.deke.com/content/dekes-techniques-241-drawing-orthogonal-cube-with-line-tool-illustrator">here</a>.</li>
+					<li>This website uses the <a href="http://html5up.net/striped">Striped</a> HTML responsive template by <a href="http://n33.co/">AJ (@n33co)</a>. The template is released under the <a href="http://html5up.net/license">Creative Commons Attribution 3.0</a> licence. Various styles have been modified by me. The template also includes <a href="http://jquery.com/">JQuery</a>, <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>, and <a href="http://skel.io/">Skel</a>.</li>
 				</ul>
-			</nav>
-			&nbsp;
-		</div>
-		<div class="twelve columns offset-by-one content">
-			<header>
-				<h1>Acknowledgements</h1>
-			</header>
 
-			<hr class="large bluebackground">
+				<p>Apple, the Apple logo, iPhone, and iPad are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc. Android, Google Play and the Google Play logo are trademarks of Google Inc.</p>
+			</section>
+		</div> <!-- .inner -->
+	</div> <!-- .content -->
 
-			<p>BlueCube was developed by <a href="mailto:adam@secretcode.ninja">Adam Reed</a> and is licensed under the BSD 3-Clause Licence which can be found on the <a href="download.html">Download</a> page.</p>
+	<!-- Sidebar -->
+	<div id="sidebar">
+		<!-- Logo -->
+		<h1 id="logo">
+			<img src="images/BlueCube.png">
+			<a href="#">BlueCube</a>
+		</h1>
 
-			<p>BlueCube was build upon the work of others. I wish to thank:-</p>
+		<!-- Nav -->
+		<nav id="nav">
 			<ul>
-				<li>Freetronics, for making an awesome cube kit, and providing a <a href="https://github.com/freetronics/Cube4">handy library</a> for manipulating it.</li>
-				<li>Adafruit, for making great hardware, and backing it up with sample code and libraries so that it is easy to implement, particularly the <a href="https://github.com/adafruit/Adafruit_BluefruitLE_nRF51">Adafruit BluefruitLE nRF51 Library</a> used by BlueCube.</li>
-				<li><a href="http://arduino.cc">Arduino</a>, for making a wonderful ecosystem for people to tinker and learn in.</li>
-				<li>Members of the <a href="http://forum.freetronics.com/viewforum.php?f=32">Freetronics 4x4x4 RGB Cube forum</a> for sample sketches, and particularly "sparky-nz" for providing the <a href="http://forum.freetronics.com/viewtopic.php?f=32&amp;t=5562">template</a> for the LED Coordinates.</li>
-				<li><a href="https://cordova.apache.org">Cordova Project</a> and the <a href="http://ionicframework.com">Ionic Framework</a>. The use of these frameworks allowed for this code to be compatible with iOS, and Android devices all from the same codebase, and meant I only had to focus on specific functionality required for BlueCube, not a heap of other boilerplate code. Various plugins (installed via <pre>cordova plugin add ...</pre>) were also utilised to help with functionality. They include:-
-					<ul>
-						<li>cordova-plugin-app-version</li>
-						<li>cordova-plugin-appinfo</li>
-						<li><a href="https://github.com/don/cordova-plugin-ble-central">cordova-plugin-ble-central</a> - handles the bluetooth communications</li>
-						<li>cordova-plugin-console</li>
-						<li>cordova-plugin-device</li>
-						<li>cordova-plugin-dialogs</li>
-						<li>cordova-plugin-globalization used in conjunction with <a href="https://angular-translate.github.io">angular-translate</a> to allow localisation of the app</li>
-						<li>cordova-plugin-inappbrowser</li>
-						<li>cordova-plugin-progress-indicator</li>
-						<li>cordova-plugin-splashscreen</li>
-						<li>cordova-plugin-statusbar</li>
-						<li>cordova-plugin-whitelist</li>
-						<li><a href="http://ngcordova.com">ng-cordova</a> which makes it easier to interact with some of these plugins</li>
-					</ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="wiring.html">Wiring</a></li>
+				<li><a href="download.html">Download</a></li>
+				<li><a href="install.html">Install</a></li>
+				<li><a href="usage.html">Usage</a></li>
+				<li><a href="troubleshooting.html">Troubleshooting, FAQs &amp; Support</a></li>
+				<li><a href="development.html">Development Environment</a></li>
+				<li class="current">
+					<a href="acknowledgements.html">Acknowledgements</a>
 				</li>
-				<li>Other functionality was also added to the Ionic app. This includes:-
-					<ul>
-						<li><a href="http://bgrins.github.io/spectrum/">Spectrum</a> Colour Picker, and it was implemented using sample code from <a href="http://jsfiddle.net/g/LAJCa/">http://jsfiddle.net/g/LAJCa/</a>.</li>
-						<li><a href="https://market.ionic.io/plugins/ionic-content-banner">Ionic Content Banner</a> by Devin Jett.</li>
-					</ul>
-				</li>
-				<li>BlueCube's logo, icon and splash screen were based off the work outlined <a href="http://www.deke.com/content/dekes-techniques-241-drawing-orthogonal-cube-with-line-tool-illustrator">here</a>.</li>
-				<li>This website uses the <a href="http://getskeleton.com">Skeleton</a> CSS boilerplate.</li>
 			</ul>
+		</nav>
+	</div>
 
-			<p>Apple, the Apple logo, iPhone, and iPad are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc. Android, Google Play and the Google Play logo are trademarks of Google Inc.</p>
-		</div><!-- content -->
-	</div><!-- container -->
+	<!-- Javascript
+	================================================== -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
 
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -112,5 +107,4 @@
 		ga('send', 'pageview');
 	</script>
 </body>
-
 </html>

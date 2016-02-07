@@ -1,137 +1,103 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
 	<!-- Basic Page Needs
 	================================================== -->
 	<title>BlueCube - Usage</title>
+	<meta charset="utf-8" />
 
 	<!-- Mobile Specific Metas
 	================================================== -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<!-- CSS
 	================================================== -->
-	<link rel="stylesheet" href="css/base.css">
-	<link rel="stylesheet" href="css/skeleton.css">
-	<link rel="stylesheet" href="css/layout.css">
-	<link rel="stylesheet" href="css/docs.css">
+	<link rel="stylesheet" href="assets/css/main.css" />
 </head>
 
 <body>
-<body>
-	<div class="container">
-		<div class="three columns sidebar">
-			<nav>
-				<div align="center">
-					<img src="img/BlueCube.png" width="90%">
-					<br>
-					<h3 id="navtitle">BlueCube</h3>
-				</div>
-				<ul>
-					<div class="menuitem">
-						<li><a href="index.html">Home</a></li>
-					</div>
-					<div class="menuitem">
-						<li><a href="wiring.html">Wiring</a></li>
-					</div>
-					<div class="menuitem">
-						<li><a href="download.html">Download</a></li>
-					</div>
-					<div class="menuitem">
-						<li><a href="install.html">Install</a></li>
-					</div>
-					<div class="menuitem blueborder clearfix">
-						<li><a href="usage.html">Usage</a>
-						<ul>
-							<li><a href="#general">General</a></li>
-							<li><a href="#patterns">Adding Patterns</a></li>
-						</ul></li>
-					</div>
-					<div class="menuitem">
-						<li><a href="troubleshooting.html">Troubleshooting, FAQs &amp; Support</a></li>
-					</div>
-					<div class="menuitem">
-						<li><a href="development.html">Development Environment</a></li>
-					</div>
-					<div class="menuitem">
-						<li><a href="acknowledgements.html">Acknowledgements</a></li>
-					</div>
-				</ul>
-			</nav>
-			&nbsp;
-		</div>
-		<div class="twelve columns offset-by-one content">
-			<header>
-				<h1>Usage</h1>
-			</header>
+	<!-- Content -->
+	<div id="content">
+		<div class="inner">
 
-			<hr class="large bluebackground">
-			
-			<section id="general">
-				<h3>General Usage</h3>
+			<section class="box post">
+				<header>
+					<h1>Usage</h1>
+					<hr class="blue">
+				</header>
+				<a name="general"></a>
+			</section>
+
+			<section class="box post">
+				<header>
+					<h2>General Usage</h2>
+				</header>
 				<p>To control the cube (ensure that it is running the BlueCube sketch), launch the app on your mobile device. The connect screen will be shown - tap "Connect" and the app will search for Cubes to connect to. If only one is found it automatically connects, otherwise it will present a list from which you can chose which to connect to.</p>
 	
 				<p>You can see the menu with all of the available options by sliding the app to the right, or by tapping the three horizontal lines in the top left corner. The options are:-</p>
 
-				<h4>All</h4>
+				<h3>All</h3>
 				<p>Sets all LEDs on the cube to the selected colour. If "Automatical Change" is selected the Cube updates as you change the colour, otherwise tap "Change Cube Colour" to update the cube. You can also choose one of the preset colour favourites, and mange these favourites.</p>
 				
-				<h4>Shift</h4>
+				<h3>Shift</h3>
 				<p>Move the current light display one position left, right, up, down, forward, or back.</p>
 			
-				<h4>Set</h4>
+				<h3>Set</h3>
 				<p>Tap any of the circles that represent the LEDs on the Cube to set it to the colour set above. Tap again to turn the LED off.</p>
 
-				<h4>Next</h4>
+				<h3>Next</h3>
 				<p>Set the &quot;next&quot; LED to the chosen colour.</p>
 			
-				<h4>Set Plane</h4>
+				<h3>Set Plane</h3>
 				<p>Set a plane of the cube to the chosen colour. You pick the axis, then the offset. For example X 0 is all LEDs on the left side of the cube, Y 3 would be all LEDs on the back side of the cube, and Z 0 is all of the LEDs on the bottom of the cube.</p>
 				
-				<h4>Copy Plane</h4>
+				<h3>Copy Plane</h3>
 				<p>Copy the current light display of a plane to a different plane on the same axis.</p>
 				
-				<h4>Move Plane</h4>
+				<h3>Move Plane</h3>
 				<p>Move the selected planes light display to a different plane, and then set the original planes colour to the chosen colour.</p>
 
-				<h4>Line</h4>
+				<h3>Line</h3>
 				<p>Draw a line between two LEDs in the given colour. Tap two LEDs on the grid and then tap "Draw Line".</p>
 
-				<h4>Box</h4>
+				<h3>Box</h3>
 				<p>Draw a box with different style options. Tap the bottom left LED, and the top right LED, then pick if you want a solid colour, only the walls filled in (leaving the centre off), only the edges filled in (leaving the center of the box and walls empty), or whether the walls or edges should be filled with a second colour.</p>
 
-				<h4>Sphere</h4>
+				<h3>Sphere</h3>
 				<p>Draw a sphere with different style options. Tap the LED that represents the middle of the sphere, then chose it's size and whether the outside only is light up, or whether the middle of cube is also illuminated in a second colour (solid).</p>
 
-				<h4>Connect</h4>
+				<h3>Connect</h3>
 				<p>Allows you to connect or disconnect from the Cube</p>
 
-				<h4>User Defined Patterns</h4>
+				<h3>User Defined Patterns</h3>
 				<p>Call any user defined patterns in the sketch from the app, and if needed provide a colour to be used.</p>
 
-				<h4>Static Favourites</h4>
+				<h3>Static Favourites</h3>
 				<p>With static favourites, you can save a series of commands for the cube, and then replay them with the tap of a button on demand.</p>
 
-				<h4>History</h4>
+				<h3>History</h3>
 				<p>View the commands that have been sent to the cube, and replay any selected commands if you wish.</p>
 
-				<h4>Settings</h4>
+				<h3>Settings</h3>
 				<p>Allows you to control how many items are saved in the history, and to reset the app back to it's default state.</p>
 
-				<h4>About</h4>
+				<h3>About</h3>
 				<p>Gives information about the app, how to wire the cube and bluetooth module together, and the location of all of the LEDs.</p>
+				<a name="patterns"></a>
 			</section>
 
-			<hr class="large bluebackground">
+			<hr class="blue">
 
-			<section id="patterns">
-				<h3>Adding User Defined Patterns</h3>
+			<section class="box post">
+				<header>
+					<h2>Adding User Defined Patterns</h2>
+				</header>
 				<p>To add a user defined pattern you need to do two things. The first is that you need to add the code for the pattern to the sketch, and then upload it to the cube. The second is to tell the app about the function.</p>
 				
-				<h4>Adding pattern to sketch</h4>
+				<h3>Adding pattern to sketch</h3>
 				<p>I recommend that you create the pattern in a class, and then include that class. If you are unsure about this, I recommend you copy the ZigZag.h and ZigZag.cpp files and modify them as appropriate.</p>
 				<p>Assuming you have a new class (I'm going to use the "Sweep" example from <a href="XXX">here</a>), you would add it as follows:-</p>
-				<ol>
+				<ol class="default">
 					<li>Copy the Sweep.h and Sweep.cpp files into the same directory as BlueCube.ino</li>
 					<li>Open BlueCube.ino in the Arduino IDE</li>
 					<li>Sweep requires a delay, add <code>#define SWEEP_DELAY 100</code> under the <code>#define ZIGZAG_DELAY</code> line.</li>
@@ -154,9 +120,9 @@
 					</li>
 					<li>You can now compile and upload the sketch to the cube.</li>
 				</ol>
-				<h4>Adding pattern to app</h4>
+				<h3>Adding pattern to app</h3>
 				<p>Once you have added the user defined pattern to the sketch, you can add it to the app. To do this:-</p>
-				<ol>
+				<ol class="default">
 					<li>Launch the app on your mobile device, and connect to the cube.</li>
 					<li>Select "User Defined Patterns" from the side menu.</li>
 					<li>Tap the green "+"</li>
@@ -168,9 +134,44 @@
 					<li>Tap "Blue Sweep" and a blue sweep pattern should display on the cube.</li>
 				</ol>
 			</section>
-			
-		</div><!-- content -->
-	</div><!-- container -->
+		</div> <!-- .inner -->
+	</div> <!-- .content -->
+
+	<!-- Sidebar -->
+	<div id="sidebar">
+		<!-- Logo -->
+		<h1 id="logo">
+			<img src="images/BlueCube.png">
+			<a href="#">BlueCube</a>
+		</h1>
+
+		<!-- Nav -->
+		<nav id="nav">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="wiring.html">Wiring</a></li>
+				<li><a href="download.html">Download</a></li>
+				<li><a href="install.html">Install</a></li>
+				<li class="current">
+					<a href="usage.html">Usage</a>
+					<ul>
+						<li><a href="#general">General</a></li>
+						<li><a href="#patterns">Adding Patterns</a></li>
+					</ul>
+				</li>
+				<li><a href="troubleshooting.html">Troubleshooting, FAQs &amp; Support</a></li>
+				<li><a href="development.html">Development Environment</a></li>
+				<li><a href="acknowledgements.html">Acknowledgements</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<!-- Javascript
+	================================================== -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
 
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -182,5 +183,4 @@
 		ga('send', 'pageview');
 	</script>
 </body>
-
 </html>

@@ -1,82 +1,44 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
 	<!-- Basic Page Needs
 	================================================== -->
 	<title>BlueCube - Wiring</title>
+	<meta charset="utf-8" />
 
 	<!-- Mobile Specific Metas
 	================================================== -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<!-- CSS
 	================================================== -->
-	<link rel="stylesheet" href="css/base.css">
-	<link rel="stylesheet" href="css/skeleton.css">
-	<link rel="stylesheet" href="css/layout.css">
-	<link rel="stylesheet" href="css/docs.css">
+	<link rel="stylesheet" href="assets/css/main.css" />
 </head>
 
 <body>
-<body>
-	<div class="container">
-		<div class="three columns sidebar">
-			<nav>
-				<div align="center">
-					<img src="img/BlueCube.png" width="90%">
-					<br>
-					<h3 id="navtitle">BlueCube</h3>
-				</div>
-				<ul>
-					<div class="menuitem">
-						<li><a href="index.html">Home</a></li>
-					</div>
-					<div class="menuitem blueborder clearfix">
-						<li><a href="wiring.html">Wiring</a>
-						<ul>
-							<li><a href="#parts">Parts List</a></li>
-							<li><a href="#assembly">Assembly</a></li>
-							<li><a href="#connections">Connections</a></li>
-						</ul></li>
-					</div>
-					<div class="menuitem">
-						<li><a href="download.html">Download</a></li>
-					</div>
-					<div class="menuitem">
-						<li><a href="install.html">Install</a></li>
-					</div>
-					<div class="menuitem">
-						<li><a href="usage.html">Usage</a></li>
-					</div>
-					<div class="menuitem">
-						<li><a href="troubleshooting.html">Troubleshooting, FAQs &amp; Support</a></li>
-					</div>
-					<div class="menuitem">
-						<li><a href="development.html">Development Environment</a></li>
-					</div>
-					<div class="menuitem">
-						<li><a href="acknowledgements.html">Acknowledgements</a></li>
-					</div>
-				</ul>
-			</nav>
-			&nbsp;
-		</div>
-		<div class="twelve columns offset-by-one content">
-			<header>
-				<h1>Wiring</h1>
-			</header>
+	<!-- Content -->
+	<div id="content">
+		<div class="inner">
 
-			<hr class="large bluebackground">
-			
-			<section id="parts">
-				<h3>Parts List</h3>
+			<section class="box post">
+				<header>
+					<h1>Wiring</h1>
+					<hr class="blue">
+				</header>
+				<a name="parts"></a>
+			</section>
+
+			<section class="box post">
+				<header>
+					<h2>Parts List</h2>
+				</header>
 				<p>The following list includes all of the parts I&#39;ve used in creating the BlueCube. </p>
 
 				<blockquote>
 					<p>Please note that the code is specifically written to support the Adafruit Bluetooth module. Other Bluetooth modules will not work without modification to both the sketch for the cube, and to the apps for iOS and Android.</p>
 				</blockquote>
-
-				<ul>
+				<br>
+				<ul class="default">
 					<li><a href="http://www.freetronics.com.au/products/cube4-4x4x4-rgb-led-cube">Freetronics 4x4x4 RGB LED Cube</a></li>
 					<li><a href="https://www.adafruit.com/product/2479">Adafruit Bluefruit LE UART Friend - Bluetooth Low Energy (BLE)</a></li>
 					<li>1x8 Pin 0.1&quot; (2.54 mm) Right-Angle Breakaway Male Header</li>
@@ -86,88 +48,109 @@
 				</ul>
 
 				<p>The header pins, breadboard, and jumper leads can all be found on eBay or from your nearest hobby electronics store. These are optional however as you can also use the prototyping section of the cube PCB.</p>				
+				<a name="assembly"></a>
 			</section>
 
-			<hr class="large bluebackground">
+			<hr class="blue">
 
-			<section id="assembly">
-				<h3>Assembly</h3>
+			<section class="box post">
+				<header>
+					<h2>Assembly</h2>
+				</header>
 				<p>I strongly suggest that you follow the Freetronic instructions on creating the cube that are available <a href="http://www.freetronics.com.au/pages/cube4-rgb-cube-assembly-guide">here</a>. </p>
 
 				<p>I decided when making my Cube that I did not want to permanently attach the Bluetooth module. To this end, I added a step to the end of &quot;Step 4 - Fit Controller Board Standoffs&quot; of the above assemble instructions.</p>
 
 				<p>I affixed the 1x8 Pin Right-Angle breakaway male headers to the PCB as outlined below, so that the pins were on the &quot;underside&quot; (the side with all of the components) in the area marked in yellow.</p>
 
-				<p><img src="img/Header.png" alt="Cube Header Location"> </p>
+				<p><img src="images/Header.png" alt="Cube Header Location"> </p>
 
 				<p>The rest of the assembly was completed as outlined on the Freetronics site.</p>
 
 				<p>For the Adafruit Bluefruit LE UART Friend module, I soldered the 1x8 Male Header Pins in, so that they extended from the back of the module.</p>
+				<a name="connections"></a>
 			</section>
-			
-			<hr class="large bluebackground">
-			
-			<section id="connections">
-				<h3>Connections</h3>
+
+			<hr class="blue">
+
+			<section class="box post">
+				<header>
+					<h2>Connections</h2>
+				</header>
 				<p>To connect the Bluetooth module to the cube, I use a small breadboard, and 6 Dupoint style jumper leads (3 x 10cm Male to Female, 1 x 10cm Male to Male, and 2 x 20cm Male to Female). The Bluetooth module is placed in the breadboard, and then wires are connected as outlined below.</p>
 
-				<p><img src="img/Wiring.png" alt="Cube PCB with Wiring"></p>
+				<p><img src="images/Wiring.png" alt="Cube PCB with Wiring"></p>
 
 				<p>With the wiring as show above, the following are connected.</p>
 
-				<div class="clearfix">
-					<div class="two columns alpha tableheading" align="right">
-						<p>Cube</p>
-					</div>
-					<div class="three columns omega tableheading">
-						<p>Bluetooth Module</p>
-					</div>
-				</div>
-				<div class="clearfix">
-					<div class="two columns alpha" align="right">
-						<pre>D5</pre>
-					</div>
-					<div class="three columns omega">
-						<pre>MOD</pre>
-					</div>
-				</div>
-				<div class="clearfix">
-					<div class="two columns alpha" align="right">
-						<pre>GND</pre>
-					</div>
-					<div class="three columns omega">
-						<pre>CTS and GND</pre>
-					</div>
-				</div>
-				<div class="clearfix">
-					<div class="two columns alpha" align="right">
-						<pre>RX</pre>
-					</div>
-					<div class="three columns omega">
-						<pre>TX</pre>
-					</div>
-				</div>
-				<div class="clearfix">
-					<div class="two columns alpha" align="right">
-						<pre>TX</pre>
-					</div>
-					<div class="three columns omega">
-						<pre>RX</pre>
-					</div>
-				</div>
-				<div class="clearfix">
-					<div class="two columns alpha" align="right">
-						<pre>+5v</pre>
-					</div>
-					<div class="three columns omega">
-						<pre>VIN</pre>
-					</div>
-				</div>
+				<table class="default">
+					<tr>
+						<th>Cube</th>
+						<th>Bluetooth Module</th>
+					</tr>
+					<tr>
+						<td><code>D5</code></td>
+						<td><code>MOD</code></td>
+					</tr>
+					<tr>
+						<td><code>GND</code></td>
+						<td><code>CTS and GND</code></td>
+					</tr>
+					<tr>
+						<td><code>RX</code></td>
+						<td><code>TX</code></td>
+					</tr>
+					<tr>
+						<td><code>TX</code></td>
+						<td><code>RX</code></td>
+					</tr>
+					<tr>
+						<td><code>+5v</code></td>
+						<td><code>VIN</code></td>
+					</tr>
+				</table>
 
-				<p><pre>RTS</pre> and <pre>DFU</pre> on the Bluetooth Module are not connected. The switch on the Bluetooth module is set to the &quot;CMD&quot; possition.</p>
+				<p><code>RTS</code> and <code>DFU</code> on the Bluetooth Module are not connected. The switch on the Bluetooth module is set to the &quot;CMD&quot; possition.</p>
 			</section>
-		</div><!-- content -->
-	</div><!-- container -->
+		</div> <!-- .inner -->
+	</div> <!-- .content -->
+
+	<!-- Sidebar -->
+	<div id="sidebar">
+		<!-- Logo -->
+		<h1 id="logo">
+			<img src="images/BlueCube.png">
+			<a href="#">BlueCube</a>
+		</h1>
+
+		<!-- Nav -->
+		<nav id="nav">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li class="current">
+					<a href="wiring.html">Wiring</a>
+					<ul>
+						<li><a href="#parts">Parts List</a></li>
+						<li><a href="#assembly">Assembly</a></li>
+						<li><a href="#connections">Connections</a></li>
+					</ul>
+				</li>
+				<li><a href="download.html">Download</a></li>
+				<li><a href="install.html">Install</a></li>
+				<li><a href="usage.html">Usage</a></li>
+				<li><a href="troubleshooting.html">Troubleshooting, FAQs &amp; Support</a></li>
+				<li><a href="development.html">Development Environment</a></li>
+				<li><a href="acknowledgements.html">Acknowledgements</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<!-- Javascript
+	================================================== -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
 
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -179,5 +162,4 @@
 		ga('send', 'pageview');
 	</script>
 </body>
-
 </html>
