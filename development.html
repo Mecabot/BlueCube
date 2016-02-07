@@ -380,6 +380,112 @@
 					<li>Select a package on the left, then click "Accept License" on the right.</li>
 					<li>Click "Install"</li>
 				</ol>
+				<a name="build"></a>
+			</section>
+
+			<hr class="blue">
+
+			<section class="box post">
+				<header>
+					<h2>Build &amp; Deploy</h2>
+				</header>
+				<h3>Change Project ID</h3>
+				<p>The project has a given ID of "ninja.secretcode.BlueCube". This ID needs to be unique for each developer that builds the apps. This change needs to be completed every time you download a new version of BlueCube (the same unique ID can be used for each version). To edit it:-</p>
+
+				<h4>On a Mac</h4>
+				<ol class="default">
+					<li>Browse to "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp"</li>
+					<li>Edit <code>config.xml</code> in the text editor of your choise</li>
+					<li>On the second line where it says <code>id=ninja.secretcode.BlueCube</code> change it so that it is unique to you. Normally the name ID is in reverse DNS format, so if you own "fredsautos.com", the ID would be <code>id=com.fredsautos.BlueCube</code>. Otherwise just add a random number to the end of "BlueCube", without any spaces or punctuation. If in doubt, add the machines MAC address at the end. On OS X run <code>ifconfig en0 ether | grep ether | awk '{ print $2 }' | sed s/\://g</code>.</li>
+					<li>Start Terminal "Applications" <i class="fa fa-arrow-right"></i> "Utilities" <i class="fa fa-arrow-right"></i> "Terminal"</li>
+					<li>Change to the BlueCube "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp" by <code>cd</code> and dragging the "IonicApp" folder onto the terminal window, then hitting "Enter". For example, I have the BlueCube folder on my desktop, and my username is <code>adam</code>. In this case the command was <code>cd /Users/adam/Desktop/BlueCube/IonicApp</code></li>
+					<li>Remove the previously configured platforms
+						<ol class="default alphalist">
+							<li><code>ionic platform rm ios</code></li>
+							<li><code>ionic platform rm android</code></li>
+						</ol>
+					</li>
+					<li>Re-add the iOS platform if you wish to build the iOS app
+						<ol class="default alphalist">
+							<li><code>ionic platform add ios</code></li>
+						</ol>
+					</li>
+					<li>Re-add the Android platform if you wish to build the Android app
+						<ol class="default alphalist">
+							<li><code>ionic platform add android</code></li>
+						</ol>
+					</li>
+				</ol>
+
+				<h4>On a Windows PC</h4>
+				<ol class="default">
+					<li>Browse to "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp"</li>
+					<li>Edit <code>config.xml</code> in the text editor of your choise</li>
+					<li>On the second line where it says <code>id=com.example.BlueCube</code> change it so that it is unique to you. Normally the name ID is in reverse DNS format, so if you own "fredsautos.com", the ID would be <code>id=com.fredsautos.BlueCube</code>. Otherwise just add a random number to the end of "BlueCube", without any spaces or punctuation. If in doubt, add the machines MAC address at the end. Run <code>getmac</code>, from the command prompt and pick the "Physical Address", removing the hyphens.</li>
+					<li>Start Command Prompt "Windows Key + R" <i class="fa fa-arrow-right"></i> "cmd.exe"</li>
+					<li>Change to the BlueCube "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp" by <code>cd</code> and dragging the "IonicApp" folder onto the command prompt, then hitting "Enter". For example, I have the BlueCube folder on my desktop, and my username is <code>adam</code>. In this case the command was <code>cd "C:\Users\adam\Desktop\BlueCube\IonicApp"</code></li>
+					<li>Remove the previously configured platforms
+						<ol class="default alphalist">
+							<li><code>ionic platform rm ios</code></li>
+							<li><code>ionic platform rm android</code></li>
+						</ol>
+					</li>
+					<li>Re-add the Android platform
+						<ol class="default alphalist">
+							<li><code>ionic platform add android</code></li>
+						</ol>
+					</li>
+				</ol>
+
+				<h3>Build</h3>
+				<p>Every time you modify the BlueCube's code, you need to instruct Ionic to build it. This prepares all of the items in a platform specific way. You build the code from the command line.</p>
+
+				<h4>On a Mac</h4>
+				<ul class="default">
+					<li>Terminal</li>
+					<li>CD</li>
+					<li><code>ionic build</code> (to build both)</li>
+					<li><code>ionic build ios</code> (if building iOS app)</li>
+					<li><code>ionic build android</code> (if building Android app)</li>
+				</ul>
+
+				<h4>On a Windows PC</h4>
+				<ul class="default">
+					<li>CMD.exe</li>
+					<li>CD</li>
+					<li><code>ionic build android</code></li>
+				</ul>
+
+				<h3>Deploy to Mobile Device</h3>
+				<p>Ensure that before deploying to a mobile device, that the latest version of the code has been build, as outlined in the instructions above.</p>
+
+				<h4>iOS</h4>
+				<ol class="default">
+					<li>Connect iPhone, iPad, or iPod Touch to your Mac with a lightning cable</li>
+					<li>Launch Xcode</li>
+					<li>Open Project</li>
+					<li>Unlock Phone</li>
+					<li>Build</li>
+					<li>XXX Apple ID stuff XXX</li>
+					<li>Test App</li>
+					<li>Stop App via Xcode</li>
+				</ol>
+
+				<h4>Android</h4>
+				<ol class="default">
+					<li>Enable Debug mode on phone</li>
+					<li>Enable USB debug</li>
+					<li>Launch Android Studio</li>
+					<li>Open Project</li>
+					<li>Unlock Phone</li>
+					<li>Build</li>
+					<li>Test App</li>
+					<li>Stop App via Android Studio</li>
+				</ol>
+
+				<p>At this stage you can quit the IDE, and use the app like a normal app.</p>
+
+				<p>Comment about Gradle Sync </p>
 				<a name="other"></a>
 			</section>
 
@@ -430,6 +536,7 @@
 						<li><a href="#ionic">Ionic Platform</a></li>
 						<li><a href="#ios">iOS</a></li>
 						<li><a href="#android">Android</a></li>
+						<li><a href="#build">Build &amp; Deploy</a></li>
 						<li><a href="#other">Other Tools</a></li>
 					</ul>
 				</li>
