@@ -868,8 +868,20 @@ app.controller('ConnectCtrl', function($ionicPlatform, $scope, $cordovaBLE, $ion
 						$cordovaDialogs.alert("Listing Bluetooth devices failed due to " + reason, 'Error', 'OK');
 					},
 					function(device) {
-						// A new device was found, so add it to the array of possible devices
-						devices.push(device);
+						// A new device was found
+
+						var alreadyKnown = false;
+						for (var i = 0; i < devices.length; i++) {
+							if (devices[i].id == device.id) {
+								alreadyKnown = true;
+							}
+						}
+
+						// Add it to the array of possible devices, if we haven't
+						// already found it
+						if (alreadyKnown == false) {
+							devices.push(device);
+						}
 					}
 				);
 			},
@@ -1269,7 +1281,7 @@ app.controller('SettingsCtrl', function($scope, $defaults, $localstorage, $cordo
 		// Run when the user wishes to reset the list of user defined functions
 
 		// Confirm that they want to reset
-		$cordovaDialogs.confirm('Are you sure you want to reset to the default user defined functions?', 'Reset', ['Cancel','OK']).then(function(buttonIndex) {
+		$cordovaDialogs.confirm('Are you sure you want to reset to the default user defined patterns?', 'Reset', ['Cancel','OK']).then(function(buttonIndex) {
 			if (buttonIndex == 2) {
 
 				// User clicked 'OK', so reset the user defined functions
