@@ -1651,6 +1651,10 @@
 		display: inline;
 	}
 
+    .justify {
+    	text-align: justify;
+    }
+
 /* Table */
 
 	table {
@@ -1887,6 +1891,10 @@
 	
 	ol.default .alphalist {
 		list-style-type: lower-alpha;
+	}
+
+	ul.circle {
+		list-style: circle !important;
 	}
 	
 	ul.default > li > ul {
