@@ -10,7 +10,7 @@ var app = angular.module('BlueCube.defaults', [])
 // Default settings for key parts of the app
 app.constant('appDefaults', {
 	// Whether to attempt to auto connect to the cube ("true" | "false")
-	autoConnect: "true",
+	autoConnect: "false",
 
 	// Whether to send colour changes automatically in the All view ("true" | "false")
 	liveAllColourChanges: "true",
