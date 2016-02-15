@@ -96,10 +96,11 @@ ul.aboutLists {
 	/* Override the ionic list formatting for the about page */
 	list-style-type: disc !important;
 	list-style: disc !important;
-	list-style-position: inside !important;
+	list-style-position: outside !important;
+	padding-left: 20px;
 }
 
 ul.aboutListsExtraIndent {
 	/* Add padding for lists within a list */
-	padding-left: 20px;
+	padding-left: 40px;
 }
