@@ -123,8 +123,8 @@
 				<ol class="default">
 					<li>Copy the Sweep.h and Sweep.cpp files into the same directory as BlueCube.ino</li>
 					<li>Open BlueCube.ino in the Arduino IDE</li>
-					<li>Sweep requires a delay, so add <code>#define SWEEP_DELAY 100</code> under the <code>#define ZIGZAG_DELAY</code> line.</li>
-					<li>Include the Sweep.h file, by adding <code>#include "Sweep.h"</code> under the <code>#include "ZigZag.h"</code> line.</li> 
+					<li>Sweep requires a delay, so add <code>#define SWEEP_DELAY 100</code> under the <code>#define ZIGZAG_DELAY</code> line</li>
+					<li>Include the Sweep.h file, by adding <code>#include "Sweep.h"</code> under the <code>#include "ZigZag.h"</code> line</li> 
 					<li>We also need to instantiate the class, so add <code>Sweep sweep(cube, SWEEP_DELAY);</code> under the line that says <code>ZigZag zigzag(cube, ZIGZAG_DELAY);</code></li>
 					<li>Now at the bottom of the code, in the <code>userFunctionHandler</code> function, we add a new item to the <code>switch</code> statement, using the next available number. The code to add is as follows:-<br>
 					<code>
@@ -141,20 +141,20 @@
 					    &nbsp;&nbsp;break;
 					</code>
 					</li>
-					<li>You can now compile and upload the sketch to the cube.</li>
+					<li>You can now compile and upload the sketch to the cube</li>
 				</ol>
 				<h3>Adding pattern to app</h3>
 				<p>Once you have added the user defined pattern to the sketch, you can add it to the app. To do this:-</p>
 				<ol class="default">
-					<li>Launch the app on your mobile device, and connect to the cube.</li>
-					<li>Select "User Defined Patterns" from the side menu.</li>
+					<li>Launch the app on your mobile device, and connect to the cube</li>
+					<li>Select "User Defined Patterns" from the side menu</li>
 					<li>Tap the green "+"</li>
-					<li>Tap "Name" and enter a descriptive name. E.g. <code>Blue Sweep</code>.</li>
-					<li>Tap "Number" and enter the number that was used in the sketch I.e. <code>4</code>.</li>
-					<li>The sweep pattern requires a colour, so tap the toggle next to "Colour Required".</li>
-					<li>Tap the colour, and select a suitable blue colour, then click "Done" at the top right.</li>
-					<li>Tap "Save User Defined Pattern".</li>
-					<li>Tap "Blue Sweep" and a blue sweep pattern should display on the cube.</li>
+					<li>Tap "Name" and enter a descriptive name. E.g. <code>Blue Sweep</code></li>
+					<li>Tap "Number" and enter the number that was used in the sketch I.e. <code>4</code></li>
+					<li>The sweep pattern requires a colour, so tap the toggle next to "Colour Required"</li>
+					<li>Tap the colour, and select a suitable blue colour, then click "Done" at the top right</li>
+					<li>Tap "Save User Defined Pattern"</li>
+					<li>Tap "Blue Sweep" and a blue sweep pattern should display on the cube</li>
 				</ol>
 			</section>
 		</div> <!-- .inner -->
