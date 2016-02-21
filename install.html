@@ -39,7 +39,7 @@
 				<p>The Cube is programmed using the Arduino toolset. It is likely that you will have already setup the Arduino environment, but you will probably require additional libraries.</p>
 
 				<h3>IDE</h3>
-				<p>The <a href="https://www.arduino.cc">Arduino IDE</a> is used to create sketches that are uploaded to the Cube.
+				<p>The <a href="https://www.arduino.cc">Arduino IDE</a> is used to create sketches that are uploaded to the cube.
 				<ol class="default">
 					<li>Visit the Arduino IDE <a href="https://www.arduino.cc/en/Main/Software">Download Page</a>, and download the latest version available for your operating system</li>
 					<li>Click "Just Download"</li>
@@ -71,15 +71,15 @@
 				</ol>
 				
 				<h3>Freetronics Board Profile (Optional)</h3>
-				<p>While not specifically required, installing the board profile (and driver on Windows) makes working with the Cube easier.</p>
+				<p>While not specifically required, installing the board profile (and driver on Windows) makes working with the cube easier.</p>
 				<ol class="default">
-					<li>Download the latest LeoStick (which is the basis of the Cube) board profile from <a href="https://github.com/freetronics/LeoStickBoardProfile/archive/master.zip">here</a></li>
+					<li>Download the latest LeoStick (which is the basis of the cube) board profile from <a href="https://github.com/freetronics/LeoStickBoardProfile/archive/master.zip">here</a></li>
 					<li>Unzip the file</li>
 					<li>In your Documents folder, there will be an "Arduino" folder, create a new folder in it called "hardware"</li>
 					<li>Move the "LeoStickBoardProfile-master" folder that was extracted at step 2 into the new "hardware" folder. </li>
 				</ol>
 
-				<p>Additionally there is a driver for Windows that while not required on Windows 10, will help identify the Cube. To install the driver:-</p>
+				<p>Additionally there is a driver for Windows that while not required on Windows 10, will help identify the cube. To install the driver:-</p>
 
 				<ol class="default">
 					<li>Download it from <a href="https://cdn.shopify.com/s/files/1/0045/8932/files/FreetronicsUSBDrivers_v2_2.zip">here</a>, and extract the ZIP</li>
@@ -136,7 +136,7 @@
 				<header>
 					<h2>Adafruit BluefriutLE_nRF51 Library</h2>
 				</header>
-				<p>The Adafruit BluefriutLE_nRF51 library allows the Cube to communicate with the Bluetooth module. Please follow the instructions on the <a href="download.html">download page</a> to get a copy.</p>
+				<p>The Adafruit BluefriutLE_nRF51 library allows the cube to communicate with the Bluetooth module. Please follow the instructions on the <a href="download.html">download page</a> to get a copy.</p>
 				<ol class="default">
 					<li>Unzip the "Adafruit_BluefruitLE_nRF51-#.#.#.zip" file that was previously downloaded (where #.#.# is the version number)</li>
 					<li>Move the unzipped "Adafruit_BluefruitLE_nRF51-#.#.#" folder that was extracted above into your Documents <i class="fa fa-arrow-right"></i> Arduino <i class="fa fa-arrow-right"></i> libraries folder.</li>
@@ -152,19 +152,19 @@
 					<h2>BlueCube Sketch</h2>
 				</header>
 				
-				<p>The BlueCube Sketch is the code that is run on the Cube that understands how to communicate with the Bluetooth module, and receive instructions from the mobile apps. Please follow the instructions on the <a href="download.html">download page</a> to get a copy.</p>
+				<p>The BlueCube Sketch is the code that is run on the cube that understands how to communicate with the Bluetooth module, and receive instructions from the mobile apps. Please follow the instructions on the <a href="download.html">download page</a> to get a copy.</p>
 				<p>Additionally, ensure that the steps on the <a href="wiring.html">wiring</a> page have been followed.
 				<ol class="default">
 					<li>Unzip the "BlueCube-v#.#.#.zip" file that was previously downloaded (where v#.#.# is the version number)</li>
 					<li>Within the extracted folder, browse Arduino <i class="fa fa-arrow-right"></i> BlueCube</li>
 					<li>Double click on "BlueCube.ino"</li>
-					<li>Ensure that your Cube is connected to your computer via USB cable</li>
+					<li>Ensure that your cube is connected to your computer via USB cable</li>
 					<li>From the "Tools" <i class="fa fa-arrow-right"></i> "Board" menu, select "Freetronics LeoStick" if available, otherwise select "Arduino Leonardo"</li>
-					<li>From the "Tools" <i class="fa fa-arrow-right"></i> "Port" menu, select the port that your Cube is connected to</li>
-					<li>Upload the sketch to your Cube</li>
+					<li>From the "Tools" <i class="fa fa-arrow-right"></i> "Port" menu, select the port that your cube is connected to</li>
+					<li>Upload the sketch to your cube</li>
 				</ol>
 
-				<p>Congratulations, you should now be ready to use the apps, to remotely control your Cube.</p>
+				<p>Congratulations, you should now be ready to use the apps, to remotely control your cube.</p>
 				
 				<blockquote>
 					<p>If you get any errors, ensure that the libraries have been correctly installed (goto "Sketch" <i class="fa fa-arrow-right"></i> "Include Library" <i class="fa fa-arrow-right"></i> "Manage Libraries..." and check that Cube4, Cube4_ARUtils, change "Type" to "Installed" and check that "Cube4", "Cube4_ARUtils", and "Adafruit BluefruitLE nR51" are all installed), and that you have selected the correct board and ports.</p>
