@@ -25,11 +25,11 @@
 					<h1>Development Environment</h1>
 					<hr class="blue">
 				</header>
-				<p>You only need to follow these instructions if you wish to modify the mobile apps. I've provided the source code that you can modify and improve as you wish, and then deploy it to your own phone or tablet without needing to access the stores.</p>
+				<p>You only need to follow these instructions if you wish to modify the mobile apps. I've provided the source code that you can modify and improve as you wish, and then deploy it to your own phone or tablet without needing a paid developer account to the mobile app stores.</p>
 
-				<p>To be able to build and deploy the app, you need to have the appropriate development environment setup. This page outlines how to setup this environment, assuming that none of the requirements have been previously installed. </p>
+				<p>To be able to build and deploy the app, you need to have the appropriate development environment setup. This page outlines how to setup this environment from scratch, assuming that none of the requirements have been previously installed.</p>
 
-				<p>Where possible I accept the default values. This may result in options that we don't need being installed, but I prefer to have the "standard" environment setup.</p>
+				<p>Where possible I accept the default values. This may result in options that we don't need being installed, but I prefer to have a "standard" environment setup where possible.</p>
 
 				<p>To setup the environment to modify the sketch, please see the <a href="install.html#arduino">Arduino section</a> of the install page.</p>
 
@@ -43,14 +43,14 @@
 				<header>
 					<h2>Ionic Platform</h2>
 				</header>
-				<p>The app is created using the <a href="http://ionicframework.com">Ionic Framework</a>. Ionic allows for the creation of "hybrid" applications that can be run on multiple platforms from a single code base of HTML 5, CSS and Javascript. Ionic leverages <a href="http://cordova.apache.org">Cordova</a> to support this code reuse across platforms, and the <a href="https://nodejs.org/en/">NodeJS</a> javascript runtime environment.</p>
+				<p>The app is created using version 1 of the <a href="http://ionicframework.com">Ionic Framework</a>. Ionic allows for the creation of "hybrid" applications that can be run on multiple platforms from a single code base of HTML 5, CSS and Javascript. Ionic leverages <a href="http://cordova.apache.org">Cordova</a> to support this code reuse across platforms, and the <a href="https://nodejs.org/en/">NodeJS</a> javascript runtime environment.</p>
 
 				<p>To install Ionic, I followed the steps as outlined on the Ionic <a href="http://ionicframework.com/getting-started/">Getting Started</a> page (and added a step for <code>xml2js</code>). I've listed the steps out below, but if you run into problems, follow the advice of that page.</p>
 
 				<h3>Instal Node.js</h3>
 				<p>At the time of writing, Node.js v4.x.x is supported by Ionic, whereas the newer v5.x.x is not. As such we will install the version 4 LTS (Long Term Support) edition of Node.js.</p>
 
-				<p>Visit <a href="https://nodejs.org/en/">NodeJS</a> homepage, and download the latest version 4 LTS edition that is appropriate for your platform. For this example it was v4.2.6 LTS</p>
+				<p>Visit the <a href="https://nodejs.org/en/">NodeJS</a> homepage, and download the latest version 4 LTS edition that is appropriate for your platform. For this example it was v4.2.6 LTS</p>
 
 				<h4>On a Mac</h4>
 				<ol class="default">
@@ -115,7 +115,7 @@
 					<li>Run <code>sudo npm install -g ionic</code></li>
 					<li>Enter your administrator password when prompted</li>
 					<li>Run <code>ionic</code></li>
-					<li>You will be prompted to say that "xcodebuild" command requires the command line developer tools. Click "Install" to install these tools.</li>
+					<li>You will be prompted to say that "xcodebuild" command requires the command line developer tools. Click "Install" to install these tools</li>
 					<li>Click "Agree" to the license agreement</li>
 				</ol>
 
@@ -161,7 +161,7 @@
 				<p><a href="https://developer.apple.com/xcode/">Xcode</a> is Apple's Integrated Development Environment (IDE) for iOS Development.</p>
 
 				<ol class="default">
-					<li>Visit the <a href="https://itunes.apple.com/us/app/xcode/id497799835?ls=1&amp;mt=12">XCode</a> page within the Mac App Store.</li>
+					<li>Visit the <a href="https://itunes.apple.com/us/app/xcode/id497799835?ls=1&amp;mt=12">XCode</a> page within the Mac App Store</li>
 					<li>Click on "Get"</li>
 					<li>Click on "Install App"</li>
 					<li>If prompted, enter your AppleID and password, then click "Sign In"</li>
@@ -275,7 +275,7 @@
 
 				<h4>On a Mac</h4>
 				<ol class="default">
-					<li>http://developer.android.com/sdk/index.html</li>
+					<li>Download Android Studio from <a href="http://developer.android.com/sdk/index.html">here</a></li>
 					<li>Accept Licence Agreement and Download</li>
 					<li>Open the downloaded disk image</li>
 					<li>Drag Android Studio into the "Applications" folder</li>
@@ -284,13 +284,13 @@
 					<li>On the "Complete Installation" screen, select "I do not have a previous version of Studio or I do not want to import my settings"</li>
 					<li>Click "Next" on the welcome screen</li>
 					<li>Ensure "Standard" is selected on the "Install Type" screen and click "Next"</li>
-					<li>Verify the selected settings and click "Finish", taking note of the "Destination Folder".</li>
+					<li>Verify the selected settings and click "Finish", taking note of the "Destination Folder"</li>
 				</ol>
 
 				<p>The installer will now download additional items that are required. This may take a while.</p>
 
 				<ol class="default" start="11">
-					<li>Click "Finish" when the install is complete. If the "HAXM" installation fails, don't worry about it. "HAXM" is used for speeding up the emulator, but we don't use the emulator for this app.</li>
+					<li>Click "Finish" when the install is complete. If the "HAXM" installation fails, don't worry about it. "HAXM" is used for speeding up the emulator, but we don't use the emulator for this app</li>
 				</ol>
 
 				<p>Android Studio is now running</p>
@@ -316,7 +316,7 @@
 
 				<h4>On a Windows PC</h4>
 				<ol class="default">
-					<li>http://developer.android.com/sdk/index.html</li>
+					<li>Download Android Studio from <a href="http://developer.android.com/sdk/index.html">here</a></li>
 					<li>Accept Licence Agreement and Download</li>
 					<li>Run the downloaded installer</li>
 					<li>Click "Yes" to allow this the "User Account Control" "Do you want to allow this app to install software on your PC?" dialog</li>
@@ -325,7 +325,7 @@
 					<li>Click "I Agree" to the licence agreement</li>
 					<li>The default install locations are ok, so click "Next" (take note of the Android SDK Installation Location)</li>
 					<li>The default emulator setup settings are ok, so click "Next"</li>
-					<li>The default start menu folder is ok, so click "Install", and wait for it to finish.</li>
+					<li>The default start menu folder is ok, so click "Install", and wait for it to finish</li>
 					<li>Click "Next" once the installation is complete</li>
 					<li>Uptick "Start Android Studio" and then click "Finish"</li>
 				</ol>
@@ -356,13 +356,13 @@
 					<li>Start "Terminal" from "Applications" <i class="fa fa-arrow-right"></i> "Utilities"</li>
 					<li>Run <code>android</code>
 						<ol class="default alphalist">
-							<li>When the "Android SDK Manager" loads, it will check for any updates, and most likely find some. This is ok. We will install these updates in addition to the items we require.</li>
+							<li>When the "Android SDK Manager" loads, it will check for any updates, and most likely find some. This is ok. We will install these updates in addition to the items we require</li>
 						</ol>
 					</li>
 					<li>Expand "Android 5.1.1 (API 22)"</li>
 					<li>Click the check box next to "SDK Platform" under "Android 5.1.1 (API 22)"</li>
 					<li>Click "Install # Packages" to install that package and any updates that are available</li>
-					<li>Select a package on the left, then click "Accept License" on the right &amp;.</li>
+					<li>Select a package on the left, then click "Accept License" on the right &amp;</li>
 					<li>Click "Install"</li>
 				</ol>
 
@@ -371,13 +371,13 @@
 					<li>Start "Command Prompt" hitting "Windows" + "R" keys, then typing <code>cmd</code></li>
 					<li>Run <code>android</code></li>
 						<ol class="default alphalist">
-							<li>When the "Android SDK Manager" loads, it will check for any updates, and most likely find some. This is ok. We will install these updates in addition to the items we require.</li>
+							<li>When the "Android SDK Manager" loads, it will check for any updates, and most likely find some. This is ok. We will install these updates in addition to the items we require</li>
 						</ol>
 					</li>
 					<li>Expand "Android 5.1.1 (API 22)"</li>
 					<li>Click the check box next to "SDK Platform" under "Android 5.1.1 (API 22)"</li>
 					<li>Click "Install # Packages" to install any updates that are available</li>
-					<li>Select a package on the left, then click "Accept License" on the right.</li>
+					<li>Select a package on the left, then click "Accept License" on the right</li>
 					<li>Click "Install"</li>
 				</ol>
 				<a name="build"></a>
@@ -396,7 +396,7 @@
 				<ol class="default">
 					<li>Browse to "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp"</li>
 					<li>Edit <code>config.xml</code> in the text editor of your choise</li>
-					<li>On the second line where it says <code>id=ninja.secretcode.BlueCube</code> change it so that it is unique to you. Normally the name ID is in reverse DNS format, so if you own "fredsautos.com", the ID would be <code>id=com.fredsautos.BlueCube</code>. Otherwise just add a random number to the end of "BlueCube", without any spaces or punctuation. If in doubt, add the machines MAC address at the end. On OS X run <code>ifconfig en0 ether | grep ether | awk '{ print $2 }' | sed s/\://g</code>.</li>
+					<li>On the second line where it says <code>id=ninja.secretcode.BlueCube</code> change it so that it is unique to you. Normally the name ID is in reverse DNS format, so if you own "fredsautos.com", the ID would be <code>id=com.fredsautos.BlueCube</code>. Otherwise just add a random number to the end of "BlueCube", without any spaces or punctuation. If in doubt, add the machines MAC address at the end. On OS X run <code>ifconfig en0 ether | grep ether | awk '{ print $2 }' | sed s/\://g</code></li>
 					<li>Start Terminal "Applications" <i class="fa fa-arrow-right"></i> "Utilities" <i class="fa fa-arrow-right"></i> "Terminal"</li>
 					<li>Change to the BlueCube "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp" by <code>cd</code> and dragging the "IonicApp" folder onto the terminal window, then hitting "Enter". For example, I have the BlueCube folder on my desktop, and my username is <code>adam</code>. In this case the command was <code>cd /Users/adam/Desktop/BlueCube/IonicApp</code></li>
 					<li>Remove the previously configured platforms
@@ -421,7 +421,7 @@
 				<ol class="default">
 					<li>Browse to "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp"</li>
 					<li>Edit <code>config.xml</code> in the text editor of your choise</li>
-					<li>On the second line where it says <code>id=com.example.BlueCube</code> change it so that it is unique to you. Normally the name ID is in reverse DNS format, so if you own "fredsautos.com", the ID would be <code>id=com.fredsautos.BlueCube</code>. Otherwise just add a random number to the end of "BlueCube", without any spaces or punctuation. If in doubt, add the machines MAC address at the end. Run <code>getmac</code>, from the command prompt and pick the "Physical Address", removing the hyphens.</li>
+					<li>On the second line where it says <code>id=com.example.BlueCube</code> change it so that it is unique to you. Normally the name ID is in reverse DNS format, so if you own "fredsautos.com", the ID would be <code>id=com.fredsautos.BlueCube</code>. Otherwise just add a random number to the end of "BlueCube", without any spaces or punctuation. If in doubt, add the machines MAC address at the end. Run <code>getmac</code>, from the command prompt and pick the "Physical Address", removing the hyphens</li>
 					<li>Start Command Prompt "Windows Key + R" <i class="fa fa-arrow-right"></i> "cmd.exe"</li>
 					<li>Change to the BlueCube "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp" by <code>cd</code> and dragging the "IonicApp" folder onto the command prompt, then hitting "Enter". For example, I have the BlueCube folder on my desktop, and my username is <code>adam</code>. In this case the command was <code>cd "C:\Users\adam\Desktop\BlueCube\IonicApp"</code></li>
 					<li>Remove the previously configured platforms
@@ -499,15 +499,16 @@
 
 				<h4>On a Mac</h4>
 				<ul class="default">
-					<li><a href="http://www.barebones.com/products/textwrangler/">TextWrangler</a> is a free text editor from <a href="http://www.barebones.com">Bare Bones Software</a>.</li>
-					<li><a href="https://www.sourcetreeapp.com">SourceTree</a> is a free graphical front end to Git from <a href="https://www.atlassian.com">Atlassian</a>.</li>
+					<li><a href="http://www.barebones.com/products/textwrangler/">TextWrangler</a> is a free text editor from <a href="http://www.barebones.com">Bare Bones Software</a></li>
+					<li><a href="http://www.git-scm.com/">Git</a> is a free version control system tool. I've used Git during the development of BlueCube</li>
+					<li><a href="https://www.sourcetreeapp.com">SourceTree</a> is a free graphical front end to Git from <a href="https://www.atlassian.com">Atlassian</a></li>
 				</ul>
 
 				<h4>On a Windows PC</h4>
 				<ul class="default">
-					<li><a href="https://notepad-plus-plus.org">Notepad++</a> is a free text editor.</li>
-					<li><a href="http://www.git-scm.com/">Git</a> is a free version control system tool. I've used Git during the development of BlueCube.</li>
-					<li><a href="https://www.sourcetreeapp.com">SourceTree</a> is a free graphical front end to Git from <a href="https://www.atlassian.com">Atlassian</a>.</li>
+					<li><a href="https://notepad-plus-plus.org">Notepad++</a> is a free text editor</li>
+					<li><a href="http://www.git-scm.com/">Git</a> is a free version control system tool. I've used Git during the development of BlueCube</li>
+					<li><a href="https://www.sourcetreeapp.com">SourceTree</a> is a free graphical front end to Git from <a href="https://www.atlassian.com">Atlassian</a></li>
 				</ul>
 			</section>
 		</div> <!-- .inner -->
