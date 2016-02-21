@@ -36,10 +36,10 @@
 				<header>
 					<h2>Arduino</h2>
 				</header>
-				<p>The Cube is programmed using the Arduino toolset. It is likely that you will have already setup the Arduino environment, but you will probably require additional libraries.</p>
+				<p>The Cube is programmed using the Arduino toolset. It is likely that you will have already setup the Arduino environment, but you will require additional libraries.</p>
 
 				<h3>IDE</h3>
-				<p>The <a href="https://www.arduino.cc">Arduino IDE</a> is used to create sketches that are uploaded to the cube.
+				<p>The <a href="https://www.arduino.cc">Arduino IDE</a> is used to create sketches that are uploaded to the cube. BlueCube has been tested on version 1.6.5 to 1.6.7, but should work on other versions.
 				<ol class="default">
 					<li>Visit the Arduino IDE <a href="https://www.arduino.cc/en/Main/Software">Download Page</a>, and download the latest version available for your operating system</li>
 					<li>Click "Just Download"</li>
@@ -76,7 +76,7 @@
 					<li>Download the latest LeoStick (which is the basis of the cube) board profile from <a href="https://github.com/freetronics/LeoStickBoardProfile/archive/master.zip">here</a></li>
 					<li>Unzip the file</li>
 					<li>In your Documents folder, there will be an "Arduino" folder, create a new folder in it called "hardware"</li>
-					<li>Move the "LeoStickBoardProfile-master" folder that was extracted at step 2 into the new "hardware" folder. </li>
+					<li>Move the "LeoStickBoardProfile-master" folder that was extracted at step 2 into the new "hardware" folder</li>
 				</ol>
 
 				<p>Additionally there is a driver for Windows that while not required on Windows 10, will help identify the cube. To install the driver:-</p>
@@ -105,11 +105,11 @@
 					<p>BlueCube utilises features from my fork of the Cube4 Library. If you have the Freetronics version installed, you will need to replace it my version. The new library is a drop in replacement for the Freetronics version.</p>
 				</blockquote>
 				<br>
-				<p>The cube library provides the API that is used for instructing the cube to preform different actions. Please follow the instructions on the <a href="download.html">download page</a> to get a copy.</p>
+				<p>The cube library provides the API that is used for instructing the cube to preform different actions. Please follow the instructions on the <a href="download.html#Cube4">download page</a> to get a copy.</p>
 				<ol class="default">
-					<li>Unzip the "Cube4-v#.#.#.zip" file that was previously downloaded (where v#.#.# is the version number)</li>
+					<li>Unzip the "Cube4-#.#.zip" file that was previously downloaded (where #.# is the version number)</li>
 					<li>In your Documents folder, there will be an "Arduino", create a new folder in it called "libraries" (if it doesn't already exist)</li>
-					<li>Move the unzipped "Cube4-v#.#.#" folder that was extracted in step 3 into the libraries folder that was just created</li>
+					<li>Move the unzipped "Cube4-#.#" folder that was extracted in step 3 into the libraries folder that was just created (e.g. Documents <i class="fa fa-arrow-right"></i> Arduino <i class="fa fa-arrow-right"></i> libraries folder)</li>
 					<li>Rename the folder to "Cube4"</li>
 				</ol>
 				<a name="cube4_arutils"></a>
@@ -121,10 +121,10 @@
 				<header>
 					<h2>Cube4_ARUtils Library</h2>
 				</header>
-			   <p>The Cube4_ARUtils library provides helper functions for my sketches when interacting with the cube. Please follow the instructions on the <a href="download.html">download page</a> to get a copy.</p>
+			   <p>The Cube4_ARUtils library provides helper functions for my sketches when interacting with the cube. Please follow the instructions on the <a href="download.html#Cube4_ARUtils">download page</a> to get a copy.</p>
 			   <ol class="default">
-					<li>Unzip the "Cube4_ARUtils-v#.#.#.zip" file that was previously downloaded (where v#.#.# is the version number)</li>
-			   		<li>Move the unzipped "Cube4_ARUtils-v#.#.#" folder that was extracted above into your Documents <i class="fa fa-arrow-right"></i> Arduino <i class="fa fa-arrow-right"></i> libraries folder.</li>
+					<li>Unzip the "Cube4_ARUtils-#.#.#.zip" file that was previously downloaded (where #.#.# is the version number)</li>
+			   		<li>Move the unzipped "Cube4_ARUtils-#.#.#" folder that was extracted above into your Documents <i class="fa fa-arrow-right"></i> Arduino <i class="fa fa-arrow-right"></i> libraries folder.</li>
 			  		<li>Rename the folder to "Cube4_ARUtils"</li>
 			   </ol>
 				<a name="bluetooth"></a>
@@ -136,7 +136,7 @@
 				<header>
 					<h2>Adafruit BluefriutLE_nRF51 Library</h2>
 				</header>
-				<p>The Adafruit BluefriutLE_nRF51 library allows the cube to communicate with the Bluetooth module. Please follow the instructions on the <a href="download.html">download page</a> to get a copy.</p>
+				<p>The Adafruit BluefriutLE_nRF51 library allows the cube to communicate with the Bluetooth module. Please follow the instructions on the <a href="download.html#Adafruit_BluefruitLE_nRF51">download page</a> to get a copy.</p>
 				<ol class="default">
 					<li>Unzip the "Adafruit_BluefruitLE_nRF51-#.#.#.zip" file that was previously downloaded (where #.#.# is the version number)</li>
 					<li>Move the unzipped "Adafruit_BluefruitLE_nRF51-#.#.#" folder that was extracted above into your Documents <i class="fa fa-arrow-right"></i> Arduino <i class="fa fa-arrow-right"></i> libraries folder.</li>
@@ -152,10 +152,10 @@
 					<h2>BlueCube Sketch</h2>
 				</header>
 				
-				<p>The BlueCube Sketch is the code that is run on the cube that understands how to communicate with the Bluetooth module, and receive instructions from the mobile apps. Please follow the instructions on the <a href="download.html">download page</a> to get a copy.</p>
+				<p>The BlueCube Sketch is the code that is run on the cube that understands how to communicate with the Bluetooth module, and receive instructions from the mobile apps. Please follow the instructions on the <a href="download.html#sketch">download page</a> to get a copy.</p>
 				<p>Additionally, ensure that the steps on the <a href="wiring.html">wiring</a> page have been followed.
 				<ol class="default">
-					<li>Unzip the "BlueCube-v#.#.#.zip" file that was previously downloaded (where v#.#.# is the version number)</li>
+					<li>Unzip the "BlueCube-#.#.#.zip" file that was previously downloaded (where #.#.# is the version number)</li>
 					<li>Within the extracted folder, browse Arduino <i class="fa fa-arrow-right"></i> BlueCube</li>
 					<li>Double click on "BlueCube.ino"</li>
 					<li>Ensure that your cube is connected to your computer via USB cable</li>
