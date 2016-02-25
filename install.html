@@ -29,6 +29,8 @@
 				<blockquote>
 					<p>Tip: When moving an extracted folder, make sure that you are moving the folder containing the files, not just a folder that contains another folder called the same thing.</p>
 				</blockquote>
+				<br>
+				<p>Video tutorials for the following instructions on either the Mac or Windows platforms can be found in the <a href="#videotutorial">Video Tutorial</a> section of this page.</p>
 				<a name="arduino"></a>
 			</section>
 
@@ -50,6 +52,8 @@
 					<li>Once the download is complete, drag the "Arduino" application into the Applications folder</li>
 					<li>Double click on "Arduino" from the Applications folder</li>
 					<li>Select "Open" on the dialog that asks you if you are sure you want to open it</li>
+					<li>Select "Arduino" <i class="fa fa-arrow-right"></i> "Preferences" and note the "Sketchbook Location"</li>
+					<li>Close the preferences window by clicking "Cancel"</li>
 					<li>Quit "Arduino"</li>
 				</ol>
 
@@ -67,6 +71,8 @@
 						</ol>
 					</li>
 					<li>Start the "Arduino" application, either from the icon on the desktop, or from the Start Menu</li>
+					<li>Select "File" <i class="fa fa-arrow-right"></i> "Preferences" and note the "Sketchbook Location"</li>
+					<li>Close the preferences window by clicking "Cancel"</li>
 					<li>Quit "Arduino"</li>
 				</ol>
 				
@@ -75,7 +81,7 @@
 				<ol class="default">
 					<li>Download the latest LeoStick (which is the basis of the cube) board profile from <a href="https://github.com/freetronics/LeoStickBoardProfile/archive/master.zip">here</a></li>
 					<li>Unzip the file</li>
-					<li>In your Documents folder, there will be an "Arduino" folder, create a new folder in it called "hardware"</li>
+					<li>Browse to the "Sketchbook Location" that was determined above (typically "Documents" <i class="fa fa-arrow-right"></i> "Arduino") and create a new folder in it called "hardware"</li>
 					<li>Move the "LeoStickBoardProfile-master" folder that was extracted at step 2 into the new "hardware" folder</li>
 				</ol>
 
@@ -108,8 +114,8 @@
 				<p>The cube library provides the API that is used for instructing the cube to preform different actions. Please follow the instructions on the <a href="download.html#Cube4">download page</a> to get a copy.</p>
 				<ol class="default">
 					<li>Unzip the "Cube4-#.#.zip" file that was previously downloaded (where #.# is the version number)</li>
-					<li>In your Documents folder, there will be an "Arduino", create a new folder in it called "libraries" (if it doesn't already exist)</li>
-					<li>Move the unzipped "Cube4-#.#" folder that was extracted in step 3 into the libraries folder that was just created (e.g. Documents <i class="fa fa-arrow-right"></i> Arduino <i class="fa fa-arrow-right"></i> libraries folder)</li>
+					<li>Browse to the "Sketchbook Location" that was determined above (typically "Documents" <i class="fa fa-arrow-right"></i> "Arduino") and create a new folder in it called "libraries" (if it doesn't already exist)</li>
+					<li>Move the unzipped "Cube4-#.#" folder that was extracted in step 1 into the libraries folder from step 2</li>
 					<li>Rename the folder to "Cube4"</li>
 				</ol>
 				<a name="cube4_arutils"></a>
@@ -124,7 +130,7 @@
 			   <p>The Cube4_ARUtils library provides helper functions for my sketches when interacting with the cube. Please follow the instructions on the <a href="download.html#Cube4_ARUtils">download page</a> to get a copy.</p>
 			   <ol class="default">
 					<li>Unzip the "Cube4_ARUtils-#.#.#.zip" file that was previously downloaded (where #.#.# is the version number)</li>
-			   		<li>Move the unzipped "Cube4_ARUtils-#.#.#" folder that was extracted above into your Documents <i class="fa fa-arrow-right"></i> Arduino <i class="fa fa-arrow-right"></i> libraries folder</li>
+			   		<li>Move the unzipped "Cube4_ARUtils-#.#.#" folder that was extracted above into your "Sketchbook Location" <i class="fa fa-arrow-right"></i> "libraries" folder that was determined above (typically "Documents" <i class="fa fa-arrow-right"></i> "Arduino" <i class="fa fa-arrow-right"></i> "libraries")</li>
 			  		<li>Rename the folder to "Cube4_ARUtils"</li>
 			   </ol>
 				<a name="bluetooth"></a>
@@ -139,7 +145,7 @@
 				<p>The Adafruit BluefriutLE_nRF51 library allows the cube to communicate with the Bluetooth module. Please follow the instructions on the <a href="download.html#Adafruit_BluefruitLE_nRF51">download page</a> to get a copy.</p>
 				<ol class="default">
 					<li>Unzip the "Adafruit_BluefruitLE_nRF51-#.#.#.zip" file that was previously downloaded (where #.#.# is the version number)</li>
-					<li>Move the unzipped "Adafruit_BluefruitLE_nRF51-#.#.#" folder that was extracted above into your Documents <i class="fa fa-arrow-right"></i> Arduino <i class="fa fa-arrow-right"></i> libraries folder</li>
+					<li>Move the unzipped "Adafruit_BluefruitLE_nRF51-#.#.#" folder that was extracted above into your "Sketchbook Location" <i class="fa fa-arrow-right"></i> "libraries" folder that was determined above (typically "Documents" <i class="fa fa-arrow-right"></i> "Arduino" <i class="fa fa-arrow-right"></i> "libraries")</li>
 					<li>Rename the folder to "Adafruit_BluefruitLE_nRF51"</li>
 				</ol>
 				<a name="sketch"></a>
@@ -169,8 +175,26 @@
 				<blockquote>
 					<p>If you get any errors, ensure that the libraries have been correctly installed (goto "Sketch" <i class="fa fa-arrow-right"></i> "Include Library" <i class="fa fa-arrow-right"></i> "Manage Libraries..." and check that Cube4, Cube4_ARUtils, change "Type" to "Installed" and check that "Cube4", "Cube4_ARUtils", and "Adafruit BluefruitLE nR51" are all installed), and that you have selected the correct board and ports.</p>
 				</blockquote>
-
+				<a name="videotutorial"></a>
 			</section>			
+
+			<hr class="blue">
+
+			<section class="box post">
+				<header>
+					<h2>Video Tutorial</h2>
+				</header>
+				<h3>Mac Install Tutorial</h3>
+				<div class="video-container">
+					<iframe src="https://www.youtube.com/embed/PrCuzpp73Kg" frameborder="0" allowfullscreen></iframe>
+				</div>
+				<br>
+				<h3>Windows Install Tutorial</h3>
+				<div class="video-container">
+					<iframe src="https://www.youtube.com/embed/Jcw93Z8mmiU" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</section>
+
 		</div> <!-- .inner -->
 	</div> <!-- .content -->
 
@@ -196,6 +220,7 @@
 						<li><a href="#cube4_arutils">Cube4_ARUtils</a></li>
 						<li><a href="#bluetooth">Adafruit BluefriutLE_nRF51</a></li>
 						<li><a href="#sketch">BlueCube Sketch</a></li>
+						<li><a href="#videotutorial">Video Tutorial</a></li>
 					</ul>
 				</li>
 				<li><a href="usage.html">Usage</a></li>
