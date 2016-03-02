@@ -13,9 +13,40 @@
 	<!-- CSS
 	================================================== -->
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<script src="assets/js/jquery.min.js"></script>
 </head>
 
 <body>
+	<script>
+		$(function(){
+			if (navigator.appVersion.indexOf("Mac")!=-1) {
+				$(".win").hide();
+				$(".mac").show();			
+				$("#macButton").addClass("active");
+			} else {
+				$(".mac").hide();
+				$(".win").show();	
+				$("#winButton").addClass("active");
+			}
+		
+    		$("#macButton").click(function() {
+				$(".win").hide();
+				$(".mac").show();
+				$("#macButton").addClass("active");
+				$("#winButton").removeClass("active");
+				return false;
+			});
+		
+    		$("#winButton").click(function() {
+				$(".mac").hide();
+				$(".win").show();
+				$("#winButton").addClass("active");
+				$("#macButton").removeClass("active");
+				return false;
+			});
+		});
+	</script>
+	
 	<!-- Content -->
 	<div id="content">
 		<div class="inner">
@@ -30,8 +61,14 @@
 					<p>Tip: When moving an extracted folder, make sure that you are moving the folder containing the files, not just a folder that contains another folder called the same thing.</p>
 				</blockquote>
 				<br>
-				<p>Video tutorials for the following instructions on either the Mac or Windows platforms can be found in the <a href="#videotutorial">Video Tutorial</a> section of this page.</p>
-				<a name="arduino"></a>
+				<p>A video tutorial for the following instructions can be found in the <a href="#videotutorial">Video Tutorial</a> section of this page.</p>
+
+				<div class="pagination">
+					<div class="pages"">
+						Show instructions for: <a id="macButton" href="#" class="">Mac</a> <a id="winButton" href="#" class="">Windows</a> 		
+					</div>
+				</div>
+				<a name="arduino"></a>				
 			</section>
 
 			<section class="box post">
@@ -45,39 +82,37 @@
 				<ol class="default">
 					<li>Visit the Arduino IDE <a href="https://www.arduino.cc/en/Main/Software">Download Page</a>, and download the latest version available for your operating system</li>
 					<li>Click "Just Download"</li>
+					<div class="mac">
+						<li>Once the download is complete, drag the "Arduino" application into the Applications folder</li>
+						<li>Double click on "Arduino" from the Applications folder</li>
+						<li>Select "Open" on the dialog that asks you if you are sure you want to open it</li>
+						<li>Select "Arduino" <i class="fa fa-arrow-right"></i> "Preferences" and note the "Sketchbook Location"</li>
+						<li>Close the preferences window by clicking "Cancel"</li>
+						<li>Quit "Arduino"</li>
+					</div>
+					<div class="win">
+						<li>Once downloaded, run the installer
+							<ol class="default alphalist">
+								<li>Click "Yes" to allow this the "User Account Control" "Do you want to allow this app to install software on your PC?" dialog</li>
+								<li>Click "I Agree" to the license agreement</li>
+								<li>Accept the defaults to be installed, and click "Next"</li>
+								<li>Accept the default installation folder, and click "Install"</li>
+								<li>Click "Install" on the window asking you if you wish to install the USB driver</li>
+								<li>Click "Install" on the window asking you to install the second USB driver</li>
+								<li>Click "Close</li>
+							</ol>
+						</li>
+						<li>Start the "Arduino" application, either from the icon on the desktop, or from the Start Menu</li>
+						<li>Select "File" <i class="fa fa-arrow-right"></i> "Preferences" and note the "Sketchbook Location"</li>
+						<li>Close the preferences window by clicking "Cancel"</li>
+						<li>Quit "Arduino"</li>
+					</div>
 				</ol>
 				
-				<h4>On a Mac</h4>
-				<ol class="default">
-					<li>Once the download is complete, drag the "Arduino" application into the Applications folder</li>
-					<li>Double click on "Arduino" from the Applications folder</li>
-					<li>Select "Open" on the dialog that asks you if you are sure you want to open it</li>
-					<li>Select "Arduino" <i class="fa fa-arrow-right"></i> "Preferences" and note the "Sketchbook Location"</li>
-					<li>Close the preferences window by clicking "Cancel"</li>
-					<li>Quit "Arduino"</li>
-				</ol>
 
-				<h4>On a Windows PC</h4>
-				<ol class="default">
-					<li>Once downloaded, run the installer
-						<ol class="default alphalist">
-							<li>Click "Yes" to allow this the "User Account Control" "Do you want to allow this app to install software on your PC?" dialog</li>
-							<li>Click "I Agree" to the license agreement</li>
-							<li>Accept the defaults to be installed, and click "Next"</li>
-							<li>Accept the default installation folder, and click "Install"</li>
-							<li>Click "Install" on the window asking you if you wish to install the USB driver</li>
-							<li>Click "Install" on the window asking you to install the second USB driver</li>
-							<li>Click "Close</li>
-						</ol>
-					</li>
-					<li>Start the "Arduino" application, either from the icon on the desktop, or from the Start Menu</li>
-					<li>Select "File" <i class="fa fa-arrow-right"></i> "Preferences" and note the "Sketchbook Location"</li>
-					<li>Close the preferences window by clicking "Cancel"</li>
-					<li>Quit "Arduino"</li>
-				</ol>
 				
 				<h3>Freetronics Board Profile (Optional)</h3>
-				<p>While not specifically required, installing the board profile (and driver on Windows) makes working with the cube easier.</p>
+				<p>While not specifically required, installing the board profile <span class="win">(and driver)</span> makes working with the cube easier.</p>
 				<ol class="default">
 					<li>Download the latest LeoStick (which is the basis of the cube) board profile from <a href="https://github.com/freetronics/LeoStickBoardProfile/archive/master.zip">here</a></li>
 					<li>Unzip the file</li>
@@ -85,19 +120,21 @@
 					<li>Move the "LeoStickBoardProfile-master" folder that was extracted at step 2 into the new "hardware" folder</li>
 				</ol>
 
-				<p>Additionally there is a driver for Windows that while not required on Windows 10, will help identify the cube. To install the driver:-</p>
+				<div class="win">
+					<p>Additionally there is a driver for Windows that while not required on Windows 10, will help identify the cube. To install the driver:-</p>
 
-				<ol class="default">
-					<li>Download it from <a href="https://cdn.shopify.com/s/files/1/0045/8932/files/FreetronicsUSBDrivers_v2_2.zip">here</a>, and extract the ZIP</li>
-					<li>Right click on "FreetronicsUSBv22" and click "Install"</li>
-					<li>Click "Open" on the dialog asking whether to "open this file?"
-						<ol class="default alphalist">
-							<li>Click "Yes" to allow this the "User Account Control" "Do you want to allow this app to install software on your PC?" dialog</li>
-						</ol>
-					</li>
-					<li>Click "Install" when asked "would you like to install this device software?"</li>
-					<li>Click "OK" when the "Operation completed successfully" screen is shown</li>
-				</ol>
+					<ol class="default">
+						<li>Download it from <a href="https://cdn.shopify.com/s/files/1/0045/8932/files/FreetronicsUSBDrivers_v2_2.zip">here</a>, and extract the ZIP</li>
+						<li>Right click on "FreetronicsUSBv22" and click "Install"</li>
+						<li>Click "Open" on the dialog asking whether to "open this file?"
+							<ol class="default alphalist">
+								<li>Click "Yes" to allow this the "User Account Control" "Do you want to allow this app to install software on your PC?" dialog</li>
+							</ol>
+						</li>
+						<li>Click "Install" when asked "would you like to install this device software?"</li>
+						<li>Click "OK" when the "Operation completed successfully" screen is shown</li>
+					</ol>
+				</div>
 				<a name="cube4"></a>
 			</section>
 
@@ -184,14 +221,18 @@
 				<header>
 					<h2>Video Tutorial</h2>
 				</header>
-				<h3>Mac Install Tutorial</h3>
-				<div class="video-container">
-					<iframe src="https://www.youtube.com/embed/PrCuzpp73Kg" frameborder="0" allowfullscreen></iframe>
+				<div class="mac">
+					<h3>Mac Install Tutorial</h3>
+					<div class="video-container">
+						<iframe src="https://www.youtube.com/embed/PrCuzpp73Kg" frameborder="0" allowfullscreen></iframe>
+					</div>
 				</div>
-				<br>
-				<h3>Windows Install Tutorial</h3>
-				<div class="video-container">
-					<iframe src="https://www.youtube.com/embed/Jcw93Z8mmiU" frameborder="0" allowfullscreen></iframe>
+
+				<div class="win">
+					<h3>Windows Install Tutorial</h3>
+					<div class="video-container">
+						<iframe src="https://www.youtube.com/embed/Jcw93Z8mmiU" frameborder="0" allowfullscreen></iframe>
+					</div>
 				</div>
 			</section>
 
@@ -233,7 +274,6 @@
 
 	<!-- Javascript
 	================================================== -->
-	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/skel.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
