@@ -1923,6 +1923,53 @@
 		margin-bottom: 0;
 	}
 
+/* Pagination */
+
+	.pagination .pages {
+		display: inline-block;
+		font-family: Helvetica, Arial, sans-serif;
+		font-weight: 700;
+	}
+
+		.pagination .pages span {
+			display: inline-block;
+			width: 1.5em;
+			text-align: center;
+			margin: 0 0.4em 0 0;
+		}
+
+		.pagination .pages a {
+			cursor: pointer;
+			display: inline-block;
+			text-align: center;
+			text-decoration: none;
+			color: inherit;
+			background-color: #e8e8e8;
+			background-image: url("images/bg02.png");
+			color: #565656;
+			margin: 0 0.4em 0 0;
+			border-radius: 0.4em;
+			width: 6em;
+			height: 2.75em;
+			line-height: 2.75em;
+			-moz-transition: background-color .25s ease-in-out;
+			-webkit-transition: background-color .25s ease-in-out;
+			-ms-transition: background-color .25s ease-in-out;
+			transition: background-color .25s ease-in-out;
+			box-shadow: inset 0 0.075em 0.25em 0 rgba(0, 0, 0, 0.1);
+		}
+
+			.pagination .pages a:hover {
+				background-color: #dadada;
+			}
+
+			.pagination .pages a.active {
+				background-color: #364050;
+				color: #fff;
+				box-shadow: none;
+				text-shadow: -1px -1px 0px rgba(0, 0, 0, 0.5);
+			}
+
 /* Box */
 
 	.box.post {
