@@ -18,7 +18,7 @@
 
 <body>
 	<script>
-		$(function(){
+		$(function(){		
 			if (navigator.appVersion.indexOf("Mac")!=-1) {
 				$(".win").hide();
 				$(".mac").show();			
@@ -314,7 +314,7 @@
 								<li>Variable Name: JAVA_HOME</li>
 								<li>Variable Value:  C:\Program Files\Java\jdk1.7.079
 									<ol class="default">							
-										<li>It's best to click "Browse Directory..." and find where the JDK was installed, ad the location maybe different then the one I have specified</li>
+										<li>It's best to click "Browse Directory..." and find where the JDK was installed, as the location maybe different then the one I have specified</li>
 									</ol>
 								</li>
 							</ol>
@@ -383,7 +383,9 @@
 						<li>The default emulator setup settings are ok, so click "Next"</li>
 						<li>The default start menu folder is ok, so click "Install", and wait for it to finish</li>
 						<li>Click "Next" once the installation is complete</li>
-						<li>Uptick "Start Android Studio" and then click "Finish"</li>
+						<li>----Uptick "Start Android Studio" and then click "Finish"</li>
+						<li>XXXStart the app, and don't import</li>
+						<li>XXXAllow access for Android Studio if asked by the windows firewall</li>
 					</ol>
 
 					<p>We need to add the location of the Android tools to the <code>PATH</code> environment variable so that Cordova / Ionic can use them. To do this:-</p>
@@ -393,12 +395,18 @@
 						<li>Type "Path"</li>
 						<li>Click on "Edit the system environment variables"</li>
 						<li>Click on "Environment Variables..." on the "Advanced" tab of the "System Properties" window that opened</li>
-						<li>Select "PATH" and click "Edit..."</li>
-						<li>Add <code>;C:\Android\sdk\platform-tools;C:\Android\sdk\tools</code> to the end of what is already there
+						<li>Click "New..."
 							<ol class="default alphalist">
-								<li>If you didn't change the install path, then the above will be fine. If you changed the install location, use the location that was specified in "Android SDK Installation Location" during step 8, replacing the text upto <code>platform-tools</code> and <code>tools</code></li>
+								<li>Variable Name: ANDROID_HOME</li>
+								<li>Variable Value:  C:\Android\sdk</li>
+									<ol class="default">							
+										<li>It's best to click "Browse Directory..." and find where the Android SDK was installed. using the location that was specified in "Android SDK Installation Location" during step 8</li>
+									</ol>
+								</li>
 							</ol>
 						</li>
+						<li>Select "PATH" and click "Edit..."</li>
+						<li>Add <code>;%ANDROID_HOME%\platform-tools;%ANDROID_HOME%\tools</code> to the end of what is already there</li>
 						<li>Click "OK" to set the PATH variable</li>
 						<li>Click "OK" to close the "Environment Variables"</li>
 						<li>Click "OK" to close "System Properties"</li>
@@ -449,99 +457,139 @@
 					<h2>Build &amp; Deploy</h2>
 				</header>
 				<h3>Change Project ID</h3>
-				<p>The project has a given ID of "ninja.secretcode.BlueCube". This ID needs to be unique for each developer that builds the apps. This change needs to be completed every time you download a new version of BlueCube (the same unique ID can be used for each version). To edit it:-</p>
+				<p>The project has a given ID of "ninja.secretcode.BlueCube". This ID needs to be unique for each developer that builds the apps. This change needs to be completed every time you download a new version of BlueCube (you can reuse the ID you choose for each subsequent version). To edit it:-</p>
 
-				<h4>On a Mac</h4>
-				<ol class="default">
-					<li>Browse to "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp"</li>
-					<li>Edit <code>config.xml</code> in the text editor of your choise</li>
-					<li>On the second line where it says <code>id=ninja.secretcode.BlueCube</code> change it so that it is unique to you. Normally the name ID is in reverse DNS format, so if you own "fredsautos.com", the ID would be <code>id=com.fredsautos.BlueCube</code>. Otherwise just add a random number to the end of "BlueCube", without any spaces or punctuation. If in doubt, add the machines MAC address at the end. On OS X run <code>ifconfig en0 ether | grep ether | awk '{ print $2 }' | sed s/\://g</code></li>
-					<li>Start Terminal "Applications" <i class="fa fa-arrow-right"></i> "Utilities" <i class="fa fa-arrow-right"></i> "Terminal"</li>
-					<li>Change to the BlueCube "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp" by <code>cd</code> and dragging the "IonicApp" folder onto the terminal window, then hitting "Enter". For example, I have the BlueCube folder on my desktop, and my username is <code>adam</code>. In this case the command was <code>cd /Users/adam/Desktop/BlueCube/IonicApp</code></li>
-					<li>Remove the previously configured platforms
-						<ol class="default alphalist">
-							<li><code>ionic platform rm ios</code></li>
-							<li><code>ionic platform rm android</code></li>
-						</ol>
-					</li>
-					<li>Re-add the iOS platform if you wish to build the iOS app
-						<ol class="default alphalist">
-							<li><code>ionic platform add ios</code></li>
-						</ol>
-					</li>
-					<li>Re-add the Android platform if you wish to build the Android app
-						<ol class="default alphalist">
-							<li><code>ionic platform add android</code></li>
-						</ol>
-					</li>
-				</ol>
-
-				<h4>On a Windows PC</h4>
-				<ol class="default">
-					<li>Browse to "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp"</li>
-					<li>Edit <code>config.xml</code> in the text editor of your choise</li>
-					<li>On the second line where it says <code>id=com.example.BlueCube</code> change it so that it is unique to you. Normally the name ID is in reverse DNS format, so if you own "fredsautos.com", the ID would be <code>id=com.fredsautos.BlueCube</code>. Otherwise just add a random number to the end of "BlueCube", without any spaces or punctuation. If in doubt, add the machines MAC address at the end. Run <code>getmac</code>, from the command prompt and pick the "Physical Address", removing the hyphens</li>
-					<li>Start Command Prompt "Windows Key + R" <i class="fa fa-arrow-right"></i> "cmd.exe"</li>
-					<li>Change to the BlueCube "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp" by <code>cd</code> and dragging the "IonicApp" folder onto the command prompt, then hitting "Enter". For example, I have the BlueCube folder on my desktop, and my username is <code>adam</code>. In this case the command was <code>cd "C:\Users\adam\Desktop\BlueCube\IonicApp"</code></li>
-					<li>Remove the previously configured platforms
-						<ol class="default alphalist">
-							<li><code>ionic platform rm ios</code></li>
-							<li><code>ionic platform rm android</code></li>
-						</ol>
-					</li>
-					<li>Re-add the Android platform
-						<ol class="default alphalist">
-							<li><code>ionic platform add android</code></li>
-						</ol>
-					</li>
-				</ol>
-
+				<div class="mac">
+					<ol class="default">
+						<li>Browse to "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp"</li>
+						<li>Edit <code>config.xml</code> in the text editor of your choise</li>
+						<li>On the second line where it says <code>id=ninja.secretcode.BlueCube</code> change it so that it is unique to you. Normally the name ID is in reverse DNS format, so if you own "fredsautos.com", the ID would be <code>id=com.fredsautos.BlueCube</code>. Otherwise just add a random number to the end of "BlueCube", without any spaces or punctuation. If in doubt, add the machines MAC address at the end. On OS X run <code>ifconfig en0 ether | grep ether | awk '{ print $2 }' | sed s/\://g</code></li>
+						<li>Save the file and quit the text editor</li>
+						<li>Start Terminal "Applications" <i class="fa fa-arrow-right"></i> "Utilities" <i class="fa fa-arrow-right"></i> "Terminal"</li>
+						<li>Change to the BlueCube folder by <code>cd</code> and dragging the "IonicApp" ("BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp") folder onto the terminal window, then hitting "Enter". For example, I have the BlueCube folder on my desktop, and my username is <code>adam</code>. In this case the command was <code>cd /Users/adam/Desktop/BlueCube/IonicApp</code></li>
+						<li>Remove the previously configured platforms
+							<ol class="default alphalist">
+								<li><code>ionic platform rm ios</code></li>
+								<li><code>ionic platform rm android</code></li>
+							</ol>
+						</li>
+						<li>Re-add the iOS platform if you wish to build the iOS app
+							<ol class="default alphalist">
+								<li><code>ionic platform add ios@3.9</code></li>
+							</ol>
+						</li>
+						<li>Re-add the Android platform if you wish to build the Android app
+							<ol class="default alphalist">
+								<li><code>ionic platform add android@4.1</code></li>
+							</ol>
+						</li>
+					</ol>
+				</div>
+				
+				<div class="win">
+					<ol class="default">
+						<li>Browse to "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp"</li>
+						<li>Edit <code>config.xml</code> in the text editor of your choise</li>
+						<li>On the second line where it says <code>id=com.example.BlueCube</code> change it so that it is unique to you. Normally the name ID is in reverse DNS format, so if you own "fredsautos.com", the ID would be <code>id=com.fredsautos.BlueCube</code>. Otherwise just add a random number to the end of "BlueCube", without any spaces or punctuation. If in doubt, add the machines MAC address at the end. Run <code>getmac</code>, from the command prompt and pick the "Physical Address", removing the hyphens</li>
+						<li>Save the file and quit the text editor</li>
+						<li>Start Command Prompt "Windows Key + R" and run "cmd.exe"</li>
+						<li>Change to the BlueCube folder by <code>cd</code> and dragging the "IonicApp" ("BlueCube"  <i class="fa fa-arrow-right"></i> "IonicApp") folder onto the command prompt, then hitting "Enter". For example, I have the BlueCube folder on my desktop, and my username is <code>adam</code>. In this case the command was <code>cd "C:\Users\adam\Desktop\BlueCube\IonicApp"</code></li>
+						<li>Remove the previously configured platforms
+							<ol class="default alphalist">
+								<li><code>ionic platform rm ios</code></li>
+								<li><code>ionic platform rm android</code></li>
+							</ol>
+						</li>
+						<li>Re-add the Android platform
+							<ol class="default alphalist">
+								<li><code>ionic platform add android@4.1</code></li>
+							</ol>
+						</li>
+					</ol>
+				</div>
+				
 				<h3>Build</h3>
-				<p>Every time you modify the BlueCube's code, you need to instruct Ionic to build it. This prepares all of the items in a platform specific way. You build the code from the command line.</p>
+				<p>Every time you modify the BlueCube's code, you need to instruct ionic to build it. This prepares all of the items in a platform specific way. You build the code from the command line.</p>
 
-				<h4>On a Mac</h4>
-				<ul class="default">
-					<li>Start "Terminal" from "Applications" <i class="fa fa-arrow-right"></i> "Utilities"</li>
-					<li>Change to the to "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp" folder by running <code>cd /path/to/BlueCube/IonicApp</code> (you can drag the IonicApp folder from Finder into the Terminal window to automatically provide the complete path)</li>
-					<li><code>ionic build</code> (to build both), or </li>
-					<li><code>ionic build ios</code> (if building iOS app), or </li>
-					<li><code>ionic build android</code> (if building Android app)</li>
-				</ul>
-
-				<h4>On a Windows PC</h4>
-				<ul class="default">
-					<li>Start "Command Prompt" hitting "Windows" + "R" keys, then typing <code>cmd</code></li>
-					<li>Change to the to "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp" folder by running <code>cd "C:\Users\Adam\BlueCube\IonicApp"</code> (you can drag the IonicApp folder from Explorer into the command window to automatically provide the complete path)</li>
-					<li><code>ionic build android</code></li>
-				</ul>
-
+				<div class="mac">
+					<ol class="default">
+						<li>Start "Terminal" from "Applications" <i class="fa fa-arrow-right"></i> "Utilities"</li>
+						<li>Change to the to "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp" folder by running <code>cd /path/to/BlueCube/IonicApp</code> (you can drag the IonicApp folder from Finder into the Terminal window to automatically provide the complete path)</li>
+						<li><code>ionic build</code> (to build both iOS and Android apps), or </li>
+						<li><code>ionic build ios</code> (if building iOS app), or </li>
+						<li><code>ionic build android</code> (if building Android app)</li>
+					</ol>
+				</div>
+				
+				<div class="win">
+					<ol class="default">
+						<li>Start "Command Prompt" hitting "Windows" + "R" keys, then typing <code>cmd</code></li>
+						<li>Change to the to "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp" folder by running <code>cd "C:\Users\Adam\BlueCube\IonicApp"</code> (you can drag the IonicApp folder from Explorer into the command window to automatically provide the complete path)</li>
+						<li><code>ionic build</code>
+							<ul class="default alphalist">
+								<li>You may be asked by the windows firewall to allow access for Java. It is up to you if you wish to allow this access.</li>
+							</ul>
+						</li>
+				</div>
+				
 				<h3>Deploy to Mobile Device</h3>
 				<p>Ensure that before deploying to a mobile device, that the latest version of the code has been build, as outlined in the instructions above.</p>
 
 				<h4>iOS</h4>
 				<ol class="default">
-					<li>Connect iPhone, iPad, or iPod Touch to your Mac with a lightning cable</li>
-					<li>Launch Xcode</li>
-					<li>Open Project</li>
-					<li>Unlock Phone</li>
-					<li>Build</li>
-					<li>XXX Apple ID stuff XXX</li>
-					<li>Test App</li>
-					<li>Stop App via Xcode</li>
+					<li>Connect your iOS mobile device to your Mac with a lightning cable, and unlock the device</li>
+					<li>If requested, Trust the computer on your mobile device (this should only occur the first time you connect the mobile device)</li>
+					<li>Open the Xcode project by browsing to "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp" <i class="fa fa-arrow-right"></i> "platforms" <i class="fa fa-arrow-right"></i> "ios" and double clicking on "BlueCube.xcodeproj"</li>
+					<li>Xcode will launch, and the project will load (which can take a while the first time - progress is shown in the toolbar at the top of the Xcode window)</li>
+					<li>Ensure that in the top toolbar, that BlueCube and your mobile device are selected. If not, click on this and pick your phone from the list of available options</li>
+					<li>Click Build (the black arrow icon). The first time you do this you may need to do the following tasks:-
+						<ul class="default alphalist">
+							<li>If prompted, enable "Developer Mode" and provide your password when requested</li>
+							<li>You may get an error saying 'Failed to code sign "BlueCube"', and are provided an option to "Fix issue". If this occurs, click the "Fix issue" button
+								<ol class="default">
+									<li>When asked, click "Add" to add your Apple ID</li>
+									<li>Enter your Apple ID and Password, then click "Sign In"</li>
+									<li>If two factor authentication is enabled, select the phone to send the code to, and click "Continue", then enter the provided code and click "Verify"</li>
+									<li>You will now see the Accounts tab of the preferences window, and your AppleID will be listed. Close this window.</li>
+									<li>If you have multiple teams associated with your AppleID, select the one you want to use and click "Choose"</li>
+								</ol>
+							</li>
+							<li>If you have your AppleID developer account setup on a different mac for use with Xcode, you will need to export the developer profile (via Preferences -> Accounts -> Cog icon), then click Import Developer Profile, otherwise let Xcode download the signing certificates that are required</li>
+							<li>Finally Always Allow codesign to sign the code</li> 
+						</ul>					
+					</li>
+					<li>Test the app on your mobile device</li>
+					<li>Stop the app via the stop icon on the top toolbar in Xcode</li>
 				</ol>
 
 				<p>At this stage you can quit the Xcode, and use the app like a normal app.</p>
 
 				<h4>Android</h4>
+				<p>To be able to deploy the app to your Android device, we need to enable USB Debugging. To do that:-</p>
 				<ol class="default">
-					<li>Enable Debug mode on phone</li>
-					<li>Enable USB debug</li>
+					<li>Launch the "Settings" application on your Android device</li>
+					<li>Select "About phone" or "About tablet" from the bottom of the list of settings</li>
+					<li>Scroll to the bottom of the information, and find "Build number"</li>
+					<li>Tap "Build number" seven times</li>
+					<li>"You are now a developer" will be shown when this has been successful</li>
+					<li>Tap the back button to return to the settings menu</li>
+					<li>Select "Developer Options" menu which has now been added to the settings menu</li>
+					<li>Enable "USB debugging"</li>
+				</ol>
+				
+				<p>Your mobile device is now ready to have the app deployed to. To deploy the app:-</p>
+				
+				<ol class="default">
+					<li>Connect your mobile device to the computer via USB, and unlock it</li>
+					<li>If prompted, select "Always allow from this computer" and touch "OK" on your device</li>
 					<li>Launch Android Studio</li>
-					<li>Open Project (Comment about Gradle Sync)</li>
-					<li>Unlock Phone</li>
-					<li>Build</li>
-					<li>Test App</li>
-					<li>Stop App via Android Studio</li>
+					<li>Select "Import project (Eclipse ADT, Gradle, etc.)"</li>
+					<li>Select "BlueCube" <i class="fa fa-arrow-right"></i> "IonicApp" <i class="fa fa-arrow-right"></i> "platforms" <i class="fa fa-arrow-right"></i> "android" folder</li>
+					<li>Click "OK", and wait for the app to load (which can take a while the first time - you can see progress in the bottom status bar after the initial stage has completed)</li>
+					<li>Click Build (Green arrow in middle of top toolbar)</li>
+					<li>Select "Choose a running device", and select your mobile device</li>
+					<li>Click "OK"</li>
+					<li>The application will launch, and you can see logs within Android Studio. Test the app as appropriate</li>
 				</ol>
 
 				<p>At this stage you can quit Android Studio, and use the app like a normal app.</p>
@@ -570,6 +618,23 @@
 						<li><a href="http://www.git-scm.com/">Git</a> is a free version control system tool. I've used Git during the development of BlueCube</li>
 						<li><a href="https://www.sourcetreeapp.com">SourceTree</a> is a free graphical front end to Git from <a href="https://www.atlassian.com">Atlassian</a></li>
 					</ul>
+				</div>
+			</section>
+
+			<hr class="blue">
+
+			<section class="box post">
+				<header>
+					<h2>Video Tutorials</h2>
+				</header>
+				<h3>Development Environment Setup</h3>
+				<div class="video-container">
+					<div class="mac">
+						<iframe src="https://www.youtube.com/embed/hT5Jx08As48" frameborder="0" allowfullscreen></iframe>
+					</div>
+					<div class="win">
+						<iframe src="https://www.youtube.com/embed/WFFOWABiTbE" frameborder="0" allowfullscreen></iframe>
+					</div>
 				</div>
 			</section>
 		</div> <!-- .inner -->
