@@ -1,6 +1,6 @@
 /*
  *  File:     BlueCube.ino
- *  Version:  0.8
+ *  Version:  1.0
  *  Author:   Adam Reed (adam@secretcode.ninja)
  *  Licence:  BSD 3-Clause Licence
  *
@@ -27,7 +27,7 @@
     ZIGZAG_DELAY              Delay between ZigZag movemements
 ============================================================================ */
 // General Defines
-#define SCRIPT_VERSION              "0.8"
+#define SCRIPT_VERSION              "1.0"
 #define VERBOSE_MODE                true
 
 // Bluetooth Defines

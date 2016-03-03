@@ -1,9 +1,9 @@
 /*
-    File:     ColourPulse.cpp
-    Purpose:  ColourPulse pattern for the Freetronics 4x4x4 Cube (non blocking)
-    Author:   Adam Reed (adam@secretcode.ninja)
-    Licence:  BSD 3-Clause Licence
-*/
+ *  File:     ColourPulse.cpp
+ *  Purpose:  ColourPulse pattern for the Freetronics 4x4x4 Cube (non blocking)
+ *  Author:   Adam Reed (adam@secretcode.ninja)
+ *  Licence:  BSD 3-Clause Licence
+ */
 
 // Include for Arduino Library
 #include <Arduino.h>

@@ -1,7 +1,6 @@
 /*
- *  File:     Bluetooth.h - Non blocking bluetooth functionality
- *            for Freetronics 4x4x4 Cube
- *  Version:  0.8
+ *  File:     Bluetooth.h
+ *  Purpose:  Non blocking bluetooth functionality for Freetronics 4x4x4 Cube
  *  Author:   Adam Reed (adam@secretcode.ninja)
  *  Licence:  BSD 3-Clause Licence
  */
