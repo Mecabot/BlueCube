@@ -556,6 +556,17 @@
 							</li>
 							<li>If you have your AppleID developer account setup on a different mac for use with Xcode, you will need to export the developer profile (via Preferences -> Accounts -> Cog icon), then click Import Developer Profile, otherwise let Xcode download the signing certificates that are required</li>
 							<li>Finally Always Allow codesign to sign the code</li> 
+							<li>After the code is uploaded to your mobile device, Xcode may give you a 'Could not launch "BlueCube"' error, mentioned that the process launched failed because of security. It this happens, on your mobile device:-
+								<ol class="default">
+									<li>Launch "Settings"</li>
+									<li>Select "General"</li>
+									<li>Select "Device Management"</li>
+									<li>Select the option that represents your Apple ID</li>
+									<li>Tap "Trust 'Apple ID'"</li>
+									<li>Tap "Trust"</li>
+									<li>Rebuild the app in Xcode</li>
+								</ol>
+							</li>
 						</ul>					
 					</li>
 					<li>Test the app on your mobile device</li>
